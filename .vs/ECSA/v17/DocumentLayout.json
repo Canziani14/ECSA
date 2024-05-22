@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|c:\\users\\matias canziani\\desktop\\ecsa\\ecsa\\ecsa\\uiinicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|solutionrelative:ecsa\\uiinicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UIInicio.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIInicio.cs",
+              "RelativeDocumentMoniker": "ECSA\\UIInicio.cs",
+              "ToolTip": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIInicio.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ECSA\\UIInicio.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T14:24:08.28Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -16,5 +16,12 @@ namespace ECSA
         {
             InitializeComponent();
         }
+
+        private void btnGestionarCoches_Click(object sender, EventArgs e)
+        {
+            UIGestionarCoches uiGestionarCoches = new UIGestionarCoches();
+            uiGestionarCoches.MdiParent = this.MdiParent;
+            uiGestionarCoches.Show();
+        }
     }
 }

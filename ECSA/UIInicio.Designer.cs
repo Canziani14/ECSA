@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UIInicio));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnAyuda = new System.Windows.Forms.Button();
             this.btnGestionarFamilias = new System.Windows.Forms.Button();
             this.btnGestionarPatentes = new System.Windows.Forms.Button();
             this.btnGestionarServicios = new System.Windows.Forms.Button();
@@ -41,9 +40,10 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnAlertas = new System.Windows.Forms.Button();
-            this.btnCambiarContraseña = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.btnCambiarContraseña = new System.Windows.Forms.Button();
+            this.btnAlertas = new System.Windows.Forms.Button();
+            this.btnAyuda = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -52,7 +52,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnAyuda);
             this.panel1.Controls.Add(this.btnGestionarFamilias);
             this.panel1.Controls.Add(this.btnGestionarPatentes);
             this.panel1.Controls.Add(this.btnGestionarServicios);
@@ -64,22 +63,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(127, 510);
+            this.panel1.Size = new System.Drawing.Size(127, 618);
             this.panel1.TabIndex = 1;
-            // 
-            // btnAyuda
-            // 
-            this.btnAyuda.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnAyuda.FlatAppearance.BorderSize = 0;
-            this.btnAyuda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAyuda.Location = new System.Drawing.Point(0, 464);
-            this.btnAyuda.Name = "btnAyuda";
-            this.btnAyuda.Size = new System.Drawing.Size(127, 46);
-            this.btnAyuda.TabIndex = 9;
-            this.btnAyuda.Text = "Ayuda";
-            this.btnAyuda.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAyuda.UseVisualStyleBackColor = true;
-            this.btnAyuda.Click += new System.EventHandler(this.btnAyuda_Click);
             // 
             // btnGestionarFamilias
             // 
@@ -200,37 +185,15 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnAyuda);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.btnCambiarContraseña);
             this.panel2.Controls.Add(this.btnAlertas);
-            this.panel2.Location = new System.Drawing.Point(953, 3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(1146, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(94, 468);
+            this.panel2.Size = new System.Drawing.Size(72, 618);
             this.panel2.TabIndex = 3;
-            // 
-            // btnAlertas
-            // 
-            this.btnAlertas.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAlertas.FlatAppearance.BorderSize = 0;
-            this.btnAlertas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAlertas.Location = new System.Drawing.Point(0, 0);
-            this.btnAlertas.Name = "btnAlertas";
-            this.btnAlertas.Size = new System.Drawing.Size(94, 23);
-            this.btnAlertas.TabIndex = 0;
-            this.btnAlertas.Text = "Ver Alertas";
-            this.btnAlertas.UseVisualStyleBackColor = true;
-            // 
-            // btnCambiarContraseña
-            // 
-            this.btnCambiarContraseña.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnCambiarContraseña.FlatAppearance.BorderSize = 0;
-            this.btnCambiarContraseña.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCambiarContraseña.Location = new System.Drawing.Point(0, 23);
-            this.btnCambiarContraseña.Name = "btnCambiarContraseña";
-            this.btnCambiarContraseña.Size = new System.Drawing.Size(94, 40);
-            this.btnCambiarContraseña.TabIndex = 1;
-            this.btnCambiarContraseña.Text = "Cambiar Contraseña";
-            this.btnCambiarContraseña.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -239,16 +202,52 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Location = new System.Drawing.Point(0, 63);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 35);
+            this.button2.Size = new System.Drawing.Size(72, 35);
             this.button2.TabIndex = 2;
             this.button2.Text = "Consultar Bitacora";
             this.button2.UseVisualStyleBackColor = true;
+            // 
+            // btnCambiarContraseña
+            // 
+            this.btnCambiarContraseña.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCambiarContraseña.FlatAppearance.BorderSize = 0;
+            this.btnCambiarContraseña.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCambiarContraseña.Location = new System.Drawing.Point(0, 23);
+            this.btnCambiarContraseña.Name = "btnCambiarContraseña";
+            this.btnCambiarContraseña.Size = new System.Drawing.Size(72, 40);
+            this.btnCambiarContraseña.TabIndex = 1;
+            this.btnCambiarContraseña.Text = "Cambiar Contraseña";
+            this.btnCambiarContraseña.UseVisualStyleBackColor = true;
+            // 
+            // btnAlertas
+            // 
+            this.btnAlertas.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAlertas.FlatAppearance.BorderSize = 0;
+            this.btnAlertas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAlertas.Location = new System.Drawing.Point(0, 0);
+            this.btnAlertas.Name = "btnAlertas";
+            this.btnAlertas.Size = new System.Drawing.Size(72, 23);
+            this.btnAlertas.TabIndex = 0;
+            this.btnAlertas.Text = "Ver Alertas";
+            this.btnAlertas.UseVisualStyleBackColor = true;
+            // 
+            // btnAyuda
+            // 
+            this.btnAyuda.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnAyuda.FlatAppearance.BorderSize = 0;
+            this.btnAyuda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAyuda.Location = new System.Drawing.Point(0, 583);
+            this.btnAyuda.Name = "btnAyuda";
+            this.btnAyuda.Size = new System.Drawing.Size(72, 35);
+            this.btnAyuda.TabIndex = 3;
+            this.btnAyuda.Text = "Ayuda";
+            this.btnAyuda.UseVisualStyleBackColor = true;
             // 
             // UIInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1049, 510);
+            this.ClientSize = new System.Drawing.Size(1218, 618);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.IsMdiContainer = true;
@@ -275,11 +274,11 @@
         private System.Windows.Forms.Button btnGestionarServicios;
         private System.Windows.Forms.Button btnGestionarPatentes;
         private System.Windows.Forms.Button btnGestionarFamilias;
-        private System.Windows.Forms.Button btnAyuda;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnCambiarContraseña;
         private System.Windows.Forms.Button btnAlertas;
+        private System.Windows.Forms.Button btnAyuda;
     }
 }
 

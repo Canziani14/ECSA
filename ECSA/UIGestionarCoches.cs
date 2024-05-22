@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ECSA
 {
-    public partial class GestionarCoches : Form
+    public partial class UIGestionarCoches : Form
     {
-        public GestionarCoches()
+        public UIGestionarCoches()
         {
             InitializeComponent();
         }

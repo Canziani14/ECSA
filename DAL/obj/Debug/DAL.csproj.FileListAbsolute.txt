@@ -4,3 +4,9 @@ C:\Users\CASA\Desktop\ECSA\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
 C:\Users\CASA\Desktop\ECSA\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 C:\Users\CASA\Desktop\ECSA\DAL\obj\Debug\DAL.dll
 C:\Users\CASA\Desktop\ECSA\DAL\obj\Debug\DAL.pdb
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\DAL\bin\Debug\DAL.dll
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\DAL\bin\Debug\DAL.pdb
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\DAL\obj\Debug\DAL.dll
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\DAL\obj\Debug\DAL.pdb

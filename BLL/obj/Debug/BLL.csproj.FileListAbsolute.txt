@@ -4,3 +4,9 @@ C:\Users\CASA\Desktop\ECSA\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
 C:\Users\CASA\Desktop\ECSA\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
 C:\Users\CASA\Desktop\ECSA\BLL\obj\Debug\BLL.dll
 C:\Users\CASA\Desktop\ECSA\BLL\obj\Debug\BLL.pdb
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BLL\bin\Debug\BLL.dll
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BLL\bin\Debug\BLL.pdb
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BLL\obj\Debug\BLL.dll
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BLL\obj\Debug\BLL.pdb
