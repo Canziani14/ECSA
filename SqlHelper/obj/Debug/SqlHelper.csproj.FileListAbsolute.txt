@@ -1,0 +1,6 @@
+C:\Users\CASA\Desktop\ECSA\SqlHelper\bin\Debug\SqlHelper.dll
+C:\Users\CASA\Desktop\ECSA\SqlHelper\bin\Debug\SqlHelper.pdb
+C:\Users\CASA\Desktop\ECSA\SqlHelper\obj\Debug\SqlHelper.csproj.AssemblyReference.cache
+C:\Users\CASA\Desktop\ECSA\SqlHelper\obj\Debug\SqlHelper.csproj.CoreCompileInputs.cache
+C:\Users\CASA\Desktop\ECSA\SqlHelper\obj\Debug\SqlHelper.dll
+C:\Users\CASA\Desktop\ECSA\SqlHelper\obj\Debug\SqlHelper.pdb

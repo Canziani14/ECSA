@@ -1,0 +1,80 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ECSA
+{
+    public partial class UIInicio : Form
+    {
+        public UIInicio()
+        {
+            InitializeComponent();
+        }
+
+    
+
+        private void GestionarEmpleados_Click(object sender, EventArgs e)
+        {
+            UIGestionarEmpleados uigestionarEmpleados = new UIGestionarEmpleados();
+            uigestionarEmpleados.MdiParent = this;
+            uigestionarEmpleados.Show();
+        }
+
+        private void btnGestionarUsuarios_Click_1(object sender, EventArgs e)
+        {
+            UIGestionarUsuarios uigestionarUsuarios = new UIGestionarUsuarios();
+            uigestionarUsuarios.MdiParent = this;
+            uigestionarUsuarios.Show();
+        }
+
+        private void btnBKP_Click(object sender, EventArgs e)
+        {
+            UIGestionarBackUp uiGestionarBackUp = new UIGestionarBackUp();
+            uiGestionarBackUp.MdiParent = this;
+            uiGestionarBackUp.Show();
+        }
+
+        private void btnGestionarLineas_Click(object sender, EventArgs e)
+        {
+            UIGestionarLinea uigestionarEmpleados = new UIGestionarLinea();
+            uigestionarEmpleados.MdiParent = this;
+            uigestionarEmpleados.Show();
+        }
+
+        private void btnGestionarServicios_Click(object sender, EventArgs e)
+        {
+            UIGestionarServicios uiGestionarServicios = new UIGestionarServicios();
+            uiGestionarServicios.MdiParent = this;
+            uiGestionarServicios.Show();
+        }
+
+        private void btnGestionarPatentes_Click(object sender, EventArgs e)
+        {
+            UIGestionarPatentes uiGestionarPatentes = new UIGestionarPatentes();
+            uiGestionarPatentes.MdiParent = this;
+            uiGestionarPatentes.Show();
+        }
+
+        private void btnGestionarFamilias_Click(object sender, EventArgs e)
+        {
+            UIGestionarFamilias uiGestionarFamilias = new UIGestionarFamilias();
+            uiGestionarFamilias.MdiParent = this;
+            uiGestionarFamilias.Show();
+        }
+
+        private void btnAyuda_Click(object sender, EventArgs e)
+        {
+            UIAyuda uiAyuda = new UIAyuda();
+            uiAyuda.MdiParent = this;
+            uiAyuda.Show();
+        }
+
+      
+    }
+}

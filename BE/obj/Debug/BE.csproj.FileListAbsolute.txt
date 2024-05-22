@@ -1,0 +1,6 @@
+C:\Users\CASA\Desktop\ECSA\BE\bin\Debug\BE.dll
+C:\Users\CASA\Desktop\ECSA\BE\bin\Debug\BE.pdb
+C:\Users\CASA\Desktop\ECSA\BE\obj\Debug\BE.csproj.AssemblyReference.cache
+C:\Users\CASA\Desktop\ECSA\BE\obj\Debug\BE.csproj.CoreCompileInputs.cache
+C:\Users\CASA\Desktop\ECSA\BE\obj\Debug\BE.dll
+C:\Users\CASA\Desktop\ECSA\BE\obj\Debug\BE.pdb
