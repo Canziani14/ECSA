@@ -3,6 +3,42 @@
   "WorkspaceRootPath": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|c:\\users\\matias canziani\\desktop\\ecsa\\ecsa\\ecsa\\uigestionarbackup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|solutionrelative:ecsa\\uigestionarbackup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|c:\\users\\matias canziani\\desktop\\ecsa\\ecsa\\ecsa\\uigestionarcoches.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|solutionrelative:ecsa\\uigestionarcoches.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|c:\\users\\matias canziani\\desktop\\ecsa\\ecsa\\ecsa\\uilogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|solutionrelative:ecsa\\uilogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|c:\\users\\matias canziani\\desktop\\ecsa\\ecsa\\ecsa\\uigestionarpatentes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|solutionrelative:ecsa\\uigestionarpatentes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|c:\\users\\matias canziani\\desktop\\ecsa\\ecsa\\ecsa\\uigestionarservicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|solutionrelative:ecsa\\uigestionarservicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|c:\\users\\matias canziani\\desktop\\ecsa\\ecsa\\ecsa\\uigestionarlinea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|solutionrelative:ecsa\\uigestionarlinea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|c:\\users\\matias canziani\\desktop\\ecsa\\ecsa\\ecsa\\uigestionarempleados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|solutionrelative:ecsa\\uigestionarempleados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|c:\\users\\matias canziani\\desktop\\ecsa\\ecsa\\ecsa\\uigestionarfamilias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|solutionrelative:ecsa\\uigestionarfamilias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|c:\\users\\matias canziani\\desktop\\ecsa\\ecsa\\ecsa\\uigestionarusuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|solutionrelative:ecsa\\uigestionarusuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|c:\\users\\matias canziani\\desktop\\ecsa\\ecsa\\ecsa\\uiinicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|solutionrelative:ecsa\\uiinicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
@@ -19,6 +55,114 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "UIGestionarBackUp.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIGestionarBackUp.cs",
+              "RelativeDocumentMoniker": "ECSA\\UIGestionarBackUp.cs",
+              "ToolTip": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIGestionarBackUp.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ECSA\\UIGestionarBackUp.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T15:44:34.391Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UILogin.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UILogin.cs",
+              "RelativeDocumentMoniker": "ECSA\\UILogin.cs",
+              "ToolTip": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UILogin.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ECSA\\UILogin.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T15:43:32.9Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UIGestionarPatentes.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIGestionarPatentes.cs",
+              "RelativeDocumentMoniker": "ECSA\\UIGestionarPatentes.cs",
+              "ToolTip": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIGestionarPatentes.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ECSA\\UIGestionarPatentes.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T15:41:43.997Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UIGestionarServicios.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIGestionarServicios.cs",
+              "RelativeDocumentMoniker": "ECSA\\UIGestionarServicios.cs",
+              "ToolTip": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIGestionarServicios.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ECSA\\UIGestionarServicios.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T15:39:55.651Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UIGestionarCoches.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIGestionarCoches.cs",
+              "RelativeDocumentMoniker": "ECSA\\UIGestionarCoches.cs",
+              "ToolTip": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIGestionarCoches.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ECSA\\UIGestionarCoches.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T15:39:03.792Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UIGestionarLinea.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIGestionarLinea.cs",
+              "RelativeDocumentMoniker": "ECSA\\UIGestionarLinea.cs",
+              "ToolTip": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIGestionarLinea.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ECSA\\UIGestionarLinea.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T15:28:42.111Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UIGestionarEmpleados.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIGestionarEmpleados.cs",
+              "RelativeDocumentMoniker": "ECSA\\UIGestionarEmpleados.cs",
+              "ToolTip": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIGestionarEmpleados.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ECSA\\UIGestionarEmpleados.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T15:25:13.603Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UIGestionarFamilias.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIGestionarFamilias.cs",
+              "RelativeDocumentMoniker": "ECSA\\UIGestionarFamilias.cs",
+              "ToolTip": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIGestionarFamilias.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ECSA\\UIGestionarFamilias.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T15:17:43.962Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UIGestionarUsuarios.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIGestionarUsuarios.cs",
+              "RelativeDocumentMoniker": "ECSA\\UIGestionarUsuarios.cs",
+              "ToolTip": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIGestionarUsuarios.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ECSA\\UIGestionarUsuarios.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T15:15:48.534Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "UIInicio.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIInicio.cs",
               "RelativeDocumentMoniker": "ECSA\\UIInicio.cs",

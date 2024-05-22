@@ -33,9 +33,9 @@
             this.btnModificarFamilia = new System.Windows.Forms.Button();
             this.btnEliminarFamilia = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -91,13 +91,12 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gestor de Familias";
             // 
-            // dataGridView2
+            // textBox1
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(279, 371);
-            this.dataGridView2.TabIndex = 5;
+            this.textBox1.Location = new System.Drawing.Point(356, 41);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 7;
             // 
             // label1
             // 
@@ -108,12 +107,13 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Nombre";
             // 
-            // textBox1
+            // dataGridView2
             // 
-            this.textBox1.Location = new System.Drawing.Point(356, 41);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 7;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(6, 19);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(279, 371);
+            this.dataGridView2.TabIndex = 5;
             // 
             // UIGestionarFamilias
             // 
