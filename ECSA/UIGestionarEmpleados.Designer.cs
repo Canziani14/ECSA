@@ -45,6 +45,7 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -59,12 +60,13 @@
             // 
             // btnBuscarEmpleado
             // 
-            this.btnBuscarEmpleado.Location = new System.Drawing.Point(1, 45);
+            this.btnBuscarEmpleado.Location = new System.Drawing.Point(316, 34);
             this.btnBuscarEmpleado.Name = "btnBuscarEmpleado";
             this.btnBuscarEmpleado.Size = new System.Drawing.Size(75, 23);
             this.btnBuscarEmpleado.TabIndex = 1;
             this.btnBuscarEmpleado.Text = "Buscar";
             this.btnBuscarEmpleado.UseVisualStyleBackColor = true;
+            this.btnBuscarEmpleado.Click += new System.EventHandler(this.btnBuscarEmpleado_Click);
             // 
             // btnCrearEmpleado
             // 
@@ -74,6 +76,7 @@
             this.btnCrearEmpleado.TabIndex = 2;
             this.btnCrearEmpleado.Text = "Crear";
             this.btnCrearEmpleado.UseVisualStyleBackColor = true;
+            this.btnCrearEmpleado.Click += new System.EventHandler(this.btnCrearEmpleado_Click);
             // 
             // btnModificarEmpleado
             // 
@@ -83,6 +86,7 @@
             this.btnModificarEmpleado.TabIndex = 3;
             this.btnModificarEmpleado.Text = "Modificar";
             this.btnModificarEmpleado.UseVisualStyleBackColor = true;
+            this.btnModificarEmpleado.Click += new System.EventHandler(this.btnModificarEmpleado_Click);
             // 
             // btnEliminarEmpleado
             // 
@@ -92,6 +96,7 @@
             this.btnEliminarEmpleado.TabIndex = 4;
             this.btnEliminarEmpleado.Text = "Eliminar";
             this.btnEliminarEmpleado.UseVisualStyleBackColor = true;
+            this.btnEliminarEmpleado.Click += new System.EventHandler(this.btnEliminarEmpleado_Click);
             // 
             // label1
             // 
@@ -197,16 +202,26 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(82, 48);
+            this.textBox6.Location = new System.Drawing.Point(97, 36);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(202, 20);
             this.textBox6.TabIndex = 15;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(-2, 43);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(93, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Buscar Empleado:";
             // 
             // UIGestionarEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(998, 450);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnBuscarEmpleado);
@@ -240,5 +255,6 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label6;
     }
 }

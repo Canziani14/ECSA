@@ -40,10 +40,13 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCerrarSesion = new System.Windows.Forms.Button();
+            this.btnCambiarContra = new System.Windows.Forms.Button();
+            this.btnAyuda = new System.Windows.Forms.Button();
+            this.btnBitacora = new System.Windows.Forms.Button();
             this.btnCambiarContraseña = new System.Windows.Forms.Button();
             this.btnAlertas = new System.Windows.Forms.Button();
-            this.btnAyuda = new System.Windows.Forms.Button();
+            this.btnReportes = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -52,6 +55,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnReportes);
             this.panel1.Controls.Add(this.btnGestionarFamilias);
             this.panel1.Controls.Add(this.btnGestionarPatentes);
             this.panel1.Controls.Add(this.btnGestionarServicios);
@@ -185,8 +189,10 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnCerrarSesion);
+            this.panel2.Controls.Add(this.btnCambiarContra);
             this.panel2.Controls.Add(this.btnAyuda);
-            this.panel2.Controls.Add(this.button2);
+            this.panel2.Controls.Add(this.btnBitacora);
             this.panel2.Controls.Add(this.btnCambiarContraseña);
             this.panel2.Controls.Add(this.btnAlertas);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
@@ -195,41 +201,30 @@
             this.panel2.Size = new System.Drawing.Size(72, 618);
             this.panel2.TabIndex = 3;
             // 
-            // button2
+            // btnCerrarSesion
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(0, 63);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(72, 35);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Consultar Bitacora";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnCerrarSesion.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnCerrarSesion.FlatAppearance.BorderSize = 0;
+            this.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrarSesion.Location = new System.Drawing.Point(0, 513);
+            this.btnCerrarSesion.Name = "btnCerrarSesion";
+            this.btnCerrarSesion.Size = new System.Drawing.Size(72, 35);
+            this.btnCerrarSesion.TabIndex = 5;
+            this.btnCerrarSesion.Text = "Cerrar Sesion";
+            this.btnCerrarSesion.UseVisualStyleBackColor = true;
             // 
-            // btnCambiarContraseña
+            // btnCambiarContra
             // 
-            this.btnCambiarContraseña.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnCambiarContraseña.FlatAppearance.BorderSize = 0;
-            this.btnCambiarContraseña.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCambiarContraseña.Location = new System.Drawing.Point(0, 23);
-            this.btnCambiarContraseña.Name = "btnCambiarContraseña";
-            this.btnCambiarContraseña.Size = new System.Drawing.Size(72, 40);
-            this.btnCambiarContraseña.TabIndex = 1;
-            this.btnCambiarContraseña.Text = "Cambiar Contraseña";
-            this.btnCambiarContraseña.UseVisualStyleBackColor = true;
-            // 
-            // btnAlertas
-            // 
-            this.btnAlertas.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAlertas.FlatAppearance.BorderSize = 0;
-            this.btnAlertas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAlertas.Location = new System.Drawing.Point(0, 0);
-            this.btnAlertas.Name = "btnAlertas";
-            this.btnAlertas.Size = new System.Drawing.Size(72, 23);
-            this.btnAlertas.TabIndex = 0;
-            this.btnAlertas.Text = "Ver Alertas";
-            this.btnAlertas.UseVisualStyleBackColor = true;
+            this.btnCambiarContra.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnCambiarContra.FlatAppearance.BorderSize = 0;
+            this.btnCambiarContra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCambiarContra.Location = new System.Drawing.Point(0, 548);
+            this.btnCambiarContra.Name = "btnCambiarContra";
+            this.btnCambiarContra.Size = new System.Drawing.Size(72, 35);
+            this.btnCambiarContra.TabIndex = 4;
+            this.btnCambiarContra.Text = "Cambiar contraseña";
+            this.btnCambiarContra.UseVisualStyleBackColor = true;
+            this.btnCambiarContra.Click += new System.EventHandler(this.btnCambiarContraseña_Click);
             // 
             // btnAyuda
             // 
@@ -242,6 +237,59 @@
             this.btnAyuda.TabIndex = 3;
             this.btnAyuda.Text = "Ayuda";
             this.btnAyuda.UseVisualStyleBackColor = true;
+            // 
+            // btnBitacora
+            // 
+            this.btnBitacora.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnBitacora.FlatAppearance.BorderSize = 0;
+            this.btnBitacora.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBitacora.Location = new System.Drawing.Point(0, 63);
+            this.btnBitacora.Name = "btnBitacora";
+            this.btnBitacora.Size = new System.Drawing.Size(72, 35);
+            this.btnBitacora.TabIndex = 2;
+            this.btnBitacora.Text = "Consultar Bitacora";
+            this.btnBitacora.UseVisualStyleBackColor = true;
+            this.btnBitacora.Click += new System.EventHandler(this.btnBitacora_Click);
+            // 
+            // btnCambiarContraseña
+            // 
+            this.btnCambiarContraseña.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCambiarContraseña.FlatAppearance.BorderSize = 0;
+            this.btnCambiarContraseña.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCambiarContraseña.Location = new System.Drawing.Point(0, 23);
+            this.btnCambiarContraseña.Name = "btnCambiarContraseña";
+            this.btnCambiarContraseña.Size = new System.Drawing.Size(72, 40);
+            this.btnCambiarContraseña.TabIndex = 1;
+            this.btnCambiarContraseña.Text = "Cambiar Contraseña";
+            this.btnCambiarContraseña.UseVisualStyleBackColor = true;
+            this.btnCambiarContraseña.Click += new System.EventHandler(this.btnCambiarContraseña_Click);
+            // 
+            // btnAlertas
+            // 
+            this.btnAlertas.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAlertas.FlatAppearance.BorderSize = 0;
+            this.btnAlertas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAlertas.Location = new System.Drawing.Point(0, 0);
+            this.btnAlertas.Name = "btnAlertas";
+            this.btnAlertas.Size = new System.Drawing.Size(72, 23);
+            this.btnAlertas.TabIndex = 0;
+            this.btnAlertas.Text = "Ver Alertas";
+            this.btnAlertas.UseVisualStyleBackColor = true;
+            this.btnAlertas.Click += new System.EventHandler(this.btnAlertas_Click);
+            // 
+            // btnReportes
+            // 
+            this.btnReportes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnReportes.FlatAppearance.BorderSize = 0;
+            this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportes.Location = new System.Drawing.Point(0, 400);
+            this.btnReportes.Name = "btnReportes";
+            this.btnReportes.Size = new System.Drawing.Size(127, 46);
+            this.btnReportes.TabIndex = 9;
+            this.btnReportes.Text = "Generar Reportes";
+            this.btnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReportes.UseVisualStyleBackColor = true;
+            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
             // 
             // UIInicio
             // 
@@ -275,10 +323,13 @@
         private System.Windows.Forms.Button btnGestionarPatentes;
         private System.Windows.Forms.Button btnGestionarFamilias;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnBitacora;
         private System.Windows.Forms.Button btnCambiarContraseña;
         private System.Windows.Forms.Button btnAlertas;
         private System.Windows.Forms.Button btnAyuda;
+        private System.Windows.Forms.Button btnCerrarSesion;
+        private System.Windows.Forms.Button btnCambiarContra;
+        private System.Windows.Forms.Button btnReportes;
     }
 }
 

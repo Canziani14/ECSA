@@ -16,5 +16,30 @@ namespace ECSA
         {
             InitializeComponent();
         }
+
+        private void btnCrearEmpleado_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Empleado creado con exito");
+        }
+
+        private void btnModificarEmpleado_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Empleado modificado con exito");
+        }
+
+        private void btnEliminarEmpleado_Click(object sender, EventArgs e)
+        {
+            DialogResult respuesta = MessageBox.Show("¿Esta seguro de eliminar este empleado?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (respuesta == DialogResult.Yes)
+            {
+                MessageBox.Show("Empleado eliminado con exito");
+            }
+            
+        }
+
+        private void btnBuscarEmpleado_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("No se encontro el empleado");
+        }
     }
 }

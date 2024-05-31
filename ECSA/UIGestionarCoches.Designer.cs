@@ -38,6 +38,9 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -47,7 +50,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(3, 76);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(319, 362);
+            this.dataGridView1.Size = new System.Drawing.Size(238, 362);
             this.dataGridView1.TabIndex = 0;
             // 
             // btnCrearCoche
@@ -58,6 +61,7 @@
             this.btnCrearCoche.TabIndex = 1;
             this.btnCrearCoche.Text = "Crear";
             this.btnCrearCoche.UseVisualStyleBackColor = true;
+            this.btnCrearCoche.Click += new System.EventHandler(this.btnCrearCoche_Click);
             // 
             // btnEliminarCoche
             // 
@@ -67,25 +71,29 @@
             this.btnEliminarCoche.TabIndex = 2;
             this.btnEliminarCoche.Text = "Eliminar";
             this.btnEliminarCoche.UseVisualStyleBackColor = true;
+            this.btnEliminarCoche.Click += new System.EventHandler(this.btnEliminarCoche_Click);
             // 
             // btnBuscarCoche
             // 
-            this.btnBuscarCoche.Location = new System.Drawing.Point(12, 25);
+            this.btnBuscarCoche.Location = new System.Drawing.Point(179, 34);
             this.btnBuscarCoche.Name = "btnBuscarCoche";
-            this.btnBuscarCoche.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarCoche.Size = new System.Drawing.Size(62, 23);
             this.btnBuscarCoche.TabIndex = 3;
             this.btnBuscarCoche.Text = "Buscar";
             this.btnBuscarCoche.UseVisualStyleBackColor = true;
+            this.btnBuscarCoche.Click += new System.EventHandler(this.btnBuscarCoche_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnCrearCoche);
             this.groupBox1.Controls.Add(this.btnEliminarCoche);
-            this.groupBox1.Location = new System.Drawing.Point(359, 103);
+            this.groupBox1.Location = new System.Drawing.Point(257, 116);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(236, 200);
             this.groupBox1.TabIndex = 4;
@@ -94,7 +102,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(75, 59);
+            this.textBox2.Location = new System.Drawing.Point(102, 55);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(71, 20);
             this.textBox2.TabIndex = 8;
@@ -102,7 +110,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 62);
+            this.label2.Location = new System.Drawing.Point(41, 62);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 7;
@@ -111,7 +119,7 @@
             // textBox1
             // 
             this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(75, 26);
+            this.textBox1.Location = new System.Drawing.Point(102, 22);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(71, 20);
             this.textBox1.TabIndex = 6;
@@ -119,7 +127,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 29);
+            this.label1.Location = new System.Drawing.Point(41, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 3;
@@ -127,16 +135,43 @@
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(93, 28);
+            this.txtBuscar.Location = new System.Drawing.Point(83, 34);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(90, 20);
             this.txtBuscar.TabIndex = 5;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(102, 90);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(71, 21);
+            this.comboBox1.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 93);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Linea a asignar";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 40);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(79, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Buscar Interno:";
             // 
             // UIGestionarCoches
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(607, 450);
+            this.ClientSize = new System.Drawing.Size(508, 450);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnBuscarCoche);
@@ -163,5 +198,8 @@
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label4;
     }
 }

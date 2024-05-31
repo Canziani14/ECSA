@@ -23,6 +23,40 @@ namespace ECSA
 
         }
 
-       
+        private void btnEliminarUsuario_Click(object sender, EventArgs e)
+        {
+            DialogResult respuesta = MessageBox.Show("¿Esta seguro de eliminar este usuario?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (respuesta ==DialogResult.Yes)
+            {
+                MessageBox.Show("Usuario eliminado con exito");
+            }
+        }
+
+        private void btnCrearUsuario_Click(object sender, EventArgs e)
+        {
+            
+                MessageBox.Show("Usuario creado con exito");
+           
+        }
+
+        private void btnModificarUsuario_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Usuario modificado con exito");
+        }
+
+        private void btnBuscarUsuario_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("No se encontro el usuario");
+        }
+
+        private void btnBloquearUsuario_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Usuario bloqueado");
+        }
+
+        private void btnDesbloquearUsuario_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Usuario desbloqueado");
+        }
     }
 }

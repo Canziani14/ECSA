@@ -35,15 +35,15 @@
             this.btnAsignarServicio = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -65,6 +65,7 @@
             this.btnCrearServicio.TabIndex = 1;
             this.btnCrearServicio.Text = "Crear";
             this.btnCrearServicio.UseVisualStyleBackColor = true;
+            this.btnCrearServicio.Click += new System.EventHandler(this.btnCrearServicio_Click);
             // 
             // btnModificarServicio
             // 
@@ -74,6 +75,7 @@
             this.btnModificarServicio.TabIndex = 2;
             this.btnModificarServicio.Text = "Modificar";
             this.btnModificarServicio.UseVisualStyleBackColor = true;
+            this.btnModificarServicio.Click += new System.EventHandler(this.btnModificarServicio_Click);
             // 
             // btnEliminarServicio
             // 
@@ -83,6 +85,7 @@
             this.btnEliminarServicio.TabIndex = 3;
             this.btnEliminarServicio.Text = "Eliminar";
             this.btnEliminarServicio.UseVisualStyleBackColor = true;
+            this.btnEliminarServicio.Click += new System.EventHandler(this.btnEliminarServicio_Click);
             // 
             // btnAsignarServicio
             // 
@@ -92,6 +95,7 @@
             this.btnAsignarServicio.TabIndex = 4;
             this.btnAsignarServicio.Text = "Asignar Servicio";
             this.btnAsignarServicio.UseVisualStyleBackColor = true;
+            this.btnAsignarServicio.Click += new System.EventHandler(this.btnAsignarServicio_Click);
             // 
             // btnImprimir
             // 
@@ -101,6 +105,7 @@
             this.btnImprimir.TabIndex = 5;
             this.btnImprimir.Text = "Imprimir Planilla de Servicio";
             this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // groupBox1
             // 
@@ -118,36 +123,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gestor de Servicios";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.textBox4);
-            this.groupBox2.Controls.Add(this.textBox3);
-            this.groupBox2.Controls.Add(this.btnAsignarServicio);
-            this.groupBox2.Location = new System.Drawing.Point(618, 213);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(234, 163);
-            this.groupBox2.TabIndex = 7;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Despachos";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Horario Teminal Principal";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(165, 27);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 5;
-            // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(165, 57);
@@ -164,19 +139,44 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Horario Terminal Rebote";
             // 
-            // textBox3
+            // textBox1
             // 
-            this.textBox3.Location = new System.Drawing.Point(68, 72);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(157, 20);
-            this.textBox3.TabIndex = 6;
+            this.textBox1.Location = new System.Drawing.Point(165, 27);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 5;
             // 
-            // textBox4
+            // label1
             // 
-            this.textBox4.Location = new System.Drawing.Point(71, 32);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(78, 20);
-            this.textBox4.TabIndex = 7;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(124, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Horario Teminal Principal";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.textBox4);
+            this.groupBox2.Controls.Add(this.textBox3);
+            this.groupBox2.Controls.Add(this.btnAsignarServicio);
+            this.groupBox2.Location = new System.Drawing.Point(618, 213);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(234, 163);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Despachos";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 35);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Interno";
             // 
             // label3
             // 
@@ -187,14 +187,19 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Conductor";
             // 
-            // label4
+            // textBox4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 35);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Interno";
+            this.textBox4.Location = new System.Drawing.Point(71, 32);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(78, 20);
+            this.textBox4.TabIndex = 7;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(68, 72);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(157, 20);
+            this.textBox3.TabIndex = 6;
             // 
             // UIGestionarServicios
             // 

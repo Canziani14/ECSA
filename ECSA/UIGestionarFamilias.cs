@@ -16,5 +16,25 @@ namespace ECSA
         {
             InitializeComponent();
         }
+
+        private void btnCrearFamilia_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Familia creada con éxito");
+        }
+
+        private void btnModificarFamilia_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Familia modificada con éxito");
+        }
+
+        private void btnEliminarFamilia_Click(object sender, EventArgs e)
+        {
+            DialogResult respuesta = MessageBox.Show("¿Esta seguro de eliminar esta familia?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (respuesta == DialogResult.Yes)
+            {
+                MessageBox.Show("Familia eliminada con éxito");
+            }
+            
+        }
     }
 }

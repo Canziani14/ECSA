@@ -54,6 +54,7 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eCSADataSetBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).BeginInit();
@@ -82,6 +83,7 @@
             this.btnCrearUsuario.TabIndex = 1;
             this.btnCrearUsuario.Text = "Crear";
             this.btnCrearUsuario.UseVisualStyleBackColor = true;
+            this.btnCrearUsuario.Click += new System.EventHandler(this.btnCrearUsuario_Click);
             // 
             // btnEliminarUsuario
             // 
@@ -91,6 +93,7 @@
             this.btnEliminarUsuario.TabIndex = 2;
             this.btnEliminarUsuario.Text = "Eliminar";
             this.btnEliminarUsuario.UseVisualStyleBackColor = true;
+            this.btnEliminarUsuario.Click += new System.EventHandler(this.btnEliminarUsuario_Click);
             // 
             // btnModificarUsuario
             // 
@@ -100,6 +103,7 @@
             this.btnModificarUsuario.TabIndex = 3;
             this.btnModificarUsuario.Text = "Modificar";
             this.btnModificarUsuario.UseVisualStyleBackColor = true;
+            this.btnModificarUsuario.Click += new System.EventHandler(this.btnModificarUsuario_Click);
             // 
             // btnQuitarFamilia
             // 
@@ -121,12 +125,13 @@
             // 
             // btnBuscarUsuario
             // 
-            this.btnBuscarUsuario.Location = new System.Drawing.Point(12, 26);
+            this.btnBuscarUsuario.Location = new System.Drawing.Point(339, 30);
             this.btnBuscarUsuario.Name = "btnBuscarUsuario";
-            this.btnBuscarUsuario.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarUsuario.Size = new System.Drawing.Size(57, 23);
             this.btnBuscarUsuario.TabIndex = 7;
             this.btnBuscarUsuario.Text = "Buscar";
             this.btnBuscarUsuario.UseVisualStyleBackColor = true;
+            this.btnBuscarUsuario.Click += new System.EventHandler(this.btnBuscarUsuario_Click);
             // 
             // btnDesbloquearUsuario
             // 
@@ -136,6 +141,7 @@
             this.btnDesbloquearUsuario.TabIndex = 8;
             this.btnDesbloquearUsuario.Text = "Desbloquear Usuario";
             this.btnDesbloquearUsuario.UseVisualStyleBackColor = true;
+            this.btnDesbloquearUsuario.Click += new System.EventHandler(this.btnDesbloquearUsuario_Click);
             // 
             // btnBloquearUsuario
             // 
@@ -145,6 +151,7 @@
             this.btnBloquearUsuario.TabIndex = 9;
             this.btnBloquearUsuario.Text = "Bloquear Usuario";
             this.btnBloquearUsuario.UseVisualStyleBackColor = true;
+            this.btnBloquearUsuario.Click += new System.EventHandler(this.btnBloquearUsuario_Click);
             // 
             // usuarioBindingSource
             // 
@@ -238,7 +245,7 @@
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(102, 29);
+            this.txtBuscar.Location = new System.Drawing.Point(118, 30);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(215, 20);
             this.txtBuscar.TabIndex = 18;
@@ -276,11 +283,21 @@
             this.dataGridView3.Size = new System.Drawing.Size(217, 221);
             this.dataGridView3.TabIndex = 20;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(33, 35);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(82, 13);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Buscar Usuario:";
+            // 
             // UIGestionarUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 578);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.groupBox1);
@@ -332,5 +349,6 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.Label label5;
     }
 }

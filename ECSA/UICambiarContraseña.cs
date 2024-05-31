@@ -10,18 +10,16 @@ using System.Windows.Forms;
 
 namespace ECSA
 {
-    public partial class UILogin : Form
+    public partial class UICambiarContraseña : Form
     {
-        public UILogin()
+        public UICambiarContraseña()
         {
             InitializeComponent();
         }
 
-        private void btnGenerarNuevaClave_Click(object sender, EventArgs e)
+        private void btnCambiarContra_Click(object sender, EventArgs e)
         {
-            UIGenerarNuevaContra uIGenerarNuevaContra = new UIGenerarNuevaContra();
-            uIGenerarNuevaContra.MdiParent = this;
-            uIGenerarNuevaContra.Show();
+            MessageBox.Show("Contraseña modificada con éxito");
         }
     }
 }

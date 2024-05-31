@@ -57,6 +57,7 @@
             this.btnCrearFamilia.TabIndex = 1;
             this.btnCrearFamilia.Text = "Crear";
             this.btnCrearFamilia.UseVisualStyleBackColor = true;
+            this.btnCrearFamilia.Click += new System.EventHandler(this.btnCrearFamilia_Click);
             // 
             // btnModificarFamilia
             // 
@@ -66,6 +67,7 @@
             this.btnModificarFamilia.TabIndex = 2;
             this.btnModificarFamilia.Text = "Modificar";
             this.btnModificarFamilia.UseVisualStyleBackColor = true;
+            this.btnModificarFamilia.Click += new System.EventHandler(this.btnModificarFamilia_Click);
             // 
             // btnEliminarFamilia
             // 
@@ -75,6 +77,7 @@
             this.btnEliminarFamilia.TabIndex = 3;
             this.btnEliminarFamilia.Text = "Eliminar";
             this.btnEliminarFamilia.UseVisualStyleBackColor = true;
+            this.btnEliminarFamilia.Click += new System.EventHandler(this.btnEliminarFamilia_Click);
             // 
             // groupBox1
             // 

@@ -34,8 +34,8 @@
             this.btnEliminarLinea = new System.Windows.Forms.Button();
             this.btnGestionarCoches = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -56,6 +56,7 @@
             this.btnCrearLinea.TabIndex = 1;
             this.btnCrearLinea.Text = "Crear";
             this.btnCrearLinea.UseVisualStyleBackColor = true;
+            this.btnCrearLinea.Click += new System.EventHandler(this.btnCrearLinea_Click);
             // 
             // btnModificarLinea
             // 
@@ -65,6 +66,7 @@
             this.btnModificarLinea.TabIndex = 2;
             this.btnModificarLinea.Text = "Modificar";
             this.btnModificarLinea.UseVisualStyleBackColor = true;
+            this.btnModificarLinea.Click += new System.EventHandler(this.btnModificarLinea_Click);
             // 
             // btnEliminarLinea
             // 
@@ -74,6 +76,7 @@
             this.btnEliminarLinea.TabIndex = 3;
             this.btnEliminarLinea.Text = "Eliminar";
             this.btnEliminarLinea.UseVisualStyleBackColor = true;
+            this.btnEliminarLinea.Click += new System.EventHandler(this.btnEliminarLinea_Click);
             // 
             // btnGestionarCoches
             // 
@@ -100,13 +103,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gestor de Lineas";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(89, 31);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(159, 20);
-            this.textBox1.TabIndex = 5;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -115,6 +111,13 @@
             this.label1.Size = new System.Drawing.Size(44, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "Nombre";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(89, 31);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(159, 20);
+            this.textBox1.TabIndex = 5;
             // 
             // UIGestionarLinea
             // 

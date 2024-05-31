@@ -75,6 +75,32 @@ namespace ECSA
             uiAyuda.Show();
         }
 
-      
+        private void btnCambiarContraseña_Click(object sender, EventArgs e)
+        {
+            UICambiarContraseña uiCambiarContraseña = new UICambiarContraseña();
+            uiCambiarContraseña.MdiParent = this;
+            uiCambiarContraseña.Show();
+        }
+
+        private void btnBitacora_Click(object sender, EventArgs e)
+        {
+            UIBitacora uIBitacora = new UIBitacora();
+            uIBitacora.MdiParent = this;
+            uIBitacora.Show();
+        }
+
+        private void btnAlertas_Click(object sender, EventArgs e)
+        {
+            UIAlertas uIAlertas = new UIAlertas();
+            uIAlertas.MdiParent = this;
+            uIAlertas.Show();
+        }
+
+        private void btnReportes_Click(object sender, EventArgs e)
+        {
+            UIReportes uIReportes = new UIReportes();
+            uIReportes.MdiParent = this;
+            uIReportes.Show();
+        }
     }
 }

@@ -16,5 +16,30 @@ namespace ECSA
         {
             InitializeComponent();
         }
+
+        private void btnCrearServicio_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Se creo el servicio correctamente");
+        }
+
+        private void btnModificarServicio_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Se modifico el servicio correctamente");
+        }
+
+        private void btnEliminarServicio_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Se elimino el servicio correctamente");
+        }
+
+        private void btnAsignarServicio_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Se asigno interno y el conductor correctamente al servicio");
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Se envio la planilla a la cola de impresion");
+        }
     }
 }

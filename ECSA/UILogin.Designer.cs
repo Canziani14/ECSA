@@ -127,6 +127,7 @@
             this.btnGenerarNuevaClave.TabIndex = 10;
             this.btnGenerarNuevaClave.Text = "Generar Nueva Clave";
             this.btnGenerarNuevaClave.UseVisualStyleBackColor = true;
+            this.btnGenerarNuevaClave.Click += new System.EventHandler(this.btnGenerarNuevaClave_Click);
             // 
             // UILogin
             // 

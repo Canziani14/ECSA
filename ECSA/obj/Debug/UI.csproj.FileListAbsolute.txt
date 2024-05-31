@@ -36,3 +36,7 @@ C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.exe
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.pdb
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIGestionarBackUp.resources
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIGestionarCoches.resources
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UICambiarContraseña.resources
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIBitacora.resources
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIGenerarNuevaContra.resources
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIAlertas.resources
