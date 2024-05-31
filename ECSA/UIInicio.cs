@@ -15,6 +15,7 @@ namespace ECSA
         public UIInicio()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
     
@@ -101,6 +102,16 @@ namespace ECSA
             UIReportes uIReportes = new UIReportes();
             uIReportes.MdiParent = this;
             uIReportes.Show();
+        }
+
+        private void UIInicio_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

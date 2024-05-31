@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|c:\\users\\matias canziani\\desktop\\ecsa\\ecsa\\ecsa\\uireportes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|solutionrelative:ecsa\\uireportes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|c:\\users\\matias canziani\\desktop\\ecsa\\ecsa\\ecsa\\uiinicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|solutionrelative:ecsa\\uiinicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
@@ -14,18 +18,30 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "UIInicio.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIInicio.cs",
               "RelativeDocumentMoniker": "ECSA\\UIInicio.cs",
               "ToolTip": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIInicio.cs [Dise\u00F1o]",
               "RelativeToolTip": "ECSA\\UIInicio.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-31T12:04:45.539Z",
+              "WhenOpened": "2024-05-31T18:52:04.864Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UIReportes.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIReportes.cs",
+              "RelativeDocumentMoniker": "ECSA\\UIReportes.cs",
+              "ToolTip": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIReportes.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ECSA\\UIReportes.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T18:31:14.591Z",
               "EditorCaption": " [Dise\u00F1o]"
             }
           ]

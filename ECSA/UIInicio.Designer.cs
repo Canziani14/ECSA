@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UIInicio));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnReportes = new System.Windows.Forms.Button();
             this.btnGestionarFamilias = new System.Windows.Forms.Button();
             this.btnGestionarPatentes = new System.Windows.Forms.Button();
             this.btnGestionarServicios = new System.Windows.Forms.Button();
@@ -46,7 +47,6 @@
             this.btnBitacora = new System.Windows.Forms.Button();
             this.btnCambiarContraseña = new System.Windows.Forms.Button();
             this.btnAlertas = new System.Windows.Forms.Button();
-            this.btnReportes = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -69,6 +69,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(127, 618);
             this.panel1.TabIndex = 1;
+            // 
+            // btnReportes
+            // 
+            this.btnReportes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnReportes.FlatAppearance.BorderSize = 0;
+            this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportes.Location = new System.Drawing.Point(0, 400);
+            this.btnReportes.Name = "btnReportes";
+            this.btnReportes.Size = new System.Drawing.Size(127, 46);
+            this.btnReportes.TabIndex = 9;
+            this.btnReportes.Text = "Generar Reportes";
+            this.btnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReportes.UseVisualStyleBackColor = true;
+            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
             // 
             // btnGestionarFamilias
             // 
@@ -212,6 +226,7 @@
             this.btnCerrarSesion.TabIndex = 5;
             this.btnCerrarSesion.Text = "Cerrar Sesion";
             this.btnCerrarSesion.UseVisualStyleBackColor = true;
+            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
             // 
             // btnCambiarContra
             // 
@@ -277,20 +292,6 @@
             this.btnAlertas.UseVisualStyleBackColor = true;
             this.btnAlertas.Click += new System.EventHandler(this.btnAlertas_Click);
             // 
-            // btnReportes
-            // 
-            this.btnReportes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnReportes.FlatAppearance.BorderSize = 0;
-            this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportes.Location = new System.Drawing.Point(0, 400);
-            this.btnReportes.Name = "btnReportes";
-            this.btnReportes.Size = new System.Drawing.Size(127, 46);
-            this.btnReportes.TabIndex = 9;
-            this.btnReportes.Text = "Generar Reportes";
-            this.btnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReportes.UseVisualStyleBackColor = true;
-            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
-            // 
             // UIInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -302,6 +303,7 @@
             this.MinimizeBox = false;
             this.Name = "UIInicio";
             this.Text = "ECSA";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UIInicio_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

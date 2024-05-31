@@ -47,16 +47,17 @@
             this.btnIniciar.Location = new System.Drawing.Point(177, 169);
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(75, 23);
-            this.btnIniciar.TabIndex = 0;
+            this.btnIniciar.TabIndex = 3;
             this.btnIniciar.Text = "Iniciar Sesion";
             this.btnIniciar.UseVisualStyleBackColor = true;
+            this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
             // 
             // btnCancelar
             // 
             this.btnCancelar.Location = new System.Drawing.Point(275, 169);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 1;
+            this.btnCancelar.TabIndex = 4;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -83,14 +84,14 @@
             this.txtUsuario.Location = new System.Drawing.Point(200, 98);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(140, 20);
-            this.txtUsuario.TabIndex = 4;
+            this.txtUsuario.TabIndex = 1;
             // 
             // txtContraseña
             // 
             this.txtContraseña.Location = new System.Drawing.Point(200, 133);
             this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.Size = new System.Drawing.Size(140, 20);
-            this.txtContraseña.TabIndex = 5;
+            this.txtContraseña.TabIndex = 2;
             // 
             // label3
             // 
@@ -107,7 +108,7 @@
             this.Español.Location = new System.Drawing.Point(230, 222);
             this.Español.Name = "Español";
             this.Español.Size = new System.Drawing.Size(70, 17);
-            this.Español.TabIndex = 8;
+            this.Español.TabIndex = 5;
             // 
             // pictureBox1
             // 
@@ -124,7 +125,7 @@
             this.btnGenerarNuevaClave.Location = new System.Drawing.Point(217, 254);
             this.btnGenerarNuevaClave.Name = "btnGenerarNuevaClave";
             this.btnGenerarNuevaClave.Size = new System.Drawing.Size(93, 34);
-            this.btnGenerarNuevaClave.TabIndex = 10;
+            this.btnGenerarNuevaClave.TabIndex = 6;
             this.btnGenerarNuevaClave.Text = "Generar Nueva Clave";
             this.btnGenerarNuevaClave.UseVisualStyleBackColor = true;
             this.btnGenerarNuevaClave.Click += new System.EventHandler(this.btnGenerarNuevaClave_Click);

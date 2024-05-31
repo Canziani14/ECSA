@@ -16,7 +16,7 @@ namespace ECSA
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new UIInicio());
+            Application.Run(new UILogin());
         }
     }
 }

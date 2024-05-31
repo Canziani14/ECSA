@@ -40,3 +40,4 @@ C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UICambiarContrase
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIBitacora.resources
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIGenerarNuevaContra.resources
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIAlertas.resources
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIReportes.resources
