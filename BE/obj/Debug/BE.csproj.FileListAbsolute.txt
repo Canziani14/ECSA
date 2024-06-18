@@ -10,3 +10,9 @@ C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BE\obj\Debug\BE.csproj.AssemblyRefere
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BE\obj\Debug\BE.csproj.CoreCompileInputs.cache
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BE\obj\Debug\BE.dll
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BE\obj\Debug\BE.pdb
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Debug\BE.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Debug\BE.pdb
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\obj\Debug\BE.csproj.AssemblyReference.cache
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\obj\Debug\BE.csproj.CoreCompileInputs.cache
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\obj\Debug\BE.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\obj\Debug\BE.pdb

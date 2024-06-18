@@ -12,9 +12,17 @@ namespace ECSA
 {
     public partial class UIGestionarEmpleados : Form
     {
+
+        BE.Empleado BEEmpleado = new BE.Empleado();
+        BE.Empleado EmpleadoSeleccionado = new BE.Empleado();
+        BLL.ABM_Empleado BLLEmpleado = new BLL.ABM_Empleado();
+       
+
+
         public UIGestionarEmpleados()
         {
             InitializeComponent();
+            dtgEmpleados.DataSource = BLLEmpleado.Listar();
         }
 
         private void btnCrearEmpleado_Click(object sender, EventArgs e)
