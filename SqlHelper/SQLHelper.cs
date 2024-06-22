@@ -66,7 +66,7 @@ namespace SQLHelper
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             using (SqlCommand command = connection.CreateCommand())
             {
-                command.CommandType = CommandType.StoredProcedure;
+                command.CommandType = CommandType.Text;
                 command.Connection = connection;
                 command.CommandText = query;
 
@@ -122,78 +122,113 @@ namespace SQLHelper
             }
         }
 
-        public int ExecuteNonQuery(string storeProcedure, List<SqlParameter> parameters)
+        public int ExecuteNonQuery(string query, List<SqlParameter> parameters)
         {
-            int value = 1;
+            /*  int value = 1;
+              using (SqlConnection connection = new SqlConnection(this.ConnectionString))
+              {
+
+
+                  using (SqlCommand command = new SqlCommand())
+                  {
+
+                      command.CommandText = query;
+                      command.CommandType = CommandType.Text;
+                      command.Connection = connection;
+
+                      if (parameters != null && parameters.Count > 0)
+                      {
+                          command.Parameters.AddRange(parameters.ToArray());
+
+                      }
+                      try
+                      {
+                          connection.Open();
+
+                          return command.ExecuteNonQuery();
+                      }
+                      catch (Exception ex)
+                      {
+
+                          Console.WriteLine(ex.Message);
+                      }
+
+                      return value;
+
+                  }
+              }*/
+            int rowsAffected = 0;
             using (SqlConnection connection = new SqlConnection(this.ConnectionString))
             {
-
-
                 using (SqlCommand command = new SqlCommand())
                 {
-
-                    command.CommandText = storeProcedure;
-                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = query;
+                    command.CommandType = CommandType.Text;
                     command.Connection = connection;
 
                     if (parameters != null && parameters.Count > 0)
                     {
                         command.Parameters.AddRange(parameters.ToArray());
-
                     }
+
                     try
                     {
-                        connection.Open();
+                        Console.WriteLine("Executing SQL: " + query);
+                        foreach (var param in parameters)
+                        {
+                            Console.WriteLine($"{param.ParameterName}: {param.Value}");
+                        }
 
-                        return command.ExecuteNonQuery();
+                        connection.Open();
+                        rowsAffected = command.ExecuteNonQuery();
+                        Console.WriteLine($"Rows affected: {rowsAffected}");
                     }
                     catch (Exception ex)
                     {
-
-                        Console.WriteLine(ex.Message);
+                        Console.WriteLine("Error executing SQL: " + ex.Message);
                     }
-
-                    return value;
-
                 }
             }
-
+            return rowsAffected;
         }
 
-        #endregion
+    }
 
-        #region ADODesconectado
-        public DataTable ExecuteDataTableConADODesconectado(string query)
-        {
-            DataTable table = new DataTable();
-            SqlDataAdapter dataAdapter = new SqlDataAdapter();
-
-            SqlConnection connection = new SqlConnection(this.ConnectionString);
-
-            using (SqlCommand command = new SqlCommand())
+    #endregion
+    /*
+            #region ADODesconectado
+            public DataTable ExecuteDataTableConADODesconectado(string query)
             {
-                command.CommandType = CommandType.Text;
-                command.CommandText = query;
-                command.Connection = connection;
+                DataTable table = new DataTable();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter();
 
-                dataAdapter.SelectCommand = command;
-                //dataAdapter.UpdateCommand = command;
-                //dataAdapter.DeleteCommand = command;
-                //dataAdapter.InsertCommand = command;
+                SqlConnection connection = new SqlConnection(this.ConnectionString);
 
-                dataAdapter.Fill(table);
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = query;
+                    command.Connection = connection;
+
+                    dataAdapter.SelectCommand = command;
+                    //dataAdapter.UpdateCommand = command;
+                    //dataAdapter.DeleteCommand = command;
+                    //dataAdapter.InsertCommand = command;
+
+                    dataAdapter.Fill(table);
 
 
 
-                return table;
-                // extracion
-                // deposito
-                //pago
+                    return table;
+                    // extracion
+                    // deposito
+                    //pago
+
+                }
 
             }
-
-        }
-
+    */
+    /*
         public DataTable ExecuteDataTableConADODesconectado(string storeProcedure, List<SqlParameter> parameters)
         {
             DataTable table = new DataTable();
@@ -229,49 +264,48 @@ namespace SQLHelper
 
         }
         #endregion
-
-        #region Archivos y XML
-        /*
-         public class FileHelper
+    */
+    #region Archivos y XML
+    /*
+     public class FileHelper
+     {
+         // Método para escribir texto en un archivo
+         public static void EscribirTexto(string rutaArchivo, string contenido)
          {
-             // Método para escribir texto en un archivo
-             public static void EscribirTexto(string rutaArchivo, string contenido)
-             {
-                 File.WriteAllText(rutaArchivo, contenido);
-             }
-
-             // Método para leer texto desde un archivo
-             public static string LeerTexto(string rutaArchivo)
-             {
-                 return File.ReadAllText(rutaArchivo);
-             }
-
-             // Método para escribir objetos serializados en formato XML en un archivo
-             public static void EscribirXml<T>(string rutaArchivo, T objeto)
-             {
-                 XmlSerializer serializer = new XmlSerializer(typeof(T));
-
-                 using (TextWriter writer = new StreamWriter(rutaArchivo))
-                 {
-                     serializer.Serialize(writer, objeto);
-                 }
-             }
-
-             // Método para leer objetos desde un archivo XML
-             public static T LeerXml<T>(string rutaArchivo)
-             {
-                 XmlSerializer serializer = new XmlSerializer(typeof(T));
-
-                 using (TextReader reader = new StreamReader(rutaArchivo))
-                 {
-                     return (T)serializer.Deserialize(reader);
-                 }
-             }
-
+             File.WriteAllText(rutaArchivo, contenido);
          }
-     
-        */
-        #endregion
 
-    }
+         // Método para leer texto desde un archivo
+         public static string LeerTexto(string rutaArchivo)
+         {
+             return File.ReadAllText(rutaArchivo);
+         }
+
+         // Método para escribir objetos serializados en formato XML en un archivo
+         public static void EscribirXml<T>(string rutaArchivo, T objeto)
+         {
+             XmlSerializer serializer = new XmlSerializer(typeof(T));
+
+             using (TextWriter writer = new StreamWriter(rutaArchivo))
+             {
+                 serializer.Serialize(writer, objeto);
+             }
+         }
+
+         // Método para leer objetos desde un archivo XML
+         public static T LeerXml<T>(string rutaArchivo)
+         {
+             XmlSerializer serializer = new XmlSerializer(typeof(T));
+
+             using (TextReader reader = new StreamReader(rutaArchivo))
+             {
+                 return (T)serializer.Deserialize(reader);
+             }
+         }
+
+     }*/
+
+
+    #endregion
+
 }

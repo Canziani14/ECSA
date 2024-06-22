@@ -33,10 +33,10 @@ namespace DAL.Mappers
                     Nombre= item.Field<string>("Nombre"),
                     Apellido = item.Field<string>("Apellido"),
                     FechaDeingreso = item.Field<DateTime>("FechaIngreso"),
-                    DNI = item.Field<string>("DNI"),
+                    DNI = item.Field<int>("DNI"),
                     Telefono= item.Field<string>("Telefono"),
                     Direccion= item.Field<string>("Direccion"),
-                    LineaPertenece =item.Field<Linea>("LineaQuePertenece")
+                    LineaPertenece =item.Field<int>("ID_Linea")
                 });
             }
             return empleados;

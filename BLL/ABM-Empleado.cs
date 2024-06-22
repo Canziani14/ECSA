@@ -18,8 +18,11 @@ namespace BLL
 
         public bool Crear(Empleado objAgregar)
         {
-            throw new NotImplementedException();
+            return DALEmpleado.Crear(objAgregar);
         }
+        //objAgregar.Nombre,objAgregar.Apellido, objAgregar.FechaDeingreso, objAgregar.DNI, objAgregar.Telefono,objAgregar.Direccion, objAgregar.LineaPertenece
+
+
 
         public bool Eliminar(Empleado objEliminar)
         {

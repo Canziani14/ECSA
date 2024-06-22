@@ -15,7 +15,7 @@ namespace DAL
 
         public bool Crear(BE.Empleado objAgregar)
         {
-            throw new NotImplementedException();
+            return DAOs.Empleado.GetInstance().Agregar(objAgregar.Nombre, objAgregar.Apellido, objAgregar.FechaDeingreso, objAgregar.DNI, objAgregar.Telefono, objAgregar.Direccion, objAgregar.LineaPertenece);
         }
 
         public bool Eliminar(BE.Empleado objEliminar)

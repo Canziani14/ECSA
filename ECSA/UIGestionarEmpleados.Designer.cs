@@ -44,8 +44,13 @@
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cmbLinea = new System.Windows.Forms.ComboBox();
             this.txtBuscarEmpleado = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.txtFechadeIngreso = new System.Windows.Forms.DateTimePicker();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgEmpleados)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -70,7 +75,7 @@
             // 
             // btnCrearEmpleado
             // 
-            this.btnCrearEmpleado.Location = new System.Drawing.Point(18, 234);
+            this.btnCrearEmpleado.Location = new System.Drawing.Point(18, 331);
             this.btnCrearEmpleado.Name = "btnCrearEmpleado";
             this.btnCrearEmpleado.Size = new System.Drawing.Size(75, 23);
             this.btnCrearEmpleado.TabIndex = 2;
@@ -80,7 +85,7 @@
             // 
             // btnModificarEmpleado
             // 
-            this.btnModificarEmpleado.Location = new System.Drawing.Point(143, 234);
+            this.btnModificarEmpleado.Location = new System.Drawing.Point(143, 331);
             this.btnModificarEmpleado.Name = "btnModificarEmpleado";
             this.btnModificarEmpleado.Size = new System.Drawing.Size(75, 23);
             this.btnModificarEmpleado.TabIndex = 3;
@@ -90,7 +95,7 @@
             // 
             // btnEliminarEmpleado
             // 
-            this.btnEliminarEmpleado.Location = new System.Drawing.Point(254, 234);
+            this.btnEliminarEmpleado.Location = new System.Drawing.Point(254, 331);
             this.btnEliminarEmpleado.Name = "btnEliminarEmpleado";
             this.btnEliminarEmpleado.Size = new System.Drawing.Size(75, 23);
             this.btnEliminarEmpleado.TabIndex = 4;
@@ -180,6 +185,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.txtFechadeIngreso);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.cmbLinea);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnEliminarEmpleado);
             this.groupBox1.Controls.Add(this.txtTelefono);
@@ -195,10 +205,35 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(601, 74);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(335, 284);
+            this.groupBox1.Size = new System.Drawing.Size(335, 364);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gestor de Empleados";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(52, 227);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(33, 13);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Linea";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(44, 227);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(0, 13);
+            this.label7.TabIndex = 16;
+            // 
+            // cmbLinea
+            // 
+            this.cmbLinea.FormattingEnabled = true;
+            this.cmbLinea.Location = new System.Drawing.Point(120, 219);
+            this.cmbLinea.Name = "cmbLinea";
+            this.cmbLinea.Size = new System.Drawing.Size(121, 21);
+            this.cmbLinea.TabIndex = 15;
             // 
             // txtBuscarEmpleado
             // 
@@ -215,6 +250,22 @@
             this.label6.Size = new System.Drawing.Size(93, 13);
             this.label6.TabIndex = 16;
             this.label6.Text = "Buscar Empleado:";
+            // 
+            // txtFechadeIngreso
+            // 
+            this.txtFechadeIngreso.Location = new System.Drawing.Point(111, 261);
+            this.txtFechadeIngreso.Name = "txtFechadeIngreso";
+            this.txtFechadeIngreso.Size = new System.Drawing.Size(200, 20);
+            this.txtFechadeIngreso.TabIndex = 18;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(15, 267);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(90, 13);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "Fecha de Ingreso";
             // 
             // UIGestionarEmpleados
             // 
@@ -256,5 +307,10 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtBuscarEmpleado;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cmbLinea;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DateTimePicker txtFechadeIngreso;
     }
 }
