@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dtgEmpleados = new System.Windows.Forms.DataGridView();
             this.btnBuscarEmpleado = new System.Windows.Forms.Button();
             this.btnCrearEmpleado = new System.Windows.Forms.Button();
@@ -44,13 +45,16 @@
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtFechadeIngreso = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cmbLinea = new System.Windows.Forms.ComboBox();
             this.txtBuscarEmpleado = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtFechadeIngreso = new System.Windows.Forms.DateTimePicker();
-            this.label9 = new System.Windows.Forms.Label();
+            this.txtLegajo = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgEmpleados)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +66,7 @@
             this.dtgEmpleados.Name = "dtgEmpleados";
             this.dtgEmpleados.Size = new System.Drawing.Size(535, 354);
             this.dtgEmpleados.TabIndex = 0;
+            this.dtgEmpleados.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgEmpleados_CellDoubleClick);
             // 
             // btnBuscarEmpleado
             // 
@@ -185,6 +190,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.txtLegajo);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtFechadeIngreso);
             this.groupBox1.Controls.Add(this.label8);
@@ -209,6 +216,22 @@
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gestor de Empleados";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(15, 267);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(90, 13);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "Fecha de Ingreso";
+            // 
+            // txtFechadeIngreso
+            // 
+            this.txtFechadeIngreso.Location = new System.Drawing.Point(111, 261);
+            this.txtFechadeIngreso.Name = "txtFechadeIngreso";
+            this.txtFechadeIngreso.Size = new System.Drawing.Size(200, 20);
+            this.txtFechadeIngreso.TabIndex = 18;
             // 
             // label8
             // 
@@ -251,21 +274,27 @@
             this.label6.TabIndex = 16;
             this.label6.Text = "Buscar Empleado:";
             // 
-            // txtFechadeIngreso
+            // txtLegajo
             // 
-            this.txtFechadeIngreso.Location = new System.Drawing.Point(111, 261);
-            this.txtFechadeIngreso.Name = "txtFechadeIngreso";
-            this.txtFechadeIngreso.Size = new System.Drawing.Size(200, 20);
-            this.txtFechadeIngreso.TabIndex = 18;
+            this.txtLegajo.Enabled = false;
+            this.txtLegajo.Location = new System.Drawing.Point(131, 292);
+            this.txtLegajo.Name = "txtLegajo";
+            this.txtLegajo.Size = new System.Drawing.Size(100, 20);
+            this.txtLegajo.TabIndex = 20;
             // 
-            // label9
+            // contextMenuStrip1
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(15, 267);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(90, 13);
-            this.label9.TabIndex = 19;
-            this.label9.Text = "Fecha de Ingreso";
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(54, 295);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(39, 13);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "Legajo";
             // 
             // UIGestionarEmpleados
             // 
@@ -312,5 +341,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DateTimePicker txtFechadeIngreso;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtLegajo;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

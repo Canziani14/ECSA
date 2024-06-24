@@ -10,8 +10,8 @@ namespace BE
     {
         bool Crear(T objAgregar);
         List<T> Listar();
-        List<T> Listar(int id);
-        bool Actualizar(T objActualizar);
+        List<T> Buscar(int id);
+        bool Modificar(T objActualizar);
         bool Eliminar(T objEliminar);
     }
 }

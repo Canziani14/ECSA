@@ -11,19 +11,16 @@ namespace BLL
     {
 
         DAL.Empleado DALEmpleado = new DAL.Empleado();
-        public bool Actualizar(Empleado objActualizar)
+        public bool Modificar(Empleado objActualizar)
         {
-            throw new NotImplementedException();
+            return DALEmpleado.Modificar(objActualizar);
         }
 
         public bool Crear(Empleado objAgregar)
         {
             return DALEmpleado.Crear(objAgregar);
         }
-        //objAgregar.Nombre,objAgregar.Apellido, objAgregar.FechaDeingreso, objAgregar.DNI, objAgregar.Telefono,objAgregar.Direccion, objAgregar.LineaPertenece
-
-
-
+        
         public bool Eliminar(Empleado objEliminar)
         {
             throw new NotImplementedException();
@@ -34,7 +31,7 @@ namespace BLL
             return DALEmpleado.Listar(); ;
         }
 
-        public List<Empleado> Listar(int id)
+        public List<Empleado> Buscar(int id)
         {
             throw new NotImplementedException();
         }

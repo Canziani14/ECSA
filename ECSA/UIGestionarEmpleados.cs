@@ -12,6 +12,7 @@ namespace ECSA
 {
     public partial class UIGestionarEmpleados : Form
     {
+        #region Inicializaciones
 
         BE.Empleado BEEmpleado = new BE.Empleado();
         BE.Empleado EmpleadoSeleccionado = new BE.Empleado();
@@ -24,7 +25,9 @@ namespace ECSA
             InitializeComponent();
             dtgEmpleados.DataSource = BLLEmpleado.Listar();
         }
+        #endregion
 
+        #region CrearEmpleado
         private void btnCrearEmpleado_Click(object sender, EventArgs e)
         {
             if (txtApellido.Text == "")
@@ -63,12 +66,78 @@ namespace ECSA
                 return;
             }       
         }
+        #endregion
 
+        #region ModificarEmpleado
         private void btnModificarEmpleado_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Empleado modificado con exito");
+            if (EmpleadoSeleccionado != null)
+            {
+                try
+                {
+                    if (BLLEmpleado.Modificar(new BE.Empleado()
+                    {
+                        Nombre = txtNombre.Text ,
+                        Apellido = txtApellido.Text ,
+                        DNI = int.Parse(txtDNI.Text) ,
+                        Direccion = txtDireccion.Text ,
+                        Telefono= txtTelefono.Text,
+                        LineaPertenece= int.Parse(cmbLinea.Text) ,
+                        FechaDeingreso = DateTime.Parse( txtFechadeIngreso.Text),
+                        Legajo = int.Parse(txtLegajo.Text),
+                }
+            ))
+                    {
+                        MessageBox.Show("Empleado modificado con exito");
+                        limpiarGrilla();
+                        limpiartxt();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo modificar el empleado");
+                    }
+
+                }
+                catch (FormatException ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+            }           
         }
 
+        private void dtgEmpleados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ObtenerEmpleadoSeleccionado();
+        }
+
+
+        public BE.Empleado ObtenerEmpleadoSeleccionado()
+        {
+            if (dtgEmpleados.SelectedRows.Count > 0)
+            {
+                EmpleadoSeleccionado = ((BE.Empleado)dtgEmpleados.SelectedRows[0].DataBoundItem);
+                this.CompletarEmpleado(EmpleadoSeleccionado);
+            }
+
+            return EmpleadoSeleccionado;
+        }
+
+
+        public void CompletarEmpleado(BE.Empleado empleado)
+        {
+            txtNombre.Text = empleado.Nombre;
+            txtApellido.Text = empleado.Apellido;
+            txtDNI.Text = empleado.DNI.ToString();
+            txtDireccion.Text = empleado.Direccion;
+            txtTelefono.Text = empleado.Telefono;
+            cmbLinea.Text = empleado.LineaPertenece.ToString();
+            txtFechadeIngreso.Text = empleado.FechaDeingreso.ToString("yyyy-MM-dd");
+            txtLegajo.Text = empleado.Legajo.ToString();
+        }
+        #endregion
+
+        #region EliminarEmpleado
         private void btnEliminarEmpleado_Click(object sender, EventArgs e)
         {
             DialogResult respuesta = MessageBox.Show("¿Esta seguro de eliminar este empleado?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -78,21 +147,21 @@ namespace ECSA
             }
             
         }
+        #endregion
 
+        #region BuscarEmlpeado
         private void btnBuscarEmpleado_Click(object sender, EventArgs e)
         {
             MessageBox.Show("No se encontro el empleado");
         }
 
+        #endregion
 
-
-
-
-
+        #region FuncionesVarias
         private void limpiarGrilla()
         {
             dtgEmpleados.DataSource = null;
-            dtgEmpleados.DataSource = BLLEmpleado.Listar();//AgendaSeleccionada.ID);
+            dtgEmpleados.DataSource = BLLEmpleado.Listar();
         }
 
         private void limpiartxt()
@@ -106,6 +175,8 @@ namespace ECSA
             txtNombre.Clear();
 
         }
+        #endregion
 
+       
     }
 }

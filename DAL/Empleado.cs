@@ -8,9 +8,9 @@ namespace DAL
 {
     public class Empleado : BE.ICrud<BE.Empleado>
     {
-        public bool Actualizar(BE.Empleado objActualizar)
+        public bool Modificar(BE.Empleado objActualizar)
         {
-            throw new NotImplementedException();
+            return DAOs.Empleado.GetInstance().Modificar(objActualizar.Legajo, objActualizar.Nombre, objActualizar.Apellido, objActualizar.FechaDeingreso, objActualizar.DNI, objActualizar.Telefono, objActualizar.Direccion, objActualizar.LineaPertenece);
         }
 
         public bool Crear(BE.Empleado objAgregar)
@@ -28,7 +28,7 @@ namespace DAL
             return DAOs.Empleado.GetInstance().Listar();
         }
 
-        public List<BE.Empleado> Listar(int id)
+        public List<BE.Empleado> Buscar(int id)
         {
             throw new NotImplementedException();
         }
