@@ -103,6 +103,10 @@ namespace ECSA
 
                     MessageBox.Show(ex.Message);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un empleado para modificar");
             }           
         }
 
@@ -143,7 +147,32 @@ namespace ECSA
             DialogResult respuesta = MessageBox.Show("¿Esta seguro de eliminar este empleado?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (respuesta == DialogResult.Yes)
             {
-                MessageBox.Show("Empleado eliminado con exito");
+
+                if (EmpleadoSeleccionado != null)
+                {
+                    bool EmpleadoEliminado = BLLEmpleado.Eliminar(EmpleadoSeleccionado);
+
+                    try
+                    {
+                        if (EmpleadoEliminado)
+                        {
+                            limpiarGrilla();
+                            limpiartxt();
+                        }
+                        else
+                        {
+                            MessageBox.Show("no se puede borrar el empleado");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ha ocurrido un error al borrar el empleado: " + ex.Message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione un empleado para borrar");
+                }
             }
             
         }

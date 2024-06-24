@@ -23,7 +23,7 @@ namespace BLL
         
         public bool Eliminar(Empleado objEliminar)
         {
-            throw new NotImplementedException();
+            return DALEmpleado.Eliminar(objEliminar);
         }
 
         public List<Empleado> Listar()

@@ -98,7 +98,7 @@ namespace DAL.DAOs
         }
         #endregion
 
-        #region Modificar
+        #region ModificarEmpleado
         public bool Modificar(int Legajo,string Nombre, string Apellido, DateTime FechaDeingreso, int DNI, string Telefono, string Direccion, int LineaPertenece)
         {
 
@@ -145,6 +145,23 @@ namespace DAL.DAOs
             }
 
 
+            return returnValue;
+        }
+
+        #endregion
+
+        #region ElimminarEmpleado
+        public bool Eliminar(int Legajo)
+        {
+            bool returnValue = false;
+
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+            new SqlParameter("@Legajo", Legajo),
+            };
+
+            SqlHelper.GetInstance(connectionString).ExecuteNonQuery(QueryDelete, parameters);
+            returnValue = true;
             return returnValue;
         }
 

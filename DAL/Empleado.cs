@@ -20,7 +20,7 @@ namespace DAL
 
         public bool Eliminar(BE.Empleado objEliminar)
         {
-            throw new NotImplementedException();
+            return DAOs.Empleado.GetInstance().Eliminar(objEliminar.Legajo);
         }
 
         public List<BE.Empleado> Listar()
