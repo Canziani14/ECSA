@@ -28,9 +28,9 @@ namespace DAL
             return DAOs.Empleado.GetInstance().Listar();
         }
 
-        public List<BE.Empleado> Buscar(int id)
+        public List<BE.Empleado> Buscar(int Legajo)
         {
-            throw new NotImplementedException();
+            return DAOs.Empleado.GetInstance().Buscar(Legajo);
         }
     }
 }

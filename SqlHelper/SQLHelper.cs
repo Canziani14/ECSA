@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 
 namespace SQLHelper
@@ -78,14 +79,14 @@ namespace SQLHelper
 
         }
 
-        public DataTable ExecuteDataTable(string storeProcedureName, List<SqlParameter> parameters)
+        public DataTable ExecuteDataTable(string query, List<SqlParameter> parameters)
         {
             DataTable table = new DataTable();
             using (SqlConnection connection = new SqlConnection(this.ConnectionString))
             using (SqlCommand command = new SqlCommand())
             {
-                command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = storeProcedureName;
+                command.CommandType = CommandType.Text;
+                command.CommandText = query;
                 command.Connection = connection;
 
                 // Si el Objeto parameters no esta en nulo y si tieen mas de cero parameros lso agrego

@@ -181,13 +181,46 @@ namespace ECSA
         #region BuscarEmlpeado
         private void btnBuscarEmpleado_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("No se encontro el empleado");
-        }
+            /*
+            try
+            {
+                dtgEmpleados.DataSource = BLLEmpleado.Buscar(BEEmpleado.Legajo = int.Parse(txtNombre.Text));
+                limpiarGrilla();
+                limpiartxt();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                return;
+            }*/
+            if (int.TryParse(txtBuscarEmpleado.Text, out int legajo))
+            {
+                // Perform the search using the parsed legajo
+                List<BE.Empleado> empleados = BLLEmpleado.Buscar(legajo);
 
-        #endregion
+                if (empleados != null && empleados.Count > 0)
+                {
+                    dtgEmpleados.DataSource = empleados;
+                }
+                else
+                {
+                    MessageBox.Show("Empleado no encontrado.");
+                    dtgEmpleados.DataSource = null;
+                }
+            }
+            else
+            {
+                // Show error message if the input is not a valid integer
+                MessageBox.Show("Por favor, ingrese un número de legajo válido.");
+                dtgEmpleados.DataSource = null;
+            }
+        }     
 
-        #region FuncionesVarias
-        private void limpiarGrilla()
+
+    #endregion
+
+    #region FuncionesVarias
+    private void limpiarGrilla()
         {
             dtgEmpleados.DataSource = null;
             dtgEmpleados.DataSource = BLLEmpleado.Listar();

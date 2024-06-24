@@ -28,12 +28,12 @@ namespace BLL
 
         public List<Empleado> Listar()
         {
-            return DALEmpleado.Listar(); ;
+            return DALEmpleado.Listar(); 
         }
 
-        public List<Empleado> Buscar(int id)
+        public List<Empleado> Buscar(int Legajo)
         {
-            throw new NotImplementedException();
+            return DALEmpleado.Buscar(Legajo);
         }
     }
 }

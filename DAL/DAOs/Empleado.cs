@@ -9,6 +9,8 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using System.Net;
+using System.Security.Cryptography;
 
 namespace DAL.DAOs
 {
@@ -42,16 +44,15 @@ namespace DAL.DAOs
                          "Direccion = @Direccion, Telefono = @Telefono, FechaIngreso = @FechaDeingreso, " +
                          "ID_Linea = @LineaPertenece " +
                          "WHERE Legajo = @Legajo";
+
+        string QuerySelectByLegajo = "SELECT * FROM [ECSA].[dbo].[Empleado] where Legajo = @legajo";
         #endregion
 
         #region AgregarEmpleado
         public bool Agregar(string Nombre, string Apellido, DateTime FechaDeingreso, int DNI, string Telefono, string Direccion, int LineaPertenece)
         {
             bool returnValue = false;
-
-           // string QueryInsert = "INSERT INTO Empleado (Nombre, Apellido, DNI, Direccion, Telefono, FechaIngreso, ID_Linea) " +
-             //                    "VALUES (@Nombre, @Apellido, @DNI, @Direccion, @Telefono, @FechaDeingreso, @LineaPertenece)";
-
+            
             List<SqlParameter> parameters = new List<SqlParameter>()
     {
         new SqlParameter("@Nombre", Nombre),
@@ -94,6 +95,17 @@ namespace DAL.DAOs
             DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelect);
          
 
+            return Mappers.Empleado.GetInstance().Map(table);
+        }
+
+        public List<BE.Empleado> Buscar(int Legajo)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>()
+    {
+        new SqlParameter("@Legajo", Legajo),
+        
+    };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByLegajo, parameters);
             return Mappers.Empleado.GetInstance().Map(table);
         }
         #endregion
@@ -164,6 +176,10 @@ namespace DAL.DAOs
             returnValue = true;
             return returnValue;
         }
+
+        #endregion
+
+        #region ListarPorLegajo
 
         #endregion
 
