@@ -164,6 +164,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIGestionarEmpleados.resx">
       <DependentUpon>UIGestionarEmpleados.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UIGestionarFamilias.resx">
       <DependentUpon>UIGestionarFamilias.cs</DependentUpon>
@@ -179,6 +180,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIGestionarUsuarios.resx">
       <DependentUpon>UIGestionarUsuarios.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UIInicio.resx">
       <DependentUpon>UIInicio.cs</DependentUpon>

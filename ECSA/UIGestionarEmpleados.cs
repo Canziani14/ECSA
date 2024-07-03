@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,7 @@ namespace ECSA
         BE.Empleado BEEmpleado = new BE.Empleado();
         BE.Empleado EmpleadoSeleccionado = new BE.Empleado();
         BLL.ABM_Empleado BLLEmpleado = new BLL.ABM_Empleado();
+        BLL.BLLSeguridad BLLSeguridad= new BLL.BLLSeguridad();
        
 
 
@@ -41,7 +43,7 @@ namespace ECSA
 
                 BEEmpleado.Nombre = txtNombre.Text;
                 BEEmpleado.Apellido = txtApellido.Text;
-                BEEmpleado.DNI = int.Parse(txtDNI.Text);
+                BEEmpleado.DNI = txtDNI.Text;
                 BEEmpleado.Direccion = txtDireccion.Text;
                 BEEmpleado.Telefono = txtTelefono.Text;
                 BEEmpleado.LineaPertenece = int.Parse(cmbLinea.Text);
@@ -52,6 +54,8 @@ namespace ECSA
                 if (BLLEmpleado.Crear(BEEmpleado))
                 {
                     MessageBox.Show("Empleado creado con éxito");
+                    CalcularDigitos();
+
                 }
                 else
                 {
@@ -64,7 +68,8 @@ namespace ECSA
             {
                 MessageBox.Show("Error: " + ex.Message);
                 return;
-            }       
+            }
+            
         }
         #endregion
 
@@ -79,7 +84,7 @@ namespace ECSA
                     {
                         Nombre = txtNombre.Text ,
                         Apellido = txtApellido.Text ,
-                        DNI = int.Parse(txtDNI.Text) ,
+                        DNI = txtDNI.Text,
                         Direccion = txtDireccion.Text ,
                         Telefono= txtTelefono.Text,
                         LineaPertenece= int.Parse(cmbLinea.Text) ,
@@ -89,6 +94,7 @@ namespace ECSA
             ))
                     {
                         MessageBox.Show("Empleado modificado con exito");
+                        CalcularDigitos();
                         limpiarGrilla();
                         limpiartxt();
                     }
@@ -156,6 +162,7 @@ namespace ECSA
                     {
                         if (EmpleadoEliminado)
                         {
+                            CalcularDigitos();
                             limpiarGrilla();
                             limpiartxt();
                         }
@@ -219,7 +226,7 @@ namespace ECSA
 
     #endregion
 
-    #region FuncionesVarias
+        #region FuncionesVarias
     private void limpiarGrilla()
         {
             dtgEmpleados.DataSource = null;
@@ -237,8 +244,38 @@ namespace ECSA
             txtNombre.Clear();
 
         }
-        #endregion
 
-       
+       public void CalcularDigitos()
+        {
+            string tabla = "Empleado";
+            BLLSeguridad.CalcularDVV(tabla);
+
+            
+
+            
+            BLLSeguridad.VerificarDigitosVerificadores(tabla);
+            string legajo = "Legajo";
+            int dvh = 500;
+
+
+            BLLSeguridad.InsertarDVH(dvh,2,tabla, legajo);
+            //string command = "update " + t + " set DVH = " + DVH + " where " + codtabla + " = " + cod;
+            //dvh el valor de dvh
+            //cod valor
+            //t es la tabla
+            //codtabla = legajo
+
+
+
+
+        }
+
+
+
     }
+
+    #endregion
+
+
 }
+

@@ -10,7 +10,7 @@ namespace BLL
     public class ABM_Empleado : BE.ICrud<BE.Empleado>
     {
 
-        DAL.Empleado DALEmpleado = new DAL.Empleado();
+        DAL.DALEmpleado DALEmpleado = new DAL.DALEmpleado();
         public bool Modificar(Empleado objActualizar)
         {
             return DALEmpleado.Modificar(objActualizar);

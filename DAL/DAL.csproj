@@ -43,10 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAOs\Empleado.cs" />
-    <Compile Include="Empleado.cs" />
-    <Compile Include="Mappers\Empleado.cs" />
+    <Compile Include="DALPasaron.cs" />
+    <Compile Include="DAOs\DAOSPasaron.cs" />
+    <Compile Include="DAOs\DAOSEmpleado.cs" />
+    <Compile Include="DAOs\DAOSSeguridad.cs" />
+    <Compile Include="DALEmpleado.cs" />
+    <Compile Include="Mappers\MAPPEREmpleado.cs" />
+    <Compile Include="Mappers\MAPPERSeguridad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DALSeguridad.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BE\BE.csproj">

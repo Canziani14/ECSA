@@ -45,6 +45,8 @@
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtLegajo = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtFechadeIngreso = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
@@ -52,9 +54,7 @@
             this.cmbLinea = new System.Windows.Forms.ComboBox();
             this.txtBuscarEmpleado = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtLegajo = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgEmpleados)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -62,8 +62,11 @@
             // dtgEmpleados
             // 
             this.dtgEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgEmpleados.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dtgEmpleados.Location = new System.Drawing.Point(1, 74);
             this.dtgEmpleados.Name = "dtgEmpleados";
+            this.dtgEmpleados.RowHeadersVisible = false;
+            this.dtgEmpleados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgEmpleados.Size = new System.Drawing.Size(535, 354);
             this.dtgEmpleados.TabIndex = 0;
             this.dtgEmpleados.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgEmpleados_CellDoubleClick);
@@ -217,6 +220,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gestor de Empleados";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(54, 295);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(39, 13);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "Legajo";
+            // 
+            // txtLegajo
+            // 
+            this.txtLegajo.Enabled = false;
+            this.txtLegajo.Location = new System.Drawing.Point(131, 292);
+            this.txtLegajo.Name = "txtLegajo";
+            this.txtLegajo.Size = new System.Drawing.Size(100, 20);
+            this.txtLegajo.TabIndex = 20;
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -274,27 +294,10 @@
             this.label6.TabIndex = 16;
             this.label6.Text = "Buscar Empleado:";
             // 
-            // txtLegajo
-            // 
-            this.txtLegajo.Enabled = false;
-            this.txtLegajo.Location = new System.Drawing.Point(131, 292);
-            this.txtLegajo.Name = "txtLegajo";
-            this.txtLegajo.Size = new System.Drawing.Size(100, 20);
-            this.txtLegajo.TabIndex = 20;
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(54, 295);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(39, 13);
-            this.label10.TabIndex = 21;
-            this.label10.Text = "Legajo";
             // 
             // UIGestionarEmpleados
             // 

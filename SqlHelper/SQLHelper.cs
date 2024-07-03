@@ -33,7 +33,7 @@ namespace SQLHelper
 
 
 
-        private string connectionString;
+        private static string connectionString;
 
         private string ConnectionString
         {
@@ -46,7 +46,7 @@ namespace SQLHelper
         public DataTable ExecuteDataTable(string query)
         {
             DataTable table = new DataTable();
-            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.Text;
@@ -64,7 +64,7 @@ namespace SQLHelper
         public DataTable ExecuteDataTable(string query, int id)
         {
             DataTable table = new DataTable();
-            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.Text;
@@ -193,12 +193,152 @@ namespace SQLHelper
             return rowsAffected;
         }
 
-    }
+    
 
     #endregion
-    /*
-            #region ADODesconectado
-            public DataTable ExecuteDataTableConADODesconectado(string query)
+
+    public static int ExecuteNonQuery(string connectionString, string query, List<SqlParameter> parameters)
+    {
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            SqlCommand command = new SqlCommand(query, connection);
+            if (parameters != null)
+            {
+                command.Parameters.AddRange(parameters.ToArray());
+            }
+            connection.Open();
+            return command.ExecuteNonQuery();
+        }
+    }
+
+    public static object ExecuteScalar(string connectionString, string query)
+    {
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            SqlCommand command = new SqlCommand(query, connection);
+            connection.Open();
+            return command.ExecuteScalar();
+        }
+    }
+
+    public static DataTable ExecuteQuery(string connectionString, string query)
+    {
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+
+        #region digitos verificadores
+
+      
+        public decimal ExecuteScalar(string mcommand)
+        {
+            try
+            {
+                using (SqlConnection mcon = new SqlConnection(connectionString))
+                {
+                    SqlCommand mcom = new SqlCommand(mcommand, mcon);
+                    mcon.Open();
+                    object result = mcom.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToDecimal(result);
+                    }
+                    else
+                    {
+                        throw new Exception("La consulta no devolvió ningún valor.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al ejecutar consulta y convertir a Decimal.", ex);
+            }
+        }
+
+        public static DataTable ExecuteQuery(string query, SqlParameter[] parameters = null)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    if (parameters != null)
+                    {
+                        cmd.Parameters.AddRange(parameters);
+                    }
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+        }
+
+
+        public DataSet ExecuteDataSet(string mcommand)
+        {
+            DataSet mds = new DataSet();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlDataAdapter mda = new SqlDataAdapter(mcommand, conn);
+                    mda.Fill(mds);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al ejecutar consulta y llenar DataSet.", ex);
+            }
+            return mds;
+
+        }
+
+        #endregion
+
+
+        #region ADODesconectado
+        /*
+                public DataTable ExecuteDataTableConADODesconectado(string query)
+                {
+                    DataTable table = new DataTable();
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter();
+
+                    SqlConnection connection = new SqlConnection(this.ConnectionString);
+
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.CommandType = CommandType.Text;
+                        command.CommandText = query;
+                        command.Connection = connection;
+
+                        dataAdapter.SelectCommand = command;
+                        //dataAdapter.UpdateCommand = command;
+                        //dataAdapter.DeleteCommand = command;
+                        //dataAdapter.InsertCommand = command;
+
+                        dataAdapter.Fill(table);
+
+
+
+                        return table;
+                        // extracion
+                        // deposito
+                        //pago
+
+                    }
+
+                }
+
+
+            public DataTable ExecuteDataTableConADODesconectado(string storeProcedure, List<SqlParameter> parameters)
             {
                 DataTable table = new DataTable();
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();
@@ -207,8 +347,8 @@ namespace SQLHelper
 
                 using (SqlCommand command = new SqlCommand())
                 {
-                    command.CommandType = CommandType.Text;
-                    command.CommandText = query;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = storeProcedure;
                     command.Connection = connection;
 
                     dataAdapter.SelectCommand = command;
@@ -216,9 +356,13 @@ namespace SQLHelper
                     //dataAdapter.DeleteCommand = command;
                     //dataAdapter.InsertCommand = command;
 
+                    if (parameters != null && parameters.Count > 0)
+                    {
+                        command.Parameters.AddRange(parameters.ToArray());
+
+                    }
+
                     dataAdapter.Fill(table);
-
-
 
                     return table;
                     // extracion
@@ -228,85 +372,53 @@ namespace SQLHelper
                 }
 
             }
-    */
-    /*
-        public DataTable ExecuteDataTableConADODesconectado(string storeProcedure, List<SqlParameter> parameters)
-        {
-            DataTable table = new DataTable();
-            SqlDataAdapter dataAdapter = new SqlDataAdapter();
-
-            SqlConnection connection = new SqlConnection(this.ConnectionString);
-
-            using (SqlCommand command = new SqlCommand())
-            {
-                command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = storeProcedure;
-                command.Connection = connection;
-
-                dataAdapter.SelectCommand = command;
-                //dataAdapter.UpdateCommand = command;
-                //dataAdapter.DeleteCommand = command;
-                //dataAdapter.InsertCommand = command;
-
-                if (parameters != null && parameters.Count > 0)
-                {
-                    command.Parameters.AddRange(parameters.ToArray());
-
-                }
-
-                dataAdapter.Fill(table);
-
-                return table;
-                // extracion
-                // deposito
-                //pago
-
-            }
-
-        }
+        */
         #endregion
-    */
-    #region Archivos y XML
-    /*
-     public class FileHelper
-     {
-         // Método para escribir texto en un archivo
-         public static void EscribirTexto(string rutaArchivo, string contenido)
-         {
-             File.WriteAllText(rutaArchivo, contenido);
-         }
 
-         // Método para leer texto desde un archivo
-         public static string LeerTexto(string rutaArchivo)
-         {
-             return File.ReadAllText(rutaArchivo);
-         }
 
-         // Método para escribir objetos serializados en formato XML en un archivo
-         public static void EscribirXml<T>(string rutaArchivo, T objeto)
+        #region Archivos y XML
+        /*
+         public class FileHelper
          {
-             XmlSerializer serializer = new XmlSerializer(typeof(T));
-
-             using (TextWriter writer = new StreamWriter(rutaArchivo))
+             // Método para escribir texto en un archivo
+             public static void EscribirTexto(string rutaArchivo, string contenido)
              {
-                 serializer.Serialize(writer, objeto);
+                 File.WriteAllText(rutaArchivo, contenido);
              }
-         }
 
-         // Método para leer objetos desde un archivo XML
-         public static T LeerXml<T>(string rutaArchivo)
-         {
-             XmlSerializer serializer = new XmlSerializer(typeof(T));
-
-             using (TextReader reader = new StreamReader(rutaArchivo))
+             // Método para leer texto desde un archivo
+             public static string LeerTexto(string rutaArchivo)
              {
-                 return (T)serializer.Deserialize(reader);
+                 return File.ReadAllText(rutaArchivo);
              }
-         }
 
-     }*/
+             // Método para escribir objetos serializados en formato XML en un archivo
+             public static void EscribirXml<T>(string rutaArchivo, T objeto)
+             {
+                 XmlSerializer serializer = new XmlSerializer(typeof(T));
+
+                 using (TextWriter writer = new StreamWriter(rutaArchivo))
+                 {
+                     serializer.Serialize(writer, objeto);
+                 }
+             }
+
+             // Método para leer objetos desde un archivo XML
+             public static T LeerXml<T>(string rutaArchivo)
+             {
+                 XmlSerializer serializer = new XmlSerializer(typeof(T));
+
+                 using (TextReader reader = new StreamReader(rutaArchivo))
+                 {
+                     return (T)serializer.Deserialize(reader);
+                 }
+             }
+
+         }*/
+        #endregion
 
 
-    #endregion
-
+    }
 }
+    
+
