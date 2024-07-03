@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|c:\\users\\matias canziani\\desktop\\ecsa\\ecsa\\ecsa\\uireportes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|solutionrelative:ecsa\\uireportes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{8E88C4B8-7C99-4690-82F2-002F92400F07}|BLL\\BLL.csproj|c:\\users\\matias canziani\\desktop\\ecsa\\ecsa\\bll\\bllseguridad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E88C4B8-7C99-4690-82F2-002F92400F07}|BLL\\BLL.csproj|solutionrelative:bll\\bllseguridad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|c:\\users\\matias canziani\\desktop\\ecsa\\ecsa\\ecsa\\uiinicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{D33B34B0-EBAB-4DEC-A75A-A5CAF8BB0551}|ECSA\\UI.csproj|solutionrelative:ecsa\\uiinicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{4232FC13-0FD8-4576-828F-27EBE0E8BCAB}|DAL\\DAL.csproj|c:\\users\\matias canziani\\desktop\\ecsa\\ecsa\\dal\\daos\\daosseguridad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4232FC13-0FD8-4576-828F-27EBE0E8BCAB}|DAL\\DAL.csproj|solutionrelative:dal\\daos\\daosseguridad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4232FC13-0FD8-4576-828F-27EBE0E8BCAB}|DAL\\DAL.csproj|c:\\users\\matias canziani\\desktop\\ecsa\\ecsa\\dal\\dalseguridad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4232FC13-0FD8-4576-828F-27EBE0E8BCAB}|DAL\\DAL.csproj|solutionrelative:dal\\dalseguridad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E88C4B8-7C99-4690-82F2-002F92400F07}|BLL\\BLL.csproj|c:\\users\\matias canziani\\desktop\\ecsa\\ecsa\\bll\\bllpasaron.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E88C4B8-7C99-4690-82F2-002F92400F07}|BLL\\BLL.csproj|solutionrelative:bll\\bllpasaron.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,31 +26,59 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UIInicio.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIInicio.cs",
-              "RelativeDocumentMoniker": "ECSA\\UIInicio.cs",
-              "ToolTip": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIInicio.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ECSA\\UIInicio.cs [Dise\u00F1o]",
+              "Title": "DAOSSeguridad.cs",
+              "DocumentMoniker": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\DAL\\DAOs\\DAOSSeguridad.cs",
+              "RelativeDocumentMoniker": "DAL\\DAOs\\DAOSSeguridad.cs",
+              "ToolTip": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\DAL\\DAOs\\DAOSSeguridad.cs",
+              "RelativeToolTip": "DAL\\DAOs\\DAOSSeguridad.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAK0AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-31T18:52:04.864Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2024-07-03T12:31:48.797Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DALSeguridad.cs",
+              "DocumentMoniker": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\DAL\\DALSeguridad.cs",
+              "RelativeDocumentMoniker": "DAL\\DALSeguridad.cs",
+              "ToolTip": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\DAL\\DALSeguridad.cs",
+              "RelativeToolTip": "DAL\\DALSeguridad.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAqwCcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-03T12:31:22.975Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UIReportes.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIReportes.cs",
-              "RelativeDocumentMoniker": "ECSA\\UIReportes.cs",
-              "ToolTip": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\ECSA\\UIReportes.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ECSA\\UIReportes.cs [Dise\u00F1o]",
+              "Title": "BLLSeguridad.cs",
+              "DocumentMoniker": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\BLL\\BLLSeguridad.cs",
+              "RelativeDocumentMoniker": "BLL\\BLLSeguridad.cs",
+              "ToolTip": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\BLL\\BLLSeguridad.cs",
+              "RelativeToolTip": "BLL\\BLLSeguridad.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAADwv1UAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-31T18:31:14.591Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2024-07-03T12:30:39.585Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BLLPasaron.cs",
+              "DocumentMoniker": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\BLL\\BLLPasaron.cs",
+              "RelativeDocumentMoniker": "BLL\\BLLPasaron.cs",
+              "ToolTip": "C:\\Users\\Matias Canziani\\Desktop\\ECSA\\ECSA\\BLL\\BLLPasaron.cs",
+              "RelativeToolTip": "BLL\\BLLPasaron.cs",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAAADUAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-03T12:30:13.015Z",
+              "EditorCaption": ""
             }
           ]
         }

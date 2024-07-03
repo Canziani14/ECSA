@@ -18,6 +18,8 @@ namespace BLL
         BE.Empleado BEEmpleado = new BE.Empleado();
 
 
+
+        #region Digitos Verificadores
         public int CalcularDVV(string tabla)
         {
            return DALSeguridad.CalcularDVV(tabla);
@@ -32,6 +34,55 @@ namespace BLL
         {
             return DALSeguridad.VerificarDigitosVerificadores(tabla);
         }
+
+        #endregion
+
+
+        #region Encriptar y Desencriptar
+
+        public string EncriptarCamposReversible(string cadenaen)
+        {
+            return Convert.ToBase64String(Encoding.Unicode.GetBytes(cadenaen));
+        }
+
+        public string DesencriptarCamposReversible(string cadenades)
+        {
+            if (cadenades == null)
+            {
+                return "";
+            }
+            else
+            {
+                return Encoding.Unicode.GetString(Convert.FromBase64String(cadenades));
+            }
+        }
+
+
+        public static string EncriptarCamposIrreversible(string str)
+        {
+            str = str + "matias";
+            MD5 md5 = MD5CryptoServiceProvider.Create();
+            ASCIIEncoding encoding = new ASCIIEncoding();
+            byte[] stream = null;
+            StringBuilder sb = new StringBuilder();
+            stream = md5.ComputeHash(encoding.GetBytes(str));
+            for (int i = 0; i < stream.Length; i++) sb.AppendFormat("{0:x2}", stream[i]);
+            return sb.ToString();
+        }
+
+        public int CompararContraseña(string un, string pass)
+        {
+            string passencriptada = EncriptarCamposIrreversible(pass);
+            string unencriptado = EncriptarCamposReversible(un);
+            //SeguridadDAL sdal = new SeguridadDAL();
+            //return sdal.ComprobarContraseña(unencriptado, passencriptada);
+            return 0;
+        }
+
+        #endregion
+
+
+
 
 
         /*
@@ -50,20 +101,7 @@ namespace BLL
                     throw new NotImplementedException();
                 }
 
-                public bool DesencriptarCamposReversible()
-                {
-                    throw new NotImplementedException();
-                }
 
-                public bool EncriptarCamposIrreversible()
-                {
-                    throw new NotImplementedException();
-                }
-
-                public bool EncriptarCamposReversible()
-                {
-                    throw new NotImplementedException();
-                }
 
                 public bool GenerarContraseñaAleatoria()
                 {
@@ -80,5 +118,6 @@ namespace BLL
                     throw new NotImplementedException();
                 }
         */
+
     }
 }
