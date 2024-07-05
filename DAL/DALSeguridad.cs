@@ -7,15 +7,16 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static DAL.DAOs.DAOSPasaron;
 using DAL.DAOs;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Security.Cryptography;
 
 namespace DAL
 {
     public class DALSeguridad
     {
 
+        #region Digitos Verificadores
         public int CalcularDVV(string tabla)
         {
            return DAOSSeguridad.GetInstance().CalcularDVV(tabla);
@@ -31,8 +32,54 @@ namespace DAL
             return DAOSSeguridad.GetInstance().VerificarDigitosVerificadores(tabla);
         }
 
+        #endregion
 
 
+        #region Encriptar y Desencriptar
+
+        public string EncriptarCamposReversible(string cadenaen)
+        {
+            string encript=Convert.ToBase64String(Encoding.Unicode.GetBytes(cadenaen));
+            return encript;
+        }
+
+        public string DesencriptarCamposReversible(string cadenades)
+        {
+            if (cadenades == null)
+            {
+                return "";
+            }
+            else
+            {
+                string desencript= Encoding.Unicode.GetString(Convert.FromBase64String(cadenades));
+                return desencript;
+            }
+             
+        }
+
+
+        public static string EncriptarCamposIrreversible(string str)
+        {
+            str = str + "matias";
+            MD5 md5 = MD5CryptoServiceProvider.Create();
+            ASCIIEncoding encoding = new ASCIIEncoding();
+            byte[] stream = null;
+            StringBuilder sb = new StringBuilder();
+            stream = md5.ComputeHash(encoding.GetBytes(str));
+            for (int i = 0; i < stream.Length; i++) sb.AppendFormat("{0:x2}", stream[i]);
+            return sb.ToString();
+        }
+
+        public int CompararContraseña(string un, string pass)
+        {
+            string passencriptada = EncriptarCamposIrreversible(pass);
+            string unencriptado = EncriptarCamposReversible(un);
+            //SeguridadDAL sdal = new SeguridadDAL();
+            //return sdal.ComprobarContraseña(unencriptado, passencriptada);
+            return 0;
+        }
+
+        #endregion
 
     }
 }

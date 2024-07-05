@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using static DAL.DAOs.DAOSPasaron;
@@ -54,71 +55,6 @@ namespace DAL.DAOs
             return SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(command);
         }
 
-        public int VerificarDigitosVerificadores(string tabla)
-        {
-            int suma = 0;
-
-            DataSet mds = new DataSet();
-            int mds2;
-            switch (tabla)
-            {
-                case "Empleado":
-                    string commanddv = "select * from empleado";
-                    mds = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataSet(commanddv);
-
-                    if (mds.Tables.Count > 0 && mds.Tables[0].Rows.Count > 0)
-                    {
-                        foreach (DataRow r in mds.Tables[0].Rows)
-                        {
-                            string commanddv2 ="update "+ tabla + " set DVH = "+ DVHEmpleado(r) + "where Legajo=" + r["Legajo"];
-                            mds2 = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(commanddv2);
-                            
-                            suma += DVHEmpleado(r);
-                        }
-                    }
-                    break;
-                default:
-                    break;
-            }
-            return suma;
-        }
-        /*
-        List<int> lst = new List<int>();
-
-        DataSet mds = new DataSet();
-
-        switch (tabla)
-        {
-            case "Empleado":
-                string commanddv = "select * from empleado";
-                mds = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataSet(commanddv);
-
-                if (mds.Tables.Count > 0 && mds.Tables[0].Rows.Count > 0)
-                {
-                    foreach (DataRow r in mds.Tables[0].Rows)
-                    {
-                        lst.Add(DVHEmpleado(r));
-                    }
-
-                }
-
-
-                break;
-            default: break;
-        }
-        return lst;
-    }*/
-
-        public int DVHEmpleado(DataRow d)
-        {
-            int dvh;
-            dvh = CalcularNumero(int.Parse(d["Legajo"].ToString())) + CalcularNumero(d["Nombre"].ToString()) + CalcularNumero(d["apellido"].ToString());
-            return dvh;
-
-        }
-        
-
-
         public int CalcularNumero(string s)
         {
             int calculo = 0;
@@ -139,11 +75,109 @@ namespace DAL.DAOs
             }
             return calculo;
 
+        }
 
-            #endregion
 
+        public int VerificarDigitosVerificadores(string tabla)
+        {
+            int suma = 0;
 
+            DataSet mds = new DataSet();
+            int mds2;
+            switch (tabla)
+            {
+                case "Empleado":
+                    string commanddv = "select * from empleado";
+                    mds = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataSet(commanddv);
+
+                    if (mds.Tables.Count > 0 && mds.Tables[0].Rows.Count > 0)
+                    {
+                        string primaryKeyColumn = mds.Tables[0].Columns[0].ColumnName;
+                        foreach (DataRow r in mds.Tables[0].Rows)
+                        {
+                            string commanddv2 ="update "+ tabla + " set DVH = "+ DVHEmpleado(r) + " where " + primaryKeyColumn + "=" + r["Legajo"];
+                            mds2 = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(commanddv2);
+                            
+                            suma += DVHEmpleado(r);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+            return suma;
+        }
+    
+        public int DVHEmpleado(DataRow d)
+        {
+            int dvh;
+            dvh = CalcularNumero(int.Parse(d["Legajo"].ToString()))*1 + CalcularNumero(d["Nombre"].ToString())*2 +
+                CalcularNumero(d["apellido"].ToString())*3 + CalcularNumero(d["DNI"].ToString())*4 +
+                CalcularNumero(d["Direccion"].ToString())*5 + CalcularNumero(d["Telefono"].ToString())*6 +
+                CalcularNumero(d["FechaIngreso"].ToString())*7 + CalcularNumero(d["ID_Linea"].ToString())*8 + 
+                CalcularNumero(d["ID_Servicio"].ToString())*9;
+            return dvh;
 
         }
+        //aca agregar los otros dvh
+
+
+
+        #endregion
+
+        #region Encriptar y Desencriptar
+        public int ComprobarContraseña(string un, string pass)
+        {
+            string command = "Select cod_usuario from usuario where nombredeusuario = '" + un + "' and contraseña = '" + pass + "';";
+            DAO mdao = new DAO();
+            DataSet mds = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataSet(command);
+            if (mds.Tables.Count > 0 && mds.Tables[0].Rows.Count == 1)
+            {
+                return 1;
+            }
+            else return 0;
+        }
+
+        public string EncriptarCamposReversible(string cadenaen)
+        {
+            return Convert.ToBase64String(Encoding.Unicode.GetBytes(cadenaen));
+        }
+
+        public string DesencriptarCamposReversible(string cadenades)
+        {
+            if (cadenades == null)
+            {
+                return "";
+            }
+            else
+            {
+                return Encoding.Unicode.GetString(Convert.FromBase64String(cadenades));
+            }
+        }
+
+
+        public static string EncriptarCamposIrreversible(string str)
+        {
+            str = str + "matias";
+            MD5 md5 = MD5CryptoServiceProvider.Create();
+            ASCIIEncoding encoding = new ASCIIEncoding();
+            byte[] stream = null;
+            StringBuilder sb = new StringBuilder();
+            stream = md5.ComputeHash(encoding.GetBytes(str));
+            for (int i = 0; i < stream.Length; i++) sb.AppendFormat("{0:x2}", stream[i]);
+            return sb.ToString();
+        }
+
+        public int CompararContraseña(string un, string pass)
+        {
+            string passencriptada = EncriptarCamposIrreversible(pass);
+            string unencriptado = EncriptarCamposReversible(un);
+            //SeguridadDAL sdal = new SeguridadDAL();
+            //return sdal.ComprobarContraseña(unencriptado, passencriptada);
+            return 0;
+        }
+
+        #endregion
+
     }
 }

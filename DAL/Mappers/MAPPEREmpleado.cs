@@ -24,6 +24,7 @@ namespace DAL.Mappers
         public List<BE.Empleado> Map(DataTable table)
         {
             List<BE.Empleado> empleados = new List<BE.Empleado>();
+            DAL.DALSeguridad DALSeguridad = new DAL.DALSeguridad();
 
             foreach (DataRow item in table.Rows)
             {
@@ -33,9 +34,9 @@ namespace DAL.Mappers
                     Nombre= item.Field<string>("Nombre"),
                     Apellido = item.Field<string>("Apellido"),
                     FechaDeingreso = item.Field<DateTime>("FechaIngreso"),
-                    DNI = item.Field<string>("DNI"),
-                    Telefono= item.Field<string>("Telefono"),
-                    Direccion= item.Field<string>("Direccion"),
+                    DNI =DALSeguridad.DesencriptarCamposReversible(item.Field<string>("DNI")),
+                    Telefono= DALSeguridad.DesencriptarCamposReversible(item.Field<string>("Telefono")),
+                    Direccion= DALSeguridad.DesencriptarCamposReversible(item.Field<string>("Direccion")),
                     LineaPertenece =item.Field<int>("ID_Linea")
                 });
             }

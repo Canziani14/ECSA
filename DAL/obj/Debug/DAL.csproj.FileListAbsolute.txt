@@ -21,3 +21,8 @@ C:\Users\CASA\Desktop\ECSA\ECSA\DAL\bin\Debug\SqlHelper.dll
 C:\Users\CASA\Desktop\ECSA\ECSA\DAL\bin\Debug\BE.pdb
 C:\Users\CASA\Desktop\ECSA\ECSA\DAL\bin\Debug\SqlHelper.pdb
 C:\Users\CASA\Desktop\ECSA\ECSA\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\DAL\bin\Debug\BE.dll
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\DAL\bin\Debug\SqlHelper.dll
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\DAL\bin\Debug\BE.pdb
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\DAL\bin\Debug\SqlHelper.pdb
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\DAL\obj\Debug\DAL.csproj.Up2Date

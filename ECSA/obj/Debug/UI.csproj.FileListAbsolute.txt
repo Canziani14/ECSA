@@ -75,3 +75,12 @@ C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\DAL.dll
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\SqlHelper.dll
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\DAL.pdb
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\SqlHelper.pdb
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\BE.dll
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\BLL.dll
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\DAL.dll
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\SqlHelper.dll
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\BE.pdb
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\BLL.pdb
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\DAL.pdb
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\SqlHelper.pdb
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\obj\Debug\UI.csproj.Up2Date

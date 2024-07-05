@@ -30,6 +30,9 @@ namespace DAL.DAOs
             return instance;
         }
 
+        
+
+
         string connectionString = ConfigurationManager.ConnectionStrings["Produccion"].ConnectionString;
 
         string QueryInsert = "INSERT INTO Empleado (Nombre, Apellido, DNI, Direccion, Telefono, FechaIngreso, ID_Linea)"+

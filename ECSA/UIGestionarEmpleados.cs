@@ -43,9 +43,9 @@ namespace ECSA
 
                 BEEmpleado.Nombre = txtNombre.Text;
                 BEEmpleado.Apellido = txtApellido.Text;
-                BEEmpleado.DNI = txtDNI.Text;
-                BEEmpleado.Direccion = txtDireccion.Text;
-                BEEmpleado.Telefono = txtTelefono.Text;
+                BEEmpleado.DNI= BLLSeguridad.EncriptarCamposReversible(txtDNI.Text);
+                BEEmpleado.Direccion = BLLSeguridad.EncriptarCamposReversible(txtDireccion.Text);
+                BEEmpleado.Telefono = BLLSeguridad.EncriptarCamposReversible(txtTelefono.Text);
                 BEEmpleado.LineaPertenece = int.Parse(cmbLinea.Text);
                 BEEmpleado.FechaDeingreso = DateTime.Parse(txtFechadeIngreso.Text);
 
@@ -61,6 +61,7 @@ namespace ECSA
                 {
                     MessageBox.Show("No se pudo crear el empleado");
                 }
+
                 limpiarGrilla();
                 limpiartxt();
             }
@@ -84,9 +85,9 @@ namespace ECSA
                     {
                         Nombre = txtNombre.Text ,
                         Apellido = txtApellido.Text ,
-                        DNI = txtDNI.Text,
-                        Direccion = txtDireccion.Text ,
-                        Telefono= txtTelefono.Text,
+                        DNI = BLLSeguridad.EncriptarCamposReversible(txtDNI.Text),
+                        Direccion = BLLSeguridad.EncriptarCamposReversible(txtDireccion.Text) ,
+                        Telefono= BLLSeguridad.EncriptarCamposReversible(txtTelefono.Text),
                         LineaPertenece= int.Parse(cmbLinea.Text) ,
                         FechaDeingreso = DateTime.Parse( txtFechadeIngreso.Text),
                         Legajo = int.Parse(txtLegajo.Text),
@@ -242,39 +243,18 @@ namespace ECSA
             txtDireccion.Clear();
             txtTelefono.Clear();
             txtNombre.Clear();
-
         }
 
        public void CalcularDigitos()
         {
             string tabla = "Empleado";
-            BLLSeguridad.CalcularDVV(tabla);
-
-            
-
-            
-            BLLSeguridad.VerificarDigitosVerificadores(tabla);
-            string legajo = "Legajo";
-            int dvh = 500;
-
-
-            BLLSeguridad.InsertarDVH(dvh,2,tabla, legajo);
-            //string command = "update " + t + " set DVH = " + DVH + " where " + codtabla + " = " + cod;
-            //dvh el valor de dvh
-            //cod valor
-            //t es la tabla
-            //codtabla = legajo
-
-
-
-
+            BLLSeguridad.CalcularDVV(tabla);                   
+            BLLSeguridad.VerificarDigitosVerificadores(tabla);           
         }
-
-
-
     }
 
     #endregion
+
 
 
 }
