@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BE;
+using BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,51 +14,232 @@ namespace ECSA
 {
     public partial class UIGestionarUsuarios : Form
     {
+
+        BE.Usuario BEUsuario = new BE.Usuario();
+        BE.Usuario UsuarioSeleccionado = new BE.Usuario();
+        BLL.BLL_ABM_Usuario BLLUsuario = new BLL.BLL_ABM_Usuario();
+        BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
+
         public UIGestionarUsuarios()
         {
             InitializeComponent();
+            dtgUsuarios.DataSource = BLLUsuario.Listar();
         }
 
-        private void GestionarUsuarios_Load(object sender, EventArgs e)
-        {
-            
 
-        }
-
+        #region EliminarUsuario
         private void btnEliminarUsuario_Click(object sender, EventArgs e)
         {
             DialogResult respuesta = MessageBox.Show("¿Esta seguro de eliminar este usuario?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (respuesta ==DialogResult.Yes)
+            if (respuesta == DialogResult.Yes)
             {
-                MessageBox.Show("Usuario eliminado con exito");
+
+                if (UsuarioSeleccionado != null)
+                {
+                    bool UsuarioEliminado = BLLUsuario.Eliminar(UsuarioSeleccionado);
+
+                    try
+                    {
+                        if (UsuarioEliminado)
+                        {
+                            CalcularDigitos();
+                            limpiarGrilla();
+                            limpiartxt();
+                        }
+                        else
+                        {
+                            MessageBox.Show("no se puede borrar el usuario");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ha ocurrido un error al borrar el usuario: " + ex.Message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione un usuario para borrar");
+                }
             }
         }
+        #endregion
 
+
+        #region CrearUsuario
         private void btnCrearUsuario_Click(object sender, EventArgs e)
         {
             
-                MessageBox.Show("Usuario creado con exito");
-           
+              if (txtNombre.Text == "")
+                {
+                    MessageBox.Show("Por favor, complete todos los campos");
+                    return;
+                }
+
+                try
+                {
+
+                    BEUsuario.Nombre = BLLSeguridad.EncriptarCamposReversible(txtNombre.Text);
+                    BEUsuario.Apellido = BLLSeguridad.EncriptarCamposReversible(txtApellido.Text);
+                    BEUsuario.Nick= BLLSeguridad.EncriptarCamposReversible(txtNick.Text);
+                    BEUsuario.Mail = BLLSeguridad.EncriptarCamposReversible(txtMail.Text);
+                    BEUsuario.DNI= BLLSeguridad.EncriptarCamposReversible(txtDNI.Text);
+
+                    int longitudClave = 12; // Puedes cambiar la longitud de la clave aquí
+                    string claveGenerada = BLLSeguridad.GenerarClave(longitudClave);
+                    Console.WriteLine($"Clave generada: {claveGenerada}");
+                    BLLSeguridad.GuardarClaveEnArchivo(claveGenerada);
+                    BEUsuario.Contraseña = BLLSeguridad.EncriptarCamposIrreversible(claveGenerada);
+
+
+
+
+
+                if (BLLUsuario.Crear(BEUsuario))
+                    {                    
+                    MessageBox.Show("Usuario creado con éxito");
+                        CalcularDigitos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo crear el Usuario");
+                    }
+
+                    limpiarGrilla();
+                    limpiartxt();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                    return;
+                }            
         }
+
+        #endregion
+
+
+        #region ModificarUsuario
 
         private void btnModificarUsuario_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Usuario modificado con exito");
-        }
+            if (UsuarioSeleccionado != null)
+            {
+                try
+                {
+                    if (BLLUsuario.Modificar(new BE.Usuario()
+                    {
+                        Nombre = BLLSeguridad.EncriptarCamposReversible(txtNombre.Text),
+                        Apellido = BLLSeguridad.EncriptarCamposReversible(txtApellido.Text),
+                        DNI = BLLSeguridad.EncriptarCamposReversible(txtDNI.Text),
+                        Mail = BLLSeguridad.EncriptarCamposReversible(txtMail.Text),
+                        Nick= BLLSeguridad.EncriptarCamposReversible(txtNick.Text),
+                        ID_Usuario= int.Parse(txtIDUsuario.Text),
+                    }
+            ))
+                    {
+                        MessageBox.Show("Usuario modificado con exito");
+                        CalcularDigitos();
+                        limpiarGrilla();
+                        limpiartxt();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo modificar el Usuario");
+                    }
 
+                }
+                catch (FormatException ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un Usuario para modificar");
+            }
+        }
+           
+
+        #endregion
+
+
+        #region BuscarUsuario
         private void btnBuscarUsuario_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("No se encontro el usuario");
-        }
+            {
+                MessageBox.Show("No se encontro el usuario");
+            }
 
+        #endregion
+
+
+        #region Bloquear y Desbloquear Usuario
         private void btnBloquearUsuario_Click(object sender, EventArgs e)
+            {
+                MessageBox.Show("Usuario bloqueado");
+            }
+
+            private void btnDesbloquearUsuario_Click(object sender, EventArgs e)
+            {
+                MessageBox.Show("Usuario desbloqueado");
+            }
+        #endregion
+
+
+        #region FuncionesVarias
+            private void limpiarGrilla()
+            {
+                dtgUsuarios.DataSource = null;
+                dtgUsuarios.DataSource = BLLUsuario.Listar();
+            }
+
+            private void limpiartxt()
+            {
+                txtDNI.Clear();
+                txtNombre.Clear();
+                txtApellido.Clear();
+                txtNick.Clear();
+                txtMail.Clear();
+            
+            }
+
+            public void CalcularDigitos()
+            {
+                string tabla = "Usuario";
+                BLLSeguridad.CalcularDVV(tabla);
+                BLLSeguridad.VerificarDigitosVerificadores(tabla);
+            }
+        private void dtgUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show("Usuario bloqueado");
+            ObtenerUsuarioSeleccionado();
         }
 
-        private void btnDesbloquearUsuario_Click(object sender, EventArgs e)
+        public BE.Usuario ObtenerUsuarioSeleccionado()
         {
-            MessageBox.Show("Usuario desbloqueado");
+            if (dtgUsuarios.SelectedRows.Count > 0)
+            {
+                UsuarioSeleccionado = ((BE.Usuario)dtgUsuarios.SelectedRows[0].DataBoundItem);
+                this.ComlpetarUsuario(UsuarioSeleccionado);
+            }
+
+            return UsuarioSeleccionado;
         }
+
+        public void ComlpetarUsuario(BE.Usuario usuario)
+        {
+            txtNombre.Text = usuario.Nombre;
+            txtApellido.Text = usuario.Apellido;
+            txtMail.Text = usuario.Mail;
+            txtNick.Text = usuario.Nick;
+            txtDNI.Text = usuario.DNI;
+            txtIDUsuario.Text = usuario.ID_Usuario.ToString();
+        }
+
     }
+
+            
+    #endregion
+
+
+
 }
+

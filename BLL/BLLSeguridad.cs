@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -16,7 +17,7 @@ namespace BLL
     {
         DAL.DALSeguridad DALSeguridad = new DAL.DALSeguridad();
         BE.Empleado BEEmpleado = new BE.Empleado();
-
+        private static Random random = new Random();
 
 
         #region Digitos Verificadores
@@ -25,10 +26,10 @@ namespace BLL
            return DALSeguridad.CalcularDVV(tabla);
         }
 
-        public int InsertarDVH(Int64 DVH, int cod, string t, string codtabla)
+/*        public int InsertarDVH(Int64 DVH, int cod, string t, string codtabla)
         {
             return DALSeguridad.InsertarDVH(DVH, cod, t, codtabla);
-        }
+        }*/
 
         public int VerificarDigitosVerificadores(string tabla)
         {
@@ -52,6 +53,12 @@ namespace BLL
           
         }
 
+        public static string EncriptarCamposIrreversible(string str)
+        {
+            return DALSeguridad.EncriptarCamposIrreversible(str);
+        }
+
+       
 
         /*
 
@@ -78,7 +85,33 @@ namespace BLL
                */
         #endregion
 
+        #region Generar Clave
+        public string GenerarClave(int longitud)
+        {
+            const string caracteresPermitidos = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            StringBuilder resultado = new StringBuilder(longitud);
 
+            for (int i = 0; i < longitud; i++)
+            {
+                resultado.Append(caracteresPermitidos[random.Next(caracteresPermitidos.Length)]);
+            }
+
+            return resultado.ToString();
+        }
+        public static void GuardarClaveEnArchivo(string clave)
+        {
+            string rutaEscritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string rutaArchivo = Path.Combine(rutaEscritorio, "claves.txt");
+
+            using (StreamWriter sw = new StreamWriter(rutaArchivo, true))
+            {
+                sw.WriteLine(clave);
+            }
+
+            Console.WriteLine($"Clave guardada en: {rutaArchivo}");
+        }
+
+        #endregion
 
 
 
@@ -115,6 +148,8 @@ namespace BLL
                     throw new NotImplementedException();
                 }
         */
+
+
 
     }
 }

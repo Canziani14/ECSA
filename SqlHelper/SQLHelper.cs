@@ -125,39 +125,6 @@ namespace SQLHelper
 
         public int ExecuteNonQuery(string query, List<SqlParameter> parameters)
         {
-            /*  int value = 1;
-              using (SqlConnection connection = new SqlConnection(this.ConnectionString))
-              {
-
-
-                  using (SqlCommand command = new SqlCommand())
-                  {
-
-                      command.CommandText = query;
-                      command.CommandType = CommandType.Text;
-                      command.Connection = connection;
-
-                      if (parameters != null && parameters.Count > 0)
-                      {
-                          command.Parameters.AddRange(parameters.ToArray());
-
-                      }
-                      try
-                      {
-                          connection.Open();
-
-                          return command.ExecuteNonQuery();
-                      }
-                      catch (Exception ex)
-                      {
-
-                          Console.WriteLine(ex.Message);
-                      }
-
-                      return value;
-
-                  }
-              }*/
             int rowsAffected = 0;
             using (SqlConnection connection = new SqlConnection(this.ConnectionString))
             {

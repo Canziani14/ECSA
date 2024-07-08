@@ -48,10 +48,13 @@
     <Compile Include="DAOs\DAOSEmpleado.cs" />
     <Compile Include="DAOs\DAOSSeguridad.cs" />
     <Compile Include="DALEmpleado.cs" />
+    <Compile Include="DAOs\DAOSUsuario.cs" />
     <Compile Include="Mappers\MAPPEREmpleado.cs" />
     <Compile Include="Mappers\MAPPERSeguridad.cs" />
+    <Compile Include="Mappers\MAPPERSUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DALSeguridad.cs" />
+    <Compile Include="DALUsuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BE\BE.csproj">

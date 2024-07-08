@@ -5,6 +5,7 @@ using System.ComponentModel.Design;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -47,13 +48,13 @@ namespace DAL.DAOs
             return SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(command2);
         }
 
-        public int InsertarDVH(Int64 DVH, int cod, string t, string codtabla)
+     /*   public int InsertarDVH(Int64 DVH, int cod, string t, string codtabla)
         {
             string command = "update " + t + " set DVH = " + DVH + " where " + codtabla + " = " + cod;
 
             DataSet mds = new DataSet();
             return SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(command);
-        }
+        }*/
 
         public int CalcularNumero(string s)
         {
@@ -95,10 +96,26 @@ namespace DAL.DAOs
                         string primaryKeyColumn = mds.Tables[0].Columns[0].ColumnName;
                         foreach (DataRow r in mds.Tables[0].Rows)
                         {
-                            string commanddv2 ="update "+ tabla + " set DVH = "+ DVHEmpleado(r) + " where " + primaryKeyColumn + "=" + r["Legajo"];
-                            mds2 = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(commanddv2);
+                            string queryEmpleado ="update "+ tabla + " set DVH = "+ DVHEmpleado(r) + " where " + primaryKeyColumn + "=" + r["Legajo"];
+                            mds2 = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(queryEmpleado);
                             
                             suma += DVHEmpleado(r);
+                        }
+                    }
+                    break;
+                case "Usuario":
+                    string queryUsuario = "select * from Usuario";
+                    mds = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataSet(queryUsuario);
+
+                    if (mds.Tables.Count > 0 && mds.Tables[0].Rows.Count > 0)
+                    {
+                        string primaryKeyColumn = mds.Tables[0].Columns[0].ColumnName;
+                        foreach (DataRow r in mds.Tables[0].Rows)
+                        {
+                            string commanddv2 = "update " + tabla + " set DVH = " + DVHUsuario(r) + " where " + primaryKeyColumn + "=" + r["ID_Usuario"];
+                            mds2 = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(commanddv2);
+
+                            suma += DVHUsuario(r);
                         }
                     }
                     break;
@@ -119,24 +136,51 @@ namespace DAL.DAOs
             return dvh;
 
         }
+
+        public int DVHUsuario(DataRow d)
+        {
+            int dvh = 0;
+
+            dvh += CalcularNumero(SafeIntParse(d["ID_Usuario"].ToString())) * 1;
+            dvh += CalcularNumero(d["Nombre"]?.ToString() ?? "") * 2;
+            dvh += CalcularNumero(d["Apellido"]?.ToString() ?? "") * 3;
+            dvh += CalcularNumero(d["DNI"]?.ToString() ?? "") * 4;
+            dvh += CalcularNumero(d["Nick"]?.ToString() ?? "") * 5;
+            dvh += CalcularNumero(d["Mail"]?.ToString() ?? "") * 6;
+            dvh += CalcularNumero(d["Contraseña"]?.ToString() ?? "") * 7;
+            dvh += CalcularNumero(SafeIntParse(d["Contador_Int_Fallidos"].ToString())) * 8;
+            dvh += CalcularNumero(d["Estado"]?.ToString() ?? "") * 9;
+
+            return dvh;
+            /*
+            int dvh;
+            dvh = CalcularNumero(int.Parse(d["ID_Usuario"].ToString())) * 1 + CalcularNumero(d["Nombre"].ToString()) * 2 +
+                CalcularNumero(d["Apellido"].ToString()) * 3
+                + CalcularNumero(d["DNI"].ToString()) * 4 +
+                CalcularNumero(d["Nick"].ToString()) * 5 + CalcularNumero(d["Mail"].ToString()) * 6 +
+                CalcularNumero(d["Contraseña"].ToString()) * 7 + CalcularNumero(int.Parse(d["Contador_Int_Fallidos"].ToString())) * 8 +
+                CalcularNumero(d["Estado"].ToString()) * 9;
+            return dvh;    */
+        }
+
+        private int SafeIntParse(string value)
+        {
+            int result;
+            if (int.TryParse(value, out result))
+            {
+                return result;
+            }
+            else
+            {
+                // Manejo de casos donde la conversión falla. Podrías lanzar una excepción o manejarlo de otra manera.
+                return 0; // O cualquier valor que consideres adecuado para indicar un fallo en la conversión.
+            }
+        }
         //aca agregar los otros dvh
-
-
 
         #endregion
 
         #region Encriptar y Desencriptar
-        public int ComprobarContraseña(string un, string pass)
-        {
-            string command = "Select cod_usuario from usuario where nombredeusuario = '" + un + "' and contraseña = '" + pass + "';";
-            DAO mdao = new DAO();
-            DataSet mds = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataSet(command);
-            if (mds.Tables.Count > 0 && mds.Tables[0].Rows.Count == 1)
-            {
-                return 1;
-            }
-            else return 0;
-        }
 
         public string EncriptarCamposReversible(string cadenaen)
         {
@@ -172,12 +216,31 @@ namespace DAL.DAOs
         {
             string passencriptada = EncriptarCamposIrreversible(pass);
             string unencriptado = EncriptarCamposReversible(un);
-            //SeguridadDAL sdal = new SeguridadDAL();
-            //return sdal.ComprobarContraseña(unencriptado, passencriptada);
-            return 0;
+            return this.ComprobarContraseña(unencriptado, passencriptada);
+            
+        }
+
+        public int ComprobarContraseña(string un, string pass)
+        {
+            string command = "Select cod_usuario from usuario where nombredeusuario = '" + un + "' and contraseña = '" + pass + "';";
+
+            DataSet mds = SqlHelper.GetInstance(connectionString).ExecuteDataSet(command);
+            if (mds.Tables.Count > 0 && mds.Tables[0].Rows.Count == 1)
+            {
+                return 1;
+            }
+            else return 0;
         }
 
         #endregion
+
+     
+
+        
+
+       
+
+
 
     }
 }

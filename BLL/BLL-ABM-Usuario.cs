@@ -1,0 +1,66 @@
+﻿using BE;
+using DAL;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using DAL.DAOs;
+
+namespace BLL
+{
+    public class BLL_ABM_Usuario : BE.ICrud<BE.Usuario>
+    {
+        DAL.DALUsuario DALUsuario = new DAL.DALUsuario();
+        DAL.DALSeguridad DALSeguridad = new DAL.DALSeguridad();
+        BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
+
+        #region ABM-Listar-Buscar Empelado
+        public bool Modificar(Usuario objActualizar)
+        {
+            return DALUsuario.Modificar(objActualizar);
+        }
+
+        public bool Crear(Usuario objAgregar)
+        {
+            return DALUsuario.Crear(objAgregar);
+        }
+
+        public bool Eliminar(Usuario objEliminar)
+        {
+            return DALUsuario.Eliminar(objEliminar);
+        }
+
+        public List<Usuario> Listar()
+        {
+            return DALUsuario.Listar();
+        }
+
+        public List<Usuario> Buscar(int ID_Usuario)
+        {
+            return DALUsuario.Buscar(ID_Usuario);
+        }
+        #endregion
+
+        public BE.Usuario BuscarNick(string nick)
+        {
+            
+            return DALUsuario.BuscarNick(nick);
+        }
+
+        public List<BE.Usuario>  BuscarContraseña(string contraseña)
+        {
+            
+            return DALUsuario.BuscarContraseña(contraseña);
+            
+        }
+
+        public int SumarIntento(BE.Usuario usuariolog)
+        {
+            return DALUsuario.SumarIntento(usuariolog);
+        }
+
+
+
+    }
+}

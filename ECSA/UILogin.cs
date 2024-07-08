@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BE;
+using BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,34 +20,71 @@ namespace ECSA
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
         }
+        BLL.BLL_ABM_Usuario BLLUsuario= new BLL.BLL_ABM_Usuario();
+        BLL.BLLSeguridad BLLSeguridad = new BLLSeguridad();
 
-        private void btnGenerarNuevaClave_Click(object sender, EventArgs e)
-        {
-            UIGenerarNuevaContra uIGenerarNuevaContra = new UIGenerarNuevaContra();
-            uIGenerarNuevaContra.MdiParent = this;
-            uIGenerarNuevaContra.Show();
-        }
+
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
-            string usuario = txtUsuario.Text;
-            string contraseña = txtContraseña.Text;
-            if (usuario == "canziani14" && contraseña == "123")
+            
+        string nick =txtUsuario.Text;
+        string contraseña = BLLSeguridad.EncriptarCamposIrreversible(txtContraseña.Text);
+
+        BE.Usuario UsuarioLog =BLLUsuario.BuscarNick(nick);
+
+        List<BE.Usuario> ContraseñaBuscada = BLLUsuario.BuscarContraseña(contraseña);
+
+
+            if (UsuarioLog == null || UsuarioLog.Nick == null)
             {
-                MessageBox.Show("Login exitoso. ¡Bienvenido " + usuario + "!", "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                UIInicio uiInicio = new UIInicio();
-                uiInicio.Show();
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Error al ingresar");
+                MessageBox.Show("Error al ingresar. Usuario no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtUsuario.Clear();
                 txtContraseña.Clear();
                 txtUsuario.Focus();
             }
+            else
+            {
+                if (ContraseñaBuscada.Count > 0)
+                {
+                    MessageBox.Show("Login exitoso. ¡Bienvenido " + UsuarioLog.Nick + "!", "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UIInicio uiInicio = new UIInicio();
+                    uiInicio.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    int intentosFallidos = BLLUsuario.SumarIntento(UsuarioLog);
+
+                    if (intentosFallidos >= 3)
+                    {
+                        MessageBox.Show("Cuenta bloqueada después de 3 intentos fallidos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Contraseña incorrecta. Intento " + intentosFallidos + " de 3.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtContraseña.Clear();
+                        txtContraseña.Focus();
+                    }
+                }
+            }
+
+
+
+
+
+        }
+
+        private void btnGenerarNuevaClave_Click(object sender, EventArgs e)
+        {
+        UIGenerarNuevaContra uIGenerarNuevaContra = new UIGenerarNuevaContra();
+        uIGenerarNuevaContra.MdiParent = this;
+        uIGenerarNuevaContra.Show();
+        }
+
+       
 
             
-        }
+        
     }
 }

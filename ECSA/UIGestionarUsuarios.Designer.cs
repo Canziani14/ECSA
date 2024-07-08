@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dtgUsuarios = new System.Windows.Forms.DataGridView();
             this.eCSADataSetBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.btnCrearUsuario = new System.Windows.Forms.Button();
             this.btnEliminarUsuario = new System.Windows.Forms.Button();
@@ -42,20 +42,24 @@
             this.usuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.eCSADataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtDNI = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtMail = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtNick = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtApellido = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.txtBuscarUsuario = new System.Windows.Forms.TextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.txtIDUsuario = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eCSADataSetBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eCSADataSetBindingSource)).BeginInit();
@@ -65,15 +69,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dtgUsuarios
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.DataSource = this.eCSADataSetBindingSource1;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 69);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(461, 208);
-            this.dataGridView1.TabIndex = 0;
+            this.dtgUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgUsuarios.Location = new System.Drawing.Point(12, 69);
+            this.dtgUsuarios.Name = "dtgUsuarios";
+            this.dtgUsuarios.Size = new System.Drawing.Size(461, 208);
+            this.dtgUsuarios.TabIndex = 0;
+            this.dtgUsuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgUsuarios_CellDoubleClick);
             // 
             // btnCrearUsuario
             // 
@@ -159,13 +162,17 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.txtIDUsuario);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.txtDNI);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.txtMail);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.txtNick);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.txtApellido);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtNombre);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnCrearUsuario);
             this.groupBox1.Controls.Add(this.btnBloquearUsuario);
@@ -179,44 +186,60 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gestor de Usuarios";
             // 
-            // textBox4
+            // txtDNI
             // 
-            this.textBox4.Location = new System.Drawing.Point(70, 112);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 17;
+            this.txtDNI.Location = new System.Drawing.Point(70, 93);
+            this.txtDNI.Name = "txtDNI";
+            this.txtDNI.Size = new System.Drawing.Size(100, 20);
+            this.txtDNI.TabIndex = 19;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 96);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(26, 13);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "DNI";
+            // 
+            // txtMail
+            // 
+            this.txtMail.Location = new System.Drawing.Point(70, 142);
+            this.txtMail.Name = "txtMail";
+            this.txtMail.Size = new System.Drawing.Size(164, 20);
+            this.txtMail.TabIndex = 17;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 115);
+            this.label4.Location = new System.Drawing.Point(6, 145);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(26, 13);
             this.label4.TabIndex = 16;
             this.label4.Text = "Mail";
             // 
-            // textBox3
+            // txtNick
             // 
-            this.textBox3.Location = new System.Drawing.Point(70, 89);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 15;
+            this.txtNick.Location = new System.Drawing.Point(70, 119);
+            this.txtNick.Name = "txtNick";
+            this.txtNick.Size = new System.Drawing.Size(100, 20);
+            this.txtNick.TabIndex = 15;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 92);
+            this.label3.Location = new System.Drawing.Point(6, 122);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 13);
             this.label3.TabIndex = 14;
             this.label3.Text = "Nick";
             // 
-            // textBox2
+            // txtApellido
             // 
-            this.textBox2.Location = new System.Drawing.Point(70, 64);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 13;
+            this.txtApellido.Location = new System.Drawing.Point(70, 64);
+            this.txtApellido.Name = "txtApellido";
+            this.txtApellido.Size = new System.Drawing.Size(100, 20);
+            this.txtApellido.TabIndex = 13;
             // 
             // label2
             // 
@@ -227,12 +250,12 @@
             this.label2.TabIndex = 12;
             this.label2.Text = "Apellido";
             // 
-            // textBox1
+            // txtNombre
             // 
-            this.textBox1.Location = new System.Drawing.Point(70, 40);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 11;
+            this.txtNombre.Location = new System.Drawing.Point(70, 40);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(100, 20);
+            this.txtNombre.TabIndex = 11;
             // 
             // label1
             // 
@@ -243,12 +266,12 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "Nombre";
             // 
-            // txtBuscar
+            // txtBuscarUsuario
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(118, 30);
-            this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(215, 20);
-            this.txtBuscar.TabIndex = 18;
+            this.txtBuscarUsuario.Location = new System.Drawing.Point(118, 30);
+            this.txtBuscarUsuario.Name = "txtBuscarUsuario";
+            this.txtBuscarUsuario.Size = new System.Drawing.Size(215, 20);
+            this.txtBuscarUsuario.TabIndex = 18;
             // 
             // dataGridView2
             // 
@@ -292,6 +315,23 @@
             this.label5.TabIndex = 22;
             this.label5.Text = "Buscar Usuario:";
             // 
+            // txtIDUsuario
+            // 
+            this.txtIDUsuario.Enabled = false;
+            this.txtIDUsuario.Location = new System.Drawing.Point(70, 14);
+            this.txtIDUsuario.Name = "txtIDUsuario";
+            this.txtIDUsuario.Size = new System.Drawing.Size(100, 20);
+            this.txtIDUsuario.TabIndex = 21;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 17);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(60, 13);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "ID_Usuario";
+            // 
             // UIGestionarUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -299,14 +339,13 @@
             this.ClientSize = new System.Drawing.Size(774, 578);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.txtBuscar);
+            this.Controls.Add(this.txtBuscarUsuario);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnBuscarUsuario);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dtgUsuarios);
             this.Name = "UIGestionarUsuarios";
             this.Text = "GestionarUsuarios";
-            this.Load += new System.EventHandler(this.GestionarUsuarios_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eCSADataSetBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eCSADataSetBindingSource)).EndInit();
@@ -322,7 +361,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dtgUsuarios;
      
         private System.Windows.Forms.BindingSource usuarioBindingSource;
   
@@ -337,18 +376,22 @@
         private System.Windows.Forms.Button btnDesbloquearUsuario;
         private System.Windows.Forms.Button btnBloquearUsuario;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtNick;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtBuscar;
+        private System.Windows.Forms.TextBox txtBuscarUsuario;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtDNI;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtIDUsuario;
+        private System.Windows.Forms.Label label7;
     }
 }

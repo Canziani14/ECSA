@@ -11,6 +11,8 @@ namespace BLL
     {
 
         DAL.DALEmpleado DALEmpleado = new DAL.DALEmpleado();
+
+        #region ABM-Listar-Buscar Empelado
         public bool Modificar(Empleado objActualizar)
         {
             return DALEmpleado.Modificar(objActualizar);
@@ -20,7 +22,7 @@ namespace BLL
         {
             return DALEmpleado.Crear(objAgregar);
         }
-        
+
         public bool Eliminar(Empleado objEliminar)
         {
             return DALEmpleado.Eliminar(objEliminar);
@@ -28,12 +30,19 @@ namespace BLL
 
         public List<Empleado> Listar()
         {
-            return DALEmpleado.Listar(); 
+            return DALEmpleado.Listar();
         }
 
         public List<Empleado> Buscar(int Legajo)
         {
             return DALEmpleado.Buscar(Legajo);
         }
+
+        #endregion
+
+
+      
+
+
     }
 }

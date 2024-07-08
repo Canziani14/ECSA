@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using DAL.DAOs;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Security.Cryptography;
+using static DAL.DAOs.DAOSPasaron;
 
 namespace DAL
 {
@@ -22,10 +23,10 @@ namespace DAL
            return DAOSSeguridad.GetInstance().CalcularDVV(tabla);
         }
 
-        public int InsertarDVH(Int64 DVH, int cod, string t, string codtabla)
+      /*  public int InsertarDVH(Int64 DVH, int cod, string t, string codtabla)
         {
             return DAOSSeguridad.GetInstance().InsertarDVH(DVH, cod, t, codtabla);
-        }
+        }*/
 
         public int VerificarDigitosVerificadores(string tabla)
         {
@@ -70,16 +71,10 @@ namespace DAL
             return sb.ToString();
         }
 
-        public int CompararContraseña(string un, string pass)
-        {
-            string passencriptada = EncriptarCamposIrreversible(pass);
-            string unencriptado = EncriptarCamposReversible(un);
-            //SeguridadDAL sdal = new SeguridadDAL();
-            //return sdal.ComprobarContraseña(unencriptado, passencriptada);
-            return 0;
-        }
+       
 
         #endregion
 
+        
     }
 }
