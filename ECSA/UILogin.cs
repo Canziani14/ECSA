@@ -34,42 +34,49 @@ namespace ECSA
         BE.Usuario UsuarioLog =BLLUsuario.BuscarNick(nick);
 
         List<BE.Usuario> ContraseñaBuscada = BLLUsuario.BuscarContraseña(contraseña);
+            
 
-
-            if (UsuarioLog == null || UsuarioLog.Nick == null)
+            if (UsuarioLog.Estado)
             {
-                MessageBox.Show("Error al ingresar. Usuario no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtUsuario.Clear();
-                txtContraseña.Clear();
-                txtUsuario.Focus();
-            }
-            else
-            {
-                if (ContraseñaBuscada.Count > 0)
+                if (UsuarioLog == null || UsuarioLog.Nick == null)
                 {
-                    MessageBox.Show("Login exitoso. ¡Bienvenido " + UsuarioLog.Nick + "!", "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    UIInicio uiInicio = new UIInicio();
-                    uiInicio.Show();
-                    this.Hide();
+                    MessageBox.Show("Error al ingresar. Usuario no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtUsuario.Clear();
+                    txtContraseña.Clear();
+                    txtUsuario.Focus();
                 }
                 else
                 {
-                    int intentosFallidos = BLLUsuario.SumarIntento(UsuarioLog);
-
-                    if (intentosFallidos >= 3)
+                    if (ContraseñaBuscada.Count > 0 )
                     {
-                        MessageBox.Show("Cuenta bloqueada después de 3 intentos fallidos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Login exitoso. ¡Bienvenido " + UsuarioLog.Nick + "!", "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        UIInicio uiInicio = new UIInicio();
+                        uiInicio.Show();
+                        this.Hide();
                     }
                     else
                     {
-                        MessageBox.Show("Contraseña incorrecta. Intento " + intentosFallidos + " de 3.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        txtContraseña.Clear();
-                        txtContraseña.Focus();
+                        int intentosFallidos = BLLUsuario.SumarIntento(UsuarioLog);
+
+                        if (intentosFallidos >= 3)
+                        {
+                            BLLUsuario.BloquearUsuario(UsuarioLog.ID_Usuario);
+                            MessageBox.Show("Cuenta bloqueada después de 3 intentos fallidos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Contraseña incorrecta. Intento " + intentosFallidos + " de 3.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            txtContraseña.Clear();
+                            txtContraseña.Focus();
+                        }
                     }
                 }
+
             }
-
-
+            else
+            {
+                MessageBox.Show("No puede iniciar sesion. "+UsuarioLog.Nick+" bloqueado");
+            }
 
 
 

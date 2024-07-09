@@ -175,13 +175,75 @@ namespace ECSA
         #region Bloquear y Desbloquear Usuario
         private void btnBloquearUsuario_Click(object sender, EventArgs e)
             {
-                MessageBox.Show("Usuario bloqueado");
-            }
+            DialogResult respuesta = MessageBox.Show("¿Esta seguro de bloquear este usuario?", "Confirmación de bloqueo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (respuesta == DialogResult.Yes)
+            {
+
+                if (UsuarioSeleccionado != null)
+                {
+                    bool Usuariobloqueado = BLLUsuario.BloquearUsuario(UsuarioSeleccionado.ID_Usuario);
+
+                    try
+                    {
+                        if (Usuariobloqueado)
+                        {
+                            MessageBox.Show("Usuario bloqueado");
+                            CalcularDigitos();
+                            limpiarGrilla();
+                            limpiartxt();
+                        }
+                        else
+                        {
+                            MessageBox.Show("no se puede bloquear el usuario");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ha ocurrido un error al bloquear el usuario: " + ex.Message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione un usuario para bloquear");
+                }
+            }           
+        }
 
             private void btnDesbloquearUsuario_Click(object sender, EventArgs e)
             {
-                MessageBox.Show("Usuario desbloqueado");
+            DialogResult respuesta = MessageBox.Show("¿Esta seguro de desbloquear este usuario?", "Confirmación de desbloqueo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (respuesta == DialogResult.Yes)
+            {
+
+                if (UsuarioSeleccionado != null)
+                {
+                    bool Usuariobloqueado = BLLUsuario.DesbloquearUsuario(UsuarioSeleccionado.ID_Usuario);
+
+                    try
+                    {
+                        if (Usuariobloqueado)
+                        {
+                            MessageBox.Show("Usuario desbloqueado");
+                            CalcularDigitos();
+                            limpiarGrilla();
+                            limpiartxt();
+                        }
+                        else
+                        {
+                            MessageBox.Show("no se puede desbloquear el usuario");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ha ocurrido un error al desbloquear el usuario: " + ex.Message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione un usuario para desbloquear");
+                }
             }
+        }
         #endregion
 
 
@@ -205,8 +267,8 @@ namespace ECSA
             public void CalcularDigitos()
             {
                 string tabla = "Usuario";
-                BLLSeguridad.CalcularDVV(tabla);
                 BLLSeguridad.VerificarDigitosVerificadores(tabla);
+                BLLSeguridad.CalcularDVV(tabla);
             }
         private void dtgUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {

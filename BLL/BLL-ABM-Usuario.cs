@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using DAL.DAOs;
+using System.Net.NetworkInformation;
 
 namespace BLL
 {
@@ -44,15 +45,15 @@ namespace BLL
 
         public BE.Usuario BuscarNick(string nick)
         {
-            
+
             return DALUsuario.BuscarNick(nick);
         }
 
-        public List<BE.Usuario>  BuscarContraseña(string contraseña)
+        public List<BE.Usuario> BuscarContraseña(string contraseña)
         {
-            
+
             return DALUsuario.BuscarContraseña(contraseña);
-            
+
         }
 
         public int SumarIntento(BE.Usuario usuariolog)
@@ -60,7 +61,15 @@ namespace BLL
             return DALUsuario.SumarIntento(usuariolog);
         }
 
-
+        public bool BloquearUsuario(int ID_Usuario)
+        {
+            return DALUsuario.BloquearUsuario(ID_Usuario);
+        }
+        
+        public bool DesbloquearUsuario(int ID_Usuario)
+        {
+            return DALUsuario.DesbloquearUsuario(ID_Usuario);
+        }
 
     }
 }

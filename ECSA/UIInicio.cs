@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +13,15 @@ namespace ECSA
 {
     public partial class UIInicio : Form
     {
+        BLL.BLLSeguridad BLLSeguridad= new BLL.BLLSeguridad();
         public UIInicio()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            
+            BLLSeguridad.VerificarDigitosVerificadores("Usuario");
+            BLLSeguridad.CalcularDVV("Usuario");
+
         }
 
     

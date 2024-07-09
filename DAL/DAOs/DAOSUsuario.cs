@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BE;
+using System.Net;
+using System.Security.Cryptography;
 
 namespace DAL.DAOs
 {
@@ -47,7 +49,8 @@ namespace DAL.DAOs
         string QuerySelectByNick = "SELECT * FROM [ECSA].[dbo].[Usuario] where Nick = @Nick";
         string QuerySelectByContraseña = "SELECT * FROM [ECSA].[dbo].[Usuario] where Contraseña = @Contraseña";
         string QuerySumarIntento = "UPDATE Usuario SET Contador_Int_Fallidos = Contador_Int_Fallidos + 1 WHERE ID_Usuario = @ID_Usuario";
-
+        string QueryBloquearUsuario = "Update usuario set Estado = 'False' where ID_Usuario = @ID_Usuario";
+        string QueryDesbloquearUsuario = "Update usuario set Estado = 'True', Contador_Int_Fallidos=0 where ID_Usuario = @ID_Usuario";
         #endregion
 
         #region Agregar Usuario
@@ -240,24 +243,114 @@ namespace DAL.DAOs
                 throw new Exception("Usuario no encontrado.");
             }
         }
-    
 
-    /*
 
+
+        public bool BloquearUsuario(int ID_Usuario)
+        {
+            bool returnValue = false;
+
+
+
+            List<SqlParameter> parameters = new List<SqlParameter>()
     {
-        List<SqlParameter> parameters = new List<SqlParameter>()
-    {
-        new SqlParameter("@ID_Usuario", usuariolog.ID_Usuario),
+        new SqlParameter("@ID_Usuario", ID_Usuario)
 
         };
-                DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySumarIntento, parameters);
-                return Mappers.MAPPERSUsuario.GetInstance().Map(table);
+
+            try
+            {
+                Console.WriteLine("Executing SQL: " + QueryBloquearUsuario);
+                foreach (var param in parameters)
+                {
+                    Console.WriteLine($"{param.ParameterName}: {param.Value}");
+                }
+
+                int rowsAffected = SqlHelper.GetInstance(connectionString).ExecuteNonQuery(QueryBloquearUsuario, parameters);
+                returnValue = true;
+
+                if (returnValue)
+                {
+                    Console.WriteLine("Usuario actualizado con éxito.");
+                }
+                else
+                {
+                    Console.WriteLine("No se actualizó ninguna fila.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                returnValue = false;
             }
 
-    */
+
+            return returnValue;
+        }
 
 
-   
+
+
+        public bool DesbloquearUsuario(int ID_Usuario)
+        {
+            bool returnValue = false;
+
+
+
+            List<SqlParameter> parameters = new List<SqlParameter>()
+    {
+        new SqlParameter("@ID_Usuario", ID_Usuario)
+
+        };
+
+            try
+            {
+                Console.WriteLine("Executing SQL: " + QueryDesbloquearUsuario);
+                foreach (var param in parameters)
+                {
+                    Console.WriteLine($"{param.ParameterName}: {param.Value}");
+                }
+
+                int rowsAffected = SqlHelper.GetInstance(connectionString).ExecuteNonQuery(QueryDesbloquearUsuario, parameters);
+                returnValue = true;
+
+                if (returnValue)
+                {
+                    Console.WriteLine("Usuario actualizado con éxito.");
+                }
+                else
+                {
+                    Console.WriteLine("No se actualizó ninguna fila.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                returnValue = false;
+            }
+
+
+            return returnValue;
+        }
+
+
+
+        /*
+
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>()
+        {
+            new SqlParameter("@ID_Usuario", usuariolog.ID_Usuario),
+
+            };
+                    DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySumarIntento, parameters);
+                    return Mappers.MAPPERSUsuario.GetInstance().Map(table);
+                }
+
+        */
+
+
+
 
 
 

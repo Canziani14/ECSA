@@ -247,9 +247,9 @@ namespace ECSA
 
        public void CalcularDigitos()
         {
-            string tabla = "Empleado";
-            BLLSeguridad.CalcularDVV(tabla);                   
-            BLLSeguridad.VerificarDigitosVerificadores(tabla);           
+            string tabla = "Empleado";                            
+            BLLSeguridad.VerificarDigitosVerificadores(tabla);
+            BLLSeguridad.CalcularDVV(tabla);
         }
     }
 

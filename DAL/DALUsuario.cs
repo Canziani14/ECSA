@@ -53,5 +53,16 @@ namespace DAL
             return DAOSUsuario.GetInstance().SumarIntento(usuariolog); 
         }
 
+        public bool BloquearUsuario(int ID_Usuario)
+        {
+            return DAOSUsuario.GetInstance().BloquearUsuario(ID_Usuario);
+        }
+
+        
+        public bool DesbloquearUsuario(int ID_Usuario)
+        {
+            return DAOSUsuario.GetInstance().DesbloquearUsuario(ID_Usuario);
+        }
+
     }
 }
