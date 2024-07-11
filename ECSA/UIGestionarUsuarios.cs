@@ -261,7 +261,7 @@ namespace ECSA
                 txtApellido.Clear();
                 txtNick.Clear();
                 txtMail.Clear();
-            
+                txtIDUsuario.Clear();         
             }
 
             public void CalcularDigitos()

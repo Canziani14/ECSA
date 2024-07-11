@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dtgServicios = new System.Windows.Forms.DataGridView();
             this.btnCrearServicio = new System.Windows.Forms.Button();
             this.btnModificarServicio = new System.Windows.Forms.Button();
             this.btnEliminarServicio = new System.Windows.Forms.Button();
@@ -44,18 +44,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgServicios)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dtgServicios
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(2, 26);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(560, 412);
-            this.dataGridView1.TabIndex = 0;
+            this.dtgServicios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgServicios.Location = new System.Drawing.Point(2, 26);
+            this.dtgServicios.Name = "dtgServicios";
+            this.dtgServicios.Size = new System.Drawing.Size(560, 412);
+            this.dtgServicios.TabIndex = 0;
             // 
             // btnCrearServicio
             // 
@@ -208,11 +208,11 @@
             this.ClientSize = new System.Drawing.Size(899, 450);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dtgServicios);
             this.Controls.Add(this.btnImprimir);
             this.Name = "UIGestionarServicios";
             this.Text = "GestionarServicios";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgServicios)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -223,7 +223,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dtgServicios;
         private System.Windows.Forms.Button btnCrearServicio;
         private System.Windows.Forms.Button btnModificarServicio;
         private System.Windows.Forms.Button btnEliminarServicio;

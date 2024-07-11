@@ -28,30 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dtgCoches = new System.Windows.Forms.DataGridView();
             this.btnCrearCoche = new System.Windows.Forms.Button();
             this.btnEliminarCoche = new System.Windows.Forms.Button();
             this.btnBuscarCoche = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgCoches)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dtgCoches
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 76);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(238, 362);
-            this.dataGridView1.TabIndex = 0;
+            this.dtgCoches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgCoches.Location = new System.Drawing.Point(3, 76);
+            this.dtgCoches.Name = "dtgCoches";
+            this.dtgCoches.Size = new System.Drawing.Size(238, 362);
+            this.dtgCoches.TabIndex = 0;
             // 
             // btnCrearCoche
             // 
@@ -100,6 +100,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gestor de Coches";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 93);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Linea a asignar";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(102, 90);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(71, 21);
+            this.comboBox1.TabIndex = 9;
+            // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(102, 55);
@@ -140,23 +157,6 @@
             this.txtBuscar.Size = new System.Drawing.Size(90, 20);
             this.txtBuscar.TabIndex = 5;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(102, 90);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(71, 21);
-            this.comboBox1.TabIndex = 9;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 93);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Linea a asignar";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -175,10 +175,10 @@
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnBuscarCoche);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dtgCoches);
             this.Name = "UIGestionarCoches";
             this.Text = "GestionarCoches";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgCoches)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -188,7 +188,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dtgCoches;
         private System.Windows.Forms.Button btnCrearCoche;
         private System.Windows.Forms.Button btnEliminarCoche;
         private System.Windows.Forms.Button btnBuscarCoche;

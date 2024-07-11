@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL-ABM-Coche.cs" />
     <Compile Include="BLL-ABM-Empleado.cs" />
+    <Compile Include="BLL-ABM-Linea.cs" />
+    <Compile Include="BLL-ABM-Servicio.cs" />
     <Compile Include="BLL-ABM-Usuario.cs" />
     <Compile Include="BLLPasaron.cs" />
     <Compile Include="BLLSeguridad.cs" />

@@ -12,11 +12,13 @@ namespace ECSA
 {
     public partial class UIGestionarServicios : Form
     {
+        BLL.BLL_ABM_Servicio BLLServicios = new BLL.BLL_ABM_Servicio();
         public UIGestionarServicios()
         {
             InitializeComponent();
+            dtgServicios.DataSource = BLLServicios.Listar();
         }
-
+        
         private void btnCrearServicio_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Se creo el servicio correctamente");

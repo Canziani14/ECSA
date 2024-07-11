@@ -1,4 +1,5 @@
-﻿using SQLHelper;
+﻿using BE;
+using SQLHelper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -119,6 +120,105 @@ namespace DAL.DAOs
                         }
                     }
                     break;
+                case "Linea":
+                    string queryLinea = "select * from Linea";
+                    mds = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataSet(queryLinea);
+
+                    if (mds.Tables.Count > 0 && mds.Tables[0].Rows.Count > 0)
+                    {
+                        string primaryKeyColumn = mds.Tables[0].Columns[0].ColumnName;
+                        foreach (DataRow r in mds.Tables[0].Rows)
+                        {
+                            string commanddv2 = "update " + tabla + " set DVH = " + DVHLinea(r) + " where " + primaryKeyColumn + "=" + r["ID_Linea"];
+                            mds2 = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(commanddv2);
+
+                            suma += DVHLinea(r);
+                        }
+                    }
+                    break;
+                case "Servicio":
+                    string queryServicio = "select * from Servicio";
+                    mds = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataSet(queryServicio);
+
+                    if (mds.Tables.Count > 0 && mds.Tables[0].Rows.Count > 0)
+                    {
+                        string primaryKeyColumn = mds.Tables[0].Columns[0].ColumnName;
+                        foreach (DataRow r in mds.Tables[0].Rows)
+                        {
+                            string commanddv2 = "update " + tabla + " set DVH = " + DVHServicio(r) + " where " + primaryKeyColumn + "=" + r["ID_Servicio"];
+                            mds2 = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(commanddv2);
+
+                            suma += DVHServicio(r);
+                        }
+                    }
+                    break;
+                case "Coche":
+                    string queryCoche = "select * from Coche";
+                    mds = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataSet(queryCoche);
+
+                    if (mds.Tables.Count > 0 && mds.Tables[0].Rows.Count > 0)
+                    {
+                        string primaryKeyColumn = mds.Tables[0].Columns[0].ColumnName;
+                        foreach (DataRow r in mds.Tables[0].Rows)
+                        {
+                            string commanddv2 = "update " + tabla + " set DVH = " + DVHCoche(r) + " where " + primaryKeyColumn + "=" + r["ID_Coche"];
+                            mds2 = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(commanddv2);
+
+                            suma += DVHCoche(r);
+                        }
+                    }
+                    break;
+                    //ver
+                case "Patente-Usuario":
+                    string queryPatenteUsuario = "select * from Patente-Usuario";
+                    mds = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataSet(queryPatenteUsuario);
+
+                    if (mds.Tables.Count > 0 && mds.Tables[0].Rows.Count > 0)
+                    {
+                        string primaryKeyColumn = mds.Tables[0].Columns[0].ColumnName;
+                        foreach (DataRow r in mds.Tables[0].Rows)
+                        {
+                            string commanddv2 = "update " + tabla + " set DVH = " + DVHPatenteUsuario(r) + " where " + primaryKeyColumn + "=" + r["ID_PatenteUsuario"];
+                            mds2 = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(commanddv2);
+
+                            suma += DVHPatenteUsuario(r);
+                        }
+                    }
+                    break;
+                    //ver
+                case "Familia-Patente":
+                    string queryFamiliaPatente = "select * from Familia-Patente";
+                    mds = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataSet(queryFamiliaPatente);
+
+                    if (mds.Tables.Count > 0 && mds.Tables[0].Rows.Count > 0)
+                    {
+                        string primaryKeyColumn = mds.Tables[0].Columns[0].ColumnName;
+                        foreach (DataRow r in mds.Tables[0].Rows)
+                        {
+                            string commanddv2 = "update " + tabla + " set DVH = " + DVHFamiliaPatente(r) + " where " + primaryKeyColumn + "=" + r["ID_Usuario"];
+                            mds2 = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(commanddv2);
+
+                            suma += DVHFamiliaPatente(r);
+                        }
+                    }
+                    break;
+                case "Familia-Usuario":
+                    //ver
+                    string queryFamiliaUsuario = "select * from Familia-Usuario";
+                    mds = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataSet(queryFamiliaUsuario);
+
+                    if (mds.Tables.Count > 0 && mds.Tables[0].Rows.Count > 0)
+                    {
+                        string primaryKeyColumn = mds.Tables[0].Columns[0].ColumnName;
+                        foreach (DataRow r in mds.Tables[0].Rows)
+                        {
+                            string commanddv2 = "update " + tabla + " set DVH = " + DVHFamiliaUsuario(r) + " where " + primaryKeyColumn + "=" + r["ID_Usuario"];
+                            mds2 = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(commanddv2);
+
+                            suma += DVHFamiliaUsuario(r);
+                        }
+                    }
+                    break;
                 default:
                     break;
             }
@@ -152,16 +252,97 @@ namespace DAL.DAOs
             dvh += CalcularNumero(d["Estado"]?.ToString() ?? "") * 9;
 
             return dvh;
-            /*
-            int dvh;
-            dvh = CalcularNumero(int.Parse(d["ID_Usuario"].ToString())) * 1 + CalcularNumero(d["Nombre"].ToString()) * 2 +
-                CalcularNumero(d["Apellido"].ToString()) * 3
-                + CalcularNumero(d["DNI"].ToString()) * 4 +
-                CalcularNumero(d["Nick"].ToString()) * 5 + CalcularNumero(d["Mail"].ToString()) * 6 +
-                CalcularNumero(d["Contraseña"].ToString()) * 7 + CalcularNumero(int.Parse(d["Contador_Int_Fallidos"].ToString())) * 8 +
-                CalcularNumero(d["Estado"].ToString()) * 9;
-            return dvh;    */
+              
         }
+
+        public int DVHLinea(DataRow d)
+        {
+            int dvh = 0;
+
+            dvh += CalcularNumero(SafeIntParse(d["ID_Linea"].ToString())) * 1;
+            dvh += CalcularNumero(d["Nombre_Linea"]?.ToString() ?? "") * 2;
+            return dvh;
+        }
+        public int DVHServicio(DataRow d)
+        {
+            int dvh = 0;
+
+            dvh += CalcularNumero(SafeIntParse(d["ID_Servicio"].ToString())) * 1;
+            dvh += CalcularNumero(d["Hora_Cabecera_Principal"]?.ToString() ?? "") * 2;
+            dvh += CalcularNumero(d["Hora_Cabecera_Retorno"]?.ToString() ?? "") * 3;
+            dvh += CalcularNumero(d["Legajo"]?.ToString() ?? "") * 4;
+            dvh += CalcularNumero(d["Coche"]?.ToString() ?? "") * 5;
+            return dvh;
+        }
+        public int DVHCoche(DataRow d)
+        {
+            int dvh = 0;
+
+            dvh += CalcularNumero(SafeIntParse(d["ID_Coche"].ToString())) * 1;
+            dvh += CalcularNumero(d["Patente"]?.ToString() ?? "") * 2;
+            dvh += CalcularNumero(d["Interno"]?.ToString() ?? "") * 3;
+            return dvh;
+        }
+
+        public int DVHPatenteUsuario(DataRow d)
+        {
+            int dvh = 0;
+
+            dvh += CalcularNumero(SafeIntParse(d["ID_Usuario"].ToString())) * 1;
+            dvh += CalcularNumero(d["Nombre"]?.ToString() ?? "") * 2;
+            dvh += CalcularNumero(d["Apellido"]?.ToString() ?? "") * 3;
+            dvh += CalcularNumero(d["DNI"]?.ToString() ?? "") * 4;
+            dvh += CalcularNumero(d["Nick"]?.ToString() ?? "") * 5;
+            dvh += CalcularNumero(d["Mail"]?.ToString() ?? "") * 6;
+            dvh += CalcularNumero(d["Contraseña"]?.ToString() ?? "") * 7;
+            dvh += CalcularNumero(SafeIntParse(d["Contador_Int_Fallidos"].ToString())) * 8;
+            dvh += CalcularNumero(d["Estado"]?.ToString() ?? "") * 9;
+
+            return dvh;
+        }
+        public int DVHFamiliaPatente(DataRow d)
+        {
+            int dvh = 0;
+
+            dvh += CalcularNumero(SafeIntParse(d["ID_Usuario"].ToString())) * 1;
+            dvh += CalcularNumero(d["Nombre"]?.ToString() ?? "") * 2;
+            dvh += CalcularNumero(d["Apellido"]?.ToString() ?? "") * 3;
+            dvh += CalcularNumero(d["DNI"]?.ToString() ?? "") * 4;
+            dvh += CalcularNumero(d["Nick"]?.ToString() ?? "") * 5;
+            dvh += CalcularNumero(d["Mail"]?.ToString() ?? "") * 6;
+            dvh += CalcularNumero(d["Contraseña"]?.ToString() ?? "") * 7;
+            dvh += CalcularNumero(SafeIntParse(d["Contador_Int_Fallidos"].ToString())) * 8;
+            dvh += CalcularNumero(d["Estado"]?.ToString() ?? "") * 9;
+
+            return dvh;
+        }
+        public int DVHFamiliaUsuario(DataRow d)
+        {
+            int dvh = 0;
+
+            dvh += CalcularNumero(SafeIntParse(d["ID_Usuario"].ToString())) * 1;
+            dvh += CalcularNumero(d["Nombre"]?.ToString() ?? "") * 2;
+            dvh += CalcularNumero(d["Apellido"]?.ToString() ?? "") * 3;
+            dvh += CalcularNumero(d["DNI"]?.ToString() ?? "") * 4;
+            dvh += CalcularNumero(d["Nick"]?.ToString() ?? "") * 5;
+            dvh += CalcularNumero(d["Mail"]?.ToString() ?? "") * 6;
+            dvh += CalcularNumero(d["Contraseña"]?.ToString() ?? "") * 7;
+            dvh += CalcularNumero(SafeIntParse(d["Contador_Int_Fallidos"].ToString())) * 8;
+            dvh += CalcularNumero(d["Estado"]?.ToString() ?? "") * 9;
+
+            return dvh;
+        }
+       
+
+
+
+
+
+
+
+
+
+
 
         private int SafeIntParse(string value)
         {

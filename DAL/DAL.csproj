@@ -43,14 +43,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DALCoche.cs" />
+    <Compile Include="DALLinea.cs" />
     <Compile Include="DALPasaron.cs" />
+    <Compile Include="DALServicio.cs" />
+    <Compile Include="DAOs\DAOSCoche.cs" />
+    <Compile Include="DAOs\DAOSLinea.cs" />
     <Compile Include="DAOs\DAOSPasaron.cs" />
     <Compile Include="DAOs\DAOSEmpleado.cs" />
     <Compile Include="DAOs\DAOSSeguridad.cs" />
     <Compile Include="DALEmpleado.cs" />
+    <Compile Include="DAOs\DAOSServicio.cs" />
     <Compile Include="DAOs\DAOSUsuario.cs" />
     <Compile Include="Mappers\MAPPEREmpleado.cs" />
+    <Compile Include="Mappers\MAPPERSCoche.cs" />
     <Compile Include="Mappers\MAPPERSeguridad.cs" />
+    <Compile Include="Mappers\MAPPERServicio.cs" />
+    <Compile Include="Mappers\MAPPERSLinea.cs" />
+    <Compile Include="Mappers\MAPPERSServicio.cs" />
     <Compile Include="Mappers\MAPPERSUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DALSeguridad.cs" />

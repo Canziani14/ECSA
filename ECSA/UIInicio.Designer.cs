@@ -33,7 +33,6 @@
             this.btnReportes = new System.Windows.Forms.Button();
             this.btnGestionarFamilias = new System.Windows.Forms.Button();
             this.btnGestionarPatentes = new System.Windows.Forms.Button();
-            this.btnGestionarServicios = new System.Windows.Forms.Button();
             this.btnGestionarLineas = new System.Windows.Forms.Button();
             this.btnBKP = new System.Windows.Forms.Button();
             this.btnGestionarUsuarios = new System.Windows.Forms.Button();
@@ -58,7 +57,6 @@
             this.panel1.Controls.Add(this.btnReportes);
             this.panel1.Controls.Add(this.btnGestionarFamilias);
             this.panel1.Controls.Add(this.btnGestionarPatentes);
-            this.panel1.Controls.Add(this.btnGestionarServicios);
             this.panel1.Controls.Add(this.btnGestionarLineas);
             this.panel1.Controls.Add(this.btnBKP);
             this.panel1.Controls.Add(this.btnGestionarUsuarios);
@@ -75,7 +73,7 @@
             this.btnReportes.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnReportes.FlatAppearance.BorderSize = 0;
             this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportes.Location = new System.Drawing.Point(0, 400);
+            this.btnReportes.Location = new System.Drawing.Point(0, 354);
             this.btnReportes.Name = "btnReportes";
             this.btnReportes.Size = new System.Drawing.Size(127, 46);
             this.btnReportes.TabIndex = 9;
@@ -89,7 +87,7 @@
             this.btnGestionarFamilias.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnGestionarFamilias.FlatAppearance.BorderSize = 0;
             this.btnGestionarFamilias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGestionarFamilias.Location = new System.Drawing.Point(0, 354);
+            this.btnGestionarFamilias.Location = new System.Drawing.Point(0, 308);
             this.btnGestionarFamilias.Name = "btnGestionarFamilias";
             this.btnGestionarFamilias.Size = new System.Drawing.Size(127, 46);
             this.btnGestionarFamilias.TabIndex = 8;
@@ -103,7 +101,7 @@
             this.btnGestionarPatentes.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnGestionarPatentes.FlatAppearance.BorderSize = 0;
             this.btnGestionarPatentes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGestionarPatentes.Location = new System.Drawing.Point(0, 308);
+            this.btnGestionarPatentes.Location = new System.Drawing.Point(0, 262);
             this.btnGestionarPatentes.Name = "btnGestionarPatentes";
             this.btnGestionarPatentes.Size = new System.Drawing.Size(127, 46);
             this.btnGestionarPatentes.TabIndex = 7;
@@ -111,20 +109,6 @@
             this.btnGestionarPatentes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGestionarPatentes.UseVisualStyleBackColor = true;
             this.btnGestionarPatentes.Click += new System.EventHandler(this.btnGestionarPatentes_Click);
-            // 
-            // btnGestionarServicios
-            // 
-            this.btnGestionarServicios.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnGestionarServicios.FlatAppearance.BorderSize = 0;
-            this.btnGestionarServicios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGestionarServicios.Location = new System.Drawing.Point(0, 262);
-            this.btnGestionarServicios.Name = "btnGestionarServicios";
-            this.btnGestionarServicios.Size = new System.Drawing.Size(127, 46);
-            this.btnGestionarServicios.TabIndex = 5;
-            this.btnGestionarServicios.Text = "Gestionar Servicios";
-            this.btnGestionarServicios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGestionarServicios.UseVisualStyleBackColor = true;
-            this.btnGestionarServicios.Click += new System.EventHandler(this.btnGestionarServicios_Click);
             // 
             // btnGestionarLineas
             // 
@@ -321,7 +305,6 @@
         private System.Windows.Forms.Button btnGestionarLineas;
         private System.Windows.Forms.Button btnBKP;
         private System.Windows.Forms.Button btnGestionarUsuarios;
-        private System.Windows.Forms.Button btnGestionarServicios;
         private System.Windows.Forms.Button btnGestionarPatentes;
         private System.Windows.Forms.Button btnGestionarFamilias;
         private System.Windows.Forms.Panel panel2;

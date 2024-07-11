@@ -8,5 +8,11 @@ namespace BE
 {
     public class Linea
     {
+        public int ID_Linea { get; set; }
+
+        public string NumeroDeLinea { get; set; }
+
+        public int DVH { get; set; }
+
     }
 }

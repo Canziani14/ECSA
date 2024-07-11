@@ -12,9 +12,12 @@ namespace ECSA
 {
     public partial class UIGestionarCoches : Form
     {
+        BLL.BLL_ABM_Coche BLLCoche = new BLL.BLL_ABM_Coche();
+        BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
         public UIGestionarCoches()
         {
             InitializeComponent();
+            dtgCoches.DataSource= BLLCoche.Listar();
         }
 
         private void btnCrearCoche_Click(object sender, EventArgs e)
