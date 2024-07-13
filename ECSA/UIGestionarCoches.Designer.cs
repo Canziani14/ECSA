@@ -37,7 +37,7 @@
             this.cmbLinea = new System.Windows.Forms.ComboBox();
             this.txtPatente = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtInterno = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -52,6 +52,7 @@
             this.dtgCoches.Name = "dtgCoches";
             this.dtgCoches.Size = new System.Drawing.Size(238, 362);
             this.dtgCoches.TabIndex = 0;
+            this.dtgCoches.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgUsuarios_CellDoubleClick);
             // 
             // btnCrearCoche
             // 
@@ -89,7 +90,7 @@
             this.groupBox1.Controls.Add(this.cmbLinea);
             this.groupBox1.Controls.Add(this.txtPatente);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtInterno);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnCrearCoche);
             this.groupBox1.Controls.Add(this.btnEliminarCoche);
@@ -133,13 +134,13 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Patente";
             // 
-            // textBox1
+            // txtInterno
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(102, 22);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(71, 20);
-            this.textBox1.TabIndex = 6;
+            this.txtInterno.Enabled = false;
+            this.txtInterno.Location = new System.Drawing.Point(102, 22);
+            this.txtInterno.Name = "txtInterno";
+            this.txtInterno.Size = new System.Drawing.Size(71, 20);
+            this.txtInterno.TabIndex = 6;
             // 
             // label1
             // 
@@ -193,7 +194,7 @@
         private System.Windows.Forms.Button btnEliminarCoche;
         private System.Windows.Forms.Button btnBuscarCoche;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtInterno;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.TextBox txtPatente;

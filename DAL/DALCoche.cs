@@ -31,7 +31,7 @@ namespace DAL
 
         public bool Modificar(Coche objActualizar)
         {
-            throw new NotImplementedException();
+            return DAOs.DAOSCoche.GetInstance().Modificar(objActualizar.Patente, objActualizar.ID_Linea);
         }
     }
 }

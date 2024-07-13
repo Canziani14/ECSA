@@ -35,6 +35,7 @@ namespace DAL.DAOs
 
         string QuerySelect = "SELECT * from coche;";
 
+        string QueryUpdate = "UPDATE Coche SET patente = @Patente set ID_Linea = @ID_Linea  WHERE Interno = @Interno";
 
 
 
@@ -66,7 +67,7 @@ namespace DAL.DAOs
 
                 if (returnValue)
                 {
-                    Console.WriteLine("Empleado creado con éxito.");
+                    Console.WriteLine("Coche creado con éxito.");
                 }
                 else
                 {
@@ -95,9 +96,47 @@ namespace DAL.DAOs
             throw new NotImplementedException();
         }
 
-        public bool Modificar(Coche objActualizar)
+        public bool Modificar(string patente, int idLinea)
         {
-            throw new NotImplementedException();
+            bool returnValue = false;
+
+
+
+            List<SqlParameter> parameters = new List<SqlParameter>()
+    {
+         new SqlParameter("@Patente", patente),
+        new SqlParameter("@ID_Linea", idLinea)
+
+    };
+
+            try
+            {
+                Console.WriteLine("Executing SQL: " + QueryUpdate);
+                foreach (var param in parameters)
+                {
+                    Console.WriteLine($"{param.ParameterName}: {param.Value}");
+                }
+
+                int rowsAffected = SqlHelper.GetInstance(connectionString).ExecuteNonQuery(QueryUpdate, parameters);
+                returnValue = true;
+
+                if (returnValue)
+                {
+                    Console.WriteLine("Usuario actualizado con éxito.");
+                }
+                else
+                {
+                    Console.WriteLine("No se actualizó ninguna fila.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                returnValue = false;
+            }
+
+
+            return returnValue;
         }
 
         public bool Eliminar(int interno)

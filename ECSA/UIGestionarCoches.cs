@@ -169,6 +169,7 @@ namespace ECSA
         private void dtgUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             ObtenerCocheSeleccionado();
+            
         }
 
         public BE.Coche ObtenerCocheSeleccionado()
@@ -185,7 +186,8 @@ namespace ECSA
         public void CompletarCoche(BE.Coche coche)
         {
             txtPatente.Text = coche.Patente;
-            
+            cmbLinea.SelectedValue = coche.ID_Linea;
+            txtInterno.Text = (coche.Interno).ToString();
         }
 
     }
