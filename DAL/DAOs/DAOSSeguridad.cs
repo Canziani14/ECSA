@@ -161,7 +161,7 @@ namespace DAL.DAOs
                         string primaryKeyColumn = mds.Tables[0].Columns[0].ColumnName;
                         foreach (DataRow r in mds.Tables[0].Rows)
                         {
-                            string commanddv2 = "update " + tabla + " set DVH = " + DVHCoche(r) + " where " + primaryKeyColumn + "=" + r["ID_Coche"];
+                            string commanddv2 = "update " + tabla + " set DVH = " + DVHCoche(r) + " where " + primaryKeyColumn + "=" + r["Interno"];
                             mds2 = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(commanddv2);
 
                             suma += DVHCoche(r);
@@ -278,9 +278,9 @@ namespace DAL.DAOs
         {
             int dvh = 0;
 
-            dvh += CalcularNumero(SafeIntParse(d["ID_Coche"].ToString())) * 1;
-            dvh += CalcularNumero(d["Patente"]?.ToString() ?? "") * 2;
-            dvh += CalcularNumero(d["Interno"]?.ToString() ?? "") * 3;
+           
+            dvh += CalcularNumero(d["Patente"]?.ToString() ?? "") * 1;
+            dvh += CalcularNumero(d["Interno"]?.ToString() ?? "") * 2;
             return dvh;
         }
 

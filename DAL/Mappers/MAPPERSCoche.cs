@@ -30,11 +30,12 @@ namespace DAL.Mappers
             {
                 coches.Add(new BE.Coche()
                 {
-                    Interno = item.Field<int>("ID_Linea"),
+                    Interno = item.Field<int>("Interno"),
                     Patente=DALSeguridad.DesencriptarCamposReversible(item.Field<string>("Patente")),
-                    DVH = item.Field<int>("DVH")
-
-
+                    ID_Linea = item.Field<int>("ID_Linea")
+                    
+                    
+                    
                 });
             }
             return coches;

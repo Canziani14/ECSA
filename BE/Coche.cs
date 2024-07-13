@@ -12,6 +12,8 @@ namespace BE
 
         public string Patente { get; set; }
 
+        public int ID_Linea { get; set; }
+
         public int DVH { get; set; }
 
     }

@@ -1,4 +1,5 @@
 ﻿using BE;
+using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +19,12 @@ namespace BLL
 
         public bool Crear(Coche objAgregar)
         {
-            throw new NotImplementedException();
+            return DALCoche.Crear(objAgregar);
         }
 
         public bool Eliminar(Coche objEliminar)
         {
-            throw new NotImplementedException();
+            return DALCoche.Eliminar(objEliminar);
         }
 
         public List<Coche> Listar()
@@ -33,7 +34,7 @@ namespace BLL
 
         public bool Modificar(Coche objActualizar)
         {
-            throw new NotImplementedException();
+            return DALCoche.Modificar(objActualizar);
         }
     }
 }

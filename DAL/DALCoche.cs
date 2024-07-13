@@ -16,12 +16,12 @@ namespace DAL
 
         public bool Crear(Coche objAgregar)
         {
-            throw new NotImplementedException();
+            return DAOs.DAOSCoche.GetInstance().Crear(objAgregar.Patente,objAgregar.ID_Linea);
         }
 
         public bool Eliminar(Coche objEliminar)
         {
-            throw new NotImplementedException();
+            return DAOs.DAOSCoche.GetInstance().Eliminar(objEliminar.Interno);
         }
 
         public List<Coche> Listar()
