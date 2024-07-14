@@ -11,7 +11,9 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using static DAL.DAOs.DAOSPasaron;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DAL.DAOs
 {
@@ -19,7 +21,7 @@ namespace DAL.DAOs
     public class DAOSSeguridad
     {
 
-        #region SingletonSeguridad, ConnectionString y Querys
+        #region SingletonSeguridad, ConnectionString
         private DAOSSeguridad() { }
         private static DAOs.DAOSSeguridad instance;
 
@@ -34,7 +36,7 @@ namespace DAL.DAOs
 
         string connectionString = ConfigurationManager.ConnectionStrings["Produccion"].ConnectionString;
 
-
+        DAL.DALSeguridad DALSeguridad = new DALSeguridad();
 
         #endregion
 
@@ -48,15 +50,7 @@ namespace DAL.DAOs
             string command2 = "update DVV set DVV = " + SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteScalar(command1) + " where tabla = '" + tabla + "'";
             return SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(command2);
         }
-
-     /*   public int InsertarDVH(Int64 DVH, int cod, string t, string codtabla)
-        {
-            string command = "update " + t + " set DVH = " + DVH + " where " + codtabla + " = " + cod;
-
-            DataSet mds = new DataSet();
-            return SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(command);
-        }*/
-
+     
         public int CalcularNumero(string s)
         {
             int calculo = 0;
@@ -219,6 +213,23 @@ namespace DAL.DAOs
                         }
                     }
                     break;
+                case "Bitacora":
+                    //ver
+                    string queryBitacora = "select * from Bitacora";
+                    mds = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataSet(queryBitacora);
+
+                    if (mds.Tables.Count > 0 && mds.Tables[0].Rows.Count > 0)
+                    {
+                        string primaryKeyColumn = mds.Tables[0].Columns[0].ColumnName;
+                        foreach (DataRow r in mds.Tables[0].Rows)
+                        {
+                            string commanddv2 = "update " + tabla + " set DVH = " + DVHBitacora(r) + " where " + primaryKeyColumn + "=" + r["ID_Bitacora"];
+                            mds2 = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(commanddv2);
+
+                            suma += DVHBitacora(r);
+                        }
+                    }
+                    break;
                 default:
                     break;
             }
@@ -236,6 +247,23 @@ namespace DAL.DAOs
             return dvh;
 
         }
+
+        
+        public int DVHBitacora(DataRow d)
+        {
+            int dvh = 0;
+
+            dvh += CalcularNumero(SafeIntParse(d["ID_Bitacora"].ToString())) * 1;
+            dvh += CalcularNumero(d["Fecha"]?.ToString() ?? "") * 2;
+            dvh += CalcularNumero(d["Descripcion"]?.ToString() ?? "") * 3;
+            dvh += CalcularNumero(d["Criticidad"]?.ToString() ?? "") * 4;
+            dvh += CalcularNumero(d["ID_usuario"]?.ToString() ?? "") * 5;
+            
+            return dvh;
+
+        }
+
+
 
         public int DVHUsuario(DataRow d)
         {
@@ -415,13 +443,249 @@ namespace DAL.DAOs
 
         #endregion
 
-     
 
-        
 
-       
+        public BE.Bitacora RegistrarEnBitacora(int i, int ID_Usuario)
+        {
+            
+            BE.Bitacora BEBitacora = new BE.Bitacora();
+            BEBitacora.ID_Usuario = ID_Usuario;
+            BEBitacora.Criticidad = 0;
+            BEBitacora.Fecha = DateTime.Now;
+            
+
+            switch (i)
+            {
+                case 1:
+                    BEBitacora.Descripcion = "Contraseña actual incorrecta en cambio de contraseña ";
+                    BEBitacora.Criticidad = 3;
+                    break;
+                case 2:
+                    BEBitacora.Descripcion = "Cambio de contraseña";
+                    BEBitacora.Criticidad = 3;
+                    break;
+                case 3:
+                    BEBitacora.Descripcion = "Conexión fallida con la base de datos";
+                    BEBitacora.Criticidad = 1;
+                    break;
+                case 5:
+                    BEBitacora.Descripcion = "Reparación de integridad";
+                    BEBitacora.Criticidad = 1;
+                    break;
+                case 6:
+                    BEBitacora.Descripcion = "Conexión fallida con la base de datos en modo seguro";
+                    BEBitacora.Criticidad = 1;
+                    break;
+                case 7:
+                    BEBitacora.Descripcion = "Conexión con la base de datos en modo seguro";
+                    BEBitacora.Criticidad = 3;
+                    break;
+                case 8:
+                    BEBitacora.Descripcion = "Inicio de sesión con usuario bloqueado";
+                    BEBitacora.Criticidad = 2;
+                    break;
+                case 9:
+                    BEBitacora.Descripcion = "Inicio de sesión con credenciales incorrectas";
+                    BEBitacora.Criticidad = 2;
+                    break;
+                case 10:
+                    BEBitacora.Descripcion = "Bloqueo de usuario con contraseña incorrecta";
+                    BEBitacora.Criticidad = 2;
+                    break;
+                case 11:
+                    BEBitacora.Descripcion = "Ingreso a la sesión";
+                    BEBitacora.Criticidad = 3;
+                    break;
+                case 12:
+                    BEBitacora.Descripcion = "Recupero de contraseña";
+                    BEBitacora.Criticidad = 3;
+                    break;
+                case 13:
+                    BEBitacora.Descripcion = "Cierre de sesión";
+                    BEBitacora.Criticidad = 3;
+                    break;
+                case 14:
+                    BEBitacora.Descripcion = "Modificación de datos de cliente";
+                    BEBitacora.Criticidad = 2;
+                    break;
+                case 15:
+                    BEBitacora.Descripcion = "Cliente eliminado";
+                    BEBitacora.Criticidad = 1;
+                    break;
+                case 16:
+                    BEBitacora.Descripcion = "Nuevo cliente";
+                    BEBitacora.Criticidad = 2;
+                    break;
+                case 17:
+                    BEBitacora.Descripcion = "Nuevo trabajo";
+                    BEBitacora.Criticidad = 2;
+                    break;
+                case 18:
+                    BEBitacora.Descripcion = "Trabajo eliminado";
+                    BEBitacora.Criticidad = 2;
+                    break;
+                case 19:
+                    BEBitacora.Descripcion = "Modificación de datos del trabajo";
+                    BEBitacora.Criticidad = 3;
+                    break;
+                case 20:
+                    BEBitacora.Descripcion = "Modificación de datos de alerta";
+                    BEBitacora.Criticidad = 3;
+                    break;
+                case 21:
+                    BEBitacora.Descripcion = "Alerta eliminada";
+                    BEBitacora.Criticidad = 2;
+                    break;
+                case 22:
+                    BEBitacora.Descripcion = "Nueva alerta";
+                    BEBitacora.Criticidad = 3;
+                    break;
+                case 23:
+                    BEBitacora.Descripcion = "Facturación de trabajo";
+                    BEBitacora.Criticidad = 2;
+                    break;
+                case 24:
+                    BEBitacora.Descripcion = "Modificación de datos de usuario";
+                    BEBitacora.Criticidad = 2;
+                    break;
+                case 25:
+                    BEBitacora.Descripcion = "Correo ya asignado a otro usuario";
+                    BEBitacora.Criticidad = 3;
+                    break;
+                case 26:
+                    BEBitacora.Descripcion = "Nombre de usuario ya asignado a otro usuario";
+                    BEBitacora.Criticidad = 3;
+                    break;
+                case 27:
+                    BEBitacora.Descripcion = "Nuevo comentario";
+                    BEBitacora.Criticidad = 3;
+                    break;
+                case 28:
+                    BEBitacora.Descripcion = "Usuario eliminado";
+                    BEBitacora.Criticidad = 1;
+                    break;
+                case 29:
+                    BEBitacora.Descripcion = "Solicitud de eliminación de usuario con patentes únicas";
+                    BEBitacora.Criticidad = 2;
+                    break;
+                case 30:
+                    BEBitacora.Descripcion = "Nuevo usuario";
+                    BEBitacora.Criticidad = 2;
+                    break;
+                case 31:
+                    BEBitacora.Descripcion = "Modificación de datos personales";
+                    BEBitacora.Criticidad = 3;
+                    break;
+                case 32:
+                    BEBitacora.Descripcion = "Asignación patente";
+                    BEBitacora.Criticidad = 2;
+                    break;
+                case 33:
+                    BEBitacora.Descripcion = "Asignación de familia";
+                    BEBitacora.Criticidad = 2;
+                    break;
+                case 34:
+                    BEBitacora.Descripcion = "Backup";
+                    BEBitacora.Criticidad = 1;
+                    break;
+                case 35:
+                    BEBitacora.Descripcion = "Backup fallido";
+                    BEBitacora.Criticidad = 1;
+                    break;
+                case 36:
+                    BEBitacora.Descripcion = "Restore";
+                    BEBitacora.Criticidad = 1;
+                    break;
+                case 37:
+                    BEBitacora.Descripcion = "Restore fallido";
+                    BEBitacora.Criticidad = 1;
+                    break;
+                case 38:
+                    BEBitacora.Descripcion = "Consulta en bitácora";
+                    BEBitacora.Criticidad = 3;
+                    break;
+                case 39:
+                    BEBitacora.Descripcion = "Nueva familia";
+                    BEBitacora.Criticidad = 3;
+                    break;
+                case 40:
+                    BEBitacora.Descripcion = "Solicitud de eliminación de familia asignada a usuario con patentes únicas perteneciente a familia a eliminar";
+                    BEBitacora.Criticidad = 2;
+                    break;
+                case 41:
+                    BEBitacora.Descripcion = "Familia eliminada";
+                    BEBitacora.Criticidad = 2;
+                    break;
+                case 42:
+                    BEBitacora.Descripcion = "Solicitud de eliminación de patente en usuario con patente única";
+                    BEBitacora.Criticidad = 2;
+                    break;
+                case 43:
+                    BEBitacora.Descripcion = "Eliminación de patente de usuario";
+                    BEBitacora.Criticidad = 2;
+                    break;
+                case 44:
+                    BEBitacora.Descripcion = "Solicitud de eliminación de familia en usuario con patente única perteneciente a la familia a eliminar";
+                    BEBitacora.Criticidad = 2;
+                    break;
+                case 45:
+                    BEBitacora.Descripcion = "Usuario bloqueado";
+                    BEBitacora.Criticidad = 2;
+                    break;
+                case 46:
+                    BEBitacora.Descripcion = "Usuario desbloqueado";
+                    BEBitacora.Criticidad = 2;
+                    break;
+
+                default:
+                    break;
+            }
+
+            string descripcionEncriptada = EncriptarCamposReversible(BEBitacora.Descripcion);
+            BEBitacora.Descripcion = descripcionEncriptada;
+
+
+
+
+            
+            
+            
+            return GuardarBitacora(BEBitacora); 
+          
+        }
+
+
+        public BE.Bitacora GuardarBitacora(BE.Bitacora bitacora)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "INSERT INTO Bitacora (ID_Usuario, Criticidad, Fecha, Descripcion) VALUES (@ID_Usuario, @Criticidad, @Fecha, @Descripcion)";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ID_Usuario", bitacora.ID_Usuario);
+                    command.Parameters.AddWithValue("@Criticidad", bitacora.Criticidad);
+                    command.Parameters.AddWithValue("@Fecha", bitacora.Fecha);
+                    command.Parameters.AddWithValue("@Descripcion", bitacora.Descripcion);
+
+                    connection.Open();
+                    int rowwsaffect=command.ExecuteNonQuery();
+                    VerificarDigitosVerificadores("Bitacora");
+                    CalcularDVV("Bitacora");
+                    
+                    return bitacora;
+                }
+            }
+        }
+
+
+
+
+
+
+
 
 
 
     }
+
 }

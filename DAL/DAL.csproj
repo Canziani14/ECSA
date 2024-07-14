@@ -56,6 +56,7 @@
     <Compile Include="DAOs\DAOSServicio.cs" />
     <Compile Include="DAOs\DAOSUsuario.cs" />
     <Compile Include="Mappers\MAPPEREmpleado.cs" />
+    <Compile Include="Mappers\MAPPERSBitacora.cs" />
     <Compile Include="Mappers\MAPPERSCoche.cs" />
     <Compile Include="Mappers\MAPPERSeguridad.cs" />
     <Compile Include="Mappers\MAPPERServicio.cs" />

@@ -23,10 +23,6 @@ namespace DAL
            return DAOSSeguridad.GetInstance().CalcularDVV(tabla);
         }
 
-      /*  public int InsertarDVH(Int64 DVH, int cod, string t, string codtabla)
-        {
-            return DAOSSeguridad.GetInstance().InsertarDVH(DVH, cod, t, codtabla);
-        }*/
 
         public int VerificarDigitosVerificadores(string tabla)
         {
@@ -71,10 +67,29 @@ namespace DAL
             return sb.ToString();
         }
 
-       
+
 
         #endregion
 
-        
+        #region Bitacora
+
+
+        public BE.Bitacora RegistrarEnBitacora(int i, int ID_Usuario)
+        {
+            return DAOSSeguridad.GetInstance().RegistrarEnBitacora(i, ID_Usuario);
+        }
+
+        public bool BuscarEnBitacora()
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public bool DescargarBitacora()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

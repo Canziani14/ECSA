@@ -114,22 +114,24 @@ namespace BLL
         #endregion
 
 
+        public bool BuscarEnBitacora()
+        {
+            throw new NotImplementedException();
+        }
+
+        public BE.Bitacora RegistrarEnBitacora(int i, int ID_Usuario)
+        {
+            return DALSeguridad.RegistrarEnBitacora(i, ID_Usuario);
+        }
+
+        public bool DescargarBitacora()
+        {
+            throw new NotImplementedException();
+        }
+
 
         /*
-                public bool BuscarEnBitacora()
-                {
-                    throw new NotImplementedException();
-                }
-
-                public bool RegistrarEnBitacora()
-                {
-                    throw new NotImplementedException();
-                }
-
-                public bool DescargarBitacora()
-                {
-                    throw new NotImplementedException();
-                }
+                
 
 
 
