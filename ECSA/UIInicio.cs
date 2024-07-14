@@ -54,12 +54,12 @@ namespace ECSA
             uigestionarEmpleados.Show();
         }
 
-        private void btnGestionarServicios_Click(object sender, EventArgs e)
+     /*   private void btnGestionarServicios_Click(object sender, EventArgs e)
         {
             UIGestionarServicios uiGestionarServicios = new UIGestionarServicios();
             uiGestionarServicios.MdiParent = this;
             uiGestionarServicios.Show();
-        }
+        }*/
 
         private void btnGestionarPatentes_Click(object sender, EventArgs e)
         {

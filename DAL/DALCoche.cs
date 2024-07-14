@@ -29,6 +29,11 @@ namespace DAL
             return DAOs.DAOSCoche.GetInstance().Listar();
         }
 
+        public List<Coche> Listar(int linea)
+        {
+            return DAOs.DAOSCoche.GetInstance().Listar(linea);
+        }
+
         public bool Modificar(Coche objActualizar)
         {
             return DAOs.DAOSCoche.GetInstance().Modificar(objActualizar.Patente, objActualizar.ID_Linea);

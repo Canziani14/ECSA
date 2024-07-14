@@ -28,6 +28,11 @@ namespace DAL
             return DAOs.DAOSEmpleado.GetInstance().Listar();
         }
 
+        public List<BE.Empleado> Listar(int linea)
+        {
+            return DAOs.DAOSEmpleado.GetInstance().Listar(linea);
+        }
+
         public List<BE.Empleado> Buscar(int Legajo)
         {
             return DAOs.DAOSEmpleado.GetInstance().Buscar(Legajo);

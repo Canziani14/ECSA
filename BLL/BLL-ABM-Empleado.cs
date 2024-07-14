@@ -33,6 +33,11 @@ namespace BLL
             return DALEmpleado.Listar();
         }
 
+        public List<Empleado> Listar(int linea)
+        {
+            return DALEmpleado.Listar(linea);
+        }
+
         public List<Empleado> Buscar(int Legajo)
         {
             return DALEmpleado.Buscar(Legajo);

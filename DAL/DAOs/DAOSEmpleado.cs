@@ -49,6 +49,9 @@ namespace DAL.DAOs
                          "WHERE Legajo = @Legajo";
 
         string QuerySelectByLegajo = "SELECT * FROM [ECSA].[dbo].[Empleado] where Legajo = @legajo";
+
+        string QuerySelectByLinea = "SELECT * FROM [ECSA].[dbo].[Empleado] where ID_Linea = @ID_Linea";
+
         #endregion
 
         #region AgregarEmpleado
@@ -101,6 +104,23 @@ namespace DAL.DAOs
             return Mappers.MAPPEREmpleado.GetInstance().Map(table);
         }
 
+        public List<BE.Empleado> Listar(int linea)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>()
+    {
+        new SqlParameter("@ID_Linea", linea),
+
+    };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByLinea, parameters);
+
+
+            return Mappers.MAPPEREmpleado.GetInstance().Map(table);
+        }
+
+
+
+
+
         public List<BE.Empleado> Buscar(int Legajo)
         {
             List<SqlParameter> parameters = new List<SqlParameter>()
@@ -111,6 +131,21 @@ namespace DAL.DAOs
             DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByLegajo, parameters);
             return Mappers.MAPPEREmpleado.GetInstance().Map(table);
         }
+
+
+
+        public List<BE.Empleado> BuscarXLinea(int ID_Linea)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>()
+    {
+        new SqlParameter("@ID_Linea", ID_Linea),
+
+    };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByLinea, parameters);
+            return Mappers.MAPPEREmpleado.GetInstance().Map(table);
+        }
+
+
         #endregion
 
         #region ModificarEmpleado

@@ -251,6 +251,11 @@ namespace ECSA
             BLLSeguridad.VerificarDigitosVerificadores(tabla);
             BLLSeguridad.CalcularDVV(tabla);
         }
+
+
+        
+        
+
     }
 
     #endregion

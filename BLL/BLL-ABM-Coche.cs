@@ -32,6 +32,11 @@ namespace BLL
             return DALCoche.Listar();
         }
 
+        public List<Coche> Listar(int linea)
+        {
+            return DALCoche.Listar(linea);
+        }
+
         public bool Modificar(Coche objActualizar)
         {
             return DALCoche.Modificar(objActualizar);

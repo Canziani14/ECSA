@@ -18,6 +18,8 @@ namespace BE
         public int Linea { get; set; }
 
         public int LegajoEmpleado { get; set; }
+        public string ApellidoEmpleado { get; set; }
+        public string NombreEmpleado { get; set; }
 
         public int DVH { get; set; }
 

@@ -31,9 +31,13 @@ namespace DAL.Mappers
                 {
                     ID_Servicio = item.Field<int>("ID_Servicio"),
                     HorarioSalida=item.Field<DateTime>("Hora_Cabecera_Principal"),
-                    HorarioLlegada = item.Field<DateTime>("Hora_Cabecera_Principal"),
-                    LegajoEmpleado = item.Field<int>("Legajo"),
-                    Coche= item.Field<int>("Coche"),
+                    HorarioLlegada = item.Field<DateTime>("Hora_Cabecera_Retorno"),
+                    LegajoEmpleado =item.Field<int>("Legajo"),
+                    Coche = item.Field<int>("Interno"),
+                    NombreEmpleado = item.Field<string>("Nombre"),
+                    ApellidoEmpleado =item.Field<string>("Apellido"),
+                   
+                   
                 }); ;
             }
             return servicios;

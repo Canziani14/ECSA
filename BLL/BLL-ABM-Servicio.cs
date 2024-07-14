@@ -22,12 +22,22 @@ namespace BLL
 
         public bool Crear(Servicio objAgregar)
         {
-            throw new NotImplementedException();
+            return DALServicio.Crear(objAgregar);
+        }
+
+        public bool CrearServicio(Servicio objAgregar)
+        {
+            return DALServicio.CrearServicio(objAgregar);
         }
 
         public bool Eliminar(Servicio objEliminar)
         {
-            throw new NotImplementedException();
+            return DALServicio.Eliminar(objEliminar);
+        }
+
+        public List<Servicio> Listar(int idLinea)
+        {
+            return DALServicio.Listar(idLinea);
         }
 
         public List<Servicio> Listar()
@@ -37,8 +47,9 @@ namespace BLL
 
         public bool Modificar(Servicio objActualizar)
         {
-            throw new NotImplementedException();
+            return DALServicio.Modificar(objActualizar);
         }
+
 
         
 

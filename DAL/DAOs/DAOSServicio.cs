@@ -11,7 +11,7 @@ using BE;
 
 namespace DAL.DAOs
 {
-    internal class DAOSServicio : ICrud<BE.Servicio>
+    internal class DAOSServicio 
     {
 
         private DAOSServicio() { }
@@ -32,7 +32,20 @@ namespace DAL.DAOs
         string connectionString = ConfigurationManager.ConnectionStrings["Produccion"].ConnectionString;
 
         string QuerySelect = "SELECT * FROM [ECSA].[dbo].[Servicio]";
+      
+        string QueryInsert = "INSERT INTO Servicio (Hora_Cabecera_Principal,Hora_Cabecera_Retorno, ID_Linea, Legajo, Interno )" +
+           "VALUES (@Hora_Cabecera_Principal, @Hora_Cabecera_Retorno, @ID_Linea, @Legajo, @Interno)";
 
+        string QueryDelete = "delete from servicio where ID_Servicio = @ID_Servicio";
+        string QueryUpdate = "UPDATE Servicio SET Hora_Cabecera_Principal = @Hora_Cabecera_Principal,Hora_Cabecera_Retorno = @Hora_Cabecera_Retorno WHERE ID_Servicio = @ID_Servicio";
+
+        string QuerySelectByLinea = "SELECT Servicio.ID_Servicio,Servicio.Hora_Cabecera_Principal,Servicio.Hora_Cabecera_Retorno, "+
+        "Servicio.Interno, Servicio.Legajo,Empleado.Nombre, Empleado.Apellido, Servicio.ID_Linea FROM Servicio "+
+    "INNER JOIN Empleado ON Servicio.legajo = Empleado.legajo WHERE Servicio.ID_Linea = @ID_Linea;";
+
+
+
+        string QueryInsertServicio = "UPDATE Servicio SET Legajo = @Legajo ,Interno = @Interno WHERE ID_Servicio = @ID_Servicio";
 
 
         public List<Servicio> Buscar(int id)
@@ -40,14 +53,98 @@ namespace DAL.DAOs
             throw new NotImplementedException();
         }
 
-        public bool Crear(Servicio objAgregar)
+        public bool Crear(DateTime Hora_Cabecera_Principal, DateTime Hora_Cabecera_Retorno, int ID_Linea, int legajo, int interno)
         {
-            throw new NotImplementedException();
+            bool returnValue = false;
+
+            List<SqlParameter> parameters = new List<SqlParameter>()
+                        {
+                            new SqlParameter("@Hora_Cabecera_Principal", Hora_Cabecera_Principal),
+                            new SqlParameter("@Hora_Cabecera_Retorno", Hora_Cabecera_Retorno),
+                            new SqlParameter("@ID_Linea", ID_Linea),
+                            new SqlParameter("@Legajo", legajo),
+                            new SqlParameter("@Interno", interno),
+
+                        };
+
+            try
+            {
+                Console.WriteLine("Trying to execute insert operation...");
+                int rowsAffected = SqlHelper.GetInstance(connectionString).ExecuteNonQuery(QueryInsert, parameters);
+                returnValue = rowsAffected > 0;
+
+                if (returnValue)
+                {
+                    Console.WriteLine("Coche creado con éxito.");
+                }
+                else
+                {
+                    Console.WriteLine("No se insertó ninguna fila.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                returnValue = false;
+            }
+
+            return returnValue;
         }
 
-        public bool Eliminar(Servicio objEliminar)
+
+        
+    public bool CrearServicio(int emlpeado, int coche, int idServicio)
+            {
+                bool returnValue = false;
+
+                List<SqlParameter> parameters = new List<SqlParameter>()
+                            {
+                                new SqlParameter("@Legajo", emlpeado),
+                                new SqlParameter("@Interno", coche),
+                                new SqlParameter("@ID_Servicio", idServicio),
+
+                            };
+
+                try
+                {
+                    Console.WriteLine("Trying to execute insert operation...");
+                    int rowsAffected = SqlHelper.GetInstance(connectionString).ExecuteNonQuery(QueryInsertServicio, parameters);
+                    returnValue = rowsAffected > 0;
+
+                    if (returnValue)
+                    {
+                        Console.WriteLine("Coche creado con éxito.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se insertó ninguna fila.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                    returnValue = false;
+                }
+
+                return returnValue;
+            }
+
+
+
+
+
+        public bool Eliminar(int ID_Servicio)
         {
-            throw new NotImplementedException();
+            bool returnValue = false;
+
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+            new SqlParameter("@ID_Servicio", ID_Servicio),
+            };
+
+            SqlHelper.GetInstance(connectionString).ExecuteNonQuery(QueryDelete, parameters);
+            returnValue = true;
+            return returnValue;
         }
 
         public List<Servicio> Listar()
@@ -58,9 +155,61 @@ namespace DAL.DAOs
             return Mappers.MAPPERServicio.GetInstance().Map(table);
         }
 
-        public bool Modificar(Servicio objActualizar)
+        public List<Servicio> Listar (int IDLinea)
         {
-            throw new NotImplementedException();
+            List<SqlParameter> parameters = new List<SqlParameter>()
+    {
+        new SqlParameter("@ID_Linea", IDLinea),
+
+    };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByLinea, parameters);
+
+
+            return Mappers.MAPPERServicio.GetInstance().Map(table);
+        }
+
+        public bool Modificar(DateTime salida, DateTime llegada, int idServicio)
+        {
+            bool returnValue = false;
+
+
+
+            List<SqlParameter> parameters = new List<SqlParameter>()
+    {
+        new SqlParameter("@Hora_Cabecera_Principal", salida),
+        new SqlParameter("@Hora_Cabecera_Retorno", llegada),
+        new SqlParameter("@ID_Servicio", idServicio),
+
+    };
+
+            try
+            {
+                Console.WriteLine("Executing SQL: " + QueryUpdate);
+                foreach (var param in parameters)
+                {
+                    Console.WriteLine($"{param.ParameterName}: {param.Value}");
+                }
+
+                int rowsAffected = SqlHelper.GetInstance(connectionString).ExecuteNonQuery(QueryUpdate, parameters);
+                returnValue = true;
+
+                if (returnValue)
+                {
+                    Console.WriteLine("Usuario actualizado con éxito.");
+                }
+                else
+                {
+                    Console.WriteLine("No se actualizó ninguna fila.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                returnValue = false;
+            }
+
+
+            return returnValue;
         }
     }
 }

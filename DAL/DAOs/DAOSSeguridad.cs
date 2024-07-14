@@ -271,7 +271,7 @@ namespace DAL.DAOs
             dvh += CalcularNumero(d["Hora_Cabecera_Principal"]?.ToString() ?? "") * 2;
             dvh += CalcularNumero(d["Hora_Cabecera_Retorno"]?.ToString() ?? "") * 3;
             dvh += CalcularNumero(d["Legajo"]?.ToString() ?? "") * 4;
-            dvh += CalcularNumero(d["Coche"]?.ToString() ?? "") * 5;
+            dvh += CalcularNumero(d["Interno"]?.ToString() ?? "") * 5;
             return dvh;
         }
         public int DVHCoche(DataRow d)

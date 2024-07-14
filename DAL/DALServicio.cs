@@ -16,14 +16,23 @@ namespace DAL
 
         public bool Crear(Servicio objAgregar)
         {
-            throw new NotImplementedException();
+            return DAOs.DAOSServicio.GetInstance().Crear(objAgregar.HorarioSalida, objAgregar.HorarioLlegada, objAgregar.Linea, objAgregar.LegajoEmpleado,objAgregar.Coche);
+        }
+
+        public bool CrearServicio(Servicio objAgregar)
+        {
+            return DAOs.DAOSServicio.GetInstance().CrearServicio(objAgregar.Coche,objAgregar.LegajoEmpleado, objAgregar.ID_Servicio);
         }
 
         public bool Eliminar(Servicio objEliminar)
         {
-            throw new NotImplementedException();
+            return DAOs.DAOSServicio.GetInstance().Eliminar(objEliminar.ID_Servicio);
         }
 
+        public List<Servicio> Listar(int idLinea)
+        {
+            return DAOs.DAOSServicio.GetInstance().Listar(idLinea);
+        }
         public List<Servicio> Listar()
         {
             return DAOs.DAOSServicio.GetInstance().Listar();
@@ -31,7 +40,7 @@ namespace DAL
 
         public bool Modificar(Servicio objActualizar)
         {
-            throw new NotImplementedException();
+            return DAOs.DAOSServicio.GetInstance().Modificar(objActualizar.HorarioSalida, objActualizar.HorarioLlegada, objActualizar.ID_Servicio);
         }
     }
 }

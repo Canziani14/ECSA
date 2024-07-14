@@ -152,9 +152,27 @@ namespace ECSA
 
         private void btnGestionarServicios_Click(object sender, EventArgs e)
         {
-            UIGestionarServicios uiGestionarServicios = new UIGestionarServicios();
-            uiGestionarServicios.MdiParent = this.MdiParent;
-            uiGestionarServicios.Show();
+            // Verificar si los campos están vacíos
+            if (string.IsNullOrWhiteSpace(txtIDLinea.Text) || string.IsNullOrWhiteSpace(txtNombreLinea.Text))
+            {
+                MessageBox.Show("Por favor, complete todos los campos antes de continuar.", "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir del método si los campos están vacíos
+            }
+
+            // Intentar convertir txtIDLinea.Text a un entero
+            if (int.TryParse(txtIDLinea.Text, out int IDLinea))
+            {
+                string NombreLinea = txtNombreLinea.Text;
+                UIGestionarServicios uiGestionarServicios = new UIGestionarServicios(IDLinea, NombreLinea);
+                uiGestionarServicios.MdiParent = this.MdiParent;
+                uiGestionarServicios.Show();
+            }
+            else
+            {
+                // Mostrar mensaje si la conversión falla
+                MessageBox.Show("El ID de la línea debe ser un número válido.", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
 

@@ -37,6 +37,8 @@ namespace DAL.DAOs
 
         string QueryUpdate = "UPDATE Coche SET patente = @Patente set ID_Linea = @ID_Linea  WHERE Interno = @Interno";
 
+        string QuerySelectXLinea = "SELECT * from coche where ID_Linea = @ID_Linea;";
+
 
 
 
@@ -90,6 +92,28 @@ namespace DAL.DAOs
 
             return Mappers.MAPPERSCoche.GetInstance().Map(table);
         }
+
+
+
+        public List<Coche> Listar(int linea)
+        {
+
+        
+                    List<SqlParameter> parameters = new List<SqlParameter>()
+                {
+                    new SqlParameter("@ID_Linea", linea),
+                    
+
+                };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectXLinea, parameters);
+
+
+            return Mappers.MAPPERSCoche.GetInstance().Map(table);
+        }
+
+
+
+
 
         public List<Coche> Buscar(int id)
         {
