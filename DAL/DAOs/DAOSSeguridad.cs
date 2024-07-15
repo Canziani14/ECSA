@@ -457,187 +457,152 @@ namespace DAL.DAOs
             switch (i)
             {
                 case 1:
-                    BEBitacora.Descripcion = "Contraseña actual incorrecta en cambio de contraseña ";
-                    BEBitacora.Criticidad = 3;
+                    BEBitacora.Descripcion = "Inicio de sesión";
+                    BEBitacora.Criticidad = 1;
                     break;
                 case 2:
-                    BEBitacora.Descripcion = "Cambio de contraseña";
-                    BEBitacora.Criticidad = 3;
+                    BEBitacora.Descripcion = "Contraseña incorrecta en inicio de sesión";
+                    BEBitacora.Criticidad = 2;
                     break;
                 case 3:
-                    BEBitacora.Descripcion = "Conexión fallida con la base de datos";
-                    BEBitacora.Criticidad = 1;
+                    BEBitacora.Descripcion = "Usuario bloqueado";
+                    BEBitacora.Criticidad = 3;
+                    break;
+                case 4:
+                    BEBitacora.Descripcion = "Intento de inicio de sesión con usuario bloqueado";
+                    BEBitacora.Criticidad = 3;
                     break;
                 case 5:
-                    BEBitacora.Descripcion = "Reparación de integridad";
-                    BEBitacora.Criticidad = 1;
+                    BEBitacora.Descripcion = "Crear usuario";
+                    BEBitacora.Criticidad = 2;
                     break;
                 case 6:
-                    BEBitacora.Descripcion = "Conexión fallida con la base de datos en modo seguro";
-                    BEBitacora.Criticidad = 1;
+                    BEBitacora.Descripcion = "Modificar usuario";
+                    BEBitacora.Criticidad = 2;
                     break;
                 case 7:
-                    BEBitacora.Descripcion = "Conexión con la base de datos en modo seguro";
+                    BEBitacora.Descripcion = "Eliminar usuario";
                     BEBitacora.Criticidad = 3;
                     break;
                 case 8:
-                    BEBitacora.Descripcion = "Inicio de sesión con usuario bloqueado";
-                    BEBitacora.Criticidad = 2;
+                    BEBitacora.Descripcion = "Bloquear usuario";
+                    BEBitacora.Criticidad = 3;
                     break;
                 case 9:
-                    BEBitacora.Descripcion = "Inicio de sesión con credenciales incorrectas";
-                    BEBitacora.Criticidad = 2;
+                    BEBitacora.Descripcion = "Desbloquear usuario";
+                    BEBitacora.Criticidad = 3;
                     break;
                 case 10:
-                    BEBitacora.Descripcion = "Bloqueo de usuario con contraseña incorrecta";
-                    BEBitacora.Criticidad = 2;
+                    BEBitacora.Descripcion = "Asignar familia";
+                    BEBitacora.Criticidad = 3;
                     break;
                 case 11:
-                    BEBitacora.Descripcion = "Ingreso a la sesión";
+                    BEBitacora.Descripcion = "Quitar familia";
                     BEBitacora.Criticidad = 3;
                     break;
                 case 12:
-                    BEBitacora.Descripcion = "Recupero de contraseña";
+                    BEBitacora.Descripcion = "Crear familia";
                     BEBitacora.Criticidad = 3;
                     break;
                 case 13:
-                    BEBitacora.Descripcion = "Cierre de sesión";
+                    BEBitacora.Descripcion = "Eliminar familia";
                     BEBitacora.Criticidad = 3;
                     break;
                 case 14:
-                    BEBitacora.Descripcion = "Modificación de datos de cliente";
-                    BEBitacora.Criticidad = 2;
+                    BEBitacora.Descripcion = "Modificar familia";
+                    BEBitacora.Criticidad = 3;
                     break;
                 case 15:
-                    BEBitacora.Descripcion = "Cliente eliminado";
+                    BEBitacora.Descripcion = "Crear empleados";
                     BEBitacora.Criticidad = 1;
                     break;
                 case 16:
-                    BEBitacora.Descripcion = "Nuevo cliente";
-                    BEBitacora.Criticidad = 2;
+                    BEBitacora.Descripcion = "Modificar empleado";
+                    BEBitacora.Criticidad = 1;
                     break;
                 case 17:
-                    BEBitacora.Descripcion = "Nuevo trabajo";
-                    BEBitacora.Criticidad = 2;
-                    break;
-                case 18:
-                    BEBitacora.Descripcion = "Trabajo eliminado";
-                    BEBitacora.Criticidad = 2;
-                    break;
-                case 19:
-                    BEBitacora.Descripcion = "Modificación de datos del trabajo";
+                    BEBitacora.Descripcion = "Eliminar empleados";
                     BEBitacora.Criticidad = 3;
                     break;
+                case 18:
+                    BEBitacora.Descripcion = "Crear línea";
+                    BEBitacora.Criticidad = 1;
+                    break;
+                case 19:
+                    BEBitacora.Descripcion = "Modificar línea";
+                    BEBitacora.Criticidad = 2;
+                    break;
                 case 20:
-                    BEBitacora.Descripcion = "Modificación de datos de alerta";
+                    BEBitacora.Descripcion = "Eliminar línea";
                     BEBitacora.Criticidad = 3;
                     break;
                 case 21:
-                    BEBitacora.Descripcion = "Alerta eliminada";
+                    BEBitacora.Descripcion = "Crear coche";
                     BEBitacora.Criticidad = 2;
                     break;
                 case 22:
-                    BEBitacora.Descripcion = "Nueva alerta";
+                    BEBitacora.Descripcion = "Eliminar coche";
                     BEBitacora.Criticidad = 3;
                     break;
                 case 23:
-                    BEBitacora.Descripcion = "Facturación de trabajo";
+                    BEBitacora.Descripcion = "Modificar servicio";
                     BEBitacora.Criticidad = 2;
                     break;
                 case 24:
-                    BEBitacora.Descripcion = "Modificación de datos de usuario";
-                    BEBitacora.Criticidad = 2;
+                    BEBitacora.Descripcion = "Eliminar servicios";
+                    BEBitacora.Criticidad = 3;
                     break;
                 case 25:
-                    BEBitacora.Descripcion = "Correo ya asignado a otro usuario";
-                    BEBitacora.Criticidad = 3;
+                    BEBitacora.Descripcion = "Crear servicios";
+                    BEBitacora.Criticidad = 2;
                     break;
                 case 26:
-                    BEBitacora.Descripcion = "Nombre de usuario ya asignado a otro usuario";
-                    BEBitacora.Criticidad = 3;
+                    BEBitacora.Descripcion = "Asignar conductor al servicio";
+                    BEBitacora.Criticidad = 1;
                     break;
                 case 27:
-                    BEBitacora.Descripcion = "Nuevo comentario";
+                    BEBitacora.Descripcion = "Asignar patente";
                     BEBitacora.Criticidad = 3;
                     break;
                 case 28:
-                    BEBitacora.Descripcion = "Usuario eliminado";
-                    BEBitacora.Criticidad = 1;
-                    break;
-                case 29:
-                    BEBitacora.Descripcion = "Solicitud de eliminación de usuario con patentes únicas";
-                    BEBitacora.Criticidad = 2;
-                    break;
-                case 30:
-                    BEBitacora.Descripcion = "Nuevo usuario";
-                    BEBitacora.Criticidad = 2;
-                    break;
-                case 31:
-                    BEBitacora.Descripcion = "Modificación de datos personales";
+                    BEBitacora.Descripcion = "Quitar patente";
                     BEBitacora.Criticidad = 3;
                     break;
+                case 29:
+                    BEBitacora.Descripcion = "Cerrar sesión";
+                    BEBitacora.Criticidad = 1;
+                    break;
+                case 30:
+                    BEBitacora.Descripcion = "Cambiar contraseña";
+                    BEBitacora.Criticidad = 1;
+                    break;
+                case 31:
+                    BEBitacora.Descripcion = "Generar nueva contraseña";
+                    BEBitacora.Criticidad = 1;
+                    break;
                 case 32:
-                    BEBitacora.Descripcion = "Asignación patente";
+                    BEBitacora.Descripcion = "Conectar con base de datos";
                     BEBitacora.Criticidad = 2;
                     break;
                 case 33:
-                    BEBitacora.Descripcion = "Asignación de familia";
+                    BEBitacora.Descripcion = "Verificar integridad de la base de datos";
                     BEBitacora.Criticidad = 2;
                     break;
                 case 34:
-                    BEBitacora.Descripcion = "Backup";
-                    BEBitacora.Criticidad = 1;
+                    BEBitacora.Descripcion = "Reparar integridad";
+                    BEBitacora.Criticidad = 3;
                     break;
                 case 35:
-                    BEBitacora.Descripcion = "Backup fallido";
-                    BEBitacora.Criticidad = 1;
+                    BEBitacora.Descripcion = "Realizar backup";
+                    BEBitacora.Criticidad = 3;
                     break;
                 case 36:
-                    BEBitacora.Descripcion = "Restore";
-                    BEBitacora.Criticidad = 1;
-                    break;
-                case 37:
-                    BEBitacora.Descripcion = "Restore fallido";
-                    BEBitacora.Criticidad = 1;
-                    break;
-                case 38:
-                    BEBitacora.Descripcion = "Consulta en bitácora";
+                    BEBitacora.Descripcion = "Realizar restore";
                     BEBitacora.Criticidad = 3;
                     break;
-                case 39:
-                    BEBitacora.Descripcion = "Nueva familia";
-                    BEBitacora.Criticidad = 3;
-                    break;
-                case 40:
-                    BEBitacora.Descripcion = "Solicitud de eliminación de familia asignada a usuario con patentes únicas perteneciente a familia a eliminar";
-                    BEBitacora.Criticidad = 2;
-                    break;
-                case 41:
-                    BEBitacora.Descripcion = "Familia eliminada";
-                    BEBitacora.Criticidad = 2;
-                    break;
-                case 42:
-                    BEBitacora.Descripcion = "Solicitud de eliminación de patente en usuario con patente única";
-                    BEBitacora.Criticidad = 2;
-                    break;
-                case 43:
-                    BEBitacora.Descripcion = "Eliminación de patente de usuario";
-                    BEBitacora.Criticidad = 2;
-                    break;
-                case 44:
-                    BEBitacora.Descripcion = "Solicitud de eliminación de familia en usuario con patente única perteneciente a la familia a eliminar";
-                    BEBitacora.Criticidad = 2;
-                    break;
-                case 45:
-                    BEBitacora.Descripcion = "Usuario bloqueado";
-                    BEBitacora.Criticidad = 2;
-                    break;
-                case 46:
-                    BEBitacora.Descripcion = "Usuario desbloqueado";
-                    BEBitacora.Criticidad = 2;
-                    break;
-
                 default:
+                    BEBitacora.Descripcion = "Acción desconocida";
+                    BEBitacora.Criticidad = 0;
                     break;
             }
 
