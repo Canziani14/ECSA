@@ -12,9 +12,11 @@ namespace ECSA
 {
     public partial class UIAlertas : Form
     {
+        BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
         public UIAlertas()
         {
             InitializeComponent();
+            dtgAlertas.DataSource = BLLSeguridad.ListarCrit3();
         }
     }
 }

@@ -49,6 +49,7 @@ namespace ECSA
                 {
                     if (ContraseñaBuscada.Count > 0 )
                     {
+                         BLLUsuario.ContadorIngresos0(UsuarioLog);
                          BLLSeguridad.RegistrarEnBitacora(1,UsuarioLog.Nick, UsuarioLog.ID_Usuario);
                         MessageBox.Show("Login exitoso. ¡Bienvenido " + UsuarioLog.Nick + "!", "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         UIInicio uiInicio = new UIInicio(UsuarioLog);

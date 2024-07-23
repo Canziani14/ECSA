@@ -70,6 +70,10 @@ namespace BLL
         {
             return DALUsuario.DesbloquearUsuario(ID_Usuario);
         }
-
+        
+        public bool ContadorIngresos0(BE.Usuario usuariolog)
+        {
+            return DALUsuario.ContadorIngresos0(usuariolog);
+        }
     }
 }

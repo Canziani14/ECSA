@@ -90,6 +90,15 @@ namespace DAL
             throw new NotImplementedException();
         }
 
+        public List<Bitacora> Listar()
+        {
+            return DAOs.DAOSSeguridad.GetInstance().Listar();
+        }
+        
+        public List<Bitacora> ListarCrit3()
+        {
+            return DAOs.DAOSSeguridad.GetInstance().ListarCrit3();
+        }
         #endregion
     }
 }

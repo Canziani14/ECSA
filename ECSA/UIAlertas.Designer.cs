@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dtgAlertas = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgAlertas)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dtgAlertas
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 45);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(387, 303);
-            this.dataGridView1.TabIndex = 0;
+            this.dtgAlertas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgAlertas.Location = new System.Drawing.Point(12, 45);
+            this.dtgAlertas.Name = "dtgAlertas";
+            this.dtgAlertas.Size = new System.Drawing.Size(387, 303);
+            this.dtgAlertas.TabIndex = 0;
             // 
             // label1
             // 
@@ -56,10 +56,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(411, 360);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dtgAlertas);
             this.Name = "UIAlertas";
             this.Text = "UIAlertas";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgAlertas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -67,7 +67,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dtgAlertas;
         private System.Windows.Forms.Label label1;
     }
 }

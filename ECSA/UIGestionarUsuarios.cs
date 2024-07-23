@@ -229,6 +229,7 @@ namespace ECSA
                     {
                         if (Usuariobloqueado)
                         {
+                            BLLUsuario.ContadorIngresos0(usuarioLog);
                             BLLSeguridad.RegistrarEnBitacora(9, usuarioLog.Nick, usuarioLog.ID_Usuario);
                             MessageBox.Show("Usuario desbloqueado");
                             CalcularDigitos();

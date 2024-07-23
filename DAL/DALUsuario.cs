@@ -52,6 +52,11 @@ namespace DAL
         {
             return DAOSUsuario.GetInstance().SumarIntento(usuariolog); 
         }
+        
+         public bool ContadorIngresos0(BE.Usuario usuariolog)
+        {
+            return DAOSUsuario.GetInstance().ContadorIngresos0(usuariolog.ID_Usuario);
+        }
 
         public bool BloquearUsuario(int ID_Usuario)
         {

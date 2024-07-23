@@ -35,9 +35,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dtgBitacora = new System.Windows.Forms.DataGridView();
             this.btnDescargarBitacora = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgBitacora)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -57,6 +57,7 @@
             this.btnBuscar.TabIndex = 1;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // dateTimePicker1
             // 
@@ -97,13 +98,13 @@
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 7;
             // 
-            // dataGridView1
+            // dtgBitacora
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 130);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(569, 308);
-            this.dataGridView1.TabIndex = 8;
+            this.dtgBitacora.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgBitacora.Location = new System.Drawing.Point(12, 130);
+            this.dtgBitacora.Name = "dtgBitacora";
+            this.dtgBitacora.Size = new System.Drawing.Size(569, 308);
+            this.dtgBitacora.TabIndex = 8;
             // 
             // btnDescargarBitacora
             // 
@@ -113,6 +114,7 @@
             this.btnDescargarBitacora.TabIndex = 9;
             this.btnDescargarBitacora.Text = "Descargar Bitacora";
             this.btnDescargarBitacora.UseVisualStyleBackColor = true;
+            this.btnDescargarBitacora.Click += new System.EventHandler(this.btnDescargarBitacora_Click);
             // 
             // UIBitacora
             // 
@@ -120,7 +122,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(593, 486);
             this.Controls.Add(this.btnDescargarBitacora);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dtgBitacora);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -130,7 +132,7 @@
             this.Controls.Add(this.label1);
             this.Name = "UIBitacora";
             this.Text = "UIBitacora";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgBitacora)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,7 +147,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dtgBitacora;
         private System.Windows.Forms.Button btnDescargarBitacora;
     }
 }

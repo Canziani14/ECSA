@@ -37,7 +37,7 @@ namespace DAL.Mappers
                     Nick = DALSeguridad.DesencriptarCamposReversible(item.Field<string>("Nick")),
                     Mail = DALSeguridad.DesencriptarCamposReversible(item.Field<string>("Mail")),
                     Contraseña = item.Field<string>("Contraseña"),
-                    Estado = item.Field<bool>("Estado")
+                    Estado = item.IsNull("Estado") ? false : item.Field<bool>("Estado")
 
                 });
             }

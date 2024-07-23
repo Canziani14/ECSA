@@ -33,8 +33,8 @@ namespace DAL.DAOs
 
         string connectionString = ConfigurationManager.ConnectionStrings["Produccion"].ConnectionString;
 
-        string QueryInsert = "INSERT INTO Usuario (Nombre, Apellido, Nick, Mail, DNI, Contraseña)" +
-            "VALUES (@Nombre, @Apellido, @Nick, @Mail, @DNI, @Contraseña)";
+        string QueryInsert = "INSERT INTO Usuario (Nombre, Apellido, Nick, Mail, DNI, Contraseña, estado)" +
+            "VALUES (@Nombre, @Apellido, @Nick, @Mail, @DNI, @Contraseña, 1)";
 
         string QueryDelete = "delete from Usuario where ID_Usuario = @ID_Usuario";
 
@@ -51,6 +51,7 @@ namespace DAL.DAOs
         string QuerySumarIntento = "UPDATE Usuario SET Contador_Int_Fallidos = Contador_Int_Fallidos + 1 WHERE ID_Usuario = @ID_Usuario";
         string QueryBloquearUsuario = "Update usuario set Estado = 'False' where ID_Usuario = @ID_Usuario";
         string QueryDesbloquearUsuario = "Update usuario set Estado = 'True', Contador_Int_Fallidos=0 where ID_Usuario = @ID_Usuario";
+        string QueryUpdateContador0 = "update usuario set Contador_Int_Fallidos = 0 where ID_Usuario = @ID_Usuario";
         #endregion
 
         #region Agregar Usuario
@@ -125,14 +126,14 @@ namespace DAL.DAOs
 
 
             List<SqlParameter> parameters = new List<SqlParameter>()
-    {
-        new SqlParameter("@Nombre", Nombre),
-        new SqlParameter("@Apellido", Apellido),
-        new SqlParameter("@Nick", Nick),
-        new SqlParameter("@Mail", Mail),
-        new SqlParameter("@DNI", DNI),
-        new SqlParameter("@ID_Usuario", ID_Usuario),
-    };
+            {
+                new SqlParameter("@Nombre", Nombre),
+                new SqlParameter("@Apellido", Apellido),
+                new SqlParameter("@Nick", Nick),
+                new SqlParameter("@Mail", Mail),
+                new SqlParameter("@DNI", DNI),
+                new SqlParameter("@ID_Usuario", ID_Usuario),
+            };
 
             try
             {
@@ -216,9 +217,9 @@ namespace DAL.DAOs
         public int SumarIntento(BE.Usuario usuariolog)
         {
             List<SqlParameter> parametersUpdate = new List<SqlParameter>()
-    {
-        new SqlParameter("@ID_Usuario", usuariolog.ID_Usuario)
-    };
+            {
+                new SqlParameter("@ID_Usuario", usuariolog.ID_Usuario)
+            };
 
             // Consulta para incrementar el contador de intentos fallidos
             string queryUpdate = "UPDATE Usuario SET Contador_Int_Fallidos = Contador_Int_Fallidos + 1 WHERE ID_Usuario = @ID_Usuario;";
@@ -226,9 +227,9 @@ namespace DAL.DAOs
 
             // Crear nuevos parámetros para la siguiente consulta
             List<SqlParameter> parametersSelect = new List<SqlParameter>()
-    {
-        new SqlParameter("@ID_Usuario", usuariolog.ID_Usuario)
-    };
+            {
+                new SqlParameter("@ID_Usuario", usuariolog.ID_Usuario)
+            };
 
             // Consulta para obtener el nuevo valor de IntentosFallidos
             string querySelect = "SELECT Contador_Int_Fallidos FROM Usuario WHERE ID_Usuario = @ID_Usuario;";
@@ -244,6 +245,54 @@ namespace DAL.DAOs
             }
         }
 
+        
+        public bool ContadorIngresos0(int ID_Usuario)
+                {
+                    bool returnValue = false;
+
+                    List<SqlParameter> parameters = new List<SqlParameter>()
+                    {
+                        new SqlParameter("@ID_Usuario", ID_Usuario)
+
+                    };
+
+                    try
+                    {
+                        Console.WriteLine("Executing SQL: " + QueryUpdateContador0);
+                        foreach (var param in parameters)
+                        {
+                            Console.WriteLine($"{param.ParameterName}: {param.Value}");
+                        }
+
+                        int rowsAffected = SqlHelper.GetInstance(connectionString).ExecuteNonQuery(QueryUpdateContador0, parameters);
+                        returnValue = true;
+
+                        if (returnValue)
+                        {
+                            Console.WriteLine("Usuario actualizado con éxito.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("No se actualizó ninguna fila.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex.Message);
+                        returnValue = false;
+                    }
+
+
+                    return returnValue;
+                }
+
+
+
+
+
+
+
+
 
 
         public bool BloquearUsuario(int ID_Usuario)
@@ -253,10 +302,10 @@ namespace DAL.DAOs
 
 
             List<SqlParameter> parameters = new List<SqlParameter>()
-    {
-        new SqlParameter("@ID_Usuario", ID_Usuario)
+            {
+                new SqlParameter("@ID_Usuario", ID_Usuario)
 
-        };
+            };
 
             try
             {

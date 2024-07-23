@@ -129,8 +129,16 @@ namespace BLL
             throw new NotImplementedException();
         }
 
-
-        /*
+        public List<Bitacora> Listar()
+        {
+            return DALSeguridad.Listar();
+        }
+        
+         public List<Bitacora> ListarCrit3()
+        {
+            return DALSeguridad.ListarCrit3();
+        }
+                /*
                 
 
 

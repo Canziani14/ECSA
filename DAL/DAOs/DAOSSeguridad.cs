@@ -38,6 +38,9 @@ namespace DAL.DAOs
 
         DAL.DALSeguridad DALSeguridad = new DALSeguridad();
 
+
+        string QuerySelect = "select * from Bitacora";
+        string QuerySelectCrit3 = "select * from Bitacora where criticidad = 3";
         #endregion
 
         #region digitos verificadores
@@ -646,8 +649,22 @@ namespace DAL.DAOs
         }
 
 
+        public List<BE.Bitacora> Listar()
+        {
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelect);
 
 
+            return Mappers.MAPPERSBitacora.GetInstance().Map(table);
+        }
+
+        
+         public List<BE.Bitacora> ListarCrit3()
+        {
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectCrit3);
+
+
+            return Mappers.MAPPERSBitacora.GetInstance().Map(table);
+        }
 
 
 

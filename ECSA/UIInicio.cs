@@ -44,7 +44,7 @@ namespace ECSA
 
         private void btnBKP_Click(object sender, EventArgs e)
         {
-            UIGestionarBackUp uiGestionarBackUp = new UIGestionarBackUp();
+            UIGestionarBackUp uiGestionarBackUp = new UIGestionarBackUp(usuarioLogin);
             uiGestionarBackUp.MdiParent = this;
             uiGestionarBackUp.Show();
         }
