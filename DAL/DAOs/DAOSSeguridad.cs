@@ -258,7 +258,8 @@ namespace DAL.DAOs
             dvh += CalcularNumero(d["Descripcion"]?.ToString() ?? "") * 3;
             dvh += CalcularNumero(d["Criticidad"]?.ToString() ?? "") * 4;
             dvh += CalcularNumero(d["ID_usuario"]?.ToString() ?? "") * 5;
-            
+            dvh += CalcularNumero(d["NickUsuarioLogin"]?.ToString() ?? "") * 6;
+
             return dvh;
 
         }
@@ -445,10 +446,11 @@ namespace DAL.DAOs
 
 
 
-        public BE.Bitacora RegistrarEnBitacora(int i, int ID_Usuario)
+        public BE.Bitacora RegistrarEnBitacora(int i, string NickUsuarioLogin, int ID_Usuario)
         {
             
             BE.Bitacora BEBitacora = new BE.Bitacora();
+            BEBitacora.NickUsuarioLogin = NickUsuarioLogin;
             BEBitacora.ID_Usuario = ID_Usuario;
             BEBitacora.Criticidad = 0;
             BEBitacora.Fecha = DateTime.Now;
@@ -624,13 +626,14 @@ namespace DAL.DAOs
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO Bitacora (ID_Usuario, Criticidad, Fecha, Descripcion) VALUES (@ID_Usuario, @Criticidad, @Fecha, @Descripcion)";
+                string query = "INSERT INTO Bitacora (ID_Usuario, Criticidad, Fecha, Descripcion,NickUsuarioLogin ) VALUES (@ID_Usuario, @Criticidad, @Fecha, @Descripcion, @NickUsuarioLogin)";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@ID_Usuario", bitacora.ID_Usuario);
                     command.Parameters.AddWithValue("@Criticidad", bitacora.Criticidad);
                     command.Parameters.AddWithValue("@Fecha", bitacora.Fecha);
                     command.Parameters.AddWithValue("@Descripcion", bitacora.Descripcion);
+                    command.Parameters.AddWithValue("@NickUsuarioLogin", bitacora.NickUsuarioLogin);
 
                     connection.Open();
                     int rowwsaffect=command.ExecuteNonQuery();

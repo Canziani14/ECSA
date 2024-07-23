@@ -16,7 +16,9 @@ namespace BE
 
         public int Criticidad { get; set; }
 
-        public  int ID_Usuario { get; set; }
+        public  string NickUsuarioLogin { get; set; }
+
+        public int ID_Usuario { get; set; }
 
         public int DVH { get; set; }
     }

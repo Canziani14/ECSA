@@ -74,9 +74,9 @@ namespace DAL
         #region Bitacora
 
 
-        public BE.Bitacora RegistrarEnBitacora(int i, int ID_Usuario)
+        public BE.Bitacora RegistrarEnBitacora(int i, string NickUsuarioLogin, int ID_Usuario)
         {
-            return DAOSSeguridad.GetInstance().RegistrarEnBitacora(i, ID_Usuario);
+            return DAOSSeguridad.GetInstance().RegistrarEnBitacora(i, NickUsuarioLogin, ID_Usuario);
         }
 
         public bool BuscarEnBitacora()

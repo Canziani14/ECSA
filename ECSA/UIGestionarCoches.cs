@@ -18,12 +18,13 @@ namespace ECSA
         BLL.BLL_ABM_Linea BLLinea = new BLL.BLL_ABM_Linea();
         BE.Coche BECoche = new BE.Coche();
         BE.Coche cocheSeleccionado = new BE.Coche();
-      
-        public UIGestionarCoches()
+        private BE.Usuario usuarioLog;
+        public UIGestionarCoches(BE.Usuario usuarioLog)
         {
             InitializeComponent();
             dtgCoches.DataSource= BLLCoche.Listar();
             LlenarComboBox(cmbLinea);
+            this.usuarioLog = usuarioLog;
         }
 
         private void btnCrearCoche_Click(object sender, EventArgs e)
@@ -53,6 +54,7 @@ namespace ECSA
 
                 if (BLLCoche.Crear(BECoche))
                 {
+                    BLLSeguridad.RegistrarEnBitacora(21, usuarioLog.Nick, usuarioLog.ID_Usuario);
                     MessageBox.Show("Coche creado con éxito");
                     CalcularDigitos();
                 }
@@ -86,6 +88,7 @@ namespace ECSA
                         {
                             if (cocheEliminado)
                             {
+                                BLLSeguridad.RegistrarEnBitacora(22, usuarioLog.Nick, usuarioLog.ID_Usuario);
                                 CalcularDigitos();
                                 limpiarGrilla();
                                 limpiartxt();

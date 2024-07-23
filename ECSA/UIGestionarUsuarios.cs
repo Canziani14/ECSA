@@ -19,11 +19,13 @@ namespace ECSA
         BE.Usuario UsuarioSeleccionado = new BE.Usuario();
         BLL.BLL_ABM_Usuario BLLUsuario = new BLL.BLL_ABM_Usuario();
         BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
-
-        public UIGestionarUsuarios()
+        private BE.Usuario usuarioLog;
+        public UIGestionarUsuarios(BE.Usuario usuarioLog)
         {
+            this.usuarioLog = usuarioLog;
             InitializeComponent();
             dtgUsuarios.DataSource = BLLUsuario.Listar();
+
         }
 
 
@@ -42,6 +44,7 @@ namespace ECSA
                     {
                         if (UsuarioEliminado)
                         {
+                            BLLSeguridad.RegistrarEnBitacora(7, usuarioLog.Nick, usuarioLog.ID_Usuario);
                             CalcularDigitos();
                             limpiarGrilla();
                             limpiartxt();
@@ -95,7 +98,8 @@ namespace ECSA
 
 
                 if (BLLUsuario.Crear(BEUsuario))
-                    {                    
+                    {
+                    BLLSeguridad.RegistrarEnBitacora(5, usuarioLog.Nick, usuarioLog.ID_Usuario);
                     MessageBox.Show("Usuario creado con éxito");
                         CalcularDigitos();
                     }
@@ -136,6 +140,7 @@ namespace ECSA
                     }
             ))
                     {
+                        BLLSeguridad.RegistrarEnBitacora(6, usuarioLog.Nick, usuarioLog.ID_Usuario);
                         MessageBox.Show("Usuario modificado con exito");
                         CalcularDigitos();
                         limpiarGrilla();
@@ -187,6 +192,7 @@ namespace ECSA
                     {
                         if (Usuariobloqueado)
                         {
+                            BLLSeguridad.RegistrarEnBitacora(8, usuarioLog.Nick, usuarioLog.ID_Usuario);
                             MessageBox.Show("Usuario bloqueado");
                             CalcularDigitos();
                             limpiarGrilla();
@@ -223,6 +229,7 @@ namespace ECSA
                     {
                         if (Usuariobloqueado)
                         {
+                            BLLSeguridad.RegistrarEnBitacora(9, usuarioLog.Nick, usuarioLog.ID_Usuario);
                             MessageBox.Show("Usuario desbloqueado");
                             CalcularDigitos();
                             limpiarGrilla();

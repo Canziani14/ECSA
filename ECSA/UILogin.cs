@@ -49,9 +49,9 @@ namespace ECSA
                 {
                     if (ContraseñaBuscada.Count > 0 )
                     {
-                         BLLSeguridad.RegistrarEnBitacora(1, UsuarioLog.ID_Usuario);
+                         BLLSeguridad.RegistrarEnBitacora(1,UsuarioLog.Nick, UsuarioLog.ID_Usuario);
                         MessageBox.Show("Login exitoso. ¡Bienvenido " + UsuarioLog.Nick + "!", "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        UIInicio uiInicio = new UIInicio();
+                        UIInicio uiInicio = new UIInicio(UsuarioLog);
                         uiInicio.Show();
                         this.Hide();
                     }
@@ -61,11 +61,13 @@ namespace ECSA
 
                         if (intentosFallidos >= 3)
                         {
+                            BLLSeguridad.RegistrarEnBitacora(3, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
                             BLLUsuario.BloquearUsuario(UsuarioLog.ID_Usuario);
                             MessageBox.Show("Cuenta bloqueada después de 3 intentos fallidos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else
                         {
+                            BLLSeguridad.RegistrarEnBitacora(2, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
                             MessageBox.Show("Contraseña incorrecta. Intento " + intentosFallidos + " de 3.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             txtContraseña.Clear();
                             txtContraseña.Focus();
@@ -76,6 +78,7 @@ namespace ECSA
             }
             else
             {
+                BLLSeguridad.RegistrarEnBitacora(4, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
                 MessageBox.Show("No puede iniciar sesion. "+UsuarioLog.Nick+" bloqueado");
             }
 

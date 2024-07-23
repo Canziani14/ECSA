@@ -21,7 +21,8 @@ namespace ECSA
         BE.Servicio BEServicio = new BE.Servicio();
         BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
         BE.Servicio servicioSeleccionado = new BE.Servicio();
-        public UIGestionarServicios(int linea, string nombreLinea)
+        private BE.Usuario usuarioLog;
+        public UIGestionarServicios(int linea, string nombreLinea, BE.Usuario usuarioLog)
         {
             InitializeComponent();
             txtIDLinea.Text = (linea).ToString();
@@ -29,7 +30,7 @@ namespace ECSA
 
             dtgServicios.DataSource = BLLServicios.Listar(linea);
             BEServicio.Linea = linea;
-
+            this.usuarioLog = usuarioLog;
             LlenarComboBoxConductor(cmbConductor);
             LlenarComboBoxInternos(cmbInterno);
 
@@ -65,6 +66,7 @@ namespace ECSA
 
                 if (BLLServicios.Crear(BEServicio))
                 {
+                    BLLSeguridad.RegistrarEnBitacora(25, usuarioLog.Nick, usuarioLog.ID_Usuario);
                     MessageBox.Show("Servicio creado con éxito");
                     CalcularDigitos();
                 }
@@ -118,6 +120,7 @@ namespace ECSA
                     // Intenta modificar el servicio en la base de datos
                     if (BLLServicios.Modificar(servicioModificado))
                     {
+                        BLLSeguridad.RegistrarEnBitacora(23, usuarioLog.Nick, usuarioLog.ID_Usuario);
                         MessageBox.Show("Servicio modificado con éxito");
                         CalcularDigitos();
                         limpiarGrilla();
@@ -154,6 +157,7 @@ namespace ECSA
                     {
                         if (LineaEliminada)
                         {
+                            BLLSeguridad.RegistrarEnBitacora(24, usuarioLog.Nick, usuarioLog.ID_Usuario);
                             CalcularDigitos();
                             limpiarGrilla();
                            // limpiartxt();
@@ -212,6 +216,7 @@ namespace ECSA
 
                 if (BLLServicios.CrearServicio(BEServicio))
                 {
+                    BLLSeguridad.RegistrarEnBitacora(26, usuarioLog.Nick, usuarioLog.ID_Usuario);
                     MessageBox.Show("Servicio asignado con éxito");
                     CalcularDigitos();
                 }

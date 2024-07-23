@@ -40,6 +40,7 @@
             this.btnBKP.TabIndex = 0;
             this.btnBKP.Text = "Realizar BackUp";
             this.btnBKP.UseVisualStyleBackColor = true;
+            this.btnBKP.Click += new System.EventHandler(this.btnBKP_Click);
             // 
             // btnRestore
             // 
@@ -49,6 +50,7 @@
             this.btnRestore.TabIndex = 1;
             this.btnRestore.Text = "Realizar Restore";
             this.btnRestore.UseVisualStyleBackColor = true;
+            this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
             // 
             // UIGestionarBackUp
             // 

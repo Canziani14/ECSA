@@ -34,6 +34,7 @@ namespace DAL.Mappers
                     Fecha = item.Field<DateTime>("Fecha"),
                     Criticidad = item.Field<int>("Criticidad"),
                     ID_Usuario = item.Field<int>("ID_Usuario"),
+                    NickUsuarioLogin= item.Field<string>("NickUsuarioLogin")
                 });
             }
             return bitacoras;

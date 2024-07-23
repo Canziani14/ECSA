@@ -1,4 +1,5 @@
-﻿using BLL;
+﻿using BE;
+using BLL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,14 +19,16 @@ namespace ECSA
         BE.Empleado BEEmpleado = new BE.Empleado();
         BE.Empleado EmpleadoSeleccionado = new BE.Empleado();
         BLL.ABM_Empleado BLLEmpleado = new BLL.ABM_Empleado();
-        BLL.BLLSeguridad BLLSeguridad= new BLL.BLLSeguridad();
-       
+        BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
+        BLL.BLL_ABM_Linea BLLinea = new BLL.BLL_ABM_Linea();
+        private BE.Usuario usuarioLog;
 
-
-        public UIGestionarEmpleados()
+        public UIGestionarEmpleados(BE.Usuario usuarioLog)
         {
             InitializeComponent();
             dtgEmpleados.DataSource = BLLEmpleado.Listar();
+            this.usuarioLog = usuarioLog;
+            LlenarComboBox(cmbLinea);
         }
         #endregion
 
@@ -43,16 +46,26 @@ namespace ECSA
 
                 BEEmpleado.Nombre = txtNombre.Text;
                 BEEmpleado.Apellido = txtApellido.Text;
-                BEEmpleado.DNI= BLLSeguridad.EncriptarCamposReversible(txtDNI.Text);
+                BEEmpleado.DNI = BLLSeguridad.EncriptarCamposReversible(txtDNI.Text);
                 BEEmpleado.Direccion = BLLSeguridad.EncriptarCamposReversible(txtDireccion.Text);
                 BEEmpleado.Telefono = BLLSeguridad.EncriptarCamposReversible(txtTelefono.Text);
                 BEEmpleado.LineaPertenece = int.Parse(cmbLinea.Text);
                 BEEmpleado.FechaDeingreso = DateTime.Parse(txtFechadeIngreso.Text);
+                if (cmbLinea.SelectedValue != null)
+                {
 
+                    BEEmpleado.LineaPertenece = (int)cmbLinea.SelectedValue;
+                    MessageBox.Show("Línea guardada con éxito. ID: " + BEEmpleado.LineaPertenece);
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, selecciona una línea válida.");
+                }
 
 
                 if (BLLEmpleado.Crear(BEEmpleado))
                 {
+                    BLLSeguridad.RegistrarEnBitacora(15, usuarioLog.Nick, usuarioLog.ID_Usuario);
                     MessageBox.Show("Empleado creado con éxito");
                     CalcularDigitos();
 
@@ -70,7 +83,7 @@ namespace ECSA
                 MessageBox.Show("Error: " + ex.Message);
                 return;
             }
-            
+
         }
         #endregion
 
@@ -83,17 +96,18 @@ namespace ECSA
                 {
                     if (BLLEmpleado.Modificar(new BE.Empleado()
                     {
-                        Nombre = txtNombre.Text ,
-                        Apellido = txtApellido.Text ,
+                        Nombre = txtNombre.Text,
+                        Apellido = txtApellido.Text,
                         DNI = BLLSeguridad.EncriptarCamposReversible(txtDNI.Text),
-                        Direccion = BLLSeguridad.EncriptarCamposReversible(txtDireccion.Text) ,
-                        Telefono= BLLSeguridad.EncriptarCamposReversible(txtTelefono.Text),
-                        LineaPertenece= int.Parse(cmbLinea.Text) ,
-                        FechaDeingreso = DateTime.Parse( txtFechadeIngreso.Text),
+                        Direccion = BLLSeguridad.EncriptarCamposReversible(txtDireccion.Text),
+                        Telefono = BLLSeguridad.EncriptarCamposReversible(txtTelefono.Text),
+                        LineaPertenece = int.Parse(cmbLinea.Text),
+                        FechaDeingreso = DateTime.Parse(txtFechadeIngreso.Text),
                         Legajo = int.Parse(txtLegajo.Text),
-                }
+                    }
             ))
                     {
+                        BLLSeguridad.RegistrarEnBitacora(16, usuarioLog.Nick, usuarioLog.ID_Usuario);
                         MessageBox.Show("Empleado modificado con exito");
                         CalcularDigitos();
                         limpiarGrilla();
@@ -114,7 +128,7 @@ namespace ECSA
             else
             {
                 MessageBox.Show("Seleccione un empleado para modificar");
-            }           
+            }
         }
 
         private void dtgEmpleados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -163,6 +177,7 @@ namespace ECSA
                     {
                         if (EmpleadoEliminado)
                         {
+                            BLLSeguridad.RegistrarEnBitacora(17, usuarioLog.Nick, usuarioLog.ID_Usuario);
                             CalcularDigitos();
                             limpiarGrilla();
                             limpiartxt();
@@ -182,7 +197,7 @@ namespace ECSA
                     MessageBox.Show("Seleccione un empleado para borrar");
                 }
             }
-            
+
         }
         #endregion
 
@@ -222,13 +237,13 @@ namespace ECSA
                 MessageBox.Show("Por favor, ingrese un número de legajo válido.");
                 dtgEmpleados.DataSource = null;
             }
-        }     
+        }
 
 
-    #endregion
+        #endregion
 
         #region FuncionesVarias
-    private void limpiarGrilla()
+        private void limpiarGrilla()
         {
             dtgEmpleados.DataSource = null;
             dtgEmpleados.DataSource = BLLEmpleado.Listar();
@@ -236,7 +251,7 @@ namespace ECSA
 
         private void limpiartxt()
         {
-            
+
             txtNombre.Clear();
             txtApellido.Clear();
             txtDNI.Clear();
@@ -245,21 +260,35 @@ namespace ECSA
             txtNombre.Clear();
         }
 
-       public void CalcularDigitos()
+        public void CalcularDigitos()
         {
-            string tabla = "Empleado";                            
+            string tabla = "Empleado";
             BLLSeguridad.VerificarDigitosVerificadores(tabla);
             BLLSeguridad.CalcularDVV(tabla);
         }
 
+        private void LlenarComboBox(ComboBox comboBox)
+        {
+            try
+            {
+                var lineas = BLLinea.Listar();
+                comboBox.DataSource = null; // Limpiar cualquier DataSource anterior
+                comboBox.Items.Clear(); // Limpiar elementos anteriores
+                comboBox.DataSource = lineas; // Establecer nuevo DataSource
+                comboBox.DisplayMember = "NumeroDeLinea"; // La propiedad que quieres mostrar
+                comboBox.ValueMember = "ID_Linea"; // La propiedad que quieres usar como valor
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
 
-        
-        
 
+
+        }
+
+        #endregion
     }
-
-    #endregion
-
 
 
 }

@@ -14,28 +14,30 @@ namespace ECSA
     public partial class UIInicio : Form
     {
         BLL.BLLSeguridad BLLSeguridad= new BLL.BLLSeguridad();
-        public UIInicio()
+
+        private BE.Usuario usuarioLogin;
+        public UIInicio(BE.Usuario usuarioLog)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-            
+            this.usuarioLogin = usuarioLog;
             BLLSeguridad.VerificarDigitosVerificadores("Usuario");
             BLLSeguridad.CalcularDVV("Usuario");
 
         }
 
-    
+        
 
         private void GestionarEmpleados_Click(object sender, EventArgs e)
         {
-            UIGestionarEmpleados uigestionarEmpleados = new UIGestionarEmpleados();
+            UIGestionarEmpleados uigestionarEmpleados = new UIGestionarEmpleados(usuarioLogin);
             uigestionarEmpleados.MdiParent = this;
             uigestionarEmpleados.Show();
         }
 
         private void btnGestionarUsuarios_Click_1(object sender, EventArgs e)
         {
-            UIGestionarUsuarios uigestionarUsuarios = new UIGestionarUsuarios();
+            UIGestionarUsuarios uigestionarUsuarios = new UIGestionarUsuarios(usuarioLogin);
             uigestionarUsuarios.MdiParent = this;
             uigestionarUsuarios.Show();
         }
@@ -49,7 +51,7 @@ namespace ECSA
 
         private void btnGestionarLineas_Click(object sender, EventArgs e)
         {
-            UIGestionarLinea uigestionarEmpleados = new UIGestionarLinea();
+            UIGestionarLinea uigestionarEmpleados = new UIGestionarLinea(usuarioLogin);
             uigestionarEmpleados.MdiParent = this;
             uigestionarEmpleados.Show();
         }
@@ -84,7 +86,7 @@ namespace ECSA
 
         private void btnCambiarContraseña_Click(object sender, EventArgs e)
         {
-            UICambiarContraseña uiCambiarContraseña = new UICambiarContraseña();
+            UICambiarContraseña uiCambiarContraseña = new UICambiarContraseña(usuarioLogin);
             uiCambiarContraseña.MdiParent = this;
             uiCambiarContraseña.Show();
         }
@@ -117,6 +119,7 @@ namespace ECSA
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
+            BLLSeguridad.RegistrarEnBitacora(29, usuarioLogin.Nick, usuarioLogin.ID_Usuario);
             Application.Exit();
         }
     }

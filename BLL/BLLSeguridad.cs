@@ -119,9 +119,9 @@ namespace BLL
             throw new NotImplementedException();
         }
 
-        public BE.Bitacora RegistrarEnBitacora(int i, int ID_Usuario)
+        public BE.Bitacora RegistrarEnBitacora(int i, string NickUsuarioLogin, int ID_Usuario)
         {
-            return DALSeguridad.RegistrarEnBitacora(i, ID_Usuario);
+            return DALSeguridad.RegistrarEnBitacora(i, NickUsuarioLogin, ID_Usuario);
         }
 
         public bool DescargarBitacora()

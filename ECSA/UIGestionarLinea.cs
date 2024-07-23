@@ -19,10 +19,12 @@ namespace ECSA
         BE.Linea BELinea = new BE.Linea();
         BE.Linea LineaSeleccionada = new BE.Linea();
         BLL.BLLSeguridad BLLSeguridad = new BLLSeguridad();
-        public UIGestionarLinea()
+        private BE.Usuario usuarioLog;
+        public UIGestionarLinea(BE.Usuario usuarioLog)
         {
             InitializeComponent();
             dtgLineas.DataSource = BLLinea.Listar();
+            this.usuarioLog = usuarioLog;
         }
 
       
@@ -43,6 +45,7 @@ namespace ECSA
 
                 if (BLLinea.Crear(BELinea))
                 {
+                    BLLSeguridad.RegistrarEnBitacora(18, usuarioLog.Nick, usuarioLog.ID_Usuario);
                     MessageBox.Show("Linea creada con éxito");
                     CalcularDigitos();
                 }
@@ -78,6 +81,7 @@ namespace ECSA
                     }
             ))
                     {
+                        BLLSeguridad.RegistrarEnBitacora(19, usuarioLog.Nick, usuarioLog.ID_Usuario);
                         MessageBox.Show("Linea modificada con exito");
                         CalcularDigitos();
                         limpiarGrilla();
@@ -118,6 +122,7 @@ namespace ECSA
                     {
                         if (LineaEliminada)
                         {
+                            BLLSeguridad.RegistrarEnBitacora(20, usuarioLog.Nick, usuarioLog.ID_Usuario);
                             CalcularDigitos();
                             limpiarGrilla();
                             limpiartxt();
@@ -145,7 +150,7 @@ namespace ECSA
 
         private void btnGestionarCoches_Click(object sender, EventArgs e)
         {
-            UIGestionarCoches uiGestionarCoches = new UIGestionarCoches();
+            UIGestionarCoches uiGestionarCoches = new UIGestionarCoches(usuarioLog);
             uiGestionarCoches.MdiParent = this.MdiParent;
             uiGestionarCoches.Show();
         }
@@ -163,7 +168,7 @@ namespace ECSA
             if (int.TryParse(txtIDLinea.Text, out int IDLinea))
             {
                 string NombreLinea = txtNombreLinea.Text;
-                UIGestionarServicios uiGestionarServicios = new UIGestionarServicios(IDLinea, NombreLinea);
+                UIGestionarServicios uiGestionarServicios = new UIGestionarServicios(IDLinea, NombreLinea, usuarioLog);
                 uiGestionarServicios.MdiParent = this.MdiParent;
                 uiGestionarServicios.Show();
             }
