@@ -110,7 +110,7 @@ namespace ECSA
         #region Eliminar Linea
         private void btnEliminarLinea_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("¿Esta seguro de eliminar este usuario?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult respuesta = MessageBox.Show("¿Esta seguro de eliminar esta linea?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (respuesta == DialogResult.Yes)
             {
 

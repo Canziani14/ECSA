@@ -44,10 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DALCoche.cs" />
+    <Compile Include="DALIdioma.cs" />
     <Compile Include="DALLinea.cs" />
     <Compile Include="DALPasaron.cs" />
     <Compile Include="DALServicio.cs" />
     <Compile Include="DAOs\DAOSCoche.cs" />
+    <Compile Include="DAOs\DAOSIdioma.cs" />
     <Compile Include="DAOs\DAOSLinea.cs" />
     <Compile Include="DAOs\DAOSPasaron.cs" />
     <Compile Include="DAOs\DAOSEmpleado.cs" />
@@ -60,6 +62,7 @@
     <Compile Include="Mappers\MAPPERSCoche.cs" />
     <Compile Include="Mappers\MAPPERSeguridad.cs" />
     <Compile Include="Mappers\MAPPERServicio.cs" />
+    <Compile Include="Mappers\MAPPERSIdioma.cs" />
     <Compile Include="Mappers\MAPPERSLinea.cs" />
     <Compile Include="Mappers\MAPPERSServicio.cs" />
     <Compile Include="Mappers\MAPPERSUsuario.cs" />

@@ -36,9 +36,9 @@
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.txtContraseña = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.Español = new System.Windows.Forms.ListBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnGenerarNuevaClave = new System.Windows.Forms.Button();
+            this.cmbIdiomas = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,19 +96,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(247, 206);
+            this.label3.Location = new System.Drawing.Point(245, 198);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "Idioma";
-            // 
-            // Español
-            // 
-            this.Español.FormattingEnabled = true;
-            this.Español.Location = new System.Drawing.Point(230, 222);
-            this.Español.Name = "Español";
-            this.Español.Size = new System.Drawing.Size(70, 17);
-            this.Español.TabIndex = 5;
             // 
             // pictureBox1
             // 
@@ -130,14 +122,22 @@
             this.btnGenerarNuevaClave.UseVisualStyleBackColor = true;
             this.btnGenerarNuevaClave.Click += new System.EventHandler(this.btnGenerarNuevaClave_Click);
             // 
+            // cmbIdiomas
+            // 
+            this.cmbIdiomas.FormattingEnabled = true;
+            this.cmbIdiomas.Location = new System.Drawing.Point(217, 214);
+            this.cmbIdiomas.Name = "cmbIdiomas";
+            this.cmbIdiomas.Size = new System.Drawing.Size(93, 21);
+            this.cmbIdiomas.TabIndex = 10;
+            // 
             // UILogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(516, 300);
+            this.Controls.Add(this.cmbIdiomas);
             this.Controls.Add(this.btnGenerarNuevaClave);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.Español);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtContraseña);
             this.Controls.Add(this.txtUsuario);
@@ -162,8 +162,8 @@
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.TextBox txtContraseña;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListBox Español;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnGenerarNuevaClave;
+        private System.Windows.Forms.ComboBox cmbIdiomas;
     }
 }

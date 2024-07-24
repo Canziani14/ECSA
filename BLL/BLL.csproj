@@ -46,6 +46,7 @@
     <Compile Include="BLL-ABM-Linea.cs" />
     <Compile Include="BLL-ABM-Servicio.cs" />
     <Compile Include="BLL-ABM-Usuario.cs" />
+    <Compile Include="BLLIdioma.cs" />
     <Compile Include="BLLPasaron.cs" />
     <Compile Include="BLLSeguridad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

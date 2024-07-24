@@ -19,10 +19,12 @@ namespace ECSA
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            LlenarComboBoxInternos(cmbIdiomas);
         }
         BLL.BLL_ABM_Usuario BLLUsuario= new BLL.BLL_ABM_Usuario();
         BLL.BLLSeguridad BLLSeguridad = new BLLSeguridad();
-
+        BE.Idioma BEIdioma = new BE.Idioma();
+        BLL.BLLIdioma BLLIdioma = new BLLIdioma();
 
 
         private void btnIniciar_Click(object sender, EventArgs e)
@@ -94,9 +96,26 @@ namespace ECSA
         uIGenerarNuevaContra.Show();
         }
 
-       
 
-            
-        
+
+
+        private void LlenarComboBoxInternos(ComboBox comboBox)
+        {
+            try
+            {
+                var idiomas = BLLIdioma.Listar();
+                comboBox.DataSource = null; // Limpiar cualquier DataSource anterior
+                comboBox.Items.Clear(); // Limpiar elementos anteriores
+                comboBox.DataSource = idiomas; // Establecer nuevo DataSource
+                comboBox.DisplayMember = "Descripcion"; // La propiedad que quieres mostrar
+                comboBox.ValueMember = "ID_Idioma"; // La propiedad que quieres usar como valor
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+
     }
 }
