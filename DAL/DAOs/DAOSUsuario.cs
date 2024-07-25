@@ -52,6 +52,7 @@ namespace DAL.DAOs
         string QueryBloquearUsuario = "Update usuario set Estado = 'False' where ID_Usuario = @ID_Usuario";
         string QueryDesbloquearUsuario = "Update usuario set Estado = 'True', Contador_Int_Fallidos=0 where ID_Usuario = @ID_Usuario";
         string QueryUpdateContador0 = "update usuario set Contador_Int_Fallidos = 0 where ID_Usuario = @ID_Usuario";
+        
         #endregion
 
         #region Agregar Usuario
@@ -60,14 +61,14 @@ namespace DAL.DAOs
             bool returnValue = false;
 
             List<SqlParameter> parameters = new List<SqlParameter>()
-    {
-        new SqlParameter("@Nombre", Nombre),
-        new SqlParameter("@Apellido", Apellido),
-        new SqlParameter("@Nick", Nick),
-        new SqlParameter("@Mail", Mail),
-        new SqlParameter("@DNI",DNI ),
-        new SqlParameter("@Contraseña",contraseña ),
-    };
+            {
+                new SqlParameter("@Nombre", Nombre),
+                new SqlParameter("@Apellido", Apellido),
+                new SqlParameter("@Nick", Nick),
+                new SqlParameter("@Mail", Mail),
+                new SqlParameter("@DNI",DNI ),
+                new SqlParameter("@Contraseña",contraseña ),
+            };
 
             try
             {
@@ -107,11 +108,23 @@ namespace DAL.DAOs
         public List<BE.Usuario> Buscar(int ID_Usuario)
         {
             List<SqlParameter> parameters = new List<SqlParameter>()
-    {
-        new SqlParameter("@ID_Usuario", ID_Usuario),
+            {
+                new SqlParameter("@ID_Usuario", ID_Usuario),
 
-    };
+            };
             DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByID, parameters);
+            return Mappers.MAPPERSUsuario.GetInstance().Map(table);
+        }
+
+        public List<BE.Usuario> Buscar(string nick)
+        {
+            
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@Nick", nick),
+
+            };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByNick, parameters);
             return Mappers.MAPPERSUsuario.GetInstance().Map(table);
         }
         #endregion

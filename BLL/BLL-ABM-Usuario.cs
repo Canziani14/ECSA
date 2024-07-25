@@ -41,6 +41,11 @@ namespace BLL
         {
             return DALUsuario.Buscar(ID_Usuario);
         }
+
+        public List<Usuario> Buscar(string Nick)
+        {
+            return DALUsuario.Buscar(Nick);
+        }
         #endregion
 
         public BE.Usuario BuscarNick(string nick)

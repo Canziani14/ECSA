@@ -37,6 +37,11 @@ namespace DAL
             return DAOs.DAOSUsuario.GetInstance().Buscar(ID_Usuario);
         }
 
+        public List<BE.Usuario> Buscar(string Nick)
+        {
+            return DAOs.DAOSUsuario.GetInstance().Buscar(Nick);
+        }
+
         public BE.Usuario BuscarNick(string nick)
         {
             return DAOSUsuario.GetInstance().BuscarNick(nick);

@@ -171,28 +171,30 @@ namespace ECSA
         #region BuscarUsuario
         private void btnBuscarUsuario_Click(object sender, EventArgs e)
             {
-
-          /*  if (int.TryParse(txtBuscarEmpleado.Text, out int legajo))
+            string nick = txtBuscarUsuario.Text;
+            string nickEncriptado=BLLSeguridad.EncriptarCamposReversible(nick);
+           if (!string.IsNullOrEmpty(nick))
             {
                 // Perform the search using the parsed legajo
-                List<BE.Empleado> empleados = BLLEmpleado.Buscar(legajo);
+                List<BE.Usuario> usuarios = BLLUsuario.Buscar(nickEncriptado);
+                
 
-                if (empleados != null && empleados.Count > 0)
+                if (usuarios != null && usuarios.Count > 0)
                 {
-                    dtgEmpleados.DataSource = empleados;
+                    dtgUsuarios.DataSource = usuarios;
                 }
                 else
                 {
                     MessageBox.Show("Empleado no encontrado.");
-                    dtgEmpleados.DataSource = empleados;
+                    dtgUsuarios.DataSource = usuarios;
                 }
             }
             else
             {
                 // Show error message if the input is not a valid integer
                 MessageBox.Show("Por favor, ingrese un número de legajo válido.");
-                dtgEmpleados.DataSource = null;
-            }*/
+                dtgUsuarios.DataSource = null;
+            }
         }
 
         #endregion
