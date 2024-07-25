@@ -114,9 +114,9 @@ namespace BLL
         #endregion
 
 
-        public bool BuscarEnBitacora()
+        public List<Bitacora> BuscarEnBitacora(string fechaDesde, string fechaHasta, string nick)
         {
-            throw new NotImplementedException();
+            return DAOSSeguridad.GetInstance().BuscarEnBitacora(fechaDesde, fechaHasta, nick);
         }
 
         public BE.Bitacora RegistrarEnBitacora(int i, string NickUsuarioLogin, int ID_Usuario)

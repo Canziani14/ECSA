@@ -1,4 +1,5 @@
 ﻿using BE;
+using DAL.Mappers;
 using SQLHelper;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace DAL.DAOs
         string connectionString = ConfigurationManager.ConnectionStrings["Produccion"].ConnectionString;
 
         DAL.DALSeguridad DALSeguridad = new DALSeguridad();
-
+        
 
         string QuerySelect = "select * from Bitacora";
         string QuerySelectCrit3 = "select * from Bitacora where criticidad = 3";
@@ -667,7 +668,50 @@ namespace DAL.DAOs
         }
 
 
+        public List<Bitacora> BuscarEnBitacora(string fechaDesde, string fechaHasta, string NickUsuarioLogin)
+        {
+            List<Bitacora> bitacoras = new List<Bitacora>();
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string sql = "SELECT * FROM Bitacora WHERE 1=1";
+
+                if (!string.IsNullOrEmpty(fechaDesde) && !string.IsNullOrEmpty(fechaHasta))
+                {
+                    sql += " AND fecha BETWEEN @FechaDesde AND @FechaHasta";
+                }
+
+                if (!string.IsNullOrEmpty(NickUsuarioLogin))
+                {
+                    sql += " AND NickUsuarioLogin = @NickUsuarioLogin";
+                }
+
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    if (!string.IsNullOrEmpty(fechaDesde) && !string.IsNullOrEmpty(fechaHasta))
+                    {
+                        command.Parameters.AddWithValue("@FechaDesde", fechaDesde);
+                        command.Parameters.AddWithValue("@FechaHasta", fechaHasta);
+                    }
+
+                    if (!string.IsNullOrEmpty(NickUsuarioLogin))
+                    {
+                        command.Parameters.AddWithValue("@NickUsuarioLogin", NickUsuarioLogin);
+                    }
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+
+                    // Usa el mapper para convertir el DataTable a una lista de Bitacora
+                    bitacoras = MAPPERSBitacora.GetInstance().Map(table);
+                }
+                
+            }
+
+            return bitacoras;
+        }
 
 
 

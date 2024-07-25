@@ -79,9 +79,9 @@ namespace DAL
             return DAOSSeguridad.GetInstance().RegistrarEnBitacora(i, NickUsuarioLogin, ID_Usuario);
         }
 
-        public bool BuscarEnBitacora()
+        public List<Bitacora> BuscarEnBitacora(string fechaDesde, string fechaHasta, string nick)
         {
-            throw new NotImplementedException();
+            return DAOSSeguridad.GetInstance().BuscarEnBitacora(fechaDesde, fechaHasta, nick);
         }
 
 

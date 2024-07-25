@@ -16,3 +16,8 @@ C:\Users\CASA\Desktop\ECSA\ECSA\SqlHelper\obj\Debug\SqlHelper.csproj.AssemblyRef
 C:\Users\CASA\Desktop\ECSA\ECSA\SqlHelper\obj\Debug\SqlHelper.csproj.CoreCompileInputs.cache
 C:\Users\CASA\Desktop\ECSA\ECSA\SqlHelper\obj\Debug\SqlHelper.dll
 C:\Users\CASA\Desktop\ECSA\ECSA\SqlHelper\obj\Debug\SqlHelper.pdb
+C:\Users\CASA\Desktop\ECSA\ECSA\SqlHelper\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\SqlHelper\bin\Debug\itextsharp.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\SqlHelper\bin\Debug\BouncyCastle.Cryptography.xml
+C:\Users\CASA\Desktop\ECSA\ECSA\SqlHelper\bin\Debug\itextsharp.xml
+C:\Users\CASA\Desktop\ECSA\ECSA\SqlHelper\obj\Debug\SqlHelper.csproj.CopyComplete
