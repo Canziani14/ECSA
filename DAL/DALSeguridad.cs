@@ -100,5 +100,11 @@ namespace DAL
             return DAOs.DAOSSeguridad.GetInstance().ListarCrit3();
         }
         #endregion
+
+
+
+
+
+
     }
 }

@@ -28,32 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dtgUsuarios = new System.Windows.Forms.DataGridView();
             this.btnAsignarPatente = new System.Windows.Forms.Button();
             this.btnQuitarPatente = new System.Windows.Forms.Button();
             this.btnBuscarUsuario = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtBuscarUsuario = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dtgPatentesSinAsignar = new System.Windows.Forms.DataGridView();
+            this.dtgPatentesActuales = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgPatentesSinAsignar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgPatentesActuales)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dtgUsuarios
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 53);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(278, 454);
-            this.dataGridView1.TabIndex = 0;
+            this.dtgUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgUsuarios.Location = new System.Drawing.Point(12, 53);
+            this.dtgUsuarios.Name = "dtgUsuarios";
+            this.dtgUsuarios.Size = new System.Drawing.Size(278, 454);
+            this.dtgUsuarios.TabIndex = 0;
+            this.dtgUsuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgUsuarios_CellDoubleClick);
             // 
             // btnAsignarPatente
             // 
-            this.btnAsignarPatente.Location = new System.Drawing.Point(195, 157);
+            this.btnAsignarPatente.Location = new System.Drawing.Point(205, 410);
             this.btnAsignarPatente.Name = "btnAsignarPatente";
             this.btnAsignarPatente.Size = new System.Drawing.Size(95, 23);
             this.btnAsignarPatente.TabIndex = 1;
@@ -63,7 +64,7 @@
             // 
             // btnQuitarPatente
             // 
-            this.btnQuitarPatente.Location = new System.Drawing.Point(195, 246);
+            this.btnQuitarPatente.Location = new System.Drawing.Point(205, 188);
             this.btnQuitarPatente.Name = "btnQuitarPatente";
             this.btnQuitarPatente.Size = new System.Drawing.Size(95, 23);
             this.btnQuitarPatente.TabIndex = 2;
@@ -81,17 +82,17 @@
             this.btnBuscarUsuario.UseVisualStyleBackColor = true;
             this.btnBuscarUsuario.Click += new System.EventHandler(this.btnBuscarUsuario_Click);
             // 
-            // textBox1
+            // txtBuscarUsuario
             // 
-            this.textBox1.Location = new System.Drawing.Point(78, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(134, 20);
-            this.textBox1.TabIndex = 4;
+            this.txtBuscarUsuario.Location = new System.Drawing.Point(78, 29);
+            this.txtBuscarUsuario.Name = "txtBuscarUsuario";
+            this.txtBuscarUsuario.Size = new System.Drawing.Size(134, 20);
+            this.txtBuscarUsuario.TabIndex = 4;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dataGridView3);
-            this.groupBox1.Controls.Add(this.dataGridView2);
+            this.groupBox1.Controls.Add(this.dtgPatentesSinAsignar);
+            this.groupBox1.Controls.Add(this.dtgPatentesActuales);
             this.groupBox1.Controls.Add(this.btnQuitarPatente);
             this.groupBox1.Controls.Add(this.btnAsignarPatente);
             this.groupBox1.Location = new System.Drawing.Point(312, 53);
@@ -101,21 +102,21 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gestor de Patentes";
             // 
-            // dataGridView3
+            // dtgPatentesSinAsignar
             // 
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(296, 42);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(189, 412);
-            this.dataGridView3.TabIndex = 7;
+            this.dtgPatentesSinAsignar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgPatentesSinAsignar.Location = new System.Drawing.Point(6, 244);
+            this.dtgPatentesSinAsignar.Name = "dtgPatentesSinAsignar";
+            this.dtgPatentesSinAsignar.Size = new System.Drawing.Size(479, 160);
+            this.dtgPatentesSinAsignar.TabIndex = 7;
             // 
-            // dataGridView2
+            // dtgPatentesActuales
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 42);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(189, 412);
-            this.dataGridView2.TabIndex = 6;
+            this.dtgPatentesActuales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgPatentesActuales.Location = new System.Drawing.Point(6, 42);
+            this.dtgPatentesActuales.Name = "dtgPatentesActuales";
+            this.dtgPatentesActuales.Size = new System.Drawing.Size(479, 140);
+            this.dtgPatentesActuales.TabIndex = 6;
             // 
             // label1
             // 
@@ -133,15 +134,15 @@
             this.ClientSize = new System.Drawing.Size(825, 541);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtBuscarUsuario);
             this.Controls.Add(this.btnBuscarUsuario);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dtgUsuarios);
             this.Name = "UIGestionarPatentes";
             this.Text = "GestionarPatentes";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgPatentesSinAsignar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgPatentesActuales)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,14 +150,14 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dtgUsuarios;
         private System.Windows.Forms.Button btnAsignarPatente;
         private System.Windows.Forms.Button btnQuitarPatente;
         private System.Windows.Forms.Button btnBuscarUsuario;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtBuscarUsuario;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridView dtgPatentesActuales;
+        private System.Windows.Forms.DataGridView dtgPatentesSinAsignar;
         private System.Windows.Forms.Label label1;
     }
 }

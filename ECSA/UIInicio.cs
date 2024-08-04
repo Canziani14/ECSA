@@ -65,7 +65,7 @@ namespace ECSA
 
         private void btnGestionarPatentes_Click(object sender, EventArgs e)
         {
-            UIGestionarPatentes uiGestionarPatentes = new UIGestionarPatentes();
+            UIGestionarPatentes uiGestionarPatentes = new UIGestionarPatentes(usuarioLogin);
             uiGestionarPatentes.MdiParent = this;
             uiGestionarPatentes.Show();
         }

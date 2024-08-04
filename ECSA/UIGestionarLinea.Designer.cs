@@ -34,11 +34,11 @@
             this.btnEliminarLinea = new System.Windows.Forms.Button();
             this.btnGestionarCoches = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtIDLinea = new System.Windows.Forms.TextBox();
             this.btnGestionarServicios = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNombreLinea = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtIDLinea = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgLineas)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -110,6 +110,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gestor de Lineas";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(28, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(18, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "ID";
+            // 
+            // txtIDLinea
+            // 
+            this.txtIDLinea.Enabled = false;
+            this.txtIDLinea.Location = new System.Drawing.Point(78, 17);
+            this.txtIDLinea.Name = "txtIDLinea";
+            this.txtIDLinea.Size = new System.Drawing.Size(43, 20);
+            this.txtIDLinea.TabIndex = 8;
+            // 
             // btnGestionarServicios
             // 
             this.btnGestionarServicios.Location = new System.Drawing.Point(89, 201);
@@ -136,22 +153,6 @@
             this.txtNombreLinea.Size = new System.Drawing.Size(159, 20);
             this.txtNombreLinea.TabIndex = 5;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(18, 13);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "ID";
-            // 
-            // txtIDLinea
-            // 
-            this.txtIDLinea.Location = new System.Drawing.Point(78, 17);
-            this.txtIDLinea.Name = "txtIDLinea";
-            this.txtIDLinea.Size = new System.Drawing.Size(43, 20);
-            this.txtIDLinea.TabIndex = 8;
-            // 
             // UIGestionarLinea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -160,7 +161,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dtgLineas);
             this.Name = "UIGestionarLinea";
-            this.Text = "GestionarLinea";
+            this.Text = "se ec";
             ((System.ComponentModel.ISupportInitialize)(this.dtgLineas)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -113,7 +113,7 @@ namespace BLL
 
         #endregion
 
-
+        #region Bitacora
         public List<Bitacora> BuscarEnBitacora(string fechaDesde, string fechaHasta, string nick)
         {
             return DAOSSeguridad.GetInstance().BuscarEnBitacora(fechaDesde, fechaHasta, nick);
@@ -138,26 +138,28 @@ namespace BLL
         {
             return DALSeguridad.ListarCrit3();
         }
-                /*
-                
 
+        #endregion
 
+       
 
-                public bool GenerarContraseñaAleatoria()
-                {
-                    throw new NotImplementedException();
-                }
+        /*
 
-                public bool GenerarTxtContraseña()
-                {
-                    throw new NotImplementedException();
-                }
+        public bool GenerarContraseñaAleatoria()
+        {
+            throw new NotImplementedException();
+        }
 
-                public bool ValidarPatentes()
-                {
-                    throw new NotImplementedException();
-                }
-        */
+        public bool GenerarTxtContraseña()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ValidarPatentes()
+        {
+            throw new NotImplementedException();
+        }
+*/
 
 
 

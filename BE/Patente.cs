@@ -10,6 +10,8 @@ namespace BE
     {
         public int ID_Patente { get; set; }
 
+        public int ID_Usuario { get; set; }
+
         public string Descripcion { get; set; }
 
 

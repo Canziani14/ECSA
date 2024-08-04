@@ -185,14 +185,14 @@ namespace ECSA
                 }
                 else
                 {
-                    MessageBox.Show("Empleado no encontrado.");
+                    MessageBox.Show("Usuario no encontrado.");
                     dtgUsuarios.DataSource = usuarios;
                 }
             }
             else
             {
                 // Show error message if the input is not a valid integer
-                MessageBox.Show("Por favor, ingrese un número de legajo válido.");
+                MessageBox.Show("Por favor, ingrese un Nick válido.");
                 dtgUsuarios.DataSource = null;
             }
         }

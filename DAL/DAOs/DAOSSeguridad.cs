@@ -449,7 +449,7 @@ namespace DAL.DAOs
         #endregion
 
 
-
+        #region Bitacora
         public BE.Bitacora RegistrarEnBitacora(int i, string NickUsuarioLogin, int ID_Usuario)
         {
             
@@ -712,6 +712,9 @@ namespace DAL.DAOs
 
             return bitacoras;
         }
+        #endregion
+
+
 
 
 
