@@ -20,21 +20,24 @@ namespace DAL.Mappers
             }
             return instance;
         }
-        public List<BE.Idioma> Map(DataTable table)
+        public List<BE.Familia> Map(DataTable table)
         {
-            List<BE.Idioma> idiomas = new List<BE.Idioma>();
+            List<BE.Familia> familias = new List<BE.Familia>();
             DAL.DALSeguridad DALSeguridad = new DAL.DALSeguridad();
+            
 
             foreach (DataRow item in table.Rows)
             {
-                idiomas.Add(new BE.Idioma()
-                {
-                    ID_Idioma = item.Field<int>("ID_Idioma"),
-                    Descripcion = item.Field<string>("Descripcion"),
 
+                familias.Add(new BE.Familia()
+                {
+                    ID_Familia = item.Table.Columns.Contains("ID_Familia") && !item.IsNull("ID_Familia") ? item.Field<int>("ID_Familia") : 0,
+                    Descripcion = item.Table.Columns.Contains("Descripcion") && !item.IsNull("Descripcion") ? item.Field<string>("Descripcion") : string.Empty,
+                    ID_Patente = item.Table.Columns.Contains("ID_Patente") && !item.IsNull("ID_Patente") ? item.Field<int>("ID_Patente") : 0
                 });
+
             }
-            return idiomas;
+            return familias;
         }
     }
 }

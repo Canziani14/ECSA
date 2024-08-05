@@ -50,12 +50,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DALCoche.cs" />
+    <Compile Include="DALFamilia.cs" />
     <Compile Include="DALIdioma.cs" />
     <Compile Include="DALLinea.cs" />
     <Compile Include="DALPasaron.cs" />
     <Compile Include="DALPatente.cs" />
     <Compile Include="DALServicio.cs" />
     <Compile Include="DAOs\DAOSCoche.cs" />
+    <Compile Include="DAOs\DAOSFamilia.cs" />
     <Compile Include="DAOs\DAOSIdioma.cs" />
     <Compile Include="DAOs\DAOSLinea.cs" />
     <Compile Include="DAOs\DAOSPasaron.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="DALEmpleado.cs" />
     <Compile Include="DAOs\DAOSServicio.cs" />
     <Compile Include="DAOs\DAOSUsuario.cs" />
+    <Compile Include="Mappers\MAPPERSFamilia-Patente.cs" />
     <Compile Include="Mappers\MAPPEREmpleado.cs" />
     <Compile Include="Mappers\MAPPERSBitacora.cs" />
     <Compile Include="Mappers\MAPPERSCoche.cs" />

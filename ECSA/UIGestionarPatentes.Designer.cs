@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.dtgUsuarios = new System.Windows.Forms.DataGridView();
-            this.btnAsignarPatente = new System.Windows.Forms.Button();
-            this.btnQuitarPatente = new System.Windows.Forms.Button();
             this.btnBuscarUsuario = new System.Windows.Forms.Button();
             this.txtBuscarUsuario = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dtgPatentesSinAsignar = new System.Windows.Forms.DataGridView();
             this.dtgPatentesActuales = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPatentesSinAsignar)).BeginInit();
@@ -51,26 +51,6 @@
             this.dtgUsuarios.Size = new System.Drawing.Size(278, 454);
             this.dtgUsuarios.TabIndex = 0;
             this.dtgUsuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgUsuarios_CellDoubleClick);
-            // 
-            // btnAsignarPatente
-            // 
-            this.btnAsignarPatente.Location = new System.Drawing.Point(205, 410);
-            this.btnAsignarPatente.Name = "btnAsignarPatente";
-            this.btnAsignarPatente.Size = new System.Drawing.Size(95, 23);
-            this.btnAsignarPatente.TabIndex = 1;
-            this.btnAsignarPatente.Text = "Asignar Patente";
-            this.btnAsignarPatente.UseVisualStyleBackColor = true;
-            this.btnAsignarPatente.Click += new System.EventHandler(this.btnAsignarPatente_Click);
-            // 
-            // btnQuitarPatente
-            // 
-            this.btnQuitarPatente.Location = new System.Drawing.Point(205, 188);
-            this.btnQuitarPatente.Name = "btnQuitarPatente";
-            this.btnQuitarPatente.Size = new System.Drawing.Size(95, 23);
-            this.btnQuitarPatente.TabIndex = 2;
-            this.btnQuitarPatente.Text = "Quitar Patente";
-            this.btnQuitarPatente.UseVisualStyleBackColor = true;
-            this.btnQuitarPatente.Click += new System.EventHandler(this.btnQuitarPatente_Click);
             // 
             // btnBuscarUsuario
             // 
@@ -91,10 +71,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.dtgPatentesSinAsignar);
             this.groupBox1.Controls.Add(this.dtgPatentesActuales);
-            this.groupBox1.Controls.Add(this.btnQuitarPatente);
-            this.groupBox1.Controls.Add(this.btnAsignarPatente);
             this.groupBox1.Location = new System.Drawing.Point(312, 53);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(504, 476);
@@ -109,6 +89,7 @@
             this.dtgPatentesSinAsignar.Name = "dtgPatentesSinAsignar";
             this.dtgPatentesSinAsignar.Size = new System.Drawing.Size(479, 160);
             this.dtgPatentesSinAsignar.TabIndex = 7;
+            this.dtgPatentesSinAsignar.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPatentesSinAsignar_CellDoubleClick);
             // 
             // dtgPatentesActuales
             // 
@@ -117,6 +98,7 @@
             this.dtgPatentesActuales.Name = "dtgPatentesActuales";
             this.dtgPatentesActuales.Size = new System.Drawing.Size(479, 140);
             this.dtgPatentesActuales.TabIndex = 6;
+            this.dtgPatentesActuales.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPatentesActuales_CellDoubleClick);
             // 
             // label1
             // 
@@ -126,6 +108,24 @@
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "Buscar Usuario:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(218, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Asignadas";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(221, 225);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Sin Asignar";
             // 
             // UIGestionarPatentes
             // 
@@ -141,6 +141,7 @@
             this.Text = "GestionarPatentes";
             ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPatentesSinAsignar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPatentesActuales)).EndInit();
             this.ResumeLayout(false);
@@ -151,13 +152,13 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dtgUsuarios;
-        private System.Windows.Forms.Button btnAsignarPatente;
-        private System.Windows.Forms.Button btnQuitarPatente;
         private System.Windows.Forms.Button btnBuscarUsuario;
         private System.Windows.Forms.TextBox txtBuscarUsuario;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dtgPatentesActuales;
         private System.Windows.Forms.DataGridView dtgPatentesSinAsignar;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }

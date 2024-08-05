@@ -27,13 +27,13 @@ namespace DAL.DAOs
 
         string connectionString = ConfigurationManager.ConnectionStrings["Produccion"].ConnectionString;
 
-        string queryAsignarPatente = "";
-        string queryQuitarPatente = "";
+        string queryAsignarPatente = "insert into Usuario_Patente (ID_Usuario,ID_Patente) values(@ID_Usuario,@ID_Patente)";
+        string queryQuitarPatente = "delete from Usuario_Patente where ID_Usuario=@ID_Usuario and ID_Patente=@ID_Patente";
         string querySelect = "SELECT p.id_patente, dp.descripcion "+
             "FROM Patente p "+
             "INNER JOIN Usuario_Patente up ON p.id_patente = up.id_patente "+
             "INNER JOIN Patente dp ON p.id_patente = dp.id_patente "+
-            "WHERE up.id_usuario =ID_Usuario";
+            "WHERE up.id_usuario =@ID_Usuario";
 
         string querySelecSin = "SELECT p.id_patente, dp.Descripcion " +
             "FROM Patente p " +
@@ -48,7 +48,7 @@ namespace DAL.DAOs
             List<SqlParameter> parameters = new List<SqlParameter>()
                 {
                     new SqlParameter("@ID_Usuario", id_usuario),
-                    new SqlParameter("@ID_Patete", id_patente),
+                    new SqlParameter("@ID_Patente", id_patente),
                 };
 
             try
@@ -83,11 +83,30 @@ namespace DAL.DAOs
             List<SqlParameter> parameters = new List<SqlParameter>()
             {
                     new SqlParameter("@ID_Usuario", id_usuario),
-                    new SqlParameter("@ID_Patete", id_patente),
+                    new SqlParameter("@ID_Patente", id_patente),
             };
 
-            SqlHelper.GetInstance(connectionString).ExecuteNonQuery(queryQuitarPatente, parameters);
-            returnValue = true;
+            try
+            {
+                Console.WriteLine("Trying to execute insert operation...");
+                int rowsAffected = SqlHelper.GetInstance(connectionString).ExecuteNonQuery(queryQuitarPatente, parameters);
+                returnValue = rowsAffected > 0;
+
+                if (returnValue)
+                {
+                    Console.WriteLine("Empleado creado con éxito.");
+                }
+                else
+                {
+                    Console.WriteLine("No se insertó ninguna fila.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                returnValue = false;
+            }
+
             return returnValue;
         }
 

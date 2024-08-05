@@ -12,6 +12,6 @@ namespace BE
 
         public string Descripcion { get; set; }
 
-
+        public int ID_Patente { get; set; }
     }
 }

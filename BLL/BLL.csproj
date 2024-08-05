@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="BLL-ABM-Coche.cs" />
     <Compile Include="BLL-ABM-Empleado.cs" />
+    <Compile Include="BLL-ABM-Familia.cs" />
     <Compile Include="BLL-ABM-Linea.cs" />
     <Compile Include="BLL-ABM-Servicio.cs" />
     <Compile Include="BLL-ABM-Usuario.cs" />

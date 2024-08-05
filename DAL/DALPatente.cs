@@ -9,14 +9,14 @@ namespace DAL
 {
     public class DALPatente
     {
-        public bool Asignar(BE.Patente objAgregar)
+        public bool Asignar(int id_Usuario, int id_Patente)
         {
-            return DAOs.DAOSPatente.GetInstance().Asignar(objAgregar.ID_Usuario,objAgregar.ID_Patente);
+            return DAOs.DAOSPatente.GetInstance().Asignar(id_Usuario, id_Patente);
         }
 
-        public bool Quitar(BE.Patente objEliminar)
+        public bool Quitar(int id_Usuario, int id_Patente)
         {
-            return DAOs.DAOSPatente.GetInstance().Quitar(objEliminar.ID_Usuario,objEliminar.ID_Patente);
+            return DAOs.DAOSPatente.GetInstance().Quitar(id_Usuario, id_Patente);
         }
 
         public List<BE.Patente> ListarActuales(int id_usuario)

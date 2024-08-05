@@ -28,30 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dtgPatentesActuales = new System.Windows.Forms.DataGridView();
             this.btnCrearFamilia = new System.Windows.Forms.Button();
             this.btnModificarFamilia = new System.Windows.Forms.Button();
             this.btnEliminarFamilia = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNombreFamilia = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dtgFamilias = new System.Windows.Forms.DataGridView();
+            this.dtgPatentesSinAsignar = new System.Windows.Forms.DataGridView();
+            this.labelNombre = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.Familia = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtID = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgPatentesActuales)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgFamilias)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgPatentesSinAsignar)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dtgPatentesActuales
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 29);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(217, 390);
-            this.dataGridView1.TabIndex = 0;
+            this.dtgPatentesActuales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgPatentesActuales.Location = new System.Drawing.Point(204, 98);
+            this.dtgPatentesActuales.Name = "dtgPatentesActuales";
+            this.dtgPatentesActuales.Size = new System.Drawing.Size(217, 330);
+            this.dtgPatentesActuales.TabIndex = 0;
+            this.dtgPatentesActuales.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPatentesActuales_CellDoubleClick);
             // 
             // btnCrearFamilia
             // 
-            this.btnCrearFamilia.Location = new System.Drawing.Point(313, 107);
+            this.btnCrearFamilia.Location = new System.Drawing.Point(4, 240);
             this.btnCrearFamilia.Name = "btnCrearFamilia";
             this.btnCrearFamilia.Size = new System.Drawing.Size(75, 23);
             this.btnCrearFamilia.TabIndex = 1;
@@ -61,7 +71,7 @@
             // 
             // btnModificarFamilia
             // 
-            this.btnModificarFamilia.Location = new System.Drawing.Point(396, 107);
+            this.btnModificarFamilia.Location = new System.Drawing.Point(85, 240);
             this.btnModificarFamilia.Name = "btnModificarFamilia";
             this.btnModificarFamilia.Size = new System.Drawing.Size(75, 23);
             this.btnModificarFamilia.TabIndex = 2;
@@ -71,7 +81,7 @@
             // 
             // btnEliminarFamilia
             // 
-            this.btnEliminarFamilia.Location = new System.Drawing.Point(356, 153);
+            this.btnEliminarFamilia.Location = new System.Drawing.Point(45, 269);
             this.btnEliminarFamilia.Name = "btnEliminarFamilia";
             this.btnEliminarFamilia.Size = new System.Drawing.Size(75, 23);
             this.btnEliminarFamilia.TabIndex = 3;
@@ -81,69 +91,157 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtNombreFamilia);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.dataGridView2);
+            this.groupBox1.Controls.Add(this.dtgFamilias);
             this.groupBox1.Controls.Add(this.btnCrearFamilia);
             this.groupBox1.Controls.Add(this.btnEliminarFamilia);
             this.groupBox1.Controls.Add(this.btnModificarFamilia);
-            this.groupBox1.Location = new System.Drawing.Point(287, 29);
+            this.groupBox1.Location = new System.Drawing.Point(2, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(501, 396);
+            this.groupBox1.Size = new System.Drawing.Size(187, 313);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gestor de Familias";
             // 
-            // textBox1
+            // txtNombreFamilia
             // 
-            this.textBox1.Location = new System.Drawing.Point(356, 41);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 7;
+            this.txtNombreFamilia.Location = new System.Drawing.Point(56, 199);
+            this.txtNombreFamilia.Name = "txtNombreFamilia";
+            this.txtNombreFamilia.Size = new System.Drawing.Size(100, 20);
+            this.txtNombreFamilia.TabIndex = 7;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(310, 44);
+            this.label1.Location = new System.Drawing.Point(10, 202);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "Nombre";
             // 
-            // dataGridView2
+            // dtgFamilias
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(279, 371);
-            this.dataGridView2.TabIndex = 5;
+            this.dtgFamilias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgFamilias.Location = new System.Drawing.Point(5, 19);
+            this.dtgFamilias.Name = "dtgFamilias";
+            this.dtgFamilias.Size = new System.Drawing.Size(175, 174);
+            this.dtgFamilias.TabIndex = 5;
+            this.dtgFamilias.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFamilias_CellDoubleClick);
+            // 
+            // dtgPatentesSinAsignar
+            // 
+            this.dtgPatentesSinAsignar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgPatentesSinAsignar.Location = new System.Drawing.Point(442, 98);
+            this.dtgPatentesSinAsignar.Name = "dtgPatentesSinAsignar";
+            this.dtgPatentesSinAsignar.Size = new System.Drawing.Size(217, 330);
+            this.dtgPatentesSinAsignar.TabIndex = 5;
+            this.dtgPatentesSinAsignar.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPatentesSinAsignar_CellDoubleClick);
+            // 
+            // labelNombre
+            // 
+            this.labelNombre.AutoSize = true;
+            this.labelNombre.Location = new System.Drawing.Point(421, 12);
+            this.labelNombre.Name = "labelNombre";
+            this.labelNombre.Size = new System.Drawing.Size(0, 13);
+            this.labelNombre.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(267, 79);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(93, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Patentes Actuales";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(500, 79);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(105, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Patentes Sin Asignar";
+            // 
+            // Familia
+            // 
+            this.Familia.AutoSize = true;
+            this.Familia.Location = new System.Drawing.Point(371, 35);
+            this.Familia.Name = "Familia";
+            this.Familia.Size = new System.Drawing.Size(39, 13);
+            this.Familia.TabIndex = 10;
+            this.Familia.Text = "Familia";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(392, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(18, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "ID";
+            // 
+            // txtID
+            // 
+            this.txtID.Enabled = false;
+            this.txtID.Location = new System.Drawing.Point(407, 9);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(33, 20);
+            this.txtID.TabIndex = 12;
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Enabled = false;
+            this.txtNombre.Location = new System.Drawing.Point(407, 32);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(100, 20);
+            this.txtNombre.TabIndex = 13;
             // 
             // UIGestionarFamilias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(669, 439);
+            this.Controls.Add(this.txtNombre);
+            this.Controls.Add(this.txtID);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.Familia);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.labelNombre);
+            this.Controls.Add(this.dtgPatentesSinAsignar);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dtgPatentesActuales);
             this.Name = "UIGestionarFamilias";
             this.Text = "GestionarFamilias";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgPatentesActuales)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgFamilias)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgPatentesSinAsignar)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dtgPatentesActuales;
         private System.Windows.Forms.Button btnCrearFamilia;
         private System.Windows.Forms.Button btnModificarFamilia;
         private System.Windows.Forms.Button btnEliminarFamilia;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridView dtgFamilias;
+        private System.Windows.Forms.TextBox txtNombreFamilia;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dtgPatentesSinAsignar;
+        private System.Windows.Forms.Label labelNombre;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label Familia;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtID;
+        private System.Windows.Forms.TextBox txtNombre;
     }
 }
