@@ -62,6 +62,19 @@ namespace DAL
         {
             return DAOs.DAOSFamilia.GetInstance().QuitarXFamilia(id_familia, id_Patente);
         }
+
+
+        public List<Familia> ListarFamiliasActualesXUsuario(int ID_Usuario)
+        {
+            return DAOs.DAOSFamilia.GetInstance().ListarFamiliasActualesXUsuario(ID_Usuario);
+        }
+
+        public List<Familia> ListarFamiliasSinAsignarXUsuario(int ID_Usuario)
+        {
+            return DAOs.DAOSFamilia.GetInstance().ListarFamiliasSinAsignarXUsuario(ID_Usuario);
+        }
+
+
     }
 }
     

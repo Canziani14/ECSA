@@ -34,14 +34,14 @@
             this.btnCrearUsuario = new System.Windows.Forms.Button();
             this.btnEliminarUsuario = new System.Windows.Forms.Button();
             this.btnModificarUsuario = new System.Windows.Forms.Button();
-            this.btnQuitarFamilia = new System.Windows.Forms.Button();
-            this.btnAsignarFamilia = new System.Windows.Forms.Button();
             this.btnBuscarUsuario = new System.Windows.Forms.Button();
             this.btnDesbloquearUsuario = new System.Windows.Forms.Button();
             this.btnBloquearUsuario = new System.Windows.Forms.Button();
             this.usuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.eCSADataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtIDUsuario = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtDNI = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtMail = new System.Windows.Forms.TextBox();
@@ -53,20 +53,18 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBuscarUsuario = new System.Windows.Forms.TextBox();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dtgFamiliaActual = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dtgFamiliasSinAsignar = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtIDUsuario = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eCSADataSetBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eCSADataSetBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgFamiliaActual)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgFamiliasSinAsignar)).BeginInit();
             this.SuspendLayout();
             // 
             // dtgUsuarios
@@ -107,24 +105,6 @@
             this.btnModificarUsuario.Text = "Modificar";
             this.btnModificarUsuario.UseVisualStyleBackColor = true;
             this.btnModificarUsuario.Click += new System.EventHandler(this.btnModificarUsuario_Click);
-            // 
-            // btnQuitarFamilia
-            // 
-            this.btnQuitarFamilia.Location = new System.Drawing.Point(367, 251);
-            this.btnQuitarFamilia.Name = "btnQuitarFamilia";
-            this.btnQuitarFamilia.Size = new System.Drawing.Size(97, 23);
-            this.btnQuitarFamilia.TabIndex = 5;
-            this.btnQuitarFamilia.Text = "Quitar Familia";
-            this.btnQuitarFamilia.UseVisualStyleBackColor = true;
-            // 
-            // btnAsignarFamilia
-            // 
-            this.btnAsignarFamilia.Location = new System.Drawing.Point(80, 251);
-            this.btnAsignarFamilia.Name = "btnAsignarFamilia";
-            this.btnAsignarFamilia.Size = new System.Drawing.Size(97, 23);
-            this.btnAsignarFamilia.TabIndex = 6;
-            this.btnAsignarFamilia.Text = "Asignar Familia";
-            this.btnAsignarFamilia.UseVisualStyleBackColor = true;
             // 
             // btnBuscarUsuario
             // 
@@ -185,6 +165,23 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gestor de Usuarios";
+            // 
+            // txtIDUsuario
+            // 
+            this.txtIDUsuario.Enabled = false;
+            this.txtIDUsuario.Location = new System.Drawing.Point(70, 14);
+            this.txtIDUsuario.Name = "txtIDUsuario";
+            this.txtIDUsuario.Size = new System.Drawing.Size(100, 20);
+            this.txtIDUsuario.TabIndex = 21;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 17);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(60, 13);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "ID_Usuario";
             // 
             // txtDNI
             // 
@@ -273,38 +270,38 @@
             this.txtBuscarUsuario.Size = new System.Drawing.Size(215, 20);
             this.txtBuscarUsuario.TabIndex = 18;
             // 
-            // dataGridView2
+            // dtgFamiliaActual
             // 
-            this.dataGridView2.AutoGenerateColumns = false;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.DataSource = this.eCSADataSetBindingSource1;
-            this.dataGridView2.Location = new System.Drawing.Point(19, 19);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(217, 221);
-            this.dataGridView2.TabIndex = 19;
+            this.dtgFamiliaActual.AutoGenerateColumns = false;
+            this.dtgFamiliaActual.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgFamiliaActual.DataSource = this.eCSADataSetBindingSource1;
+            this.dtgFamiliaActual.Location = new System.Drawing.Point(19, 19);
+            this.dtgFamiliaActual.Name = "dtgFamiliaActual";
+            this.dtgFamiliaActual.Size = new System.Drawing.Size(217, 221);
+            this.dtgFamiliaActual.TabIndex = 19;
+            this.dtgFamiliaActual.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFamiliaActual_CellDoubleClick);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.dataGridView3);
-            this.groupBox2.Controls.Add(this.dataGridView2);
-            this.groupBox2.Controls.Add(this.btnAsignarFamilia);
-            this.groupBox2.Controls.Add(this.btnQuitarFamilia);
+            this.groupBox2.Controls.Add(this.dtgFamiliasSinAsignar);
+            this.groupBox2.Controls.Add(this.dtgFamiliaActual);
             this.groupBox2.Location = new System.Drawing.Point(119, 283);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(539, 286);
+            this.groupBox2.Size = new System.Drawing.Size(539, 256);
             this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Gestor de Familias por Usuario";
             // 
-            // dataGridView3
+            // dtgFamiliasSinAsignar
             // 
-            this.dataGridView3.AutoGenerateColumns = false;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.DataSource = this.eCSADataSetBindingSource1;
-            this.dataGridView3.Location = new System.Drawing.Point(303, 19);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(217, 221);
-            this.dataGridView3.TabIndex = 20;
+            this.dtgFamiliasSinAsignar.AutoGenerateColumns = false;
+            this.dtgFamiliasSinAsignar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgFamiliasSinAsignar.DataSource = this.eCSADataSetBindingSource1;
+            this.dtgFamiliasSinAsignar.Location = new System.Drawing.Point(303, 19);
+            this.dtgFamiliasSinAsignar.Name = "dtgFamiliasSinAsignar";
+            this.dtgFamiliasSinAsignar.Size = new System.Drawing.Size(217, 221);
+            this.dtgFamiliasSinAsignar.TabIndex = 20;
+            this.dtgFamiliasSinAsignar.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFamiliasSinAsignar_CellDoubleClick);
             // 
             // label5
             // 
@@ -315,28 +312,11 @@
             this.label5.TabIndex = 22;
             this.label5.Text = "Buscar Usuario:";
             // 
-            // txtIDUsuario
-            // 
-            this.txtIDUsuario.Enabled = false;
-            this.txtIDUsuario.Location = new System.Drawing.Point(70, 14);
-            this.txtIDUsuario.Name = "txtIDUsuario";
-            this.txtIDUsuario.Size = new System.Drawing.Size(100, 20);
-            this.txtIDUsuario.TabIndex = 21;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 17);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(60, 13);
-            this.label7.TabIndex = 20;
-            this.label7.Text = "ID_Usuario";
-            // 
             // UIGestionarUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 578);
+            this.ClientSize = new System.Drawing.Size(774, 538);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.txtBuscarUsuario);
@@ -351,9 +331,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.eCSADataSetBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgFamiliaActual)).EndInit();
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgFamiliasSinAsignar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -370,8 +350,6 @@
         private System.Windows.Forms.BindingSource eCSADataSetBindingSource;
         private System.Windows.Forms.Button btnEliminarUsuario;
         private System.Windows.Forms.Button btnModificarUsuario;
-        private System.Windows.Forms.Button btnQuitarFamilia;
-        private System.Windows.Forms.Button btnAsignarFamilia;
         private System.Windows.Forms.Button btnBuscarUsuario;
         private System.Windows.Forms.Button btnDesbloquearUsuario;
         private System.Windows.Forms.Button btnBloquearUsuario;
@@ -385,9 +363,9 @@
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtBuscarUsuario;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dtgFamiliaActual;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridView dtgFamiliasSinAsignar;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtDNI;
         private System.Windows.Forms.Label label6;

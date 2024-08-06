@@ -51,6 +51,16 @@ namespace DAL.DAOs
             "FROM patente p " +
             "LEFT JOIN familia_patente fp ON p.id_patente = fp.id_patente AND fp.id_familia = @ID_Familia " +
             "WHERE fp.id_patente IS NULL;";
+
+        string QuerySelectfamiliasPorUsuarioAsignadas = "SELECT f.ID_Familia,f.Descripcion " +
+            "FROM familia f JOIN usuario_familia uf ON f.ID_Familia = uf.ID_Familia " +
+            "JOIN usuario u ON u.ID_Usuario = uf.ID_Usuario " +
+            "WHERE u.ID_Usuario = @ID_Usuario;";
+
+        string QuerySelectFamiliasPorUsuarioSinAsignar = "SELECT f.ID_Familia, f.Descripcion FROM familia f " +
+            "WHERE f.ID_Familia NOT IN (SELECT uf.ID_Familia FROM usuario_familia uf " +
+            "WHERE uf.ID_Usuario = @ID_Usuario);";
+
         string QueryUpdate = "";
         string QueryDelete = "";
 
@@ -292,7 +302,32 @@ namespace DAL.DAOs
 
 
 
+        public List<Familia> ListarFamiliasActualesXUsuario(int ID_Usuario)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@ID_Usuario", ID_Usuario),
+                
 
+            };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectfamiliasPorUsuarioAsignadas, parameters);
+
+
+            return Mappers.MAPPERSUsuario_Familia.GetInstance().Map(table);
+        }
+
+        public List<Familia> ListarFamiliasSinAsignarXUsuario(int ID_Usuario)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                 new SqlParameter("@ID_Usuario", ID_Usuario),
+
+            };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectFamiliasPorUsuarioSinAsignar, parameters);
+
+
+            return Mappers.MAPPERSUsuario_Familia.GetInstance().Map(table); 
+        }
 
 
 

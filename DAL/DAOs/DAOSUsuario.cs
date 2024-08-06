@@ -52,7 +52,10 @@ namespace DAL.DAOs
         string QueryBloquearUsuario = "Update usuario set Estado = 'False' where ID_Usuario = @ID_Usuario";
         string QueryDesbloquearUsuario = "Update usuario set Estado = 'True', Contador_Int_Fallidos=0 where ID_Usuario = @ID_Usuario";
         string QueryUpdateContador0 = "update usuario set Contador_Int_Fallidos = 0 where ID_Usuario = @ID_Usuario";
-        
+        string QueryInsertUsuarioFamilia = "INSERT INTO usuario_familia (ID_Usuario, ID_Familia) " +
+            "VALUES (@ID_Usuario, @ID_Familia);";
+        string QueryDeleteUsuarioFamilia = "DELETE FROM usuario_familia " +
+            "WHERE ID_Usuario = @ID_Usuario AND ID_Familia = @ID_Familia;";
         #endregion
 
         #region Agregar Usuario
@@ -417,6 +420,32 @@ namespace DAL.DAOs
 
 
         #endregion
+
+
+        public List<BE.Familia> AsignarFamilia(int id_Usuario, int id_Familia)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@ID_Usuario", id_Usuario),
+                new SqlParameter("@ID_Familia", id_Familia),
+
+            };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QueryInsertUsuarioFamilia, parameters);
+            return Mappers.MAPPERSUsuario_Familia.GetInstance().Map(table);
+        }
+
+        public List<BE.Familia> QuitarFamilia(int id_Usuario, int id_Familia)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@ID_Usuario", id_Usuario),
+                new SqlParameter("@ID_Familia", id_Familia),
+
+            };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QueryDeleteUsuarioFamilia, parameters);
+            return Mappers.MAPPERSUsuario_Familia.GetInstance().Map(table);
+        }
+
 
     }
 }

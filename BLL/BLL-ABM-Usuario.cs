@@ -80,5 +80,16 @@ namespace BLL
         {
             return DALUsuario.ContadorIngresos0(usuariolog);
         }
+
+        public List<BE.Familia> AsignarFamilia(int id_Usuario,int id_Familia)
+        {
+            return DALUsuario.AsignarFamilia(id_Usuario, id_Familia);
+        }
+
+        public List<BE.Familia> QuitarFamilia(int id_Usuario, int id_Familia)
+        {
+            return DALUsuario.QuitarFamilia(id_Usuario, id_Familia);
+        }
+
     }
 }

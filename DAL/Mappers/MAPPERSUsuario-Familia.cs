@@ -33,7 +33,9 @@ namespace DAL.Mappers
                 {
                     ID_Familia = item.Table.Columns.Contains("ID_Familia") && !item.IsNull("ID_Familia") ? item.Field<int>("ID_Familia") : 0,
                     Descripcion = item.Table.Columns.Contains("Descripcion") && !item.IsNull("Descripcion") ? item.Field<string>("Descripcion") : string.Empty,
-                    ID_Patente = item.Table.Columns.Contains("ID_Patente") && !item.IsNull("ID_Patente") ? item.Field<int>("ID_Patente") : 0
+                    ID_Patente = item.Table.Columns.Contains("ID_Patente") && !item.IsNull("ID_Patente") ? item.Field<int>("ID_Patente") : 0,
+                    ID_Usuario= item.Table.Columns.Contains("ID_Usuario") && !item.IsNull("ID_Usuario") ? item.Field<int>("ID_Usuario") : 0
+
                 });
 
             }

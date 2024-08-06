@@ -63,5 +63,16 @@ namespace BLL
         {
             return DALFamilia.QuitarXFamilia(id_familia, id_Patente);
         }
+
+        public List<Familia> ListarFamiliasActualesXUsuario(int ID_Usuario)
+        {
+            return DALFamilia.ListarFamiliasActualesXUsuario(ID_Usuario);
+        }
+
+        public List<Familia> ListarFamiliasSinAsignarXUsuario(int ID_Usuario)
+        {
+            return DALFamilia.ListarFamiliasSinAsignarXUsuario(ID_Usuario);
+        }
+
     }
 }

@@ -20,6 +20,9 @@ namespace ECSA
         BLL.BLL_ABM_Usuario BLLUsuario = new BLL.BLL_ABM_Usuario();
         BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
         private BE.Usuario usuarioLog;
+        BLL.BLL_ABM_Familia BLLFamilia = new BLL.BLL_ABM_Familia();
+        BE.Familia FamiliaSeleccionadaAsignar = new BE.Familia();
+        BE.Familia FamiliaSeleccionadaQuitar = new BE.Familia();
         public UIGestionarUsuarios(BE.Usuario usuarioLog)
         {
             this.usuarioLog = usuarioLog;
@@ -277,9 +280,61 @@ namespace ECSA
         }
         #endregion
 
+        #region UsuariosFamilia
+        private void dtgFamiliaActual_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ObtenerFamiliaSeleccionadaActuales();
+            ObtenerUsuarioSeleccionado();
+            int id_Usuario = UsuarioSeleccionado.ID_Usuario;
+            int id_Familia =FamiliaSeleccionadaQuitar.ID_Familia ;
+            BLLUsuario.QuitarFamilia(id_Usuario, id_Familia);
+            dtgFamiliaActual.DataSource = BLLFamilia.ListarFamiliasActualesXUsuario(id_Usuario);
+            dtgFamiliasSinAsignar.DataSource = BLLFamilia.ListarFamiliasSinAsignarXUsuario(id_Usuario);
+            dtgFamiliasSinAsignar.AutoGenerateColumns = true;
+            dtgFamiliaActual.AutoGenerateColumns = true;
+            MessageBox.Show("Familia quitada correctamente");
+
+        }
+
+        private void dtgFamiliasSinAsignar_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ObtenerFamiliaSeleccionadaNoActuales();
+            ObtenerUsuarioSeleccionado();
+            int id_Usuario = UsuarioSeleccionado.ID_Usuario;
+            int id_Familia = FamiliaSeleccionadaAsignar.ID_Familia;
+            BLLUsuario.AsignarFamilia(id_Usuario, id_Familia);
+            dtgFamiliaActual.DataSource = BLLFamilia.ListarFamiliasActualesXUsuario(id_Usuario);
+            dtgFamiliasSinAsignar.DataSource = BLLFamilia.ListarFamiliasSinAsignarXUsuario(id_Usuario);
+            dtgFamiliasSinAsignar.AutoGenerateColumns = true;
+            dtgFamiliaActual.AutoGenerateColumns = true;
+            MessageBox.Show("Familia asignada correctamente");
+        }
+
+        public BE.Familia ObtenerFamiliaSeleccionadaActuales()
+        {
+            if (dtgFamiliaActual.SelectedRows.Count > 0)
+            {
+                FamiliaSeleccionadaQuitar = ((BE.Familia)dtgFamiliaActual.SelectedRows[0].DataBoundItem);
+            }
+            return FamiliaSeleccionadaQuitar;
+        }
+
+        public BE.Familia ObtenerFamiliaSeleccionadaNoActuales()
+        {
+            if (dtgFamiliasSinAsignar.SelectedRows.Count > 0)
+            {
+                FamiliaSeleccionadaAsignar = ((BE.Familia)dtgFamiliasSinAsignar.SelectedRows[0].DataBoundItem);
+            }
+            return FamiliaSeleccionadaAsignar;
+        }
+
+
+
+        #endregion
+
 
         #region FuncionesVarias
-            private void limpiarGrilla()
+        private void limpiarGrilla()
             {
                 dtgUsuarios.DataSource = null;
                 dtgUsuarios.DataSource = BLLUsuario.Listar();
@@ -302,8 +357,13 @@ namespace ECSA
                 BLLSeguridad.CalcularDVV(tabla);
             }
         private void dtgUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
+        {                    
             ObtenerUsuarioSeleccionado();
+            int id_usuario = UsuarioSeleccionado.ID_Usuario;
+            dtgFamiliaActual.DataSource = BLLFamilia.ListarFamiliasActualesXUsuario(id_usuario);
+            dtgFamiliasSinAsignar.DataSource = BLLFamilia.ListarFamiliasSinAsignarXUsuario(id_usuario);
+            dtgFamiliasSinAsignar.AutoGenerateColumns = true;
+            dtgFamiliaActual.AutoGenerateColumns = true;       
         }
 
         public BE.Usuario ObtenerUsuarioSeleccionado()
@@ -327,6 +387,7 @@ namespace ECSA
             txtIDUsuario.Text = usuario.ID_Usuario.ToString();
         }
 
+        
     }
 
             

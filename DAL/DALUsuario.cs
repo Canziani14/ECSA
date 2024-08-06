@@ -74,5 +74,18 @@ namespace DAL
             return DAOSUsuario.GetInstance().DesbloquearUsuario(ID_Usuario);
         }
 
+
+        public List<BE.Familia> AsignarFamilia(int id_Usuario, int id_Familia)
+        {
+            return DAOSUsuario.GetInstance().AsignarFamilia(id_Usuario, id_Familia);
+        }
+
+        public List<BE.Familia> QuitarFamilia(int id_Usuario, int id_Familia)
+        {
+            return DAOSUsuario.GetInstance().QuitarFamilia(id_Usuario, id_Familia);
+        }
+
+
+
     }
 }
