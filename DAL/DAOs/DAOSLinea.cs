@@ -26,7 +26,7 @@ namespace DAL.DAOs
             return instance;
         }
 
-        string connectionString = ConfigurationManager.ConnectionStrings["Produccion"].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         string QuerySelect = "SELECT * FROM [ECSA].[dbo].[Linea] order by Nombre_Linea";
         string QueryInsert = "INSERT INTO Linea (Nombre_Linea)" +
            "VALUES (@Nombre_Linea)";

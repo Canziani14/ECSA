@@ -17,6 +17,7 @@ namespace ECSA
     {
         public UILogin()
         {
+
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             LlenarComboBoxInternos(cmbIdiomas);
@@ -116,6 +117,9 @@ namespace ECSA
             }
         }
 
-
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

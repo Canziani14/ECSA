@@ -40,6 +40,7 @@
       <HintPath>..\packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -69,6 +70,12 @@
     </Compile>
     <Compile Include="UICambiarContraseña.Designer.cs">
       <DependentUpon>UICambiarContraseña.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIConectarSQL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIConectarSQL.Designer.cs">
+      <DependentUpon>UIConectarSQL.cs</DependentUpon>
     </Compile>
     <Compile Include="UIGenerarNuevaContra.cs">
       <SubType>Form</SubType>
@@ -158,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UICambiarContraseña.resx">
       <DependentUpon>UICambiarContraseña.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIConectarSQL.resx">
+      <DependentUpon>UIConectarSQL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIGenerarNuevaContra.resx">
       <DependentUpon>UIGenerarNuevaContra.cs</DependentUpon>

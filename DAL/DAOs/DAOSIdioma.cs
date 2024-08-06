@@ -25,7 +25,7 @@ namespace DAL.DAOs
 
 
 
-        string connectionString = ConfigurationManager.ConnectionStrings["Produccion"].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
 
         string QuerySelect = "select * from Idioma";

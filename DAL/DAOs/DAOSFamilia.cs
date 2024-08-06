@@ -28,7 +28,7 @@ namespace DAL.DAOs
 
 
 
-        string connectionString = ConfigurationManager.ConnectionStrings["Produccion"].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
         string QueryInsert = "";
         string QuerySelect = "select * from Familia";

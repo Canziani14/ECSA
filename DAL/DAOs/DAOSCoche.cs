@@ -27,7 +27,7 @@ namespace DAL.DAOs
         }
 
 
-        string connectionString = ConfigurationManager.ConnectionStrings["Produccion"].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
         string QueryInsert = "INSERT INTO Coche (Patente, ID_Linea) VALUES (@Patente, @ID_Linea)";
 

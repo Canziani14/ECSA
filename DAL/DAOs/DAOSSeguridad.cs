@@ -35,7 +35,7 @@ namespace DAL.DAOs
             return instance;
         }
 
-        string connectionString = ConfigurationManager.ConnectionStrings["Produccion"].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
         DAL.DALSeguridad DALSeguridad = new DALSeguridad();
         

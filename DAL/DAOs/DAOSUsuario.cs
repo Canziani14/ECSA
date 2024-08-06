@@ -31,7 +31,7 @@ namespace DAL.DAOs
 
 
 
-        string connectionString = ConfigurationManager.ConnectionStrings["Produccion"].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
         string QueryInsert = "INSERT INTO Usuario (Nombre, Apellido, Nick, Mail, DNI, Contraseña, estado)" +
             "VALUES (@Nombre, @Apellido, @Nick, @Mail, @DNI, @Contraseña, 1)";

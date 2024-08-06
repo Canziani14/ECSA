@@ -25,7 +25,7 @@ namespace DAL.DAOs
             return instance;
         }
 
-        string connectionString = ConfigurationManager.ConnectionStrings["Produccion"].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
         string queryAsignarPatente = "insert into Usuario_Patente (ID_Usuario,ID_Patente) values(@ID_Usuario,@ID_Patente)";
         string queryQuitarPatente = "delete from Usuario_Patente where ID_Usuario=@ID_Usuario and ID_Patente=@ID_Patente";
