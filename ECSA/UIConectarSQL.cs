@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
+using System.Net;
+using BLL;
 
 namespace ECSA
 {
@@ -20,6 +22,8 @@ namespace ECSA
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
         }
+        
+        BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
 
         private void btnAbrirArchivoSQL_Click(object sender, EventArgs e)
         {
@@ -38,10 +42,19 @@ namespace ECSA
 
                     try
                     {
+                        string connectionStr;
                         string connectionString;
+
+                        
+                        //encripta connectionString para encriptarlo
+                        //string encrip = BLLSeguridad.EncriptarCamposReversible("Data Source=DESKTOP-FJGOIBU\\SQLEXPRESS;Initial Catalog=ECSA;Integrated Security=True");
+                        
+                              
                         using (StreamReader reader = new StreamReader(filePath))
                         {
-                            connectionString = reader.ReadToEnd().Trim();
+   
+                            connectionStr = reader.ReadToEnd().Trim();
+                            connectionString = BLLSeguridad.DesencriptarCamposReversible(connectionStr);
                         }
 
                         
