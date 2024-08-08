@@ -53,6 +53,7 @@
     <Compile Include="BLL-ABM-Linea.cs" />
     <Compile Include="BLL-ABM-Servicio.cs" />
     <Compile Include="BLL-ABM-Usuario.cs" />
+    <Compile Include="BLLDAL.cs" />
     <Compile Include="BLLIdioma.cs" />
     <Compile Include="BLLPasaron.cs" />
     <Compile Include="BLLPatente.cs" />

@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DALCoche.cs" />
+    <Compile Include="DALDAL.cs" />
     <Compile Include="DALFamilia.cs" />
     <Compile Include="DALIdioma.cs" />
     <Compile Include="DALLinea.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="DALPatente.cs" />
     <Compile Include="DALServicio.cs" />
     <Compile Include="DAOs\DAOSCoche.cs" />
+    <Compile Include="DAOs\DAOSDal.cs" />
     <Compile Include="DAOs\DAOSFamilia.cs" />
     <Compile Include="DAOs\DAOSIdioma.cs" />
     <Compile Include="DAOs\DAOSLinea.cs" />

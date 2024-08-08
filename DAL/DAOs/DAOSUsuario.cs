@@ -56,6 +56,7 @@ namespace DAL.DAOs
             "VALUES (@ID_Usuario, @ID_Familia);";
         string QueryDeleteUsuarioFamilia = "DELETE FROM usuario_familia " +
             "WHERE ID_Usuario = @ID_Usuario AND ID_Familia = @ID_Familia;";
+        string QueryCambiarContraseña = "UPDATE Usuario SET Contraseña = @Contraseña WHERE ID_Usuario = @ID_Usuario";
         #endregion
 
         #region Agregar Usuario
@@ -446,6 +447,50 @@ namespace DAL.DAOs
             return Mappers.MAPPERSUsuario_Familia.GetInstance().Map(table);
         }
 
+
+        public bool CambiarContraseña(int idUsuario, string nuevaContraseña)
+        {
+            bool returnValue = false;
+
+
+
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@ID_Usuario", idUsuario),
+                new SqlParameter("@Contraseña", nuevaContraseña),
+
+            };
+
+            try
+            {
+                Console.WriteLine("Executing SQL: " + QueryCambiarContraseña);
+                foreach (var param in parameters)
+                {
+                    Console.WriteLine($"{param.ParameterName}: {param.Value}");
+                }
+
+                int rowsAffected = SqlHelper.GetInstance(connectionString).ExecuteNonQuery(QueryCambiarContraseña, parameters);
+                returnValue = true;
+
+                if (returnValue)
+                {
+                    Console.WriteLine("Empleado actualizado con éxito.");
+                }
+                else
+                {
+                    Console.WriteLine("No se actualizó ninguna fila.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                returnValue = false;
+            }
+
+
+            return returnValue;
+
+        }
 
     }
 }

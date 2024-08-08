@@ -85,6 +85,10 @@ namespace DAL
             return DAOSUsuario.GetInstance().QuitarFamilia(id_Usuario, id_Familia);
         }
 
+        public bool CambiarContraseña(int idUsuario, string nuevaContraseña)
+        {
+            return DAOSUsuario.GetInstance().CambiarContraseña(idUsuario, nuevaContraseña);
+        }
 
 
     }

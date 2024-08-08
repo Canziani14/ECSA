@@ -120,7 +120,18 @@ namespace ECSA
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             BLLSeguridad.RegistrarEnBitacora(29, usuarioLogin.Nick, usuarioLogin.ID_Usuario);
-            Application.Exit();
+            this.Close();
+            // Abrir la ventana de inicio de sesión en un nuevo hilo
+            System.Threading.Thread newThread = new System.Threading.Thread(OpenLoginForm);
+            newThread.SetApartmentState(System.Threading.ApartmentState.STA);
+            newThread.Start();
         }
+
+        private void OpenLoginForm()
+        {
+            Application.Run(new UILogin());
+        }
+
     }
+    
 }

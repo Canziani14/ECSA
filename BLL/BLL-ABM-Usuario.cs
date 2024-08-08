@@ -91,5 +91,10 @@ namespace BLL
             return DALUsuario.QuitarFamilia(id_Usuario, id_Familia);
         }
 
+        public bool CambiarContraseña(int idUsuario, string nuevaContraseña)
+        {
+            return DALUsuario.CambiarContraseña(idUsuario, nuevaContraseña);
+        }
+
     }
 }

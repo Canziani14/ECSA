@@ -15,6 +15,7 @@ namespace ECSA
     {
         private BE.Usuario usuarioLog;
         BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
+        BLL.BLLDAL BLLDAL = new BLL.BLLDAL();
 
         public UIGestionarBackUp(BE.Usuario usuarioLog)
         {
@@ -24,11 +25,44 @@ namespace ECSA
 
         private void btnBKP_Click(object sender, EventArgs e)
         {
-            BLLSeguridad.RegistrarEnBitacora(35, usuarioLog.Nick, usuarioLog.ID_Usuario);
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "SQL Backup files (*.bak)|*.bak";
+                saveFileDialog.Title = "Guardar Respaldo de Base de Datos";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string backupPath = saveFileDialog.FileName;
+                    try
+                    {
+                        BLLDAL.RealizarBKP(backupPath);
+                        MessageBox.Show("Backup realizado con éxito.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al realizar el backup: " + ex.Message);
+                    }
+                }
+                //BLLSeguridad.RegistrarEnBitacora(35, usuarioLog.Nick, usuarioLog.ID_Usuario);
+
+            }
+
         }
 
         private void btnRestore_Click(object sender, EventArgs e)
         {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "SQL Backup files (*.bak)|*.bak";
+                openFileDialog.Title = "Seleccionar Archivo de Respaldo";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string backupPath = openFileDialog.FileName;
+                    BLLDAL.RealizarRestore(backupPath);
+                }
+            }
+          
             BLLSeguridad.RegistrarEnBitacora(36, usuarioLog.Nick, usuarioLog.ID_Usuario);
         }
     }

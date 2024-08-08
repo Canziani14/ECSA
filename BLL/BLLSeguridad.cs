@@ -116,7 +116,7 @@ namespace BLL
         #region Bitacora
         public List<Bitacora> BuscarEnBitacora(string fechaDesde, string fechaHasta, string nick)
         {
-            return DAOSSeguridad.GetInstance().BuscarEnBitacora(fechaDesde, fechaHasta, nick);
+            return DALSeguridad.BuscarEnBitacora(fechaDesde, fechaHasta, nick);
         }
 
         public BE.Bitacora RegistrarEnBitacora(int i, string NickUsuarioLogin, int ID_Usuario)

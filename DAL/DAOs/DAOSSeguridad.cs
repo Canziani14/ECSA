@@ -9,6 +9,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,7 @@ namespace DAL.DAOs
 
         string QuerySelect = "select * from Bitacora";
         string QuerySelectCrit3 = "select * from Bitacora where criticidad = 3";
+        
         #endregion
 
         #region digitos verificadores
@@ -714,7 +716,7 @@ namespace DAL.DAOs
         }
         #endregion
 
-
+       
 
 
 

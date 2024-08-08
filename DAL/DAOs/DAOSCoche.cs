@@ -55,11 +55,11 @@ namespace DAL.DAOs
             bool returnValue = false;
 
             List<SqlParameter> parameters = new List<SqlParameter>()
-    {
-        new SqlParameter("@Patente", patente),
-        new SqlParameter("@ID_Linea", idLinea)
+            {
+                new SqlParameter("@Patente", patente),
+                new SqlParameter("@ID_Linea", idLinea)
 
-    };
+            };
 
             try
             {

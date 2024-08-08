@@ -52,6 +52,7 @@ namespace DAL.DAOs
 
         string QuerySelectByLinea = "SELECT * FROM [ECSA].[dbo].[Empleado] where ID_Linea = @ID_Linea";
 
+        
         #endregion
 
         #region AgregarEmpleado
