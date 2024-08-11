@@ -67,13 +67,13 @@
             this.dtgEmpleados.Name = "dtgEmpleados";
             this.dtgEmpleados.RowHeadersVisible = false;
             this.dtgEmpleados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgEmpleados.Size = new System.Drawing.Size(535, 354);
+            this.dtgEmpleados.Size = new System.Drawing.Size(634, 364);
             this.dtgEmpleados.TabIndex = 0;
             this.dtgEmpleados.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgEmpleados_CellDoubleClick);
             // 
             // btnBuscarEmpleado
             // 
-            this.btnBuscarEmpleado.Location = new System.Drawing.Point(316, 34);
+            this.btnBuscarEmpleado.Location = new System.Drawing.Point(305, 29);
             this.btnBuscarEmpleado.Name = "btnBuscarEmpleado";
             this.btnBuscarEmpleado.Size = new System.Drawing.Size(75, 23);
             this.btnBuscarEmpleado.TabIndex = 1;
@@ -213,7 +213,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtApellido);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(601, 74);
+            this.groupBox1.Location = new System.Drawing.Point(641, 74);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(335, 364);
             this.groupBox1.TabIndex = 15;
@@ -280,7 +280,7 @@
             // 
             // txtBuscarEmpleado
             // 
-            this.txtBuscarEmpleado.Location = new System.Drawing.Point(97, 36);
+            this.txtBuscarEmpleado.Location = new System.Drawing.Point(97, 29);
             this.txtBuscarEmpleado.Name = "txtBuscarEmpleado";
             this.txtBuscarEmpleado.Size = new System.Drawing.Size(202, 20);
             this.txtBuscarEmpleado.TabIndex = 15;
@@ -288,7 +288,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(-2, 43);
+            this.label6.Location = new System.Drawing.Point(-2, 36);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(93, 13);
             this.label6.TabIndex = 16;

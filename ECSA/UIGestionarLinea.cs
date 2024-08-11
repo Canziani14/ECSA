@@ -25,9 +25,44 @@ namespace ECSA
             InitializeComponent();
             dtgLineas.DataSource = BLLinea.Listar();
             this.usuarioLog = usuarioLog;
+
+            #region Perzonalizacion DTG
+            dtgLineas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dtgLineas.Columns["DVH"].Visible = false;
+
+            dtgLineas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtgLineas.ReadOnly = true;
+            dtgLineas.RowHeadersVisible = false;
+            // Configuración básica para DataGridView
+            dtgLineas.BorderStyle = BorderStyle.None;
+            dtgLineas.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dtgLineas.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dtgLineas.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dtgLineas.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dtgLineas.BackgroundColor = Color.White;
+
+            // Configuración del estilo de los encabezados de columna
+            dtgLineas.EnableHeadersVisualStyles = false;
+            dtgLineas.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dtgLineas.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dtgLineas.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            // Ajuste de la altura de las filas
+            dtgLineas.RowTemplate.Height = 40;
+
+            // Configuración de alineación y fuente de las celdas
+            dtgLineas.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dtgLineas.DefaultCellStyle.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
+
+            // Ajuste de los márgenes y bordes
+            dtgLineas.DefaultCellStyle.Padding = new Padding(5, 5, 5, 5);
+            dtgLineas.GridColor = Color.FromArgb(231, 231, 231);
+            #endregion
+
+
         }
 
-      
+
 
         #region Crear Linea
         private void btnCrearLinea_Click(object sender, EventArgs e)

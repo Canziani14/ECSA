@@ -25,6 +25,45 @@ namespace ECSA
             dtgCoches.DataSource= BLLCoche.Listar();
             LlenarComboBox(cmbLinea);
             this.usuarioLog = usuarioLog;
+
+
+            #region Perzonalizacion DTG
+            dtgCoches.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dtgCoches.Columns["ID_Linea"].Visible = false;
+            dtgCoches.Columns["DVH"].Visible = false;
+
+            dtgCoches.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtgCoches.ReadOnly = true;
+            dtgCoches.RowHeadersVisible = false;
+            // Configuración básica para DataGridView
+            dtgCoches.BorderStyle = BorderStyle.None;
+            dtgCoches.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dtgCoches.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dtgCoches.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dtgCoches.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dtgCoches.BackgroundColor = Color.White;
+
+            // Configuración del estilo de los encabezados de columna
+            dtgCoches.EnableHeadersVisualStyles = false;
+            dtgCoches.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dtgCoches.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dtgCoches.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            // Ajuste de la altura de las filas
+            dtgCoches.RowTemplate.Height = 40;
+
+            // Configuración de alineación y fuente de las celdas
+            dtgCoches.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dtgCoches.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+
+
+            // Ajuste de los márgenes y bordes
+            dtgCoches.DefaultCellStyle.Padding = new Padding(5, 5, 5, 5);
+            dtgCoches.GridColor = Color.FromArgb(231, 231, 231);
+            #endregion
+
+
+
         }
 
         private void btnCrearCoche_Click(object sender, EventArgs e)

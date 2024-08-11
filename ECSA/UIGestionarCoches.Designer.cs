@@ -50,7 +50,7 @@
             this.dtgCoches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgCoches.Location = new System.Drawing.Point(3, 76);
             this.dtgCoches.Name = "dtgCoches";
-            this.dtgCoches.Size = new System.Drawing.Size(238, 362);
+            this.dtgCoches.Size = new System.Drawing.Size(155, 362);
             this.dtgCoches.TabIndex = 0;
             this.dtgCoches.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgUsuarios_CellDoubleClick);
             // 
@@ -94,7 +94,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnCrearCoche);
             this.groupBox1.Controls.Add(this.btnEliminarCoche);
-            this.groupBox1.Location = new System.Drawing.Point(257, 116);
+            this.groupBox1.Location = new System.Drawing.Point(164, 102);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(236, 200);
             this.groupBox1.TabIndex = 4;
@@ -171,7 +171,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 450);
+            this.ClientSize = new System.Drawing.Size(405, 450);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.groupBox1);

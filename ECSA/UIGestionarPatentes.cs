@@ -26,51 +26,159 @@ namespace ECSA
             InitializeComponent();
             this.usuarioLog = usuarioLogin;
             dtgUsuarios.DataSource = BLLUsuario.Listar();
+
+            #region Perzonalizacion DTG
+            dtgUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dtgUsuarios.Columns["Contraseña"].Visible = false;
+            dtgUsuarios.Columns["CII"].Visible = false;
+            dtgUsuarios.Columns["DVV"].Visible = false;
+
+            dtgUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtgUsuarios.ReadOnly = true;
+            dtgUsuarios.RowHeadersVisible = false;
+            // Configuración básica para DataGridView
+            dtgUsuarios.BorderStyle = BorderStyle.None;
+            dtgUsuarios.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dtgUsuarios.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dtgUsuarios.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dtgUsuarios.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dtgUsuarios.BackgroundColor = Color.White;
+
+            // Configuración del estilo de los encabezados de columna
+            dtgUsuarios.EnableHeadersVisualStyles = false;
+            dtgUsuarios.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dtgUsuarios.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dtgUsuarios.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            // Ajuste de la altura de las filas
+            dtgUsuarios.RowTemplate.Height = 40;
+
+            // Configuración de alineación y fuente de las celdas
+            dtgUsuarios.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dtgUsuarios.DefaultCellStyle.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
+
+            // Ajuste de los márgenes y bordes
+            dtgUsuarios.DefaultCellStyle.Padding = new Padding(5, 5, 5, 5);
+            dtgUsuarios.GridColor = Color.FromArgb(231, 231, 231);
+            #endregion
+            #region Perzonalizacion DTG
+
+
+            dtgPatentesSinAsignar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dtgPatentesSinAsignar.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtgPatentesSinAsignar.ReadOnly = true;
+            dtgPatentesSinAsignar.RowHeadersVisible = false;
+            // Configuración básica para DataGridView
+            dtgPatentesSinAsignar.BorderStyle = BorderStyle.None;
+            dtgPatentesSinAsignar.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dtgPatentesSinAsignar.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dtgPatentesSinAsignar.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dtgPatentesSinAsignar.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dtgPatentesSinAsignar.BackgroundColor = Color.White;
+
+            // Configuración del estilo de los encabezados de columna
+            dtgPatentesSinAsignar.EnableHeadersVisualStyles = false;
+            dtgPatentesSinAsignar.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dtgPatentesSinAsignar.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dtgPatentesSinAsignar.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            // Ajuste de la altura de las filas
+            dtgPatentesSinAsignar.RowTemplate.Height = 40;
+
+            // Configuración de alineación y fuente de las celdas
+            dtgPatentesSinAsignar.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dtgPatentesSinAsignar.DefaultCellStyle.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
+
+            // Ajuste de los márgenes y bordes
+            dtgPatentesSinAsignar.DefaultCellStyle.Padding = new Padding(5, 5, 5, 5);
+            dtgPatentesSinAsignar.GridColor = Color.FromArgb(231, 231, 231);
+            #endregion
+            #region Perzonalizacion DTG
+
+
+            dtgPatentesActuales.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dtgPatentesActuales.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtgPatentesActuales.ReadOnly = true;
+            dtgPatentesActuales.RowHeadersVisible = false;
+            // Configuración básica para DataGridView
+            dtgPatentesActuales.BorderStyle = BorderStyle.None;
+            dtgPatentesActuales.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dtgPatentesActuales.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dtgPatentesActuales.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dtgPatentesActuales.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dtgPatentesActuales.BackgroundColor = Color.White;
+
+            // Configuración del estilo de los encabezados de columna
+            dtgPatentesActuales.EnableHeadersVisualStyles = false;
+            dtgPatentesActuales.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dtgPatentesActuales.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dtgPatentesActuales.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            // Ajuste de la altura de las filas
+            dtgPatentesActuales.RowTemplate.Height = 40;
+
+            // Configuración de alineación y fuente de las celdas
+            dtgPatentesActuales.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dtgPatentesActuales.DefaultCellStyle.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
+
+            // Ajuste de los márgenes y bordes
+            dtgPatentesActuales.DefaultCellStyle.Padding = new Padding(5, 5, 5, 5);
+            dtgPatentesActuales.GridColor = Color.FromArgb(231, 231, 231);
+            #endregion
+
+
+
+
+
+
+
+
+
         }
 
-/*        private void btnAsignarPatente_Click(object sender, EventArgs e)
-        {
-            if (UsuarioSeleccionado == null)
-            {
-                MessageBox.Show("No se ha seleccionado ningún usuario.");
-                return;
-            }
+        /*        private void btnAsignarPatente_Click(object sender, EventArgs e)
+                {
+                    if (UsuarioSeleccionado == null)
+                    {
+                        MessageBox.Show("No se ha seleccionado ningún usuario.");
+                        return;
+                    }
 
-            if (PatenteSeleccionadaAsignar == null)
-            {
-                MessageBox.Show("No se ha seleccionado ninguna patente para asignar.");
-                return;
-            }
+                    if (PatenteSeleccionadaAsignar == null)
+                    {
+                        MessageBox.Show("No se ha seleccionado ninguna patente para asignar.");
+                        return;
+                    }
 
-            BLLPatente.Asignar(UsuarioSeleccionado.ID_Usuario, PatenteSeleccionadaAsignar.ID_Patente);
+                    BLLPatente.Asignar(UsuarioSeleccionado.ID_Usuario, PatenteSeleccionadaAsignar.ID_Patente);
 
-            MessageBox.Show("Patente asignada correctamente");
-            RefrescarDTG();
-            PatenteSeleccionadaAsignar = null;
-        }
+                    MessageBox.Show("Patente asignada correctamente");
+                    RefrescarDTG();
+                    PatenteSeleccionadaAsignar = null;
+                }
 
-        private void btnQuitarPatente_Click(object sender, EventArgs e)
-        {
-            if (UsuarioSeleccionado == null)
-            {
-                MessageBox.Show("No se ha seleccionado ningún usuario.");
-                return;
-            }
+                private void btnQuitarPatente_Click(object sender, EventArgs e)
+                {
+                    if (UsuarioSeleccionado == null)
+                    {
+                        MessageBox.Show("No se ha seleccionado ningún usuario.");
+                        return;
+                    }
 
-            if (PatenteSeleccionadaQuitar == null)
-            {
-                MessageBox.Show("No se ha seleccionado ninguna patente para quitar.");
-                return;
-            }
+                    if (PatenteSeleccionadaQuitar == null)
+                    {
+                        MessageBox.Show("No se ha seleccionado ninguna patente para quitar.");
+                        return;
+                    }
 
-            BLLPatente.Quitar(UsuarioSeleccionado.ID_Usuario, PatenteSeleccionadaQuitar.ID_Patente);
+                    BLLPatente.Quitar(UsuarioSeleccionado.ID_Usuario, PatenteSeleccionadaQuitar.ID_Patente);
 
-            MessageBox.Show("Patente quitada correctamente");
-            RefrescarDTG();
-            PatenteSeleccionadaQuitar = null;
+                    MessageBox.Show("Patente quitada correctamente");
+                    RefrescarDTG();
+                    PatenteSeleccionadaQuitar = null;
 
-        }
-*/
+                }
+        */
 
         private void btnBuscarUsuario_Click(object sender, EventArgs e)
         {

@@ -14,6 +14,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Font = iTextSharp.text.Font;
 
+
 namespace ECSA
 {
     public partial class UIBitacora : Form
@@ -23,6 +24,44 @@ namespace ECSA
         {
             InitializeComponent();
            dtgBitacora.DataSource= BLLSeguridad.Listar();
+
+
+            #region Perzonalizacion DTG
+            dtgBitacora.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dtgBitacora.Columns["ID_Usuario"].Visible = false;
+            dtgBitacora.Columns["DVH"].Visible = false;
+
+            dtgBitacora.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtgBitacora.ReadOnly = true;
+            dtgBitacora.RowHeadersVisible = false;
+            // Configuración básica para DataGridView
+            dtgBitacora.BorderStyle = BorderStyle.None;
+            dtgBitacora.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dtgBitacora.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dtgBitacora.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dtgBitacora.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dtgBitacora.BackgroundColor = Color.White;
+
+            // Configuración del estilo de los encabezados de columna
+            dtgBitacora.EnableHeadersVisualStyles = false;
+            dtgBitacora.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dtgBitacora.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dtgBitacora.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            // Ajuste de la altura de las filas
+            dtgBitacora.RowTemplate.Height = 40;
+
+            // Configuración de alineación y fuente de las celdas
+            dtgBitacora.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dtgBitacora.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+
+
+            // Ajuste de los márgenes y bordes
+            dtgBitacora.DefaultCellStyle.Padding = new Padding(5, 5, 5, 5);
+            dtgBitacora.GridColor = Color.FromArgb(231, 231, 231);
+            #endregion
+
+
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)

@@ -29,6 +29,48 @@ namespace ECSA
             dtgEmpleados.DataSource = BLLEmpleado.Listar();
             this.usuarioLog = usuarioLog;
             LlenarComboBox(cmbLinea);
+
+
+            #region Perzonalizacion DTG
+            dtgEmpleados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dtgEmpleados.Columns["DVH"].Visible = false;
+            dtgEmpleados.Columns["LineaPertenece"].Visible = false;
+            dtgEmpleados.Columns["ServicioAsignado"].Visible = false;
+
+            dtgEmpleados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtgEmpleados.ReadOnly = true;
+            dtgEmpleados.RowHeadersVisible = false;
+            // Configuración básica para DataGridView
+            dtgEmpleados.BorderStyle = BorderStyle.None;
+            dtgEmpleados.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dtgEmpleados.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dtgEmpleados.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dtgEmpleados.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dtgEmpleados.BackgroundColor = Color.White;
+
+            // Configuración del estilo de los encabezados de columna
+            dtgEmpleados.EnableHeadersVisualStyles = false;
+            dtgEmpleados.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dtgEmpleados.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dtgEmpleados.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            // Ajuste de la altura de las filas
+            dtgEmpleados.RowTemplate.Height = 40;
+
+            // Configuración de alineación y fuente de las celdas
+            dtgEmpleados.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dtgEmpleados.DefaultCellStyle.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
+
+            // Ajuste de los márgenes y bordes
+            dtgEmpleados.DefaultCellStyle.Padding = new Padding(5, 5, 5, 5);
+            dtgEmpleados.GridColor = Color.FromArgb(231, 231, 231);
+            #endregion
+            txtNombre.Font = new Font("Arial", 10F, FontStyle.Regular);
+            txtNombre.ForeColor = Color.Black;
+            txtNombre.BackColor = Color.White;
+            txtNombre.BorderStyle = BorderStyle.FixedSingle;
+
+
         }
         #endregion
 
@@ -277,6 +319,9 @@ namespace ECSA
         }
 
         #endregion
+
+
+
     }
 
 

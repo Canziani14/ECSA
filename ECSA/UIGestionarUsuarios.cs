@@ -23,12 +23,114 @@ namespace ECSA
         BLL.BLL_ABM_Familia BLLFamilia = new BLL.BLL_ABM_Familia();
         BE.Familia FamiliaSeleccionadaAsignar = new BE.Familia();
         BE.Familia FamiliaSeleccionadaQuitar = new BE.Familia();
+
+
         public UIGestionarUsuarios(BE.Usuario usuarioLog)
         {
             this.usuarioLog = usuarioLog;
             InitializeComponent();
             dtgUsuarios.DataSource = BLLUsuario.Listar();
 
+
+
+            #region Perzonalizacion DTG
+            dtgUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dtgUsuarios.Columns["Contraseña"].Visible = false;
+            dtgUsuarios.Columns["CII"].Visible = false;
+            dtgUsuarios.Columns["DVV"].Visible = false;
+
+            dtgUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtgUsuarios.ReadOnly = true;
+            dtgUsuarios.RowHeadersVisible = false;
+            // Configuración básica para DataGridView
+            dtgUsuarios.BorderStyle = BorderStyle.None;
+            dtgUsuarios.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dtgUsuarios.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dtgUsuarios.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dtgUsuarios.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dtgUsuarios.BackgroundColor = Color.White;
+
+            // Configuración del estilo de los encabezados de columna
+            dtgUsuarios.EnableHeadersVisualStyles = false;
+            dtgUsuarios.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dtgUsuarios.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dtgUsuarios.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            // Ajuste de la altura de las filas
+            dtgUsuarios.RowTemplate.Height = 40;
+
+            // Configuración de alineación y fuente de las celdas
+            dtgUsuarios.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dtgUsuarios.DefaultCellStyle.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
+
+            // Ajuste de los márgenes y bordes
+            dtgUsuarios.DefaultCellStyle.Padding = new Padding(5, 5, 5, 5);
+            dtgUsuarios.GridColor = Color.FromArgb(231, 231, 231);
+            #endregion
+
+            #region Perzonalizacion DTG
+
+            dtgFamiliasSinAsignar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dtgFamiliasSinAsignar.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtgFamiliasSinAsignar.ReadOnly = true;
+            dtgFamiliasSinAsignar.RowHeadersVisible = false;
+            // Configuración básica para DataGridView
+            dtgFamiliasSinAsignar.BorderStyle = BorderStyle.None;
+            dtgFamiliasSinAsignar.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dtgFamiliasSinAsignar.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dtgFamiliasSinAsignar.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dtgFamiliasSinAsignar.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dtgFamiliasSinAsignar.BackgroundColor = Color.White;
+
+            // Configuración del estilo de los encabezados de columna
+            dtgFamiliasSinAsignar.EnableHeadersVisualStyles = false;
+            dtgFamiliasSinAsignar.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dtgFamiliasSinAsignar.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dtgFamiliasSinAsignar.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            // Ajuste de la altura de las filas
+            dtgFamiliasSinAsignar.RowTemplate.Height = 40;
+
+            // Configuración de alineación y fuente de las celdas
+            dtgFamiliasSinAsignar.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dtgFamiliasSinAsignar.DefaultCellStyle.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
+
+            // Ajuste de los márgenes y bordes
+            dtgFamiliasSinAsignar.DefaultCellStyle.Padding = new Padding(5, 5, 5, 5);
+            dtgFamiliasSinAsignar.GridColor = Color.FromArgb(231, 231, 231);
+            #endregion
+
+            #region Perzonalizacion DTG
+
+            dtgFamiliaActual.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dtgFamiliaActual.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtgFamiliaActual.ReadOnly = true;
+            dtgFamiliaActual.RowHeadersVisible = false;
+            // Configuración básica para DataGridView
+            dtgFamiliaActual.BorderStyle = BorderStyle.None;
+            dtgFamiliaActual.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dtgFamiliaActual.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dtgFamiliaActual.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dtgFamiliaActual.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dtgFamiliaActual.BackgroundColor = Color.White;
+
+            // Configuración del estilo de los encabezados de columna
+            dtgFamiliaActual.EnableHeadersVisualStyles = false;
+            dtgFamiliaActual.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dtgFamiliaActual.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dtgFamiliaActual.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            // Ajuste de la altura de las filas
+            dtgFamiliaActual.RowTemplate.Height = 40;
+
+            // Configuración de alineación y fuente de las celdas
+            dtgFamiliaActual.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dtgFamiliaActual.DefaultCellStyle.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
+
+            // Ajuste de los márgenes y bordes
+            dtgFamiliaActual.DefaultCellStyle.Padding = new Padding(5, 5, 5, 5);
+            dtgFamiliaActual.GridColor = Color.FromArgb(231, 231, 231);
+            #endregion
         }
 
 
@@ -285,6 +387,8 @@ namespace ECSA
         {
             ObtenerFamiliaSeleccionadaActuales();
             ObtenerUsuarioSeleccionado();
+            
+            
             int id_Usuario = UsuarioSeleccionado.ID_Usuario;
             int id_Familia =FamiliaSeleccionadaQuitar.ID_Familia ;
             BLLUsuario.QuitarFamilia(id_Usuario, id_Familia);
@@ -293,6 +397,7 @@ namespace ECSA
             dtgFamiliasSinAsignar.AutoGenerateColumns = true;
             dtgFamiliaActual.AutoGenerateColumns = true;
             MessageBox.Show("Familia quitada correctamente");
+           
 
         }
 
@@ -300,6 +405,8 @@ namespace ECSA
         {
             ObtenerFamiliaSeleccionadaNoActuales();
             ObtenerUsuarioSeleccionado();
+            
+
             int id_Usuario = UsuarioSeleccionado.ID_Usuario;
             int id_Familia = FamiliaSeleccionadaAsignar.ID_Familia;
             BLLUsuario.AsignarFamilia(id_Usuario, id_Familia);
@@ -308,6 +415,7 @@ namespace ECSA
             dtgFamiliasSinAsignar.AutoGenerateColumns = true;
             dtgFamiliaActual.AutoGenerateColumns = true;
             MessageBox.Show("Familia asignada correctamente");
+            
         }
 
         public BE.Familia ObtenerFamiliaSeleccionadaActuales()
@@ -362,8 +470,13 @@ namespace ECSA
             int id_usuario = UsuarioSeleccionado.ID_Usuario;
             dtgFamiliaActual.DataSource = BLLFamilia.ListarFamiliasActualesXUsuario(id_usuario);
             dtgFamiliasSinAsignar.DataSource = BLLFamilia.ListarFamiliasSinAsignarXUsuario(id_usuario);
+            
             dtgFamiliasSinAsignar.AutoGenerateColumns = true;
-            dtgFamiliaActual.AutoGenerateColumns = true;       
+            dtgFamiliaActual.AutoGenerateColumns = true;
+            dtgFamiliaActual.Columns["ID_Patente"].Visible = false;
+            dtgFamiliaActual.Columns["ID_Usuario"].Visible = false;
+            dtgFamiliasSinAsignar.Columns["ID_Patente"].Visible = false;
+            dtgFamiliasSinAsignar.Columns["ID_Usuario"].Visible = false;
         }
 
         public BE.Usuario ObtenerUsuarioSeleccionado()

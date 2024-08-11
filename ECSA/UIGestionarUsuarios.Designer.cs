@@ -57,6 +57,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dtgFamiliasSinAsignar = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eCSADataSetBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).BeginInit();
@@ -275,14 +277,16 @@
             this.dtgFamiliaActual.AutoGenerateColumns = false;
             this.dtgFamiliaActual.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgFamiliaActual.DataSource = this.eCSADataSetBindingSource1;
-            this.dtgFamiliaActual.Location = new System.Drawing.Point(19, 19);
+            this.dtgFamiliaActual.Location = new System.Drawing.Point(19, 46);
             this.dtgFamiliaActual.Name = "dtgFamiliaActual";
-            this.dtgFamiliaActual.Size = new System.Drawing.Size(217, 221);
+            this.dtgFamiliaActual.Size = new System.Drawing.Size(217, 210);
             this.dtgFamiliaActual.TabIndex = 19;
             this.dtgFamiliaActual.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFamiliaActual_CellDoubleClick);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.dtgFamiliasSinAsignar);
             this.groupBox2.Controls.Add(this.dtgFamiliaActual);
             this.groupBox2.Location = new System.Drawing.Point(119, 283);
@@ -297,9 +301,9 @@
             this.dtgFamiliasSinAsignar.AutoGenerateColumns = false;
             this.dtgFamiliasSinAsignar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgFamiliasSinAsignar.DataSource = this.eCSADataSetBindingSource1;
-            this.dtgFamiliasSinAsignar.Location = new System.Drawing.Point(303, 19);
+            this.dtgFamiliasSinAsignar.Location = new System.Drawing.Point(304, 46);
             this.dtgFamiliasSinAsignar.Name = "dtgFamiliasSinAsignar";
-            this.dtgFamiliasSinAsignar.Size = new System.Drawing.Size(217, 221);
+            this.dtgFamiliasSinAsignar.Size = new System.Drawing.Size(217, 207);
             this.dtgFamiliasSinAsignar.TabIndex = 20;
             this.dtgFamiliasSinAsignar.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFamiliasSinAsignar_CellDoubleClick);
             // 
@@ -311,6 +315,24 @@
             this.label5.Size = new System.Drawing.Size(82, 13);
             this.label5.TabIndex = 22;
             this.label5.Text = "Buscar Usuario:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(97, 30);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(56, 13);
+            this.label8.TabIndex = 23;
+            this.label8.Text = "Asignadas";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(390, 30);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(60, 13);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "Sin Asignar";
             // 
             // UIGestionarUsuarios
             // 
@@ -333,6 +355,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgFamiliaActual)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgFamiliasSinAsignar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -371,5 +394,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtIDUsuario;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
     }
 }

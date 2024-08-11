@@ -34,6 +34,45 @@ namespace ECSA
             LlenarComboBoxConductor(cmbConductor);
             LlenarComboBoxInternos(cmbInterno);
 
+
+            #region Perzonalizacion DTG
+            dtgServicios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dtgServicios.Columns["DVH"].Visible = false;
+            dtgServicios.Columns["Linea"].Visible = false;
+
+            dtgServicios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtgServicios.ReadOnly = true;
+            dtgServicios.RowHeadersVisible = false;
+            // Configuración básica para DataGridView
+            dtgServicios.BorderStyle = BorderStyle.None;
+            dtgServicios.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dtgServicios.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dtgServicios.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dtgServicios.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dtgServicios.BackgroundColor = Color.White;
+
+            // Configuración del estilo de los encabezados de columna
+            dtgServicios.EnableHeadersVisualStyles = false;
+            dtgServicios.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dtgServicios.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dtgServicios.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            // Ajuste de la altura de las filas
+            dtgServicios.RowTemplate.Height = 40;
+
+            // Configuración de alineación y fuente de las celdas
+            dtgServicios.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dtgServicios.DefaultCellStyle.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
+
+            // Ajuste de los márgenes y bordes
+            dtgServicios.DefaultCellStyle.Padding = new Padding(5, 5, 5, 5);
+            dtgServicios.GridColor = Color.FromArgb(231, 231, 231);
+            #endregion
+
+
+
+
+
         }
 
         #region ABM-Servicios
