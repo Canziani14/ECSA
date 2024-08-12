@@ -72,7 +72,7 @@ namespace ECSA
 
         private void btnGestionarFamilias_Click(object sender, EventArgs e)
         {
-            UIGestionarFamilias uiGestionarFamilias = new UIGestionarFamilias();
+            UIGestionarFamilias uiGestionarFamilias = new UIGestionarFamilias(usuarioLogin);
             uiGestionarFamilias.MdiParent = this;
             uiGestionarFamilias.Show();
         }

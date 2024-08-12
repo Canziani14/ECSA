@@ -57,6 +57,9 @@ namespace DAL.DAOs
         string QueryDeleteUsuarioFamilia = "DELETE FROM usuario_familia " +
             "WHERE ID_Usuario = @ID_Usuario AND ID_Familia = @ID_Familia;";
         string QueryCambiarContraseña = "UPDATE Usuario SET Contraseña = @Contraseña WHERE ID_Usuario = @ID_Usuario";
+        string QuerySelectByMail = "select * from Usuario where Mail = @Mail";
+        string QuerySelectByDNI = "select * from Usuario where DNI = @DNI";
+
         #endregion
 
         #region Agregar Usuario
@@ -492,5 +495,37 @@ namespace DAL.DAOs
 
         }
 
-    }
+
+        public List<BE.Usuario> ValidarNick(string Nick)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@Nick", Nick),
+
+            };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByNick, parameters);
+            return Mappers.MAPPERSUsuario.GetInstance().Map(table);
+        }
+        public List<BE.Usuario> ValidarDNI(string DNI)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@DNI", DNI),
+
+            };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByDNI, parameters);
+            return Mappers.MAPPERSUsuario.GetInstance().Map(table);
+        }
+        public List<BE.Usuario> ValidarMail(string Mail)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@Mail", Mail),
+
+            };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByMail, parameters);
+            return Mappers.MAPPERSUsuario.GetInstance().Map(table);
+        }
+
+    }   
 }

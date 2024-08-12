@@ -32,43 +32,43 @@ namespace DAL.DAOs
            "VALUES (@Nombre_Linea)";
         string QueryDelete = "delete from Linea where ID_Linea = @ID_Linea";
         string QueryUpdate = "UPDATE Linea SET Nombre_Linea = @Nombre_Linea WHERE ID_Linea = @ID_Linea";
+        string QuerySelectByNumDeLinea = "select* from Linea where Nombre_Linea = @Nombre_Linea";
 
 
 
+        public bool Agregar(string NumeroDeLinea)
+        {
+            bool returnValue = false;
 
-                public bool Agregar(string NumeroDeLinea)
+            List<SqlParameter> parameters = new List<SqlParameter>()
                 {
-                    bool returnValue = false;
-
-                    List<SqlParameter> parameters = new List<SqlParameter>()
-                        {
-                            new SqlParameter("@Nombre_Linea", NumeroDeLinea),
+                    new SqlParameter("@Nombre_Linea", NumeroDeLinea),
                             
-                        };
+                };
 
-                    try
-                    {
-                        Console.WriteLine("Trying to execute insert operation...");
-                        int rowsAffected = SqlHelper.GetInstance(connectionString).ExecuteNonQuery(QueryInsert, parameters);
-                        returnValue = rowsAffected > 0;
+            try
+            {
+                Console.WriteLine("Trying to execute insert operation...");
+                int rowsAffected = SqlHelper.GetInstance(connectionString).ExecuteNonQuery(QueryInsert, parameters);
+                returnValue = rowsAffected > 0;
 
-                        if (returnValue)
-                        {
-                            Console.WriteLine("Empleado creado con éxito.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("No se insertó ninguna fila.");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Error: " + ex.Message);
-                        returnValue = false;
-                    }
-
-                    return returnValue;
+                if (returnValue)
+                {
+                    Console.WriteLine("Empleado creado con éxito.");
                 }
+                else
+                {
+                    Console.WriteLine("No se insertó ninguna fila.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                returnValue = false;
+            }
+
+            return returnValue;
+        }
             
 
         public List<Linea> Listar()
@@ -92,11 +92,11 @@ namespace DAL.DAOs
 
 
             List<SqlParameter> parameters = new List<SqlParameter>()
-    {
-        new SqlParameter("@Nombre_Linea", Nombre_Linea),
-        new SqlParameter("@ID_Linea", ID_Linea),
+            {
+                new SqlParameter("@Nombre_Linea", Nombre_Linea),
+                new SqlParameter("@ID_Linea", ID_Linea),
 
-    };
+            };
 
             try
             {
@@ -143,5 +143,17 @@ namespace DAL.DAOs
         return returnValue;
         }
 
+        public List<Linea> ValidarNumLinea(string NumeroLinea)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@Nombre_Linea", NumeroLinea),
+
+            };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByNumDeLinea, parameters);
+            return Mappers.MAPPERSLinea.GetInstance().Map(table);
+        }
+
+        
     }
 }

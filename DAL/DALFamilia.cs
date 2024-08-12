@@ -42,7 +42,7 @@ namespace DAL
 
         public bool Modificar(Familia objActualizar)
         {
-            return DAOs.DAOSFamilia.GetInstance().Modificar(objActualizar.Descripcion);
+            return DAOs.DAOSFamilia.GetInstance().Modificar(objActualizar.Descripcion, objActualizar.ID_Familia);
         }
 
         public List<Patente> ListarSinAsignarXFamilia(int id_familia, int id_patente)
@@ -72,6 +72,11 @@ namespace DAL
         public List<Familia> ListarFamiliasSinAsignarXUsuario(int ID_Usuario)
         {
             return DAOs.DAOSFamilia.GetInstance().ListarFamiliasSinAsignarXUsuario(ID_Usuario);
+        }
+
+        public List<Familia> ValidarNombreFamilia(string nombre)
+        {
+            return DAOs.DAOSFamilia.GetInstance().ValidarNombreFamilia(nombre);
         }
 
 

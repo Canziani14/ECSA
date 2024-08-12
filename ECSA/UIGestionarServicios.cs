@@ -102,16 +102,42 @@ namespace ECSA
                     MessageBox.Show("Formato de hora inválido: " + ex.Message);
                 }
 
+                bool validacionFallida = false;
+                // Validar Conductor
+                if (BLLServicios.ValidarConductor(BEServicio.LegajoEmpleado).Count > 0)
+                {
+                    MessageBox.Show("Conductor ya utilizado");
+                    validacionFallida = true;
+                }
 
-                if (BLLServicios.Crear(BEServicio))
+                // Validar Interno
+                if (BLLServicios.ValidarInterno(BEServicio.Coche).Count > 0)
+                {
+                    MessageBox.Show("Interno ya utilizado");
+                    validacionFallida = true;
+                }
+
+                // Validar Horario
+                if (BLLServicios.ValidarHorario(BEServicio.HorarioSalida).Count > 0)
+                {
+                    MessageBox.Show("Horario ya utilizado");
+                    validacionFallida = true;
+                }
+
+                // Si todas las validaciones pasaron, crear el usuario
+                if (!validacionFallida)
+                {
+
+                    if (BLLServicios.Crear(BEServicio))
                 {
                     BLLSeguridad.RegistrarEnBitacora(25, usuarioLog.Nick, usuarioLog.ID_Usuario);
                     MessageBox.Show("Servicio creado con éxito");
                     CalcularDigitos();
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo crear el servicio");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo crear el servicio");
+                    }
                 }
 
                 limpiarGrilla();
@@ -252,6 +278,10 @@ namespace ECSA
                     MessageBox.Show(ex.Message);
                 }
 
+                if (true)
+                {
+
+                }
 
                 if (BLLServicios.CrearServicio(BEServicio))
                 {

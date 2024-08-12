@@ -50,9 +50,20 @@ namespace BLL
             return DALServicio.Modificar(objActualizar);
         }
 
-
-        
-
         #endregion
+
+        public List<Servicio> ValidarConductor(int legajo)
+        {
+            return DALServicio.ValidarConductor(legajo);
+        }
+        public List<Servicio> ValidarInterno(int interno)
+        {
+            return DALServicio.ValidarInterno(interno);
+        }
+        public List<Servicio> ValidarHorario(DateTime horario)
+        {
+            return DALServicio.ValidarHorario(horario);
+        }
+
     }
 }

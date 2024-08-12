@@ -97,25 +97,32 @@ namespace ECSA
                 {
 
                     BEEmpleado.LineaPertenece = (int)cmbLinea.SelectedValue;
-                    MessageBox.Show("Línea guardada con éxito. ID: " + BEEmpleado.LineaPertenece);
+                    
                 }
                 else
                 {
                     MessageBox.Show("Por favor, selecciona una línea válida.");
                 }
 
-
-                if (BLLEmpleado.Crear(BEEmpleado))
+                if (BLLEmpleado.ValidarDNI(BEEmpleado.DNI).Count > 0)
                 {
-                    BLLSeguridad.RegistrarEnBitacora(15, usuarioLog.Nick, usuarioLog.ID_Usuario);
-                    MessageBox.Show("Empleado creado con éxito");
-                    CalcularDigitos();
-
+                    MessageBox.Show("DNI ya en uso");
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo crear el empleado");
+                    if (BLLEmpleado.Crear(BEEmpleado))
+                    {
+                        BLLSeguridad.RegistrarEnBitacora(15, usuarioLog.Nick, usuarioLog.ID_Usuario);
+                        MessageBox.Show("Empleado creado con éxito");
+                        CalcularDigitos();
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo crear el empleado");
+                    }
                 }
+               
 
                 limpiarGrilla();
                 limpiartxt();

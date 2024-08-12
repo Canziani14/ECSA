@@ -198,20 +198,42 @@ namespace ECSA
                     BLLSeguridad.GuardarClaveEnArchivo(claveGenerada);
                     BEUsuario.Contraseña = BLLSeguridad.EncriptarCamposIrreversible(claveGenerada);
 
+                bool validacionFallida = false;
+                // Validar Nick
+                if (BLLUsuario.ValidarNick(BEUsuario.Nick).Count > 0)
+                {
+                    MessageBox.Show("Nick ya utilizado");
+                    validacionFallida = true;
+                }
 
+                // Validar DNI
+                if (BLLUsuario.ValidarDNI(BEUsuario.DNI).Count > 0)
+                {
+                    MessageBox.Show("DNI ya utilizado");
+                    validacionFallida = true;
+                }
 
+                // Validar Mail
+                if (BLLUsuario.ValidarMail(BEUsuario.Mail).Count > 0)
+                {
+                    MessageBox.Show("Mail ya utilizado");
+                    validacionFallida = true;
+                }
 
-
-                if (BLLUsuario.Crear(BEUsuario))
+                // Si todas las validaciones pasaron, crear el usuario
+                if (!validacionFallida)
+                {
+                    if (BLLUsuario.Crear(BEUsuario))
                     {
-                    BLLSeguridad.RegistrarEnBitacora(5, usuarioLog.Nick, usuarioLog.ID_Usuario);
-                    MessageBox.Show("Usuario creado con éxito");
+                        BLLSeguridad.RegistrarEnBitacora(5, usuarioLog.Nick, usuarioLog.ID_Usuario);
+                        MessageBox.Show("Usuario creado con éxito");
                         CalcularDigitos();
                     }
                     else
                     {
                         MessageBox.Show("No se pudo crear el Usuario");
                     }
+                }
 
                     limpiarGrilla();
                     limpiartxt();

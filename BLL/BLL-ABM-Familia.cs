@@ -73,6 +73,10 @@ namespace BLL
         {
             return DALFamilia.ListarFamiliasSinAsignarXUsuario(ID_Usuario);
         }
-
+        public List<Familia> ValidarNombreFamilia(string nombre)
+        {
+            return DALFamilia.ValidarNombreFamilia(nombre);
+        }
+        
     }
 }

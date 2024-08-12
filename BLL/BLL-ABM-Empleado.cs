@@ -45,8 +45,11 @@ namespace BLL
 
         #endregion
 
+        public List<Empleado> ValidarDNI(string DNI)
+        {
+            return DALEmpleado.ValidarDNI(DNI);
+        }
 
-      
 
 
     }

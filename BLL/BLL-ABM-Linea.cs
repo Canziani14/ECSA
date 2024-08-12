@@ -36,5 +36,10 @@ namespace BLL
         {
             return DALLinea.Modificar(objActualizar);
         }
+
+        public List<Linea> ValidarNumLinea(string NumeroLinea)
+        {
+            return DALLinea.ValidarNumLinea(NumeroLinea);
+        }
     }
 }

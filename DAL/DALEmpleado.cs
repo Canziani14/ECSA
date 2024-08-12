@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BE;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,5 +38,11 @@ namespace DAL
         {
             return DAOs.DAOSEmpleado.GetInstance().Buscar(Legajo);
         }
+
+        public List<Empleado> ValidarDNI(string DNI)
+        {
+            return DAOs.DAOSEmpleado.GetInstance().ValidarDNI(DNI);
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using BLL;
+﻿using BE;
+using BLL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,12 +20,13 @@ namespace ECSA
         BLL.BLLPatente BLLPatente = new BLL.BLLPatente();
         BE.Patente PatenteSeleccionadaAsignar = new BE.Patente();
         BE.Patente PatenteSeleccionadaQuitar = new BE.Patente();
-       
-        public UIGestionarFamilias()
+        private BE.Usuario usuarioLog;       
+        BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
+        public UIGestionarFamilias(BE.Usuario usuarioLog)
         {
             InitializeComponent();
-           dtgFamilias.DataSource= BLLFamilia.Listar();
-
+            dtgFamilias.DataSource= BLLFamilia.Listar();
+            this.usuarioLog = usuarioLog;
             #region Perzonalizacion DTG
 
 
@@ -123,31 +125,119 @@ namespace ECSA
             dtgPatentesActuales.DefaultCellStyle.Padding = new Padding(5, 5, 5, 5);
             dtgPatentesActuales.GridColor = Color.FromArgb(231, 231, 231);
             #endregion
-
-
-
-
         }
 
 
         private void btnCrearFamilia_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Familia creada con éxito");
+           /* if (txtNombreLinea.Text == "")
+            {
+                MessageBox.Show("Por favor, complete todos los campos");
+                return;
+            }*/
+            try
+            {
+
+                BEFamilia.Descripcion = txtNombreFamilia.Text;
+
+
+                if (BLLFamilia.ValidarNombreFamilia(BEFamilia.Descripcion).Count > 0)
+                {
+                    MessageBox.Show("Nombre de familia ya utilizado");
+                }
+                else
+                {
+                    if (BLLFamilia.Crear(BEFamilia))
+                    {
+                        BLLSeguridad.RegistrarEnBitacora(12, usuarioLog.Nick, usuarioLog.ID_Usuario);
+                        MessageBox.Show("Familia creada con éxito");                       
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo crear la familia");
+                    }
+                }
+                limpiarGrilla();
+                limpiartxt();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                return;
+            }        
         }
 
         private void btnModificarFamilia_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Familia modificada con éxito");
+            if (familiaSeleccionada != null)
+            {
+                try
+                {
+                    if (BLLFamilia.Modificar(new BE.Familia()
+                    {
+                        ID_Familia = familiaSeleccionada.ID_Familia,
+                        Descripcion = txtNombreFamilia.Text,                       
+                    }))
+                    {
+                        BLLSeguridad.RegistrarEnBitacora(14, usuarioLog.Nick, usuarioLog.ID_Usuario);
+                        MessageBox.Show("familia modificada con exito");
+                        limpiarGrilla();
+                        limpiartxt();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo modificar la familia");
+                    }
+
+                }
+                catch (FormatException ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione una familia para modificar");
+            }
+
         }
+        
 
         private void btnEliminarFamilia_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("¿Esta seguro de eliminar esta familia?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+        DialogResult respuesta = MessageBox.Show("¿Esta seguro de eliminar esta familia?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (respuesta == DialogResult.Yes)
             {
-                MessageBox.Show("Familia eliminada con éxito");
-            }
-            
+
+                if (familiaSeleccionada != null)
+                {
+                    bool FamiliaEliminada = BLLFamilia.Eliminar(familiaSeleccionada);
+
+                    try
+                    {
+                        if (FamiliaEliminada)
+                        {
+                            MessageBox.Show("Familia eliminada correctamente");
+                            BLLSeguridad.RegistrarEnBitacora(13, usuarioLog.Nick, usuarioLog.ID_Usuario);
+                            limpiarGrilla();
+                            limpiartxt();
+                        }
+                        else
+                        {
+                            MessageBox.Show("no se puede borrar la familia");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ha ocurrido un error al borrar la familia: " + ex.Message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione una familia para borrar");
+                }
+            }        
         }
 
         private void dtgPatentesActuales_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -260,5 +350,20 @@ namespace ECSA
 
 
         }
+
+        private void limpiarGrilla()
+        {
+            dtgFamilias.DataSource = null;
+            dtgFamilias.DataSource = BLLFamilia.Listar();
+        }
+
+        private void limpiartxt()
+        {
+            txtNombre.Clear();           
+        }
+
+        
+
+
     }
 }

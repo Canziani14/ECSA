@@ -78,16 +78,24 @@ namespace ECSA
                 BELinea.NumeroDeLinea = BLLSeguridad.EncriptarCamposReversible(txtNombreLinea.Text);
 
 
-                if (BLLinea.Crear(BELinea))
+                if (BLLinea.ValidarNumLinea(BELinea.NumeroDeLinea).Count > 0)
                 {
-                    BLLSeguridad.RegistrarEnBitacora(18, usuarioLog.Nick, usuarioLog.ID_Usuario);
-                    MessageBox.Show("Linea creada con éxito");
-                    CalcularDigitos();
+                    MessageBox.Show("Nombre de linea ya utilizado");
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo crear la Linea");
+                    if (BLLinea.Crear(BELinea))
+                    {
+                        BLLSeguridad.RegistrarEnBitacora(18, usuarioLog.Nick, usuarioLog.ID_Usuario);
+                        MessageBox.Show("Linea creada con éxito");
+                        CalcularDigitos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo crear la Linea");
+                    }
                 }
+               
 
                 limpiarGrilla();
                 limpiartxt();
@@ -113,8 +121,7 @@ namespace ECSA
                         NumeroDeLinea = BLLSeguridad.EncriptarCamposReversible(txtNombreLinea.Text),
                         ID_Linea = int.Parse(txtIDLinea.Text)
                        
-                    }
-            ))
+                    }))
                     {
                         BLLSeguridad.RegistrarEnBitacora(19, usuarioLog.Nick, usuarioLog.ID_Usuario);
                         MessageBox.Show("Linea modificada con exito");

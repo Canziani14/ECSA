@@ -32,11 +32,11 @@
             this.btnBuscarUsuario = new System.Windows.Forms.Button();
             this.txtBuscarUsuario = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.dtgPatentesSinAsignar = new System.Windows.Forms.DataGridView();
             this.dtgPatentesActuales = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPatentesSinAsignar)).BeginInit();
@@ -77,17 +77,35 @@
             this.groupBox1.Controls.Add(this.dtgPatentesActuales);
             this.groupBox1.Location = new System.Drawing.Point(312, 53);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(504, 476);
+            this.groupBox1.Size = new System.Drawing.Size(577, 476);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gestor de Patentes";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(221, 225);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Sin Asignar";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(218, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Asignadas";
             // 
             // dtgPatentesSinAsignar
             // 
             this.dtgPatentesSinAsignar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgPatentesSinAsignar.Location = new System.Drawing.Point(6, 244);
             this.dtgPatentesSinAsignar.Name = "dtgPatentesSinAsignar";
-            this.dtgPatentesSinAsignar.Size = new System.Drawing.Size(479, 160);
+            this.dtgPatentesSinAsignar.Size = new System.Drawing.Size(565, 160);
             this.dtgPatentesSinAsignar.TabIndex = 7;
             this.dtgPatentesSinAsignar.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPatentesSinAsignar_CellDoubleClick);
             // 
@@ -96,7 +114,7 @@
             this.dtgPatentesActuales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgPatentesActuales.Location = new System.Drawing.Point(6, 42);
             this.dtgPatentesActuales.Name = "dtgPatentesActuales";
-            this.dtgPatentesActuales.Size = new System.Drawing.Size(479, 140);
+            this.dtgPatentesActuales.Size = new System.Drawing.Size(565, 140);
             this.dtgPatentesActuales.TabIndex = 6;
             this.dtgPatentesActuales.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPatentesActuales_CellDoubleClick);
             // 
@@ -109,29 +127,11 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Buscar Usuario:";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(218, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Asignadas";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(221, 225);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Sin Asignar";
-            // 
             // UIGestionarPatentes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(825, 541);
+            this.ClientSize = new System.Drawing.Size(901, 541);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtBuscarUsuario);

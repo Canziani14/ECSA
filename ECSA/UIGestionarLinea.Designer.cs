@@ -161,7 +161,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dtgLineas);
             this.Name = "UIGestionarLinea";
-            this.Text = "se ec";
+            this.Text = "GestionarLineas";
             ((System.ComponentModel.ISupportInitialize)(this.dtgLineas)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

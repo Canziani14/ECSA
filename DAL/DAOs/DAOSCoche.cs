@@ -39,7 +39,7 @@ namespace DAL.DAOs
 
         string QuerySelectXLinea = "SELECT * from coche where ID_Linea = @ID_Linea;";
 
-
+        string QuerySelectXPatente = "select * from coche where Patente = @Patente";
 
 
 
@@ -97,14 +97,11 @@ namespace DAL.DAOs
 
         public List<Coche> Listar(int linea)
         {
-
-        
-                    List<SqlParameter> parameters = new List<SqlParameter>()
-                {
-                    new SqlParameter("@ID_Linea", linea),
-                    
-
-                };
+ 
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@ID_Linea", linea),
+            };
             DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectXLinea, parameters);
 
 
@@ -127,11 +124,11 @@ namespace DAL.DAOs
 
 
             List<SqlParameter> parameters = new List<SqlParameter>()
-    {
-         new SqlParameter("@Patente", patente),
-        new SqlParameter("@ID_Linea", idLinea)
+            {
+                 new SqlParameter("@Patente", patente),
+                new SqlParameter("@ID_Linea", idLinea)
 
-    };
+            };
 
             try
             {
@@ -177,6 +174,18 @@ namespace DAL.DAOs
             return returnValue;
         }
 
-       
+        public List<Coche> ValidarPatente(string patente)
+        {
+
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@Patente", patente),
+            };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectXPatente, parameters);
+
+
+            return Mappers.MAPPERSCoche.GetInstance().Map(table);
+        }
+
     }
 }

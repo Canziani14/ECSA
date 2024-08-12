@@ -33,5 +33,10 @@ namespace DAL
         {
             return DAOs.DAOSLinea.GetInstance().Modificar(objActualizar.NumeroDeLinea, objActualizar.ID_Linea);
         }
+
+        public List<Linea> ValidarNumLinea(string NumeroLinea)
+        {
+            return DAOs.DAOSLinea.GetInstance().ValidarNumLinea(NumeroLinea);
+        }
     }
 }

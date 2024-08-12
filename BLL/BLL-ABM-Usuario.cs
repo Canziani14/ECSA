@@ -96,5 +96,18 @@ namespace BLL
             return DALUsuario.CambiarContraseña(idUsuario, nuevaContraseña);
         }
 
+        public List<BE.Usuario> ValidarNick(string Nick)
+        {
+            return DALUsuario.ValidarNick(Nick);
+        }
+        public List<BE.Usuario> ValidarDNI(string DNI)
+        {
+            return DALUsuario.ValidarDNI(DNI);
+        }
+        public List<BE.Usuario> ValidarMail(string Mail)
+        {
+            return DALUsuario.ValidarMail(Mail);
+        }
+
     }
 }

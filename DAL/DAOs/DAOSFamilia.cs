@@ -30,7 +30,7 @@ namespace DAL.DAOs
 
         string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-        string QueryInsert = "";
+        string QueryInsert = "Insert into Familia (Descripcion) VALUES (@Descripcion)";
         string QuerySelect = "select * from Familia";
         string QuerySelectPatentesAsignadas = "SELECT fp.ID_Patente, p.Descripcion, fp.ID_Familia " +
         "FROM Familia_Patente fp " +
@@ -61,9 +61,9 @@ namespace DAL.DAOs
             "WHERE f.ID_Familia NOT IN (SELECT uf.ID_Familia FROM usuario_familia uf " +
             "WHERE uf.ID_Usuario = @ID_Usuario);";
 
-        string QueryUpdate = "";
-        string QueryDelete = "";
-
+        string QueryUpdate = "update Familia set Descripcion = @Descripcion where ID_Familia = @ID_Familia";
+        string QueryDelete = "delete from Familia where ID_Familia = @ID_Familia";
+        string QuerySelectXNombre = "select * from familia where Descripcion = @Descripcion";
 
         public bool Agregar(string Descripcion)
         {
@@ -136,22 +136,14 @@ namespace DAL.DAOs
             return Mappers.MAPPERSUsuario_Familia.GetInstance().Map(table);
         }
 
-
-
-
-
-
-
-        public bool Modificar(string Descripcion)
+        public bool Modificar(string Descripcion, int id_familia)
         {
-
             bool returnValue = false;
-
-
 
             List<SqlParameter> parameters = new List<SqlParameter>()
             {
                 new SqlParameter("@Descripcion", Descripcion),
+                new SqlParameter("@ID_Familia", id_familia),
             };
 
             try
@@ -271,10 +263,10 @@ namespace DAL.DAOs
             bool returnValue = false;
 
             List<SqlParameter> parameters = new List<SqlParameter>()
-    {
-        new SqlParameter("@ID_Familia", id_Familia),
-        new SqlParameter("@ID_Patente", id_Patente)
-    };
+            {
+                new SqlParameter("@ID_Familia", id_Familia),
+                new SqlParameter("@ID_Patente", id_Patente)
+            };
 
             try
             {
@@ -329,7 +321,18 @@ namespace DAL.DAOs
             return Mappers.MAPPERSUsuario_Familia.GetInstance().Map(table); 
         }
 
+        public List<Familia> ValidarNombreFamilia(string nombre)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                 new SqlParameter("@Descripcion", nombre),
 
+            };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectXNombre, parameters);
+
+
+            return Mappers.MAPPERSUsuario_Familia.GetInstance().Map(table);
+        }
 
 
     }

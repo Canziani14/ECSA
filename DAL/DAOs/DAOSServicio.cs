@@ -31,7 +31,9 @@ namespace DAL.DAOs
 
         string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-        string QuerySelect = "SELECT * FROM [ECSA].[dbo].[Servicio]";
+        string QuerySelect = "SELECT * FROM [ECSA].[dbo].[Servicio] " +
+            "WHERE CONVERT(date, Hora_Cabecera_Principal) = CONVERT(date, GETDATE())";
+           
       
         string QueryInsert = "INSERT INTO Servicio (Hora_Cabecera_Principal,Hora_Cabecera_Retorno, ID_Linea, Legajo, Interno )" +
            "VALUES (@Hora_Cabecera_Principal, @Hora_Cabecera_Retorno, @ID_Linea, @Legajo, @Interno)";
@@ -158,13 +160,10 @@ namespace DAL.DAOs
         public List<Servicio> Listar (int IDLinea)
         {
             List<SqlParameter> parameters = new List<SqlParameter>()
-    {
-        new SqlParameter("@ID_Linea", IDLinea),
-
-    };
+            {
+                new SqlParameter("@ID_Linea", IDLinea),
+            };
             DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByLinea, parameters);
-
-
             return Mappers.MAPPERServicio.GetInstance().Map(table);
         }
 
@@ -175,12 +174,11 @@ namespace DAL.DAOs
 
 
             List<SqlParameter> parameters = new List<SqlParameter>()
-    {
-        new SqlParameter("@Hora_Cabecera_Principal", salida),
-        new SqlParameter("@Hora_Cabecera_Retorno", llegada),
-        new SqlParameter("@ID_Servicio", idServicio),
-
-    };
+            {
+                new SqlParameter("@Hora_Cabecera_Principal", salida),
+                new SqlParameter("@Hora_Cabecera_Retorno", llegada),
+                new SqlParameter("@ID_Servicio", idServicio),
+            };
 
             try
             {
@@ -211,5 +209,36 @@ namespace DAL.DAOs
 
             return returnValue;
         }
+
+        public List<Servicio> ValidarConductor(int legajo)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@Legajo", legajo),
+            };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByLinea, parameters);
+            return Mappers.MAPPERServicio.GetInstance().Map(table);
+        }
+        public List<Servicio> ValidarInterno(int interno)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@Interno", interno),
+            };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByLinea, parameters);
+            return Mappers.MAPPERServicio.GetInstance().Map(table);
+        }
+        public List<Servicio> ValidarHorario(DateTime horario)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@Hora_Cabecera_Principal", horario),
+            };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByLinea, parameters);
+            return Mappers.MAPPERServicio.GetInstance().Map(table);
+        }
+
+
+
     }
 }

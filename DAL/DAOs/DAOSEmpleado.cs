@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Net;
 using System.Security.Cryptography;
+using BE;
 
 namespace DAL.DAOs
 {
@@ -51,8 +52,8 @@ namespace DAL.DAOs
         string QuerySelectByLegajo = "SELECT * FROM [ECSA].[dbo].[Empleado] where Legajo = @legajo";
 
         string QuerySelectByLinea = "SELECT * FROM [ECSA].[dbo].[Empleado] where ID_Linea = @ID_Linea";
+        string QuerySelectXDNI = "select * from Empleado where DNI = @DNI";
 
-        
         #endregion
 
         #region AgregarEmpleado
@@ -108,10 +109,10 @@ namespace DAL.DAOs
         public List<BE.Empleado> Listar(int linea)
         {
             List<SqlParameter> parameters = new List<SqlParameter>()
-    {
-        new SqlParameter("@ID_Linea", linea),
+            {
+                new SqlParameter("@ID_Linea", linea),
 
-    };
+            };
             DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByLinea, parameters);
 
 
@@ -125,10 +126,10 @@ namespace DAL.DAOs
         public List<BE.Empleado> Buscar(int Legajo)
         {
             List<SqlParameter> parameters = new List<SqlParameter>()
-    {
-        new SqlParameter("@Legajo", Legajo),
+            {
+                new SqlParameter("@Legajo", Legajo),
         
-    };
+            };
             DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByLegajo, parameters);
             return Mappers.MAPPEREmpleado.GetInstance().Map(table);
         }
@@ -218,7 +219,16 @@ namespace DAL.DAOs
 
         #endregion
 
-       
+        public List<Empleado> ValidarDNI(string DNI)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@DNI", DNI),
+
+            };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectXDNI, parameters);
+            return Mappers.MAPPEREmpleado.GetInstance().Map(table);
+        }
 
     }
 }

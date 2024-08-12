@@ -41,5 +41,11 @@ namespace BLL
         {
             return DALCoche.Modificar(objActualizar);
         }
+
+        public List<Coche> ValidarPatente(string patente)
+        {
+            return DALCoche.ValidarPatente(patente);
+        }
+
     }
 }

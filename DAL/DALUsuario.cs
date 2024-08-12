@@ -90,6 +90,18 @@ namespace DAL
             return DAOSUsuario.GetInstance().CambiarContraseña(idUsuario, nuevaContraseña);
         }
 
+        public List<BE.Usuario> ValidarNick(string Nick)
+        {
+            return DAOSUsuario.GetInstance().ValidarNick(Nick);
+        }
+        public List<BE.Usuario> ValidarDNI(string DNI)
+        {
+            return DAOSUsuario.GetInstance().ValidarDNI(DNI);
+        }
+        public List<BE.Usuario> ValidarMail(string Mail)
+        {
+            return DAOSUsuario.GetInstance().ValidarMail(Mail);
+        }
 
     }
 }

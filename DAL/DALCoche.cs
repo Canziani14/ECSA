@@ -38,5 +38,11 @@ namespace DAL
         {
             return DAOs.DAOSCoche.GetInstance().Modificar(objActualizar.Patente, objActualizar.ID_Linea);
         }
+
+        public List<Coche> ValidarPatente(string patente)
+        {
+            return DAOs.DAOSCoche.GetInstance().ValidarPatente(patente);
+        }
+
     }
 }

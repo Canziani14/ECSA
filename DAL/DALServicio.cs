@@ -42,5 +42,18 @@ namespace DAL
         {
             return DAOs.DAOSServicio.GetInstance().Modificar(objActualizar.HorarioSalida, objActualizar.HorarioLlegada, objActualizar.ID_Servicio);
         }
+
+        public List<Servicio> ValidarConductor(int legajo)
+        {
+            return DAOs.DAOSServicio.GetInstance().ValidarConductor(legajo);
+        }
+        public List<Servicio> ValidarInterno(int interno)
+        {
+            return DAOs.DAOSServicio.GetInstance().ValidarInterno(interno);
+        }
+        public List<Servicio> ValidarHorario(DateTime horario)
+        {
+            return DAOs.DAOSServicio.GetInstance().ValidarHorario(horario);
+        }
     }
 }

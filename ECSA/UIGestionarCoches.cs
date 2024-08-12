@@ -83,24 +83,31 @@ namespace ECSA
                 {
                     
                     BECoche.ID_Linea = (int)cmbLinea.SelectedValue;
-                    MessageBox.Show("Línea guardada con éxito. ID: " + BECoche.ID_Linea);
+                    
                 }
                 else
                 {
                     MessageBox.Show("Por favor, selecciona una línea válida.");
                 }
-                
 
-                if (BLLCoche.Crear(BECoche))
+                if (BLLCoche.ValidarPatente(BECoche.Patente).Count()>0)
                 {
-                    BLLSeguridad.RegistrarEnBitacora(21, usuarioLog.Nick, usuarioLog.ID_Usuario);
-                    MessageBox.Show("Coche creado con éxito");
-                    CalcularDigitos();
+                    MessageBox.Show("Patente ya utilizada");
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo crear el Coche");
+                    if (BLLCoche.Crear(BECoche))
+                    {
+                        BLLSeguridad.RegistrarEnBitacora(21, usuarioLog.Nick, usuarioLog.ID_Usuario);
+                        MessageBox.Show("Coche creado con éxito");
+                        CalcularDigitos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo crear el Coche");
+                    }
                 }
+               
 
                 limpiarGrilla();
                 limpiartxt();
@@ -198,8 +205,7 @@ namespace ECSA
 
         private void limpiartxt()
         {
-            txtPatente.Clear();
-           
+            txtPatente.Clear();          
         }
 
         public void CalcularDigitos()
