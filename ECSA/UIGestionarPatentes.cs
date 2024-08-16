@@ -239,6 +239,7 @@ namespace ECSA
             BLLPatente.Quitar(id_Usuario, id_Patente);
             dtgPatentesActuales.DataSource = BLLPatente.ListarActuales(id_Usuario);
             dtgPatentesSinAsignar.DataSource = BLLPatente.ListarSinAsignar(id_Usuario);
+            CalcularDigitos();
             MessageBox.Show("Patente quitada correctamente");
         }
 
@@ -251,6 +252,7 @@ namespace ECSA
             BLLPatente.Asignar(id_Usuario, id_Patente);
             dtgPatentesActuales.DataSource = BLLPatente.ListarActuales(id_Usuario);
             dtgPatentesSinAsignar.DataSource = BLLPatente.ListarSinAsignar(id_Usuario);
+            CalcularDigitos();
             MessageBox.Show("Patente asignada correctamente");
         }
         
@@ -280,6 +282,13 @@ namespace ECSA
             
         }
 
-     
+        public void CalcularDigitos()
+        {
+            string tabla = "Usuario_Patente";
+            BLLSeguridad.VerificarDigitosVerificadores(tabla);
+            BLLSeguridad.CalcularDVV(tabla);
+        }
+
+
     }
 }

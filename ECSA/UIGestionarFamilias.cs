@@ -251,6 +251,7 @@ namespace ECSA
             BLLFamilia.QuitarXFamilia(id_Familia, id_Patente);
             dtgPatentesActuales.DataSource = BLLFamilia.ListarActualesXFamilia(id_Familia, id_Patente);
             dtgPatentesSinAsignar.DataSource = BLLFamilia.ListarSinAsignarXFamilia(id_Familia, id_Patente);
+            CalcularDigitos();
             MessageBox.Show("Patente quitada de la familia correctamente");
             
         }
@@ -264,6 +265,7 @@ namespace ECSA
             BLLFamilia.AsignarXFamilia(id_Familia, id_Patente);
             dtgPatentesActuales.DataSource = BLLFamilia.ListarActualesXFamilia(id_Familia, id_Patente);
             dtgPatentesSinAsignar.DataSource = BLLFamilia.ListarSinAsignarXFamilia(id_Familia, id_Patente);
+            CalcularDigitos();
             MessageBox.Show("Patente asignada a la familia correctamente");
         }
 
@@ -362,8 +364,13 @@ namespace ECSA
             txtNombre.Clear();           
         }
 
-        
 
+        public void CalcularDigitos()
+        {
+            string tabla = "Familia_Patente";
+            BLLSeguridad.VerificarDigitosVerificadores(tabla);
+            BLLSeguridad.CalcularDVV(tabla);
+        }
 
     }
 }

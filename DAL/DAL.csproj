@@ -54,7 +54,6 @@
     <Compile Include="DALFamilia.cs" />
     <Compile Include="DALIdioma.cs" />
     <Compile Include="DALLinea.cs" />
-    <Compile Include="DALPasaron.cs" />
     <Compile Include="DALPatente.cs" />
     <Compile Include="DALServicio.cs" />
     <Compile Include="DAOs\DAOSCoche.cs" />
@@ -62,7 +61,6 @@
     <Compile Include="DAOs\DAOSFamilia.cs" />
     <Compile Include="DAOs\DAOSIdioma.cs" />
     <Compile Include="DAOs\DAOSLinea.cs" />
-    <Compile Include="DAOs\DAOSPasaron.cs" />
     <Compile Include="DAOs\DAOSEmpleado.cs" />
     <Compile Include="DAOs\DAOSPatente.cs" />
     <Compile Include="DAOs\DAOSSeguridad.cs" />

@@ -418,6 +418,7 @@ namespace ECSA
             dtgFamiliasSinAsignar.DataSource = BLLFamilia.ListarFamiliasSinAsignarXUsuario(id_Usuario);
             dtgFamiliasSinAsignar.AutoGenerateColumns = true;
             dtgFamiliaActual.AutoGenerateColumns = true;
+            CalcularDigitos2();
             MessageBox.Show("Familia quitada correctamente");
            
 
@@ -436,6 +437,7 @@ namespace ECSA
             dtgFamiliasSinAsignar.DataSource = BLLFamilia.ListarFamiliasSinAsignarXUsuario(id_Usuario);
             dtgFamiliasSinAsignar.AutoGenerateColumns = true;
             dtgFamiliaActual.AutoGenerateColumns = true;
+            CalcularDigitos2();
             MessageBox.Show("Familia asignada correctamente");
             
         }
@@ -486,6 +488,13 @@ namespace ECSA
                 BLLSeguridad.VerificarDigitosVerificadores(tabla);
                 BLLSeguridad.CalcularDVV(tabla);
             }
+
+        public void CalcularDigitos2()
+        {
+            string tabla = "Usuario_Familia";
+            BLLSeguridad.VerificarDigitosVerificadores(tabla);
+            BLLSeguridad.CalcularDVV(tabla);
+        }
         private void dtgUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {                    
             ObtenerUsuarioSeleccionado();

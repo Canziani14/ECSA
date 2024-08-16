@@ -14,7 +14,6 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using static DAL.DAOs.DAOSPasaron;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DAL.DAOs
@@ -168,54 +167,90 @@ namespace DAL.DAOs
                         }
                     }
                     break;
-                    //ver
-                case "Patente-Usuario":
-                    string queryPatenteUsuario = "select * from Patente-Usuario";
+                //ver
+                case "Usuario_Patente":
+                    string queryPatenteUsuario = "SELECT * FROM Usuario_Patente";
                     mds = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataSet(queryPatenteUsuario);
 
                     if (mds.Tables.Count > 0 && mds.Tables[0].Rows.Count > 0)
                     {
                         string primaryKeyColumn = mds.Tables[0].Columns[0].ColumnName;
+                        string primaryKeyColumn2 = mds.Tables[0].Columns[1].ColumnName;
+
                         foreach (DataRow r in mds.Tables[0].Rows)
                         {
-                            string commanddv2 = "update " + tabla + " set DVH = " + DVHPatenteUsuario(r) + " where " + primaryKeyColumn + "=" + r["ID_PatenteUsuario"];
-                            mds2 = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(commanddv2);
+                            int dvh = DVHPatenteUsuario(r);
 
-                            suma += DVHPatenteUsuario(r);
+                            string commanddv2 = $"UPDATE {tabla} SET DVH = @DVH " +
+                                                $"WHERE {primaryKeyColumn} = @ID_Usuario AND {primaryKeyColumn2} = @ID_Patente";
+
+                            List<SqlParameter> parameters = new List<SqlParameter>()
+                            {
+                                new SqlParameter("@DVH", dvh),
+                                new SqlParameter("@ID_Usuario", r[primaryKeyColumn]),
+                                new SqlParameter("@ID_Patente", r[primaryKeyColumn2])
+                            };
+
+                            SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(commanddv2, parameters);
+
+                            suma += dvh;
                         }
                     }
                     break;
-                    //ver
-                case "Familia-Patente":
-                    string queryFamiliaPatente = "select * from Familia-Patente";
+                //ver
+                case "Familia_Patente":
+                    string queryFamiliaPatente = "SELECT * FROM [Familia_Patente]";
                     mds = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataSet(queryFamiliaPatente);
 
                     if (mds.Tables.Count > 0 && mds.Tables[0].Rows.Count > 0)
                     {
-                        string primaryKeyColumn = mds.Tables[0].Columns[0].ColumnName;
+                        string primaryKeyColumn1 = mds.Tables[0].Columns[0].ColumnName; // ID_Familia
+                        string primaryKeyColumn2 = mds.Tables[0].Columns[1].ColumnName; // ID_Patente
+
                         foreach (DataRow r in mds.Tables[0].Rows)
                         {
-                            string commanddv2 = "update " + tabla + " set DVH = " + DVHFamiliaPatente(r) + " where " + primaryKeyColumn + "=" + r["ID_Usuario"];
-                            mds2 = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(commanddv2);
+                            int dvh = DVHFamiliaPatente(r);
 
-                            suma += DVHFamiliaPatente(r);
+                            string commanddv2 = $"UPDATE {tabla} SET DVH = @DVH WHERE {primaryKeyColumn1} = @ID_Familia AND {primaryKeyColumn2} = @ID_Patente";
+
+                            var parameters = new List<SqlParameter>
+                            {
+                                new SqlParameter("@DVH", dvh),
+                                new SqlParameter("@ID_Familia", r[primaryKeyColumn1]),
+                                new SqlParameter("@ID_Patente", r[primaryKeyColumn2])
+                            };
+
+                            SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(commanddv2, parameters);
+
+                            suma += dvh;
                         }
                     }
                     break;
-                case "Familia-Usuario":
-                    //ver
-                    string queryFamiliaUsuario = "select * from Familia-Usuario";
+                case "Usuario_Familia":
+                    string queryFamiliaUsuario = "SELECT * FROM [Usuario_Familia]";
                     mds = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataSet(queryFamiliaUsuario);
 
                     if (mds.Tables.Count > 0 && mds.Tables[0].Rows.Count > 0)
                     {
-                        string primaryKeyColumn = mds.Tables[0].Columns[0].ColumnName;
+                        string primaryKeyColumn1 = mds.Tables[0].Columns[0].ColumnName; // ID_Usuario
+                        string primaryKeyColumn2 = mds.Tables[0].Columns[1].ColumnName; // ID_Familia
+
                         foreach (DataRow r in mds.Tables[0].Rows)
                         {
-                            string commanddv2 = "update " + tabla + " set DVH = " + DVHFamiliaUsuario(r) + " where " + primaryKeyColumn + "=" + r["ID_Usuario"];
-                            mds2 = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(commanddv2);
+                            int dvh = DVHFamiliaUsuario(r);
 
-                            suma += DVHFamiliaUsuario(r);
+                            string commanddv2 = $"UPDATE {tabla} SET DVH = @DVH WHERE {primaryKeyColumn1} = @ID_Usuario AND {primaryKeyColumn2} = @ID_Familia";
+
+                            var parameters = new List<SqlParameter>
+                            {
+                                new SqlParameter("@DVH", dvh),
+                                new SqlParameter("@ID_Usuario", r[primaryKeyColumn1]),
+                                new SqlParameter("@ID_Familia", r[primaryKeyColumn2])
+                            };
+
+                            SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(commanddv2, parameters);
+
+                            suma += dvh;
                         }
                     }
                     break;
@@ -324,31 +359,15 @@ namespace DAL.DAOs
             int dvh = 0;
 
             dvh += CalcularNumero(SafeIntParse(d["ID_Usuario"].ToString())) * 1;
-            dvh += CalcularNumero(d["Nombre"]?.ToString() ?? "") * 2;
-            dvh += CalcularNumero(d["Apellido"]?.ToString() ?? "") * 3;
-            dvh += CalcularNumero(d["DNI"]?.ToString() ?? "") * 4;
-            dvh += CalcularNumero(d["Nick"]?.ToString() ?? "") * 5;
-            dvh += CalcularNumero(d["Mail"]?.ToString() ?? "") * 6;
-            dvh += CalcularNumero(d["Contraseña"]?.ToString() ?? "") * 7;
-            dvh += CalcularNumero(SafeIntParse(d["Contador_Int_Fallidos"].ToString())) * 8;
-            dvh += CalcularNumero(d["Estado"]?.ToString() ?? "") * 9;
-
+            dvh += CalcularNumero(d["ID_Patente"]?.ToString() ?? "") * 2;
             return dvh;
         }
         public int DVHFamiliaPatente(DataRow d)
         {
             int dvh = 0;
 
-            dvh += CalcularNumero(SafeIntParse(d["ID_Usuario"].ToString())) * 1;
-            dvh += CalcularNumero(d["Nombre"]?.ToString() ?? "") * 2;
-            dvh += CalcularNumero(d["Apellido"]?.ToString() ?? "") * 3;
-            dvh += CalcularNumero(d["DNI"]?.ToString() ?? "") * 4;
-            dvh += CalcularNumero(d["Nick"]?.ToString() ?? "") * 5;
-            dvh += CalcularNumero(d["Mail"]?.ToString() ?? "") * 6;
-            dvh += CalcularNumero(d["Contraseña"]?.ToString() ?? "") * 7;
-            dvh += CalcularNumero(SafeIntParse(d["Contador_Int_Fallidos"].ToString())) * 8;
-            dvh += CalcularNumero(d["Estado"]?.ToString() ?? "") * 9;
-
+            dvh += CalcularNumero(SafeIntParse(d["ID_Familia"].ToString())) * 1;
+            dvh += CalcularNumero(d["ID_Patente"]?.ToString() ?? "") * 2;
             return dvh;
         }
         public int DVHFamiliaUsuario(DataRow d)
@@ -356,15 +375,7 @@ namespace DAL.DAOs
             int dvh = 0;
 
             dvh += CalcularNumero(SafeIntParse(d["ID_Usuario"].ToString())) * 1;
-            dvh += CalcularNumero(d["Nombre"]?.ToString() ?? "") * 2;
-            dvh += CalcularNumero(d["Apellido"]?.ToString() ?? "") * 3;
-            dvh += CalcularNumero(d["DNI"]?.ToString() ?? "") * 4;
-            dvh += CalcularNumero(d["Nick"]?.ToString() ?? "") * 5;
-            dvh += CalcularNumero(d["Mail"]?.ToString() ?? "") * 6;
-            dvh += CalcularNumero(d["Contraseña"]?.ToString() ?? "") * 7;
-            dvh += CalcularNumero(SafeIntParse(d["Contador_Int_Fallidos"].ToString())) * 8;
-            dvh += CalcularNumero(d["Estado"]?.ToString() ?? "") * 9;
-
+            dvh += CalcularNumero(d["ID_Familia"]?.ToString() ?? "") * 2;
             return dvh;
         }
        

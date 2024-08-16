@@ -55,7 +55,6 @@
     <Compile Include="BLL-ABM-Usuario.cs" />
     <Compile Include="BLLDAL.cs" />
     <Compile Include="BLLIdioma.cs" />
-    <Compile Include="BLLPasaron.cs" />
     <Compile Include="BLLPatente.cs" />
     <Compile Include="BLLSeguridad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

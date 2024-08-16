@@ -35,17 +35,17 @@
             // 
             // btnGenerarNuevaContraseña
             // 
-            this.btnGenerarNuevaContraseña.Location = new System.Drawing.Point(115, 103);
+            this.btnGenerarNuevaContraseña.Location = new System.Drawing.Point(122, 57);
             this.btnGenerarNuevaContraseña.Name = "btnGenerarNuevaContraseña";
             this.btnGenerarNuevaContraseña.Size = new System.Drawing.Size(109, 37);
             this.btnGenerarNuevaContraseña.TabIndex = 0;
             this.btnGenerarNuevaContraseña.Text = "Generar Nueva Contraseña";
             this.btnGenerarNuevaContraseña.UseVisualStyleBackColor = true;
-            this.btnGenerarNuevaContraseña.Click += new System.EventHandler(this.button1_Click);
+            this.btnGenerarNuevaContraseña.Click += new System.EventHandler(this.btnGenerarNuevaContraseña_Click);
             // 
             // txtMail
             // 
-            this.txtMail.Location = new System.Drawing.Point(115, 62);
+            this.txtMail.Location = new System.Drawing.Point(109, 31);
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(141, 20);
             this.txtMail.TabIndex = 1;
@@ -53,7 +53,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 65);
+            this.label1.Location = new System.Drawing.Point(12, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 2;
@@ -63,7 +63,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(294, 175);
+            this.ClientSize = new System.Drawing.Size(294, 119);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtMail);
             this.Controls.Add(this.btnGenerarNuevaContraseña);

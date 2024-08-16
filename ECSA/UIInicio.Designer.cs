@@ -44,7 +44,6 @@
             this.btnCambiarContra = new System.Windows.Forms.Button();
             this.btnAyuda = new System.Windows.Forms.Button();
             this.btnBitacora = new System.Windows.Forms.Button();
-            this.btnCambiarContraseña = new System.Windows.Forms.Button();
             this.btnAlertas = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -191,7 +190,6 @@
             this.panel2.Controls.Add(this.btnCambiarContra);
             this.panel2.Controls.Add(this.btnAyuda);
             this.panel2.Controls.Add(this.btnBitacora);
-            this.panel2.Controls.Add(this.btnCambiarContraseña);
             this.panel2.Controls.Add(this.btnAlertas);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(1146, 0);
@@ -242,26 +240,13 @@
             this.btnBitacora.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnBitacora.FlatAppearance.BorderSize = 0;
             this.btnBitacora.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBitacora.Location = new System.Drawing.Point(0, 63);
+            this.btnBitacora.Location = new System.Drawing.Point(0, 23);
             this.btnBitacora.Name = "btnBitacora";
             this.btnBitacora.Size = new System.Drawing.Size(72, 35);
             this.btnBitacora.TabIndex = 2;
             this.btnBitacora.Text = "Consultar Bitacora";
             this.btnBitacora.UseVisualStyleBackColor = true;
             this.btnBitacora.Click += new System.EventHandler(this.btnBitacora_Click);
-            // 
-            // btnCambiarContraseña
-            // 
-            this.btnCambiarContraseña.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnCambiarContraseña.FlatAppearance.BorderSize = 0;
-            this.btnCambiarContraseña.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCambiarContraseña.Location = new System.Drawing.Point(0, 23);
-            this.btnCambiarContraseña.Name = "btnCambiarContraseña";
-            this.btnCambiarContraseña.Size = new System.Drawing.Size(72, 40);
-            this.btnCambiarContraseña.TabIndex = 1;
-            this.btnCambiarContraseña.Text = "Cambiar Contraseña";
-            this.btnCambiarContraseña.UseVisualStyleBackColor = true;
-            this.btnCambiarContraseña.Click += new System.EventHandler(this.btnCambiarContraseña_Click);
             // 
             // btnAlertas
             // 
@@ -309,7 +294,6 @@
         private System.Windows.Forms.Button btnGestionarFamilias;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnBitacora;
-        private System.Windows.Forms.Button btnCambiarContraseña;
         private System.Windows.Forms.Button btnAlertas;
         private System.Windows.Forms.Button btnAyuda;
         private System.Windows.Forms.Button btnCerrarSesion;

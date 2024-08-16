@@ -93,7 +93,6 @@ namespace ECSA
         private void btnGenerarNuevaClave_Click(object sender, EventArgs e)
         {
         UIGenerarNuevaContra uIGenerarNuevaContra = new UIGenerarNuevaContra();
-        uIGenerarNuevaContra.MdiParent = this;
         uIGenerarNuevaContra.Show();
         }
 

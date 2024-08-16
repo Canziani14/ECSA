@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Font = iTextSharp.text.Font;
+using Image = iTextSharp.text.Image;
 
 
 namespace ECSA
@@ -87,81 +88,219 @@ namespace ECSA
                 dtgBitacora.DataSource = null;
             }
         }
-        
 
+        string logoPath = @"C:\\Users\\CASA\\Desktop\\ECSA\\ECSA\\colectivo.JPG"; // Ruta al logo
         private void btnDescargarBitacora_Click(object sender, EventArgs e)
-        {
-            // Crear un SaveFileDialog para permitir al usuario elegir la ubicación del archivo
+        {          
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
                 saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
                 saveFileDialog.Title = "Guardar archivo PDF";
                 saveFileDialog.FileName = "BitacoraReport.pdf";
 
-                // Mostrar el cuadro de diálogo
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
-                        // Obtener la ruta del archivo seleccionado
                         string filename = saveFileDialog.FileName;
 
-                        // Crear el documento PDF
-                        Document document = new Document();
-                        PdfWriter.GetInstance(document, new FileStream(filename, FileMode.Create));
+                        Document document = new Document(PageSize.A4.Rotate(), 10, 10, 80, 50); // Ajustar margen superior
+                        PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(filename, FileMode.Create));
+
+                        // Asignamos el event handler antes de abrir el documento
+                        PdfPageEventHelperCustom pageEventHelper = new PdfPageEventHelperCustom(logoPath);
+                        writer.PageEvent = pageEventHelper;
+
                         document.Open();
 
-                        // Configurar fuentes y estilos
-                        Font fontTitle = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16);
+                        // Inicializar el template para el total de páginas aquí
+                        pageEventHelper.TotalPagesTemplate = writer.DirectContent.CreateTemplate(30, 16);
+
                         Font fontHeader = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
                         Font fontCell = FontFactory.GetFont(FontFactory.HELVETICA, 10);
 
-                        // Agregar título
-                        Paragraph title = new Paragraph("Reporte de Bitácora", fontTitle);
-                        title.Alignment = Element.ALIGN_CENTER;
-                        document.Add(title);
-                        document.Add(new Paragraph("\n")); // Espacio después del título
+                        PdfPTable table = new PdfPTable(dtgBitacora.Columns.Count - 1); // Excluye la última columna
+                        table.WidthPercentage = 100;
 
-                        // Crear tabla para los datos
-                        PdfPTable table = new PdfPTable(dtgBitacora.Columns.Count);
-
-                        // Agregar encabezados de columna
-                        foreach (DataGridViewColumn column in dtgBitacora.Columns)
+                        // Agregar encabezados de columna (excluyendo la última columna)
+                        for (int i = 0; i < dtgBitacora.Columns.Count - 1; i++)
                         {
-                            PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText, fontHeader));
-                            cell.BackgroundColor = BaseColor.LIGHT_GRAY;
+                            PdfPCell cell = new PdfPCell(new Phrase(dtgBitacora.Columns[i].HeaderText, fontHeader))
+                            {
+                                BackgroundColor = BaseColor.LIGHT_GRAY
+                            };
                             table.AddCell(cell);
                         }
 
-                        // Agregar filas de datos
+                        // Agregar filas de datos (excluyendo la última columna)
                         foreach (DataGridViewRow row in dtgBitacora.Rows)
                         {
-                            if (row.IsNewRow) continue; // Ignorar la fila nueva
+                            if (row.IsNewRow) continue;
 
-                            foreach (DataGridViewCell cell in row.Cells)
+                            for (int i = 0; i < dtgBitacora.Columns.Count - 1; i++)
                             {
-                                string cellValue = cell.Value?.ToString() ?? string.Empty;
+                                string cellValue = row.Cells[i].Value?.ToString() ?? string.Empty;
                                 PdfPCell pdfCell = new PdfPCell(new Phrase(cellValue, fontCell))
                                 {
-                                    NoWrap = false // Permite que el texto se ajuste automáticamente
+                                    NoWrap = false
                                 };
                                 table.AddCell(pdfCell);
                             }
                         }
 
                         document.Add(table);
-                        document.Close();
 
-                        // Mostrar mensaje de éxito
+                        document.Close(); // Cerrar el documento antes de añadir la página total
+
+                        // Añadir número total de páginas en el pie de página
+                        pageEventHelper.AddTotalPagesToFooter(writer, pageEventHelper.TotalPagesTemplate);
+
                         MessageBox.Show("PDF guardado exitosamente como " + filename);
                     }
                     catch (Exception ex)
                     {
-                        // Manejar errores
                         MessageBox.Show("Error al guardar el PDF: " + ex.Message);
                     }
                 }
             }
         }
     }
+
+    public class PdfPageEventHelperCustom : PdfPageEventHelper
+    {
+        private readonly string _logoPath;
+        private readonly Font _footerFont = FontFactory.GetFont(FontFactory.HELVETICA, 10);
+        public PdfTemplate TotalPagesTemplate { get; set; }
+
+        public PdfPageEventHelperCustom(string logoPath)
+        {
+            _logoPath = logoPath;
+        }
+
+        public override void OnOpenDocument(PdfWriter writer, Document document)
+        {
+            TotalPagesTemplate = writer.DirectContent.CreateTemplate(50, 50);
+        }
+
+        public override void OnEndPage(PdfWriter writer, Document document)
+        {
+            PdfPTable headerTable = new PdfPTable(3);
+            headerTable.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
+            headerTable.SetWidths(new float[] { 1, 2, 1 });
+
+            if (File.Exists(_logoPath))
+            {
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(_logoPath);
+                logo.ScaleToFit(50f, 50f);
+                PdfPCell logoCell = new PdfPCell(logo)
+                {
+                    Border = PdfPCell.NO_BORDER,
+                    VerticalAlignment = Element.ALIGN_MIDDLE
+                };
+                headerTable.AddCell(logoCell);
+            }
+            else
+            {
+                headerTable.AddCell("");
+            }
+
+            PdfPCell titleCell = new PdfPCell(new Phrase("Reporte de Bitácora", FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16)))
+            {
+                Border = PdfPCell.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_CENTER,
+                VerticalAlignment = Element.ALIGN_MIDDLE
+            };
+            headerTable.AddCell(titleCell);
+
+            PdfPCell dateCell = new PdfPCell(new Phrase(DateTime.Now.ToString("dd/MM/yyyy"), FontFactory.GetFont(FontFactory.HELVETICA, 10)))
+            {
+                Border = PdfPCell.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_RIGHT,
+                VerticalAlignment = Element.ALIGN_MIDDLE
+            };
+            headerTable.AddCell(dateCell);
+
+            headerTable.WriteSelectedRows(0, -1, document.LeftMargin, writer.PageSize.Height - 30, writer.DirectContent);
+
+            PdfPTable footerTable = new PdfPTable(1);
+            footerTable.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
+
+            PdfPCell footerCell = new PdfPCell(new Phrase($"Hoja {writer.PageNumber} de ", _footerFont))
+            {
+                Border = PdfPCell.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_LEFT // Alinear a la izquierda
+            };
+
+            if (TotalPagesTemplate != null)
+            {
+                footerCell.Phrase.Add(new Chunk(Image.GetInstance(TotalPagesTemplate), 0, 0, true));
+            }
+
+            footerTable.AddCell(footerCell);
+
+            footerTable.WriteSelectedRows(0, -1, document.LeftMargin, document.BottomMargin - 15, writer.DirectContent);
+        }
+
+        public override void OnCloseDocument(PdfWriter writer, Document document)
+        {
+            int totalPages = writer.PageNumber;
+            ColumnText.ShowTextAligned(
+                TotalPagesTemplate,
+                Element.ALIGN_LEFT,
+                new Phrase(totalPages.ToString()),  // Mostrar el número total de páginas
+                2,
+                2,
+                0
+            );
+        }
+
+        public void AddTotalPagesToFooter(PdfWriter writer, PdfTemplate totalPagesTemplate)
+        {
+            int totalPages = writer.PageNumber;
+            ColumnText.ShowTextAligned(
+                totalPagesTemplate,
+                Element.ALIGN_LEFT,
+                new Phrase(totalPages.ToString()),  // Mostrar el número total de páginas
+                2,
+                2,
+                0
+            );
+        }
+
+
+
+
+
+
+
+
+
+
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

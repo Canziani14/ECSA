@@ -146,15 +146,5 @@ namespace DAL.DAOs
             return Mappers.MAPPERSUsuario_Patente.GetInstance().Map(table);
         }
 
-
-
-
-
-
-
-
-
-
-
     }
 }

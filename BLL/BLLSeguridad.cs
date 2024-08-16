@@ -26,11 +26,6 @@ namespace BLL
            return DALSeguridad.CalcularDVV(tabla);
         }
 
-/*        public int InsertarDVH(Int64 DVH, int cod, string t, string codtabla)
-        {
-            return DALSeguridad.InsertarDVH(DVH, cod, t, codtabla);
-        }*/
-
         public int VerificarDigitosVerificadores(string tabla)
         {
             return DALSeguridad.VerificarDigitosVerificadores(tabla);
@@ -57,32 +52,7 @@ namespace BLL
         {
             return DALSeguridad.EncriptarCamposIrreversible(str);
         }
-
-       
-
-        /*
-
-               public static string EncriptarCamposIrreversible(string str)
-               {
-                   str = str + "matias";
-                   MD5 md5 = MD5CryptoServiceProvider.Create();
-                   ASCIIEncoding encoding = new ASCIIEncoding();
-                   byte[] stream = null;
-                   StringBuilder sb = new StringBuilder();
-                   stream = md5.ComputeHash(encoding.GetBytes(str));
-                   for (int i = 0; i < stream.Length; i++) sb.AppendFormat("{0:x2}", stream[i]);
-                   return sb.ToString();
-               }
-
-               public int CompararContraseña(string un, string pass)
-               {
-                   string passencriptada = EncriptarCamposIrreversible(pass);
-                   string unencriptado = EncriptarCamposReversible(un);
-                   //SeguridadDAL sdal = new SeguridadDAL();
-                   //return sdal.ComprobarContraseña(unencriptado, passencriptada);
-                   return 0;
-               }
-               */
+    
         #endregion
 
         #region Generar Clave
@@ -124,10 +94,7 @@ namespace BLL
             return DALSeguridad.RegistrarEnBitacora(i, NickUsuarioLogin, ID_Usuario);
         }
 
-        public bool DescargarBitacora()
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public List<Bitacora> Listar()
         {
@@ -142,24 +109,11 @@ namespace BLL
         #endregion
 
        
-
-        /*
-
-        public bool GenerarContraseñaAleatoria()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool GenerarTxtContraseña()
-        {
-            throw new NotImplementedException();
-        }
-
         public bool ValidarPatentes()
         {
             throw new NotImplementedException();
         }
-*/
+        
 
 
 
