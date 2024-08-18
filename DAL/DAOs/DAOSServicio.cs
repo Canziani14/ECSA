@@ -43,7 +43,7 @@ namespace DAL.DAOs
 
         string QuerySelectByLinea = "SELECT Servicio.ID_Servicio,Servicio.Hora_Cabecera_Principal,Servicio.Hora_Cabecera_Retorno, "+
         "Servicio.Interno, Servicio.Legajo,Empleado.Nombre, Empleado.Apellido, Servicio.ID_Linea FROM Servicio "+
-    "INNER JOIN Empleado ON Servicio.legajo = Empleado.legajo WHERE Servicio.ID_Linea = @ID_Linea;";
+        "INNER JOIN Empleado ON Servicio.legajo = Empleado.legajo WHERE Servicio.ID_Linea = @ID_Linea;";
 
 
 
@@ -100,12 +100,12 @@ namespace DAL.DAOs
                 bool returnValue = false;
 
                 List<SqlParameter> parameters = new List<SqlParameter>()
-                            {
-                                new SqlParameter("@Legajo", emlpeado),
-                                new SqlParameter("@Interno", coche),
-                                new SqlParameter("@ID_Servicio", idServicio),
+                {
+                    new SqlParameter("@Legajo", emlpeado),
+                    new SqlParameter("@Interno", coche),
+                    new SqlParameter("@ID_Servicio", idServicio),
 
-                            };
+                };
 
                 try
                 {

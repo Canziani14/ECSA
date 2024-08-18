@@ -35,7 +35,7 @@ namespace ECSA
             dtgEmpleados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dtgEmpleados.Columns["DVH"].Visible = false;
             dtgEmpleados.Columns["LineaPertenece"].Visible = false;
-            dtgEmpleados.Columns["ServicioAsignado"].Visible = false;
+            
 
             dtgEmpleados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtgEmpleados.ReadOnly = true;
@@ -192,6 +192,7 @@ namespace ECSA
             {
                 EmpleadoSeleccionado = ((BE.Empleado)dtgEmpleados.SelectedRows[0].DataBoundItem);
                 this.CompletarEmpleado(EmpleadoSeleccionado);
+                
             }
 
             return EmpleadoSeleccionado;
@@ -205,7 +206,8 @@ namespace ECSA
             txtDNI.Text = empleado.DNI.ToString();
             txtDireccion.Text = empleado.Direccion;
             txtTelefono.Text = empleado.Telefono;
-            cmbLinea.Text = empleado.LineaPertenece.ToString();
+            LlenarComboBox(cmbLinea);
+            cmbLinea.SelectedValue = empleado.LineaPertenece;
             txtFechadeIngreso.Text = empleado.FechaDeingreso.ToString("yyyy-MM-dd");
             txtLegajo.Text = empleado.Legajo.ToString();
         }

@@ -18,7 +18,7 @@ namespace BE
         public string Direccion { get; set; }
         public int LineaPertenece { get; set; }
 
-        public int ServicioAsignado { get; set; }
+       // public int ServicioAsignado { get; set; }
         public int DVH { get; set; }
     }
 }

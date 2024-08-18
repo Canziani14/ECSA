@@ -1,15 +1,20 @@
 ﻿using BE;
 using BLL;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Printing;
+using System.Diagnostics;
 
 namespace ECSA
 {
@@ -62,7 +67,7 @@ namespace ECSA
 
             // Configuración de alineación y fuente de las celdas
             dtgServicios.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dtgServicios.DefaultCellStyle.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dtgServicios.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
 
             // Ajuste de los márgenes y bordes
             dtgServicios.DefaultCellStyle.Padding = new Padding(5, 5, 5, 5);
@@ -305,10 +310,156 @@ namespace ECSA
             
         }
 
+
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Se envio la planilla a la cola de impresion");
+            try
+            {
+                // Obtener la ruta del escritorio del usuario
+                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                string pdfFileName = Path.Combine(desktopPath, "PlanillaServicio_" + cmbConductor.Text + ".pdf");
+
+                // Crear el documento PDF en la ubicación especificada
+                Document document = new Document(PageSize.A4, 50f, 50f, 100f, 50f); // Márgenes
+                PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(pdfFileName, FileMode.Create));
+                document.Open();
+
+                // Encabezado (agregado en cada página)
+                PdfPTable headerTable = new PdfPTable(3);
+                headerTable.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
+                headerTable.SetWidths(new float[] { 1, 2, 1 });
+
+                // Logo
+                string logoPath = @"C:\\Users\\CASA\\Desktop\\ECSA\\ECSA\\colectivo.jpg"; 
+                if (File.Exists(logoPath))
+                {
+                    iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(logoPath);
+                    logo.ScaleToFit(50f, 50f);
+                    PdfPCell logoCell = new PdfPCell(logo)
+                    {
+                        Border = PdfPCell.NO_BORDER,
+                        VerticalAlignment = Element.ALIGN_MIDDLE
+                    };
+                    headerTable.AddCell(logoCell);
+                }
+                else
+                {
+                    headerTable.AddCell("");
+                }
+
+                // Título
+                PdfPCell titleCell = new PdfPCell(new Phrase("Planilla de Servicio", FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16)))
+                {
+                    Border = PdfPCell.NO_BORDER,
+                    HorizontalAlignment = Element.ALIGN_CENTER,
+                    VerticalAlignment = Element.ALIGN_MIDDLE
+                };
+                headerTable.AddCell(titleCell);
+
+                // Fecha
+                PdfPCell dateCell = new PdfPCell(new Phrase(DateTime.Now.ToString("dd/MM/yyyy"), FontFactory.GetFont(FontFactory.HELVETICA, 10)))
+                {
+                    Border = PdfPCell.NO_BORDER,
+                    HorizontalAlignment = Element.ALIGN_RIGHT,
+                    VerticalAlignment = Element.ALIGN_MIDDLE
+                };
+                headerTable.AddCell(dateCell);
+
+                // Escribir encabezado en la primera página
+                headerTable.WriteSelectedRows(0, -1, document.LeftMargin, document.PageSize.Height - document.TopMargin + 100, writer.DirectContent);
+
+                // Título principal: Detalles del Servicio
+                iTextSharp.text.Font boldFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16);
+                iTextSharp.text.Font regularFont = FontFactory.GetFont(FontFactory.HELVETICA, 14);
+
+                Paragraph mainTitle = new Paragraph("Detalles del Servicio", boldFont)
+                {
+                    SpacingBefore = 20f,
+                    SpacingAfter = 10f
+                };
+                document.Add(mainTitle);
+
+                // Contenido de la sección Detalles del Servicio
+                Paragraph detallesServicio = new Paragraph($"Número de Servicio: {txtServicio.Text}", regularFont)
+                {
+                    SpacingBefore = 10f,
+                    SpacingAfter = 10f
+                };
+                document.Add(detallesServicio);
+
+                Paragraph detallesLinea = new Paragraph($"Línea: {txtNombreLinea.Text}", regularFont)
+                {
+                    SpacingAfter = 10f
+                };
+                document.Add(detallesLinea);
+
+                // Mostrar el Conductor con el formato adecuado
+                if (cmbConductor.SelectedItem != null)
+                {
+                    string conductorInfo = cmbConductor.SelectedItem.ToString();
+                    string displayNamePart = conductorInfo.Substring(conductorInfo.IndexOf("DisplayName = ") + "DisplayName = ".Length);
+                    if (displayNamePart.EndsWith("}"))
+                    {
+                        displayNamePart = displayNamePart.Substring(0, displayNamePart.Length - 1).Trim();
+                    }
+
+                    Paragraph conductorParagraph = new Paragraph($"Conductor: {displayNamePart}", regularFont)
+                    {
+                        SpacingAfter = 10f
+                    };
+                    document.Add(conductorParagraph);
+                }
+                else
+                {
+                    Paragraph conductorParagraph = new Paragraph("Conductor: Información no disponible", regularFont)
+                    {
+                        SpacingAfter = 10f
+                    };
+                    document.Add(conductorParagraph);
+                }
+
+                Paragraph interno = new Paragraph($"Interno: {cmbInterno.Text}", regularFont)
+                {
+                    SpacingAfter = 10f
+                };
+                document.Add(interno);
+
+                // Título de la sección Horarios
+                Paragraph horariosTitle = new Paragraph("Horarios", boldFont)
+                {
+                    SpacingBefore = 20f,
+                    SpacingAfter = 10f
+                };
+                document.Add(horariosTitle);
+
+                // Contenido de la sección Horarios
+                Paragraph horarioPrincipal = new Paragraph($"Horario Terminal Principal: {date1.Text}", regularFont)
+                {
+                    SpacingAfter = 10f
+                };
+                document.Add(horarioPrincipal);
+
+                Paragraph horarioRebote = new Paragraph($"Horario Terminal Rebote: {date2.Text}", regularFont)
+                {
+                    SpacingAfter = 10f
+                };
+                document.Add(horarioRebote);
+
+                document.Close();
+
+                MessageBox.Show($"Planilla guardada en el escritorio como '{pdfFileName}'.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar la planilla: " + ex.Message);
+            }
         }
+
+
+
+
+
+
 
         #endregion
 
