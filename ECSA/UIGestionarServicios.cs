@@ -27,7 +27,7 @@ namespace ECSA
         BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
         BE.Servicio servicioSeleccionado = new BE.Servicio();
         private BE.Usuario usuarioLog;
-        public UIGestionarServicios(int linea, string nombreLinea, BE.Usuario usuarioLog)
+        public UIGestionarServicios(int linea, string nombreLinea, BE.Usuario usuarioLog, List<Patente> patentes)
         {
             InitializeComponent();
             txtIDLinea.Text = (linea).ToString();
@@ -39,6 +39,34 @@ namespace ECSA
             LlenarComboBoxConductor(cmbConductor);
             LlenarComboBoxInternos(cmbInterno);
 
+            btnCrearServicio.Enabled = false;
+            btnModificarServicio.Enabled=false;
+            btnEliminarServicio.Enabled = false;
+            btnAsignarServicio.Enabled = false;
+            btnImprimir.Enabled = false;
+
+            foreach (var patente in patentes)
+            {
+                switch (patente.ID_Patente)
+                {
+                    case 18:
+                        btnCrearServicio.Enabled = true;
+                        break;
+                    case 19:
+                        btnModificarServicio.Enabled = true;
+                        break;
+                    case 20:
+                        btnEliminarServicio.Enabled = true;
+                        break;
+                    case 22:
+                        btnAsignarServicio.Enabled = true;
+                        break;
+                    case 46:
+                        btnImprimir.Enabled = true;
+                        break;               
+                }
+
+            }
 
             #region Perzonalizacion DTG
             dtgServicios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;

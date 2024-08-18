@@ -22,11 +22,41 @@ namespace ECSA
         BE.Patente PatenteSeleccionadaQuitar = new BE.Patente();
         private BE.Usuario usuarioLog;       
         BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
-        public UIGestionarFamilias(BE.Usuario usuarioLog)
+        public UIGestionarFamilias(BE.Usuario usuarioLog, List<Patente> patentes)
         {
             InitializeComponent();
             dtgFamilias.DataSource= BLLFamilia.Listar();
             this.usuarioLog = usuarioLog;
+
+            btnCrearFamilia.Enabled= false;
+            btnModificarFamilia.Enabled = false;
+            btnEliminarFamilia.Enabled=false;
+
+            dtgPatentesActuales.Enabled=false;
+            dtgPatentesSinAsignar.Enabled=false;
+
+            foreach (var patente in patentes)
+            {
+                switch (patente.ID_Patente)
+                {
+                    case 27:
+                        btnCrearFamilia.Enabled = true;
+                        break;
+                    case 28:
+                        btnModificarFamilia.Enabled = true;
+                        break;
+                    case 29:
+                        btnEliminarFamilia.Enabled = true;
+                        break;
+                    case 3:
+                        dtgPatentesActuales.Enabled = true;
+                        dtgPatentesSinAsignar.Enabled = true;
+                        break;
+                }
+
+            }
+
+
             #region Perzonalizacion DTG
 
 

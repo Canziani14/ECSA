@@ -1,4 +1,5 @@
-﻿using BLL;
+﻿using BE;
+using BLL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static iTextSharp.text.pdf.hyphenation.TernaryTree;
 
 namespace ECSA
 {
@@ -16,7 +18,8 @@ namespace ECSA
         BLL.BLLSeguridad BLLSeguridad= new BLL.BLLSeguridad();
 
         private BE.Usuario usuarioLogin;
-        public UIInicio(BE.Usuario usuarioLog)
+        private List<Patente> _patentes;
+        public UIInicio(BE.Usuario usuarioLog, List<Patente> patentes)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -24,20 +27,65 @@ namespace ECSA
             BLLSeguridad.VerificarDigitosVerificadores("Usuario");
             BLLSeguridad.CalcularDVV("Usuario");
 
+            btnGestionarEmpleados.Enabled = false;
+            btnGestionarUsuarios.Enabled = false;
+            btnBKP.Enabled = false;
+            btnGestionarLineas.Enabled = false;
+            btnGestionarPatentes.Enabled = false;
+            btnGestionarFamilias.Enabled = false;
+            btnReportes.Enabled = false;
+            btnAlertas.Enabled  = false;
+            btnBitacora.Enabled = false;
+
+            foreach (var patente in patentes)
+            {
+                switch (patente.ID_Patente)
+                {
+                    case 36:
+                        btnGestionarEmpleados.Enabled = true;
+                        break;
+                    case 35:
+                        btnGestionarUsuarios.Enabled = true;
+                        break;
+                    case 37:
+                        btnBKP.Enabled = true;
+                        break;
+                    case 38:
+                        btnGestionarLineas.Enabled = true;
+                        break;
+                    case 41:
+                        btnGestionarPatentes.Enabled = true;
+                        break;
+                    case 42:
+                        btnGestionarFamilias.Enabled = true;
+                        break;
+                    case 43:
+                        btnReportes.Enabled = true;
+                        break;
+                    case 45:
+                        btnAlertas.Enabled = true;
+                        break;
+                    case 44:
+                        btnBitacora.Enabled = true;
+                        break;
+                }
+
+            }
+            _patentes = patentes;
         }
 
-        
+
 
         private void GestionarEmpleados_Click(object sender, EventArgs e)
         {
-            UIGestionarEmpleados uigestionarEmpleados = new UIGestionarEmpleados(usuarioLogin);
+            UIGestionarEmpleados uigestionarEmpleados = new UIGestionarEmpleados(usuarioLogin, _patentes);
             uigestionarEmpleados.MdiParent = this;
             uigestionarEmpleados.Show();
         }
 
         private void btnGestionarUsuarios_Click_1(object sender, EventArgs e)
         {
-            UIGestionarUsuarios uigestionarUsuarios = new UIGestionarUsuarios(usuarioLogin);
+            UIGestionarUsuarios uigestionarUsuarios = new UIGestionarUsuarios(usuarioLogin, _patentes);
             uigestionarUsuarios.MdiParent = this;
             uigestionarUsuarios.Show();
         }
@@ -51,7 +99,7 @@ namespace ECSA
 
         private void btnGestionarLineas_Click(object sender, EventArgs e)
         {
-            UIGestionarLinea uigestionarEmpleados = new UIGestionarLinea(usuarioLogin);
+            UIGestionarLinea uigestionarEmpleados = new UIGestionarLinea(usuarioLogin, _patentes);
             uigestionarEmpleados.MdiParent = this;
             uigestionarEmpleados.Show();
         }
@@ -65,14 +113,14 @@ namespace ECSA
 
         private void btnGestionarPatentes_Click(object sender, EventArgs e)
         {
-            UIGestionarPatentes uiGestionarPatentes = new UIGestionarPatentes(usuarioLogin);
+            UIGestionarPatentes uiGestionarPatentes = new UIGestionarPatentes(usuarioLogin, _patentes);
             uiGestionarPatentes.MdiParent = this;
             uiGestionarPatentes.Show();
         }
 
         private void btnGestionarFamilias_Click(object sender, EventArgs e)
         {
-            UIGestionarFamilias uiGestionarFamilias = new UIGestionarFamilias(usuarioLogin);
+            UIGestionarFamilias uiGestionarFamilias = new UIGestionarFamilias(usuarioLogin, _patentes);
             uiGestionarFamilias.MdiParent = this;
             uiGestionarFamilias.Show();
         }
@@ -132,6 +180,57 @@ namespace ECSA
             Application.Run(new UILogin());
         }
 
+
+
+        #region habilitarBotones
+
+        public void HabilitarGestionarEmpleados()
+        {
+            btnGestionarEmpleados.Enabled = true;
+        }
+
+        public void HabilitarGestionarUsuarios()
+        {
+            btnGestionarUsuarios.Enabled = true;
+        }
+
+        public void HabilitarBKP()
+        {
+            btnBKP.Enabled = true;
+        }
+
+        public void HabilitarGestionarLineas()
+        {
+            btnGestionarLineas.Enabled = true;
+        }
+
+        public void HabilitarGestionarPatentes()
+        {
+            btnGestionarPatentes.Enabled = true;
+        }
+
+        public void HabilitarGestionarFamilias()
+        {
+            btnGestionarFamilias.Enabled = true;
+        }
+
+        public void HabilitarReportes()
+        {
+            btnReportes.Enabled = true;
+        }
+
+        public void HabilitarAlertas()
+        {
+            btnAlertas.Enabled = true;
+        }
+
+        public void HabilitarBitacora()
+        {
+            btnBitacora.Enabled = true;
+        }
+
+        #endregion
+
     }
-    
+
 }

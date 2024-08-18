@@ -9,11 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static iTextSharp.text.pdf.hyphenation.TernaryTree;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+
 
 namespace ECSA
 {
-    public partial class UILogin : Form
+    public partial class UILogin : Form 
     {
         public UILogin()
         {
@@ -54,10 +56,24 @@ namespace ECSA
                     {
                          BLLUsuario.ContadorIngresos0(UsuarioLog);
                          BLLSeguridad.RegistrarEnBitacora(1,UsuarioLog.Nick, UsuarioLog.ID_Usuario);
-                        MessageBox.Show("Login exitoso. ¡Bienvenido " + UsuarioLog.Nick + "!", "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        UIInicio uiInicio = new UIInicio(UsuarioLog);
+                         MessageBox.Show("Login exitoso. ¡Bienvenido " + UsuarioLog.Nick + "!", "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Obtener las patentes del usuario
+                        var iterator = BLLUsuario.ObtenerPatentesPorUsuario(UsuarioLog.ID_Usuario.ToString());
+                        var patentes = new List<Patente>();
+
+                        while (iterator.HasNext())
+                        {
+                            patentes.Add(iterator.GetNext());
+                        }
+
+                        // Crear instancia de la ventana principal con patentes
+                        UIInicio uiInicio = new UIInicio(UsuarioLog, patentes);
+
+                        // Mostrar la ventana principal
                         uiInicio.Show();
                         this.Hide();
+
                     }
                     else
                     {
@@ -85,6 +101,8 @@ namespace ECSA
                 BLLSeguridad.RegistrarEnBitacora(4, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
                 MessageBox.Show("No puede iniciar sesion. "+UsuarioLog.Nick+" bloqueado");
             }
+
+            
 
 
 

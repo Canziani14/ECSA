@@ -23,12 +23,38 @@ namespace ECSA
         BLL.BLL_ABM_Linea BLLinea = new BLL.BLL_ABM_Linea();
         private BE.Usuario usuarioLog;
 
-        public UIGestionarEmpleados(BE.Usuario usuarioLog)
+        public UIGestionarEmpleados(BE.Usuario usuarioLog, List<Patente> patentes)
         {
             InitializeComponent();
             dtgEmpleados.DataSource = BLLEmpleado.Listar();
             this.usuarioLog = usuarioLog;
             LlenarComboBox(cmbLinea);
+
+            btnCrearEmpleado.Enabled = false;
+            btnEliminarEmpleado.Enabled = false;
+            btnModificarEmpleado.Enabled=false;
+
+            foreach (var patente in patentes)
+            {
+                switch (patente.ID_Patente)
+                {
+                    case 6:
+                        btnCrearEmpleado.Enabled = true;
+                        break;
+                    case 8:
+                        btnEliminarEmpleado.Enabled = true;
+                        break;
+                    case 7:
+                        btnModificarEmpleado.Enabled = true;
+                        break;
+                    case 9:
+                        btnBuscarEmpleado.Enabled = true;
+                        break;
+                }
+            }
+
+
+
 
 
             #region Perzonalizacion DTG

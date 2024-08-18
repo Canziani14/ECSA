@@ -25,11 +25,49 @@ namespace ECSA
         BE.Familia FamiliaSeleccionadaQuitar = new BE.Familia();
 
 
-        public UIGestionarUsuarios(BE.Usuario usuarioLog)
+        public UIGestionarUsuarios(BE.Usuario usuarioLog, List<Patente> patentes)
         {
             this.usuarioLog = usuarioLog;
             InitializeComponent();
             dtgUsuarios.DataSource = BLLUsuario.Listar();
+
+            btnCrearUsuario.Enabled = false;
+            btnModificarUsuario.Enabled=false;
+            btnEliminarUsuario.Enabled = false;
+            btnBloquearUsuario.Enabled = false;
+            btnDesbloquearUsuario.Enabled = false;
+            
+            dtgFamiliasSinAsignar.Enabled = false;
+            dtgFamiliaActual.Enabled = false;
+
+            foreach (var patente in patentes)
+            {
+                switch (patente.ID_Patente)
+                {
+                    case 23:
+                        btnCrearUsuario.Enabled = true;
+                        break;
+                    case 24:
+                        btnModificarUsuario.Enabled = true;
+                        break;
+                    case 25:
+                        btnEliminarUsuario.Enabled = true;
+                        break;
+                    case 1:
+                        btnBloquearUsuario.Enabled = true;
+                        break;
+                    case 2:
+                        btnDesbloquearUsuario.Enabled = true;
+                        break;
+                    case 34:
+                        dtgFamiliasSinAsignar.Enabled = true;
+                        dtgFamiliaActual.Enabled = true;
+                        break;                 
+                }
+
+            }
+
+
 
 
 

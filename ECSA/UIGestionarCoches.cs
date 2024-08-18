@@ -19,13 +19,30 @@ namespace ECSA
         BE.Coche BECoche = new BE.Coche();
         BE.Coche cocheSeleccionado = new BE.Coche();
         private BE.Usuario usuarioLog;
-        public UIGestionarCoches(BE.Usuario usuarioLog)
+        public UIGestionarCoches(BE.Usuario usuarioLog, List<Patente> patentes)
         {
             InitializeComponent();
             dtgCoches.DataSource= BLLCoche.Listar();
             LlenarComboBox(cmbLinea);
             this.usuarioLog = usuarioLog;
+            btnCrearCoche.Enabled = false;
+            btnEliminarCoche.Enabled = false;
 
+            foreach (var patente in patentes)
+            {
+                switch (patente.ID_Patente)
+                {
+                    case 10:
+                        btnCrearCoche.Enabled = true;
+                        break;
+                    case 12:
+                        btnEliminarCoche.Enabled = true;
+                        break;
+                    case 13:
+                        btnEliminarCoche.Enabled = true;
+                        break;
+                }
+            }
 
             #region Perzonalizacion DTG
             dtgCoches.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;

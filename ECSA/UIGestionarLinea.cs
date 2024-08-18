@@ -20,11 +20,44 @@ namespace ECSA
         BE.Linea LineaSeleccionada = new BE.Linea();
         BLL.BLLSeguridad BLLSeguridad = new BLLSeguridad();
         private BE.Usuario usuarioLog;
-        public UIGestionarLinea(BE.Usuario usuarioLog)
+        private List<Patente>  _patentes;
+        public UIGestionarLinea(BE.Usuario usuarioLog, List<Patente> patentes)
         {
             InitializeComponent();
             dtgLineas.DataSource = BLLinea.Listar();
             this.usuarioLog = usuarioLog;
+            _patentes = patentes;
+
+            btnCrearLinea.Enabled = false;
+            btnEliminarLinea.Enabled = false;
+            btnModificarLinea.Enabled = false;
+            btnGestionarCoches.Enabled = false;
+            btnGestionarServicios.Enabled = false;
+
+            foreach (var patente in patentes)
+            {
+                switch (patente.ID_Patente)
+                {
+                    case 14:
+                        btnCrearLinea.Enabled = true;
+                        break;
+                    case 16:
+                        btnEliminarLinea.Enabled = true;
+                        break;
+                    case 15:
+                        btnModificarLinea.Enabled = true;
+                        break;
+                    case 40:
+                        btnGestionarCoches.Enabled = true;
+                        break;
+                    case 39:
+                        btnGestionarServicios.Enabled = true;
+                        break;                  
+                }
+
+            }
+
+
 
             #region Perzonalizacion DTG
             dtgLineas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -192,7 +225,7 @@ namespace ECSA
 
         private void btnGestionarCoches_Click(object sender, EventArgs e)
         {
-            UIGestionarCoches uiGestionarCoches = new UIGestionarCoches(usuarioLog);
+            UIGestionarCoches uiGestionarCoches = new UIGestionarCoches(usuarioLog, _patentes);
             uiGestionarCoches.MdiParent = this.MdiParent;
             uiGestionarCoches.Show();
         }
@@ -210,7 +243,7 @@ namespace ECSA
             if (int.TryParse(txtIDLinea.Text, out int IDLinea))
             {
                 string NombreLinea = txtNombreLinea.Text;
-                UIGestionarServicios uiGestionarServicios = new UIGestionarServicios(IDLinea, NombreLinea, usuarioLog);
+                UIGestionarServicios uiGestionarServicios = new UIGestionarServicios(IDLinea, NombreLinea, usuarioLog, _patentes);
                 uiGestionarServicios.MdiParent = this.MdiParent;
                 uiGestionarServicios.Show();
             }

@@ -13,6 +13,7 @@ namespace BLL
     public class BLL_ABM_Usuario : BE.ICrud<BE.Usuario>
     {
         DAL.DALUsuario DALUsuario = new DAL.DALUsuario();
+        DAL.DALPatente DALPatente = new DAL.DALPatente();
         DAL.DALSeguridad DALSeguridad = new DAL.DALSeguridad();
         BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
 
@@ -107,6 +108,11 @@ namespace BLL
         public List<BE.Usuario> ValidarMail(string Mail)
         {
             return DALUsuario.ValidarMail(Mail);
+        }
+
+        public Iterator<Patente> ObtenerPatentesPorUsuario(string usuarioId)
+        {
+            return DALPatente.ObtenerPatentesPorUsuario(usuarioId);
         }
 
     }

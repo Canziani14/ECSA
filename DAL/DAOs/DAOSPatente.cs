@@ -146,5 +146,54 @@ namespace DAL.DAOs
             return Mappers.MAPPERSUsuario_Patente.GetInstance().Map(table);
         }
 
+        public List<Patente> ObtenerPatentesPorUsuario(string usuarioId)
+        {
+            List<Patente> patentes = new List<Patente>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Obtener patentes individuales
+                SqlCommand command = new SqlCommand(
+                    @"SELECT p.ID_Patente, p.Descripcion 
+                  FROM Usuario_Patente up
+                  INNER JOIN Patente p ON up.ID_Patente = p.ID_Patente 
+                  WHERE up.ID_Usuario = @UsuarioId", connection);
+                command.Parameters.AddWithValue("@UsuarioId", usuarioId);
+
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    patentes.Add(new Patente
+                    {
+                    ID_Patente = int.Parse(reader["ID_Patente"].ToString()),
+                    Descripcion = reader["Descripcion"].ToString()
+                    });
+                }
+                reader.Close();
+
+                // Obtener patentes de familias
+                command.CommandText =
+                    @"SELECT p.ID_Patente, p.Descripcion 
+                  FROM Familia_Patente fp
+                  INNER JOIN Patente p ON fp.ID_Patente = p.ID_Patente 
+                  WHERE fp.ID_Familia IN 
+                      (SELECT ID_Familia FROM Usuario_Familia WHERE ID_Usuario = @UsuarioId)";
+
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    patentes.Add(new Patente
+                    {
+                        ID_Patente = int.Parse(reader["ID_Patente"].ToString()),
+                        Descripcion = reader["Descripcion"].ToString()
+                    });
+                }
+            }
+
+            return patentes;
+        }
+
     }
 }

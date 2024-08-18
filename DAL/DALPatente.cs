@@ -28,5 +28,13 @@ namespace DAL
         {
             return DAOs.DAOSPatente.GetInstance().ListarSinAsignar(id_usuario);
         }
+
+        public Iterator<Patente> ObtenerPatentesPorUsuario(string usuarioId)
+        {
+            List<Patente> patentes = DAOs.DAOSPatente.GetInstance().ObtenerPatentesPorUsuario(usuarioId);
+            return new PatenteIterator(patentes);
+        }
+
+
     }
 }

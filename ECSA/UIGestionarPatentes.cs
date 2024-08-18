@@ -1,4 +1,5 @@
-﻿using BLL;
+﻿using BE;
+using BLL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +22,7 @@ namespace ECSA
         BLL.BLLPatente BLLPatente = new BLL.BLLPatente();
         BE.Patente PatenteSeleccionadaAsignar = new BE.Patente();
         BE.Patente PatenteSeleccionadaQuitar = new BE.Patente();
-        public UIGestionarPatentes(BE.Usuario usuarioLogin)
+        public UIGestionarPatentes(BE.Usuario usuarioLogin, List<Patente> patentes)
         {
             InitializeComponent();
             this.usuarioLog = usuarioLogin;
