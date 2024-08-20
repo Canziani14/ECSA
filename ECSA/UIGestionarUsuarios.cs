@@ -457,6 +457,7 @@ namespace ECSA
             dtgFamiliasSinAsignar.AutoGenerateColumns = true;
             dtgFamiliaActual.AutoGenerateColumns = true;
             CalcularDigitos2();
+            BLLSeguridad.RegistrarEnBitacora(11, usuarioLog.Nick, usuarioLog.ID_Usuario);
             MessageBox.Show("Familia quitada correctamente");
            
 
@@ -476,6 +477,7 @@ namespace ECSA
             dtgFamiliasSinAsignar.AutoGenerateColumns = true;
             dtgFamiliaActual.AutoGenerateColumns = true;
             CalcularDigitos2();
+            BLLSeguridad.RegistrarEnBitacora(10, usuarioLog.Nick, usuarioLog.ID_Usuario);
             MessageBox.Show("Familia asignada correctamente");
             
         }

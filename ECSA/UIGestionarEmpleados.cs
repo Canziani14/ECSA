@@ -26,6 +26,7 @@ namespace ECSA
         public UIGestionarEmpleados(BE.Usuario usuarioLog, List<Patente> patentes)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
             dtgEmpleados.DataSource = BLLEmpleado.Listar();
             this.usuarioLog = usuarioLog;
             LlenarComboBox(cmbLinea);
@@ -152,6 +153,7 @@ namespace ECSA
 
                 limpiarGrilla();
                 limpiartxt();
+                dtgEmpleados.DataSource = BLLEmpleado.Listar();
             }
             catch (Exception ex)
             {
@@ -187,6 +189,7 @@ namespace ECSA
                         CalcularDigitos();
                         limpiarGrilla();
                         limpiartxt();
+                        dtgEmpleados.DataSource = BLLEmpleado.Listar();
                     }
                     else
                     {
@@ -254,10 +257,11 @@ namespace ECSA
                     {
                         if (EmpleadoEliminado)
                         {
-                            BLLSeguridad.RegistrarEnBitacora(17, usuarioLog.Nick, usuarioLog.ID_Usuario);
                             CalcularDigitos();
+                            BLLSeguridad.RegistrarEnBitacora(17, usuarioLog.Nick, usuarioLog.ID_Usuario);
                             limpiarGrilla();
                             limpiartxt();
+                            dtgEmpleados.DataSource = BLLEmpleado.Listar();
                         }
                         else
                         {

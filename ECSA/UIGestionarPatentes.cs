@@ -241,6 +241,7 @@ namespace ECSA
             dtgPatentesActuales.DataSource = BLLPatente.ListarActuales(id_Usuario);
             dtgPatentesSinAsignar.DataSource = BLLPatente.ListarSinAsignar(id_Usuario);
             CalcularDigitos();
+            BLLSeguridad.RegistrarEnBitacora(28, usuarioLog.Nick, usuarioLog.ID_Usuario);
             MessageBox.Show("Patente quitada correctamente");
         }
 
@@ -254,6 +255,7 @@ namespace ECSA
             dtgPatentesActuales.DataSource = BLLPatente.ListarActuales(id_Usuario);
             dtgPatentesSinAsignar.DataSource = BLLPatente.ListarSinAsignar(id_Usuario);
             CalcularDigitos();
+            BLLSeguridad.RegistrarEnBitacora(27, usuarioLog.Nick, usuarioLog.ID_Usuario);
             MessageBox.Show("Patente asignada correctamente");
         }
         

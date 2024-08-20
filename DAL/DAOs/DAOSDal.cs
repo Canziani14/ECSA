@@ -1,5 +1,6 @@
 ﻿using BE;
 using iTextSharp.text.pdf.parser;
+using Org.BouncyCastle.Utilities.Collections;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,11 +33,17 @@ namespace DAL.DAOs
         string queryBKP = "BACKUP DATABASE [ECSA] " +
             "TO DISK = @backupPath "+
             "WITH FORMAT, INIT, NAME = 'Full Backup of ECSA';";
-        string queryRestore = 
-        "USE ECSA; "+
-        "ALTER DATABASE ECSA SET SINGLE_USER WITH ROLLBACK IMMEDIATE;"+
-        "RESTORE DATABASE ECSA FROM DISK = @backupPath WITH REPLACE;" +
-        "ALTER DATABASE ECSA SET MULTI_USER;";
+        string queryRestore =
+    "USE [master]; " +
+    "ALTER DATABASE [ECSA] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; " + // Desconecta a todos los usuarios
+    "RESTORE DATABASE [ECSA] FROM DISK = @backupPath " +
+    "WITH FILE = 1, NOUNLOAD, REPLACE, STATS = 5; " +
+    "ALTER DATABASE [ECSA] SET MULTI_USER;"; // Devuelve la base de datos al modo multiusuario
+
+
+
+
+
 
 
         public void RealizarBKP(string path)
@@ -69,6 +76,7 @@ namespace DAL.DAOs
             {
 
                 SqlCommand command = new SqlCommand(queryRestore, connection);
+                command.Parameters.AddWithValue("@backupPath", path);
                 try
                 {
                     connection.Open();
