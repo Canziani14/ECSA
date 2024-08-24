@@ -62,15 +62,15 @@ namespace DAL.DAOs
             bool returnValue = false;
             
             List<SqlParameter> parameters = new List<SqlParameter>()
-    {
-        new SqlParameter("@Nombre", Nombre),
-        new SqlParameter("@Apellido", Apellido),
-        new SqlParameter("@FechaDeingreso", FechaDeingreso),
-        new SqlParameter("@DNI", DNI),
-        new SqlParameter("@Telefono", Telefono),
-        new SqlParameter("@Direccion", Direccion),
-        new SqlParameter("@LineaPertenece", LineaPertenece),
-    };
+            {
+                new SqlParameter("@Nombre", Nombre),
+                new SqlParameter("@Apellido", Apellido),
+                new SqlParameter("@FechaDeingreso", FechaDeingreso),
+                new SqlParameter("@DNI", DNI),
+                new SqlParameter("@Telefono", Telefono),
+                new SqlParameter("@Direccion", Direccion),
+                new SqlParameter("@LineaPertenece", LineaPertenece),
+            };
 
             try
             {

@@ -175,27 +175,37 @@ namespace ECSA
         #region EliminarUsuario
         private void btnEliminarUsuario_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("¿Esta seguro de eliminar este usuario?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de eliminar este usuario?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (respuesta == DialogResult.Yes)
             {
-
                 if (UsuarioSeleccionado != null)
                 {
-                    bool UsuarioEliminado = BLLUsuario.Eliminar(UsuarioSeleccionado);
-
                     try
                     {
-                        if (UsuarioEliminado)
+                        if (BLLSeguridad.TienePatentesExclusivas(UsuarioSeleccionado.ID_Usuario))
                         {
-                            BLLSeguridad.RegistrarEnBitacora(7, usuarioLog.Nick, usuarioLog.ID_Usuario);
-                            CalcularDigitos();
-                            limpiarGrilla();
-                            limpiartxt();
+                            MessageBox.Show("El usuario " + UsuarioSeleccionado.Nick + " tiene asignada una patente única, no puede ser eliminado.");
                         }
                         else
                         {
-                            MessageBox.Show("no se puede borrar el usuario");
+                            bool UsuarioEliminado = BLLUsuario.Eliminar(UsuarioSeleccionado);
+
+                            if (UsuarioEliminado)
+                            {
+                                BLLSeguridad.RegistrarEnBitacora(7, usuarioLog.Nick, usuarioLog.ID_Usuario);
+                                CalcularDigitos();
+                                limpiarGrilla();
+                                limpiartxt();
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se puede borrar el usuario.");
+                            }
                         }
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     catch (Exception ex)
                     {
@@ -204,10 +214,11 @@ namespace ECSA
                 }
                 else
                 {
-                    MessageBox.Show("Seleccione un usuario para borrar");
+                    MessageBox.Show("Seleccione un usuario para borrar.");
                 }
             }
         }
+
         #endregion
 
 
@@ -229,6 +240,7 @@ namespace ECSA
                     BEUsuario.Nick= BLLSeguridad.EncriptarCamposReversible(txtNick.Text);
                     BEUsuario.Mail = BLLSeguridad.EncriptarCamposReversible(txtMail.Text);
                     BEUsuario.DNI= BLLSeguridad.EncriptarCamposReversible(txtDNI.Text);
+                    BEUsuario.CII = 0;
 
                     int longitudClave = 12; // Puedes cambiar la longitud de la clave aquí
                     string claveGenerada = BLLSeguridad.GenerarClave(longitudClave);
@@ -374,27 +386,33 @@ namespace ECSA
 
                 if (UsuarioSeleccionado != null)
                 {
-                    bool Usuariobloqueado = BLLUsuario.BloquearUsuario(UsuarioSeleccionado.ID_Usuario);
-
                     try
                     {
-                        if (Usuariobloqueado)
+                        if (BLLSeguridad.TienePatentesExclusivas(UsuarioSeleccionado.ID_Usuario))
                         {
-                            BLLSeguridad.RegistrarEnBitacora(8, usuarioLog.Nick, usuarioLog.ID_Usuario);
-                            MessageBox.Show("Usuario bloqueado");
-                            CalcularDigitos();
-                            limpiarGrilla();
-                            limpiartxt();
+                            MessageBox.Show("El usuario " + UsuarioSeleccionado.Nick + " tiene asignada una patente unica, no puede ser bloqueado");
                         }
                         else
                         {
-                            MessageBox.Show("no se puede bloquear el usuario");
+                            bool Usuariobloqueado = BLLUsuario.BloquearUsuario(UsuarioSeleccionado.ID_Usuario);
+                            if (Usuariobloqueado)
+                            {
+                                BLLSeguridad.RegistrarEnBitacora(8, usuarioLog.Nick, usuarioLog.ID_Usuario);
+                                MessageBox.Show("Usuario bloqueado");
+                                CalcularDigitos();
+                                limpiarGrilla();
+                                limpiartxt();
+                            }
+                            else
+                            {
+                                MessageBox.Show("no se puede bloquear el usuario");
+                            }
                         }
                     }
-                    catch (Exception ex)
+                    catch (InvalidOperationException ex)
                     {
-                        MessageBox.Show("Ha ocurrido un error al bloquear el usuario: " + ex.Message);
-                    }
+                        MessageBox.Show(ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }     
                 }
                 else
                 {

@@ -33,8 +33,8 @@ namespace DAL.DAOs
 
         string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-        string QueryInsert = "INSERT INTO Usuario (Nombre, Apellido, Nick, Mail, DNI, Contraseña, estado)" +
-            "VALUES (@Nombre, @Apellido, @Nick, @Mail, @DNI, @Contraseña, 1)";
+        string QueryInsert = "INSERT INTO Usuario (Nombre, Apellido, Nick, Mail, DNI, Contraseña, estado, Contador_Int_Fallidos)" +
+            "VALUES (@Nombre, @Apellido, @Nick, @Mail, @DNI, @Contraseña, 1,@Contador_Int_Fallidos)";
 
         string QueryDelete = "delete from Usuario where ID_Usuario = @ID_Usuario";
 
@@ -63,7 +63,7 @@ namespace DAL.DAOs
         #endregion
 
         #region Agregar Usuario
-        public bool Agregar(string Nombre, string Apellido,string Nick, string Mail, string DNI, string contraseña)
+        public bool Agregar(string Nombre, string Apellido,string Nick, string Mail, string DNI, string contraseña, int cii)
         {
             bool returnValue = false;
 
@@ -75,6 +75,7 @@ namespace DAL.DAOs
                 new SqlParameter("@Mail", Mail),
                 new SqlParameter("@DNI",DNI ),
                 new SqlParameter("@Contraseña",contraseña ),
+                new SqlParameter("@Contador_Int_Fallidos",cii ),
             };
 
             try

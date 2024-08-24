@@ -18,5 +18,15 @@ namespace DAL
         {
             DAOs.DAOSDal.GetInstance().RealizarRestore(path);
         }
+
+        public bool VerificarIntegridad()
+        {
+            return DAOs.DAOSDal.GetInstance().VerificarIntegridad();
+        }
+        public void RepararIntegridad()
+        {
+            DAOs.DAOSDal.GetInstance().RepararIntegridad();
+        }
+
     }
 }

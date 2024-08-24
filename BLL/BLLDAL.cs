@@ -2,6 +2,7 @@
 using DAL;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,5 +21,17 @@ namespace BLL
         {
             DALDAL.RealizarRestore(path);
         }
+
+        public bool VerificarIntegridad()
+        {
+            return DALDAL.VerificarIntegridad();
+        }
+        public void RepararIntegridad()
+        {
+            DALDAL.RepararIntegridad();
+        }
+
+
+
     }
 }

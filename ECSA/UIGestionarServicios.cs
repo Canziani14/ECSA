@@ -136,7 +136,7 @@ namespace ECSA
                 }
 
                 bool validacionFallida = false;
-                // Validar Conductor
+/*                // Validar Conductor
                 if (BLLServicios.ValidarConductor(BEServicio.LegajoEmpleado).Count > 0)
                 {
                     MessageBox.Show("Conductor ya utilizado");
@@ -149,7 +149,7 @@ namespace ECSA
                     MessageBox.Show("Interno ya utilizado");
                     validacionFallida = true;
                 }
-
+*/
                 // Validar Horario
                 if (BLLServicios.ValidarHorario(BEServicio.HorarioSalida).Count > 0)
                 {
@@ -284,230 +284,252 @@ namespace ECSA
         #region Asignar servicios
         private void btnAsignarServicio_Click(object sender, EventArgs e)
         {
-            /*if (.Text == "")
+            // Validar campos vacíos antes de continuar
+            if (string.IsNullOrWhiteSpace(cmbInterno.Text) || string.IsNullOrWhiteSpace(txtServicio.Text) || cmbConductor.SelectedValue == null)
             {
-                MessageBox.Show("Por favor, complete todos los campos");
+                MessageBox.Show("Por favor, complete todos los campos.");
                 return;
-            }*/
-            
+            }
+
             try
             {
                 try
                 {
-                    
-                    BEServicio.Coche = int.Parse(cmbInterno.Text);
-
-                    int? legajoEmpleado = null;
-                    if (cmbConductor.SelectedValue != null && int.TryParse(cmbConductor.SelectedValue.ToString(), out int tempLegajoEmpleado))
+                    // Asignar valores a la entidad BEServicio
+                    if (!int.TryParse(cmbInterno.Text, out int coche))
                     {
-                        legajoEmpleado = tempLegajoEmpleado;
+                        throw new FormatException("Número de interno inválido.");
                     }
-                    BEServicio.LegajoEmpleado = legajoEmpleado.Value;
-                    BEServicio.ID_Servicio = int.Parse(txtServicio.Text);
+                    BEServicio.Coche = coche;
 
+                    if (!int.TryParse(cmbConductor.SelectedValue.ToString(), out int legajoEmpleado))
+                    {
+                        throw new FormatException("Legajo de empleado inválido.");
+                    }
+                    BEServicio.LegajoEmpleado = legajoEmpleado;
+
+                    if (!int.TryParse(txtServicio.Text, out int idServicio))
+                    {
+                        throw new FormatException("ID del servicio inválido.");
+                    }
+                    BEServicio.ID_Servicio = idServicio;
                 }
                 catch (FormatException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Error en los datos ingresados: " + ex.Message);
+                    return;
                 }
 
-                if (true)
-                {
+                bool validacionFallida = false;
 
+                // Validar Conductor
+                if (BLLServicios.ValidarConductor(BEServicio.LegajoEmpleado).Count > 0)
+                {
+                    MessageBox.Show("Conductor ya utilizado.");
+                    validacionFallida = true;
                 }
 
-                if (BLLServicios.CrearServicio(BEServicio))
+                // Validar Interno
+                if (BLLServicios.ValidarInterno(BEServicio.Coche).Count > 0)
                 {
-                    BLLSeguridad.RegistrarEnBitacora(26, usuarioLog.Nick, usuarioLog.ID_Usuario);
-                    MessageBox.Show("Servicio asignado con éxito");
-                    CalcularDigitos();
+                    MessageBox.Show("Interno ya utilizado.");
+                    validacionFallida = true;
                 }
-                else
+
+                // Solo crear servicio si no hay validaciones fallidas
+                if (!validacionFallida)
                 {
-                    MessageBox.Show("No se pudo asignar el servicio");
+                    if (BLLServicios.CrearServicio(BEServicio))
+                    {
+                        BLLSeguridad.RegistrarEnBitacora(26, usuarioLog.Nick, usuarioLog.ID_Usuario);
+                        MessageBox.Show("Servicio asignado con éxito.");
+                        CalcularDigitos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo asignar el servicio.");
+                    }
                 }
 
                 limpiarGrilla();
-                //limpiartxt();
+                // Limpiar otros campos si es necesario
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
-                return;
             }
-            
         }
 
 
         private void btnImprimir_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // Obtener la ruta del escritorio del usuario
-                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                string pdfFileName = Path.Combine(desktopPath, "PlanillaServicio_" + cmbConductor.Text + ".pdf");
+                        {
+                            try
+                            {
+                                // Obtener la ruta del escritorio del usuario
+                                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                                string pdfFileName = Path.Combine(desktopPath, "PlanillaServicio_" + cmbConductor.Text + ".pdf");
 
-                // Crear el documento PDF en la ubicación especificada
-                Document document = new Document(PageSize.A4, 50f, 50f, 100f, 50f); // Márgenes
-                PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(pdfFileName, FileMode.Create));
-                document.Open();
+                                // Crear el documento PDF en la ubicación especificada
+                                Document document = new Document(PageSize.A4, 50f, 50f, 100f, 50f); // Márgenes
+                                PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(pdfFileName, FileMode.Create));
+                                document.Open();
 
-                // Encabezado (agregado en cada página)
-                PdfPTable headerTable = new PdfPTable(3);
-                headerTable.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
-                headerTable.SetWidths(new float[] { 1, 2, 1 });
+                                // Encabezado (agregado en cada página)
+                                PdfPTable headerTable = new PdfPTable(3);
+                                headerTable.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
+                                headerTable.SetWidths(new float[] { 1, 2, 1 });
 
-                // Logo
-                string logoPath = @"C:\\Users\\CASA\\Desktop\\ECSA\\ECSA\\colectivo.jpg"; 
-                if (File.Exists(logoPath))
-                {
-                    iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(logoPath);
-                    logo.ScaleToFit(50f, 50f);
-                    PdfPCell logoCell = new PdfPCell(logo)
-                    {
-                        Border = PdfPCell.NO_BORDER,
-                        VerticalAlignment = Element.ALIGN_MIDDLE
-                    };
-                    headerTable.AddCell(logoCell);
-                }
-                else
-                {
-                    headerTable.AddCell("");
-                }
+                                // Logo
+                                string logoPath = @"C:\\Users\\CASA\\Desktop\\ECSA\\ECSA\\colectivo.jpg"; 
+                                if (File.Exists(logoPath))
+                                {
+                                    iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(logoPath);
+                                    logo.ScaleToFit(50f, 50f);
+                                    PdfPCell logoCell = new PdfPCell(logo)
+                                    {
+                                        Border = PdfPCell.NO_BORDER,
+                                        VerticalAlignment = Element.ALIGN_MIDDLE
+                                    };
+                                    headerTable.AddCell(logoCell);
+                                }
+                                else
+                                {
+                                    headerTable.AddCell("");
+                                }
 
-                // Título
-                PdfPCell titleCell = new PdfPCell(new Phrase("Planilla de Servicio", FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16)))
-                {
-                    Border = PdfPCell.NO_BORDER,
-                    HorizontalAlignment = Element.ALIGN_CENTER,
-                    VerticalAlignment = Element.ALIGN_MIDDLE
-                };
-                headerTable.AddCell(titleCell);
+                                // Título
+                                PdfPCell titleCell = new PdfPCell(new Phrase("Planilla de Servicio", FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16)))
+                                {
+                                    Border = PdfPCell.NO_BORDER,
+                                    HorizontalAlignment = Element.ALIGN_CENTER,
+                                    VerticalAlignment = Element.ALIGN_MIDDLE
+                                };
+                                headerTable.AddCell(titleCell);
 
-                // Fecha
-                PdfPCell dateCell = new PdfPCell(new Phrase(DateTime.Now.ToString("dd/MM/yyyy"), FontFactory.GetFont(FontFactory.HELVETICA, 10)))
-                {
-                    Border = PdfPCell.NO_BORDER,
-                    HorizontalAlignment = Element.ALIGN_RIGHT,
-                    VerticalAlignment = Element.ALIGN_MIDDLE
-                };
-                headerTable.AddCell(dateCell);
+                                // Fecha
+                                PdfPCell dateCell = new PdfPCell(new Phrase(DateTime.Now.ToString("dd/MM/yyyy"), FontFactory.GetFont(FontFactory.HELVETICA, 10)))
+                                {
+                                    Border = PdfPCell.NO_BORDER,
+                                    HorizontalAlignment = Element.ALIGN_RIGHT,
+                                    VerticalAlignment = Element.ALIGN_MIDDLE
+                                };
+                                headerTable.AddCell(dateCell);
 
-                // Escribir encabezado en la primera página
-                headerTable.WriteSelectedRows(0, -1, document.LeftMargin, document.PageSize.Height - document.TopMargin + 100, writer.DirectContent);
+                                // Escribir encabezado en la primera página
+                                headerTable.WriteSelectedRows(0, -1, document.LeftMargin, document.PageSize.Height - document.TopMargin + 100, writer.DirectContent);
 
-                // Título principal: Detalles del Servicio
-                iTextSharp.text.Font boldFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16);
-                iTextSharp.text.Font regularFont = FontFactory.GetFont(FontFactory.HELVETICA, 14);
+                                // Título principal: Detalles del Servicio
+                                iTextSharp.text.Font boldFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16);
+                                iTextSharp.text.Font regularFont = FontFactory.GetFont(FontFactory.HELVETICA, 14);
 
-                Paragraph mainTitle = new Paragraph("Detalles del Servicio", boldFont)
-                {
-                    SpacingBefore = 20f,
-                    SpacingAfter = 10f
-                };
-                document.Add(mainTitle);
+                                Paragraph mainTitle = new Paragraph("Detalles del Servicio", boldFont)
+                                {
+                                    SpacingBefore = 20f,
+                                    SpacingAfter = 10f
+                                };
+                                document.Add(mainTitle);
 
-                // Contenido de la sección Detalles del Servicio
-                Paragraph detallesServicio = new Paragraph($"Número de Servicio: {txtServicio.Text}", regularFont)
-                {
-                    SpacingBefore = 10f,
-                    SpacingAfter = 10f
-                };
-                document.Add(detallesServicio);
+                                // Contenido de la sección Detalles del Servicio
+                                Paragraph detallesServicio = new Paragraph($"Número de Servicio: {txtServicio.Text}", regularFont)
+                                {
+                                    SpacingBefore = 10f,
+                                    SpacingAfter = 10f
+                                };
+                                document.Add(detallesServicio);
 
-                Paragraph detallesLinea = new Paragraph($"Línea: {txtNombreLinea.Text}", regularFont)
-                {
-                    SpacingAfter = 10f
-                };
-                document.Add(detallesLinea);
+                                Paragraph detallesLinea = new Paragraph($"Línea: {txtNombreLinea.Text}", regularFont)
+                                {
+                                    SpacingAfter = 10f
+                                };
+                                document.Add(detallesLinea);
 
-                // Mostrar el Conductor con el formato adecuado
-                if (cmbConductor.SelectedItem != null)
-                {
-                    string conductorInfo = cmbConductor.SelectedItem.ToString();
-                    string displayNamePart = conductorInfo.Substring(conductorInfo.IndexOf("DisplayName = ") + "DisplayName = ".Length);
-                    if (displayNamePart.EndsWith("}"))
-                    {
-                        displayNamePart = displayNamePart.Substring(0, displayNamePart.Length - 1).Trim();
-                    }
+                                // Mostrar el Conductor con el formato adecuado
+                                if (cmbConductor.SelectedItem != null)
+                                {
+                                    string conductorInfo = cmbConductor.SelectedItem.ToString();
+                                    string displayNamePart = conductorInfo.Substring(conductorInfo.IndexOf("DisplayName = ") + "DisplayName = ".Length);
+                                    if (displayNamePart.EndsWith("}"))
+                                    {
+                                        displayNamePart = displayNamePart.Substring(0, displayNamePart.Length - 1).Trim();
+                                    }
 
-                    Paragraph conductorParagraph = new Paragraph($"Conductor: {displayNamePart}", regularFont)
-                    {
-                        SpacingAfter = 10f
-                    };
-                    document.Add(conductorParagraph);
-                }
-                else
-                {
-                    Paragraph conductorParagraph = new Paragraph("Conductor: Información no disponible", regularFont)
-                    {
-                        SpacingAfter = 10f
-                    };
-                    document.Add(conductorParagraph);
-                }
+                                    Paragraph conductorParagraph = new Paragraph($"Conductor: {displayNamePart}", regularFont)
+                                    {
+                                        SpacingAfter = 10f
+                                    };
+                                    document.Add(conductorParagraph);
+                                }
+                                else
+                                {
+                                    Paragraph conductorParagraph = new Paragraph("Conductor: Información no disponible", regularFont)
+                                    {
+                                        SpacingAfter = 10f
+                                    };
+                                    document.Add(conductorParagraph);
+                                }
 
-                Paragraph interno = new Paragraph($"Interno: {cmbInterno.Text}", regularFont)
-                {
-                    SpacingAfter = 10f
-                };
-                document.Add(interno);
+                                Paragraph interno = new Paragraph($"Interno: {cmbInterno.Text}", regularFont)
+                                {
+                                    SpacingAfter = 10f
+                                };
+                                document.Add(interno);
 
-                // Título de la sección Horarios
-                Paragraph horariosTitle = new Paragraph("Horarios", boldFont)
-                {
-                    SpacingBefore = 20f,
-                    SpacingAfter = 10f
-                };
-                document.Add(horariosTitle);
+                                // Título de la sección Horarios
+                                Paragraph horariosTitle = new Paragraph("Horarios", boldFont)
+                                {
+                                    SpacingBefore = 20f,
+                                    SpacingAfter = 10f
+                                };
+                                document.Add(horariosTitle);
 
-                // Contenido de la sección Horarios
-                Paragraph horarioPrincipal = new Paragraph($"Horario Terminal Principal: {date1.Text}", regularFont)
-                {
-                    SpacingAfter = 10f
-                };
-                document.Add(horarioPrincipal);
+                                // Contenido de la sección Horarios
+                                Paragraph horarioPrincipal = new Paragraph($"Horario Terminal Principal: {date1.Text}", regularFont)
+                                {
+                                    SpacingAfter = 10f
+                                };
+                                document.Add(horarioPrincipal);
 
-                Paragraph horarioRebote = new Paragraph($"Horario Terminal Rebote: {date2.Text}", regularFont)
-                {
-                    SpacingAfter = 10f
-                };
-                document.Add(horarioRebote);
+                                Paragraph horarioRebote = new Paragraph($"Horario Terminal Rebote: {date2.Text}", regularFont)
+                                {
+                                    SpacingAfter = 10f
+                                };
+                                document.Add(horarioRebote);
 
-                document.Close();
+                                document.Close();
 
-                MessageBox.Show($"Planilla guardada en el escritorio como '{pdfFileName}'.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al guardar la planilla: " + ex.Message);
-            }
-        }
-
-
+                                MessageBox.Show($"Planilla guardada en el escritorio como '{pdfFileName}'.");
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Error al guardar la planilla: " + ex.Message);
+                            }
+                        }
 
 
 
 
 
-        #endregion
+
+
+                        #endregion
 
 
 
-        #region FuncionesVarias
-        private void limpiarGrilla()
-        {
-            dtgServicios.DataSource = null;
-            dtgServicios.DataSource = BLLServicios.Listar(BEServicio.Linea);
-        }
+                        #region FuncionesVarias
+                        private void limpiarGrilla()
+                        {
+                            dtgServicios.DataSource = null;
+                            dtgServicios.DataSource = BLLServicios.Listar(BEServicio.Linea);
+                        }
 
-     /*   private void limpiartxt()
-        {
-            date1.Items.Clear();
-            date2.Items.Clear();
+                     /*   private void limpiartxt()
+                        {
+                            date1.Items.Clear();
+                            date2.Items.Clear();
 
-        }*/
+                        }*/
 
-        public void CalcularDigitos()
+                public void CalcularDigitos()
         {
             string tabla = "Servicio";
             BLLSeguridad.VerificarDigitosVerificadores(tabla);

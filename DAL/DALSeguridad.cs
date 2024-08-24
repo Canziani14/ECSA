@@ -101,9 +101,15 @@ namespace DAL
         }
         #endregion
 
+        public bool ValidarPatentes(int idUsuario, int idPatente)
+        {
+           return  DAOs.DAOSSeguridad.GetInstance().ValidarPatentes(idUsuario, idPatente);
+        }
 
-        
-
+        public bool TienePatentesExclusivas(int usuarioId)
+        {
+            return DAOs.DAOSSeguridad.GetInstance().TienePatentesExclusivas(usuarioId);
+        }
 
 
 

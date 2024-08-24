@@ -28,6 +28,7 @@ namespace ECSA
         BLL.BLLSeguridad BLLSeguridad = new BLLSeguridad();
         BE.Idioma BEIdioma = new BE.Idioma();
         BLL.BLLIdioma BLLIdioma = new BLLIdioma();
+        BLL.BLLDAL BLLDAL = new BLLDAL();
 
 
         private void btnIniciar_Click(object sender, EventArgs e)
@@ -54,27 +55,41 @@ namespace ECSA
                 {
                     if (ContraseñaBuscada.Count > 0 )
                     {
+
                          BLLUsuario.ContadorIngresos0(UsuarioLog);
                          BLLSeguridad.RegistrarEnBitacora(1,UsuarioLog.Nick, UsuarioLog.ID_Usuario);
                          MessageBox.Show("Login exitoso. ¡Bienvenido " + UsuarioLog.Nick + "!", "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        // Obtener las patentes del usuario
-                        var iterator = BLLUsuario.ObtenerPatentesPorUsuario(UsuarioLog.ID_Usuario.ToString());
-                        var patentes = new List<Patente>();
+                        // Verificar integridad
+                        bool integridadCorrecta = BLLDAL.VerificarIntegridad();
 
-                        while (iterator.HasNext())
+                        if (!integridadCorrecta)
                         {
-                            patentes.Add(iterator.GetNext());
+                            MessageBox.Show("Error en la Integridad de los datos");
+
+                            // Si la integridad no es correcta, reparar
+                            BLLDAL.RepararIntegridad();
+
+                            // Mensaje después de reparar
+                            MessageBox.Show("La integridad de los datos fue reparada.", "Reparación Completa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
 
-                        // Crear instancia de la ventana principal con patentes
-                        UIInicio uiInicio = new UIInicio(UsuarioLog, patentes);
+                        // Obtener las patentes del usuario
+                            var iterator = BLLUsuario.ObtenerPatentesPorUsuario(UsuarioLog.ID_Usuario.ToString());
+                            var patentes = new List<Patente>();
 
-                        // Mostrar la ventana principal
-                        uiInicio.Show();
-                        this.Hide();
+                            while (iterator.HasNext())
+                            {
+                                patentes.Add(iterator.GetNext());
+                            }
 
-                    }
+                            // Crear instancia de la ventana principal con patentes
+                            UIInicio uiInicio = new UIInicio(UsuarioLog, patentes);
+
+                            // Mostrar la ventana principal
+                            uiInicio.Show();
+                            this.Hide();
+                        }
                     else
                     {
                         int intentosFallidos = BLLUsuario.SumarIntento(UsuarioLog);

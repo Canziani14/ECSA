@@ -33,18 +33,34 @@ namespace DAL.DAOs
 
         string QuerySelect = "SELECT * FROM [ECSA].[dbo].[Servicio] " +
             "WHERE CONVERT(date, Hora_Cabecera_Principal) = CONVERT(date, GETDATE())";
-           
-      
-        string QueryInsert = "INSERT INTO Servicio (Hora_Cabecera_Principal,Hora_Cabecera_Retorno, ID_Linea, Legajo, Interno )" +
-           "VALUES (@Hora_Cabecera_Principal, @Hora_Cabecera_Retorno, @ID_Linea, @Legajo, @Interno)";
+
+        string QueryInsert = "INSERT INTO Servicio (Hora_Cabecera_Principal, Hora_Cabecera_Retorno, Legajo, Interno, ID_Linea) " +
+                       "VALUES (@Hora_Cabecera_Principal, @Hora_Cabecera_Retorno, @Legajo, @Interno, @ID_Linea)";
+
+        
 
         string QueryDelete = "delete from servicio where ID_Servicio = @ID_Servicio";
         string QueryUpdate = "UPDATE Servicio SET Hora_Cabecera_Principal = @Hora_Cabecera_Principal,Hora_Cabecera_Retorno = @Hora_Cabecera_Retorno WHERE ID_Servicio = @ID_Servicio";
+        
+        string QuerySelectByLinea = "select * from servicio where ID_Linea =@ID_Linea";
+        
+        private string QuerySelectByLegajo = "SELECT Servicio.ID_Servicio, Servicio.Hora_Cabecera_Principal, Servicio.Hora_Cabecera_Retorno, " +
+                                     "Servicio.Interno, Servicio.Legajo, Empleado.Nombre, Empleado.Apellido, Servicio.ID_Linea " +
+                                     "FROM Servicio " +
+                                     "INNER JOIN Empleado ON Servicio.Legajo = Empleado.Legajo " +
+                                     "WHERE Servicio.Legajo = @Legajo;";
 
-        string QuerySelectByLinea = "SELECT Servicio.ID_Servicio,Servicio.Hora_Cabecera_Principal,Servicio.Hora_Cabecera_Retorno, "+
-        "Servicio.Interno, Servicio.Legajo,Empleado.Nombre, Empleado.Apellido, Servicio.ID_Linea FROM Servicio "+
-        "INNER JOIN Empleado ON Servicio.legajo = Empleado.legajo WHERE Servicio.ID_Linea = @ID_Linea;";
+        private string QuerySelectByInterno = "SELECT Servicio.ID_Servicio, Servicio.Hora_Cabecera_Principal, Servicio.Hora_Cabecera_Retorno, " +
+                                              "Servicio.Interno, Servicio.Legajo, Empleado.Nombre, Empleado.Apellido, Servicio.ID_Linea " +
+                                              "FROM Servicio " +
+                                              "INNER JOIN Empleado ON Servicio.Legajo = Empleado.Legajo " +
+                                              "WHERE Servicio.Interno = @Interno;";
 
+        private string QuerySelectByHorario = "SELECT Servicio.ID_Servicio, Servicio.Hora_Cabecera_Principal, Servicio.Hora_Cabecera_Retorno, " +
+                                              "Servicio.Interno, Servicio.Legajo, Empleado.Nombre, Empleado.Apellido, Servicio.ID_Linea " +
+                                              "FROM Servicio " +
+                                              "INNER JOIN Empleado ON Servicio.Legajo = Empleado.Legajo " +
+                                              "WHERE Servicio.Hora_Cabecera_Principal = @Hora_Cabecera_Principal;";
 
 
         string QueryInsertServicio = "UPDATE Servicio SET Legajo = @Legajo ,Interno = @Interno WHERE ID_Servicio = @ID_Servicio";
@@ -68,6 +84,7 @@ namespace DAL.DAOs
                             new SqlParameter("@Interno", interno),
 
                         };
+            
 
             try
             {
@@ -216,7 +233,7 @@ namespace DAL.DAOs
             {
                 new SqlParameter("@Legajo", legajo),
             };
-            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByLinea, parameters);
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByLegajo, parameters);
             return Mappers.MAPPERServicio.GetInstance().Map(table);
         }
         public List<Servicio> ValidarInterno(int interno)
@@ -225,7 +242,7 @@ namespace DAL.DAOs
             {
                 new SqlParameter("@Interno", interno),
             };
-            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByLinea, parameters);
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByInterno, parameters);
             return Mappers.MAPPERServicio.GetInstance().Map(table);
         }
         public List<Servicio> ValidarHorario(DateTime horario)
@@ -234,7 +251,7 @@ namespace DAL.DAOs
             {
                 new SqlParameter("@Hora_Cabecera_Principal", horario),
             };
-            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByLinea, parameters);
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByHorario, parameters);
             return Mappers.MAPPERServicio.GetInstance().Map(table);
         }
 

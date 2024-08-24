@@ -23,7 +23,7 @@ namespace DAL.DAOs
     {
 
         #region SingletonSeguridad, ConnectionString
-        private DAOSSeguridad() { }
+        public DAOSSeguridad() { }
         private static DAOs.DAOSSeguridad instance;
 
         public static DAOs.DAOSSeguridad GetInstance()
@@ -38,24 +38,58 @@ namespace DAL.DAOs
         string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
         DAL.DALSeguridad DALSeguridad = new DALSeguridad();
-        
 
-        string QuerySelect = "select * from Bitacora";
+
+        string QuerySelect = "select * from bitacora order by Fecha desc";
         string QuerySelectCrit3 = "select * from Bitacora where criticidad = 3";
-        
+
         #endregion
 
         #region digitos verificadores
 
 
+
         public int CalcularDVV(string tabla)
+        {
+            int dvvCalculado = 0;
+            string command1 = $"SELECT SUM(DVH) FROM {tabla}";
+
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand(command1, connection))
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != DBNull.Value)
+                {
+                    dvvCalculado = Convert.ToInt32(result);
+                }
+            }
+
+            // Actualizar el DVV en la tabla DVV
+            string command2 = "UPDATE DVV SET DVV = @DVV WHERE Tabla = @Tabla";
+
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand(command2, connection))
+            {
+                command.Parameters.AddWithValue("@DVV", dvvCalculado);
+                command.Parameters.AddWithValue("@Tabla", tabla);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+            // Retornar el DVV calculado
+            return dvvCalculado;
+        }
+
+        /*public int CalcularDVV(string tabla)
         {
             string command1 = "select SUM(DVH) from " + tabla;
 
             string command2 = "update DVV set DVV = " + SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteScalar(command1) + " where tabla = '" + tabla + "'";
             return SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(command2);
-        }
-     
+        }*/
+
         public int CalcularNumero(string s)
         {
             int calculo = 0;
@@ -96,9 +130,9 @@ namespace DAL.DAOs
                         string primaryKeyColumn = mds.Tables[0].Columns[0].ColumnName;
                         foreach (DataRow r in mds.Tables[0].Rows)
                         {
-                            string queryEmpleado ="update "+ tabla + " set DVH = "+ DVHEmpleado(r) + " where " + primaryKeyColumn + "=" + r["Legajo"];
+                            string queryEmpleado = "update " + tabla + " set DVH = " + DVHEmpleado(r) + " where " + primaryKeyColumn + "=" + r["Legajo"];
                             mds2 = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteNonQuery(queryEmpleado);
-                            
+
                             suma += DVHEmpleado(r);
                         }
                     }
@@ -276,20 +310,19 @@ namespace DAL.DAOs
             }
             return suma;
         }
-    
+
         public int DVHEmpleado(DataRow d)
         {
             int dvh;
-            dvh = CalcularNumero(int.Parse(d["Legajo"].ToString()))*1 + CalcularNumero(d["Nombre"].ToString())*2 +
-                CalcularNumero(d["apellido"].ToString())*3 + CalcularNumero(d["DNI"].ToString())*4 +
-                CalcularNumero(d["Direccion"].ToString())*5 + CalcularNumero(d["Telefono"].ToString())*6 +
-                CalcularNumero(d["FechaIngreso"].ToString())*7 + CalcularNumero(d["ID_Linea"].ToString())*8 + 
-                CalcularNumero(d["ID_Servicio"].ToString())*9;
+            dvh = CalcularNumero(int.Parse(d["Legajo"].ToString())) * 1 + CalcularNumero(d["Nombre"].ToString()) * 2 +
+                CalcularNumero(d["apellido"].ToString()) * 3 + CalcularNumero(d["DNI"].ToString()) * 4 +
+                CalcularNumero(d["Direccion"].ToString()) * 5 + CalcularNumero(d["Telefono"].ToString()) * 6 +
+                CalcularNumero(d["FechaIngreso"].ToString()) * 7 + CalcularNumero(d["ID_Linea"].ToString()) * 8;
             return dvh;
 
         }
 
-        
+
         public int DVHBitacora(DataRow d)
         {
             int dvh = 0;
@@ -322,7 +355,7 @@ namespace DAL.DAOs
             dvh += CalcularNumero(d["Estado"]?.ToString() ?? "") * 9;
 
             return dvh;
-              
+
         }
 
         public int DVHLinea(DataRow d)
@@ -348,7 +381,7 @@ namespace DAL.DAOs
         {
             int dvh = 0;
 
-           
+
             dvh += CalcularNumero(d["Patente"]?.ToString() ?? "") * 1;
             dvh += CalcularNumero(d["Interno"]?.ToString() ?? "") * 2;
             return dvh;
@@ -378,7 +411,7 @@ namespace DAL.DAOs
             dvh += CalcularNumero(d["ID_Familia"]?.ToString() ?? "") * 2;
             return dvh;
         }
-       
+
 
 
 
@@ -403,7 +436,7 @@ namespace DAL.DAOs
                 return 0; // O cualquier valor que consideres adecuado para indicar un fallo en la conversión.
             }
         }
-        //aca agregar los otros dvh
+
 
         #endregion
 
@@ -444,7 +477,7 @@ namespace DAL.DAOs
             string passencriptada = EncriptarCamposIrreversible(pass);
             string unencriptado = EncriptarCamposReversible(un);
             return this.ComprobarContraseña(unencriptado, passencriptada);
-            
+
         }
 
         public int ComprobarContraseña(string un, string pass)
@@ -465,13 +498,13 @@ namespace DAL.DAOs
         #region Bitacora
         public BE.Bitacora RegistrarEnBitacora(int i, string NickUsuarioLogin, int ID_Usuario)
         {
-            
+
             BE.Bitacora BEBitacora = new BE.Bitacora();
             BEBitacora.NickUsuarioLogin = NickUsuarioLogin;
             BEBitacora.ID_Usuario = ID_Usuario;
             BEBitacora.Criticidad = 0;
             BEBitacora.Fecha = DateTime.Now;
-            
+
 
             switch (i)
             {
@@ -627,15 +660,7 @@ namespace DAL.DAOs
 
             string descripcionEncriptada = EncriptarCamposReversible(BEBitacora.Descripcion);
             BEBitacora.Descripcion = descripcionEncriptada;
-
-
-
-
-            
-            
-            
-            return GuardarBitacora(BEBitacora); 
-          
+            return GuardarBitacora(BEBitacora);
         }
 
 
@@ -653,10 +678,10 @@ namespace DAL.DAOs
                     command.Parameters.AddWithValue("@NickUsuarioLogin", bitacora.NickUsuarioLogin);
 
                     connection.Open();
-                    int rowwsaffect=command.ExecuteNonQuery();
+                    int rowwsaffect = command.ExecuteNonQuery();
                     VerificarDigitosVerificadores("Bitacora");
                     CalcularDVV("Bitacora");
-                    
+
                     return bitacora;
                 }
             }
@@ -671,8 +696,8 @@ namespace DAL.DAOs
             return Mappers.MAPPERSBitacora.GetInstance().Map(table);
         }
 
-        
-         public List<BE.Bitacora> ListarCrit3()
+
+        public List<BE.Bitacora> ListarCrit3()
         {
             DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectCrit3);
 
@@ -720,17 +745,99 @@ namespace DAL.DAOs
                     // Usa el mapper para convertir el DataTable a una lista de Bitacora
                     bitacoras = MAPPERSBitacora.GetInstance().Map(table);
                 }
-                
+
             }
 
             return bitacoras;
         }
         #endregion
 
-       
+
+
+        public bool ValidarPatentes(int idUsuario, int idPatente)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Consulta para verificar si hay otros usuarios con la misma patente
+                string queryPatentesCompartidas = @"
+            SELECT COUNT(*) 
+            FROM Usuario_Patente AS up
+            WHERE up.ID_Patente = @ID_Patente
+            AND up.ID_Usuario != @ID_Usuario";
+
+                // Ejecutar la consulta
+                int countPatentesCompartidas = EjecutarConsultaContar(queryPatentesCompartidas, connection,
+                    new SqlParameter("@ID_Usuario", idUsuario),
+                    new SqlParameter("@ID_Patente", idPatente));
+
+                // Depuración: Imprimir la cantidad de usuarios con la misma patente
+                Console.WriteLine($"Cantidad de usuarios con la misma patente: {countPatentesCompartidas}");
+
+                // Si hay otros usuarios con la misma patente, no es exclusiva
+                if (countPatentesCompartidas > 0)
+                {
+                    return false; // No es exclusiva, se puede eliminar
+                }
+
+                // Si no hay otros usuarios, verificar si es familia de patentes
+                string queryPatentesFamilia = @"
+            SELECT COUNT(*) 
+            FROM Familia_Patente AS fp
+            INNER JOIN Usuario_Familia AS uf ON fp.ID_Familia = uf.ID_Familia
+            WHERE fp.ID_Patente = @ID_Patente
+            AND uf.ID_Usuario != @ID_Usuario";
+
+                int countPatentesFamilia = EjecutarConsultaContar(queryPatentesFamilia, connection,
+                    new SqlParameter("@ID_Usuario", idUsuario),
+                    new SqlParameter("@ID_Patente", idPatente));
+
+                // Depuración: Imprimir la cantidad de usuarios con patentes familiares
+                Console.WriteLine($"Cantidad de usuarios con la patente como parte de una familia: {countPatentesFamilia}");
+
+                // Si otros usuarios tienen la patente a través de una familia, no es exclusiva
+                return countPatentesFamilia == 0; // Si es 0, es exclusiva y no se puede eliminar
+            }
+        }
+
+        private int EjecutarConsultaContar(string query, SqlConnection connection, params SqlParameter[] parametros)
+        {
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddRange(parametros);
+                return (int)command.ExecuteScalar(); // Retorna el resultado de COUNT(*)
+            }
+        }
+
+
+        DALPatente DALPatente = new DALPatente();
+        public bool TienePatentesExclusivas(int usuarioId)
+        {
+            Iterator<Patente> iterator = DALPatente.ObtenerPatentesPorUsuario(usuarioId.ToString());
+
+            while (iterator.HasNext())
+            {
+                Patente patente = iterator.GetNext();
+
+                // Validar si la patente es exclusiva
+                if (ValidarPatentes(usuarioId, patente.ID_Patente))
+                {
+                    return true; // Si alguna patente es exclusiva, retornar true
+                }
+            }
+
+            return false; // Si no hay patentes exclusivas, retornar false
+        }
+
+
 
 
 
     }
 
 }
+
+    
+
+

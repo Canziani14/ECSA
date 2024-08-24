@@ -34,8 +34,8 @@ namespace DAL.Mappers
                     HorarioLlegada = item.Field<DateTime>("Hora_Cabecera_Retorno"),
                     LegajoEmpleado =item.Field<int>("Legajo"),
                     Coche = item.Field<int>("Interno"),
-                    NombreEmpleado = item.Field<string>("Nombre"),
-                    ApellidoEmpleado =item.Field<string>("Apellido"),
+                   // NombreEmpleado = item.Field<string>("Nombre"),
+                    //ApellidoEmpleado =item.Field<string>("Apellido"),
                    
                    
                 }); ;

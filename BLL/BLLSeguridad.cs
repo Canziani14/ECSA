@@ -109,12 +109,15 @@ namespace BLL
         #endregion
 
        
-        public bool ValidarPatentes()
+        public bool ValidarPatentes(int idUsuario, int idPatente)
         {
-            throw new NotImplementedException();
+             return DALSeguridad.ValidarPatentes(idUsuario, idPatente);
         }
-        
 
+        public bool TienePatentesExclusivas(int usuarioId)
+        {
+            return DALSeguridad.TienePatentesExclusivas(usuarioId);
+        }
 
 
     }

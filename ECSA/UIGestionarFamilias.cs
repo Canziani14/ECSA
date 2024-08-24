@@ -276,6 +276,7 @@ namespace ECSA
             
             ObtenerPatenteSeleccionadaActuales();
             ObtenerFamiliaSeleccionado();
+            
             int id_Familia = familiaSeleccionada.ID_Familia;
             int id_Patente = PatenteSeleccionadaQuitar.ID_Patente;
             BLLFamilia.QuitarXFamilia(id_Familia, id_Patente);
@@ -290,6 +291,7 @@ namespace ECSA
         {
             ObtenerPatenteSeleccionadaNoActuales();
             ObtenerFamiliaSeleccionado();
+            
             int id_Familia = familiaSeleccionada.ID_Familia;
             int id_Patente = PatenteSeleccionadaAsignar.ID_Patente;
             BLLFamilia.AsignarXFamilia(id_Familia, id_Patente);

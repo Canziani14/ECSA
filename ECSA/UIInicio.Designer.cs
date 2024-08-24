@@ -64,7 +64,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(127, 618);
+            this.panel1.Size = new System.Drawing.Size(127, 559);
             this.panel1.TabIndex = 1;
             // 
             // btnReportes
@@ -192,9 +192,9 @@
             this.panel2.Controls.Add(this.btnBitacora);
             this.panel2.Controls.Add(this.btnAlertas);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(1146, 0);
+            this.panel2.Location = new System.Drawing.Point(1072, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(72, 618);
+            this.panel2.Size = new System.Drawing.Size(72, 559);
             this.panel2.TabIndex = 3;
             // 
             // btnCerrarSesion
@@ -202,7 +202,7 @@
             this.btnCerrarSesion.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnCerrarSesion.FlatAppearance.BorderSize = 0;
             this.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrarSesion.Location = new System.Drawing.Point(0, 513);
+            this.btnCerrarSesion.Location = new System.Drawing.Point(0, 454);
             this.btnCerrarSesion.Name = "btnCerrarSesion";
             this.btnCerrarSesion.Size = new System.Drawing.Size(72, 35);
             this.btnCerrarSesion.TabIndex = 5;
@@ -215,7 +215,7 @@
             this.btnCambiarContra.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnCambiarContra.FlatAppearance.BorderSize = 0;
             this.btnCambiarContra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCambiarContra.Location = new System.Drawing.Point(0, 548);
+            this.btnCambiarContra.Location = new System.Drawing.Point(0, 489);
             this.btnCambiarContra.Name = "btnCambiarContra";
             this.btnCambiarContra.Size = new System.Drawing.Size(72, 35);
             this.btnCambiarContra.TabIndex = 4;
@@ -228,7 +228,7 @@
             this.btnAyuda.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnAyuda.FlatAppearance.BorderSize = 0;
             this.btnAyuda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAyuda.Location = new System.Drawing.Point(0, 583);
+            this.btnAyuda.Location = new System.Drawing.Point(0, 524);
             this.btnAyuda.Name = "btnAyuda";
             this.btnAyuda.Size = new System.Drawing.Size(72, 35);
             this.btnAyuda.TabIndex = 3;
@@ -265,7 +265,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1218, 618);
+            this.ClientSize = new System.Drawing.Size(1144, 559);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.IsMdiContainer = true;

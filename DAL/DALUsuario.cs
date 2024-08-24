@@ -19,7 +19,7 @@ namespace DAL
 
         public bool Crear(BE.Usuario objAgregar)
         {
-            return DAOs.DAOSUsuario.GetInstance().Agregar(objAgregar.Nombre, objAgregar.Apellido, objAgregar.Nick, objAgregar.Mail, objAgregar.DNI, objAgregar.Contraseña);
+            return DAOs.DAOSUsuario.GetInstance().Agregar(objAgregar.Nombre, objAgregar.Apellido, objAgregar.Nick, objAgregar.Mail, objAgregar.DNI, objAgregar.Contraseña, objAgregar.CII);
         }
 
         public bool Eliminar(BE.Usuario objEliminar)
