@@ -30,12 +30,12 @@
         {
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblDesde = new System.Windows.Forms.Label();
+            this.lblHasta = new System.Windows.Forms.Label();
             this.dtgReportes = new System.Windows.Forms.DataGridView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.lblSeleccionarReporte = new System.Windows.Forms.Label();
+            this.btnReporte = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgReportes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,23 +53,23 @@
             this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker2.TabIndex = 1;
             // 
-            // label1
+            // lblDesde
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(296, 38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Desde:";
+            this.lblDesde.AutoSize = true;
+            this.lblDesde.Location = new System.Drawing.Point(296, 38);
+            this.lblDesde.Name = "lblDesde";
+            this.lblDesde.Size = new System.Drawing.Size(41, 13);
+            this.lblDesde.TabIndex = 2;
+            this.lblDesde.Text = "Desde:";
             // 
-            // label2
+            // lblHasta
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(549, 37);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Hasta:";
+            this.lblHasta.AutoSize = true;
+            this.lblHasta.Location = new System.Drawing.Point(549, 37);
+            this.lblHasta.Name = "lblHasta";
+            this.lblHasta.Size = new System.Drawing.Size(38, 13);
+            this.lblHasta.TabIndex = 3;
+            this.lblHasta.Text = "Hasta:";
             // 
             // dtgReportes
             // 
@@ -87,36 +87,36 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 5;
             // 
-            // label3
+            // lblSeleccionarReporte
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 37);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Seleccione un reporte:";
+            this.lblSeleccionarReporte.AutoSize = true;
+            this.lblSeleccionarReporte.Location = new System.Drawing.Point(9, 37);
+            this.lblSeleccionarReporte.Name = "lblSeleccionarReporte";
+            this.lblSeleccionarReporte.Size = new System.Drawing.Size(114, 13);
+            this.lblSeleccionarReporte.TabIndex = 6;
+            this.lblSeleccionarReporte.Text = "Seleccione un reporte:";
             // 
-            // button1
+            // btnReporte
             // 
-            this.button1.Location = new System.Drawing.Point(356, 72);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(104, 37);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Generar Reporte";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnReporte.Location = new System.Drawing.Point(356, 72);
+            this.btnReporte.Name = "btnReporte";
+            this.btnReporte.Size = new System.Drawing.Size(104, 37);
+            this.btnReporte.TabIndex = 7;
+            this.btnReporte.Text = "Generar Reporte";
+            this.btnReporte.UseVisualStyleBackColor = true;
+            this.btnReporte.Click += new System.EventHandler(this.button1_Click);
             // 
             // UIReportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnReporte);
+            this.Controls.Add(this.lblSeleccionarReporte);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dtgReportes);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblHasta);
+            this.Controls.Add(this.lblDesde);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
             this.Name = "UIReportes";
@@ -131,11 +131,11 @@
 
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblDesde;
+        private System.Windows.Forms.Label lblHasta;
         private System.Windows.Forms.DataGridView dtgReportes;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblSeleccionarReporte;
+        private System.Windows.Forms.Button btnReporte;
     }
 }

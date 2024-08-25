@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BE;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +13,33 @@ namespace ECSA
 {
     public partial class UIReportes : Form
     {
-        public UIReportes()
+        public UIReportes(List<Traduccion> traducciones)
         {
             InitializeComponent();
 
+            #region idioma
 
+            foreach (var traduccion in traducciones)
+            {
+                switch (traduccion.ID_Traduccion)
+                {
+                    case 12:
+                        btnReporte.Text = traduccion.Descripcion;
+                        break;
+                   /* case 10:
+                        lblSeleccionarReporte.Text = traduccion.Descripcion;
+                        break;*/
+                    case 60:
+                        lblDesde.Text = traduccion.Descripcion;
+                        break;
+                    case 62:
+                        lblHasta.Text = traduccion.Descripcion;
+                        break;
+
+                }
+            }
+
+            #endregion
 
             #region Perzonalizacion DTG
 

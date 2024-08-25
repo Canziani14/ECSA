@@ -32,20 +32,20 @@
             this.btnCrearFamilia = new System.Windows.Forms.Button();
             this.btnModificarFamilia = new System.Windows.Forms.Button();
             this.btnEliminarFamilia = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbGestorFamilias = new System.Windows.Forms.GroupBox();
             this.txtNombreFamilia = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblNombre = new System.Windows.Forms.Label();
             this.dtgFamilias = new System.Windows.Forms.DataGridView();
             this.dtgPatentesSinAsignar = new System.Windows.Forms.DataGridView();
             this.labelNombre = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.Familia = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblPatentesActuales = new System.Windows.Forms.Label();
+            this.lblPatentesSinAsignar = new System.Windows.Forms.Label();
+            this.lblFamilia = new System.Windows.Forms.Label();
+            this.lblID = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPatentesActuales)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.gbGestorFamilias.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgFamilias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPatentesSinAsignar)).BeginInit();
             this.SuspendLayout();
@@ -89,20 +89,20 @@
             this.btnEliminarFamilia.UseVisualStyleBackColor = true;
             this.btnEliminarFamilia.Click += new System.EventHandler(this.btnEliminarFamilia_Click);
             // 
-            // groupBox1
+            // gbGestorFamilias
             // 
-            this.groupBox1.Controls.Add(this.txtNombreFamilia);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.dtgFamilias);
-            this.groupBox1.Controls.Add(this.btnCrearFamilia);
-            this.groupBox1.Controls.Add(this.btnEliminarFamilia);
-            this.groupBox1.Controls.Add(this.btnModificarFamilia);
-            this.groupBox1.Location = new System.Drawing.Point(2, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(267, 425);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Gestor de Familias";
+            this.gbGestorFamilias.Controls.Add(this.txtNombreFamilia);
+            this.gbGestorFamilias.Controls.Add(this.lblNombre);
+            this.gbGestorFamilias.Controls.Add(this.dtgFamilias);
+            this.gbGestorFamilias.Controls.Add(this.btnCrearFamilia);
+            this.gbGestorFamilias.Controls.Add(this.btnEliminarFamilia);
+            this.gbGestorFamilias.Controls.Add(this.btnModificarFamilia);
+            this.gbGestorFamilias.Location = new System.Drawing.Point(2, 3);
+            this.gbGestorFamilias.Name = "gbGestorFamilias";
+            this.gbGestorFamilias.Size = new System.Drawing.Size(267, 425);
+            this.gbGestorFamilias.TabIndex = 4;
+            this.gbGestorFamilias.TabStop = false;
+            this.gbGestorFamilias.Text = "Gestor de Familias";
             // 
             // txtNombreFamilia
             // 
@@ -111,14 +111,14 @@
             this.txtNombreFamilia.Size = new System.Drawing.Size(100, 20);
             this.txtNombreFamilia.TabIndex = 7;
             // 
-            // label1
+            // lblNombre
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(52, 329);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Nombre";
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Location = new System.Drawing.Point(52, 329);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(44, 13);
+            this.lblNombre.TabIndex = 6;
+            this.lblNombre.Text = "Nombre";
             // 
             // dtgFamilias
             // 
@@ -146,41 +146,41 @@
             this.labelNombre.Size = new System.Drawing.Size(0, 13);
             this.labelNombre.TabIndex = 7;
             // 
-            // label3
+            // lblPatentesActuales
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(392, 79);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Patentes Actuales";
+            this.lblPatentesActuales.AutoSize = true;
+            this.lblPatentesActuales.Location = new System.Drawing.Point(392, 79);
+            this.lblPatentesActuales.Name = "lblPatentesActuales";
+            this.lblPatentesActuales.Size = new System.Drawing.Size(93, 13);
+            this.lblPatentesActuales.TabIndex = 8;
+            this.lblPatentesActuales.Text = "Patentes Actuales";
             // 
-            // label4
+            // lblPatentesSinAsignar
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(768, 79);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(105, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Patentes Sin Asignar";
+            this.lblPatentesSinAsignar.AutoSize = true;
+            this.lblPatentesSinAsignar.Location = new System.Drawing.Point(768, 79);
+            this.lblPatentesSinAsignar.Name = "lblPatentesSinAsignar";
+            this.lblPatentesSinAsignar.Size = new System.Drawing.Size(105, 13);
+            this.lblPatentesSinAsignar.TabIndex = 9;
+            this.lblPatentesSinAsignar.Text = "Patentes Sin Asignar";
             // 
-            // Familia
+            // lblFamilia
             // 
-            this.Familia.AutoSize = true;
-            this.Familia.Location = new System.Drawing.Point(562, 36);
-            this.Familia.Name = "Familia";
-            this.Familia.Size = new System.Drawing.Size(39, 13);
-            this.Familia.TabIndex = 10;
-            this.Familia.Text = "Familia";
+            this.lblFamilia.AutoSize = true;
+            this.lblFamilia.Location = new System.Drawing.Point(562, 36);
+            this.lblFamilia.Name = "lblFamilia";
+            this.lblFamilia.Size = new System.Drawing.Size(39, 13);
+            this.lblFamilia.TabIndex = 10;
+            this.lblFamilia.Text = "Familia";
             // 
-            // label2
+            // lblID
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(583, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(18, 13);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "ID";
+            this.lblID.AutoSize = true;
+            this.lblID.Location = new System.Drawing.Point(583, 13);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(18, 13);
+            this.lblID.TabIndex = 11;
+            this.lblID.Text = "ID";
             // 
             // txtID
             // 
@@ -205,19 +205,19 @@
             this.ClientSize = new System.Drawing.Size(996, 463);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.txtID);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.Familia);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblID);
+            this.Controls.Add(this.lblFamilia);
+            this.Controls.Add(this.lblPatentesSinAsignar);
+            this.Controls.Add(this.lblPatentesActuales);
             this.Controls.Add(this.labelNombre);
             this.Controls.Add(this.dtgPatentesSinAsignar);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbGestorFamilias);
             this.Controls.Add(this.dtgPatentesActuales);
             this.Name = "UIGestionarFamilias";
             this.Text = "GestionarFamilias";
             ((System.ComponentModel.ISupportInitialize)(this.dtgPatentesActuales)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbGestorFamilias.ResumeLayout(false);
+            this.gbGestorFamilias.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgFamilias)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPatentesSinAsignar)).EndInit();
             this.ResumeLayout(false);
@@ -231,16 +231,16 @@
         private System.Windows.Forms.Button btnCrearFamilia;
         private System.Windows.Forms.Button btnModificarFamilia;
         private System.Windows.Forms.Button btnEliminarFamilia;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbGestorFamilias;
         private System.Windows.Forms.DataGridView dtgFamilias;
         private System.Windows.Forms.TextBox txtNombreFamilia;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.DataGridView dtgPatentesSinAsignar;
         private System.Windows.Forms.Label labelNombre;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label Familia;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblPatentesActuales;
+        private System.Windows.Forms.Label lblPatentesSinAsignar;
+        private System.Windows.Forms.Label lblFamilia;
+        private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.TextBox txtNombre;
     }

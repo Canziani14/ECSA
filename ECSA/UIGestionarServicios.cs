@@ -27,7 +27,7 @@ namespace ECSA
         BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
         BE.Servicio servicioSeleccionado = new BE.Servicio();
         private BE.Usuario usuarioLog;
-        public UIGestionarServicios(int linea, string nombreLinea, BE.Usuario usuarioLog, List<Patente> patentes)
+        public UIGestionarServicios(int linea, string nombreLinea, BE.Usuario usuarioLog, List<Patente> patentes, List<Traduccion> traducciones)
         {
             InitializeComponent();
             txtIDLinea.Text = (linea).ToString();
@@ -38,6 +38,61 @@ namespace ECSA
             this.usuarioLog = usuarioLog;
             LlenarComboBoxConductor(cmbConductor);
             LlenarComboBoxInternos(cmbInterno);
+
+            #region idioma
+
+            foreach (var traduccion in traducciones)
+            {
+                switch (traduccion.ID_Traduccion)
+                {
+                    case 84:
+                        lblID.Text = traduccion.Descripcion;
+                        break;
+                    case 86:
+                        lblLinea.Text = traduccion.Descripcion;
+                        break;
+                    case 28:
+                        gbGestorServicios.Text = traduccion.Descripcion;
+                        break;
+                    case 88:
+                        lblHoraPrincipal.Text = traduccion.Descripcion;
+                        break;
+                    case 90:
+                        lblHoraRebote.Text = traduccion.Descripcion;
+                        break;
+                    case 2:
+                        btnCrearServicio.Text = traduccion.Descripcion;
+                        break;
+                    case 4:
+                        btnModificarServicio.Text = traduccion.Descripcion;
+                        break;
+                    case 6:
+                        btnEliminarServicio.Text = traduccion.Descripcion;
+                        break;
+                    case 94:
+                        gbDespachos.Text = traduccion.Descripcion;
+                        break;
+                    case 96:
+                        lblInterno.Text = traduccion.Descripcion;
+                        break;
+                    case 98:
+                        lblConductor.Text = traduccion.Descripcion;
+                        break;
+                    case 42:
+                        btnAsignarServicio.Text = traduccion.Descripcion;
+                        break;
+                    case 44:
+                        btnImprimir.Text = traduccion.Descripcion;
+                        break;
+                    case 92:
+                        lblServicio.Text = traduccion.Descripcion;
+                        break;
+                }
+            }
+
+            #endregion
+
+            #region patentes
 
             btnCrearServicio.Enabled = false;
             btnModificarServicio.Enabled=false;
@@ -67,6 +122,7 @@ namespace ECSA
                 }
 
             }
+            #endregion
 
             #region Perzonalizacion DTG
             dtgServicios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;

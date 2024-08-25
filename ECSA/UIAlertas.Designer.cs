@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.dtgAlertas = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblAlertasCriticidad = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgAlertas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,21 +41,21 @@
             this.dtgAlertas.Size = new System.Drawing.Size(387, 303);
             this.dtgAlertas.TabIndex = 0;
             // 
-            // label1
+            // lblAlertasCriticidad
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(165, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Alertas con alto nivel de criticidad";
+            this.lblAlertasCriticidad.AutoSize = true;
+            this.lblAlertasCriticidad.Location = new System.Drawing.Point(9, 29);
+            this.lblAlertasCriticidad.Name = "lblAlertasCriticidad";
+            this.lblAlertasCriticidad.Size = new System.Drawing.Size(165, 13);
+            this.lblAlertasCriticidad.TabIndex = 1;
+            this.lblAlertasCriticidad.Text = "Alertas con alto nivel de criticidad";
             // 
             // UIAlertas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(411, 360);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblAlertasCriticidad);
             this.Controls.Add(this.dtgAlertas);
             this.Name = "UIAlertas";
             this.Text = "UIAlertas";
@@ -68,6 +68,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dtgAlertas;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblAlertasCriticidad;
     }
 }

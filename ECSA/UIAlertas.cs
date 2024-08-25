@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BE;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,10 +14,26 @@ namespace ECSA
     public partial class UIAlertas : Form
     {
         BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
-        public UIAlertas()
+        public UIAlertas(List<Traduccion> traducciones)
         {
             InitializeComponent();
             dtgAlertas.DataSource = BLLSeguridad.ListarCrit3();
+
+            #region idioma
+
+            foreach (var traduccion in traducciones)
+            {
+                switch (traduccion.ID_Traduccion)
+                {
+                    case 138:
+                        lblAlertasCriticidad.Text = traduccion.Descripcion;
+                        break;
+                }
+            }
+
+            #endregion
+
+
             #region Perzonalizacion DTG
             dtgAlertas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dtgAlertas.Columns["DVH"].Visible = false;

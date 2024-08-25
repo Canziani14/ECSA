@@ -36,11 +36,11 @@
             // 
             // btnAbrirArchivoSQL
             // 
-            this.btnAbrirArchivoSQL.Location = new System.Drawing.Point(65, 88);
+            this.btnAbrirArchivoSQL.Location = new System.Drawing.Point(41, 88);
             this.btnAbrirArchivoSQL.Name = "btnAbrirArchivoSQL";
-            this.btnAbrirArchivoSQL.Size = new System.Drawing.Size(100, 34);
+            this.btnAbrirArchivoSQL.Size = new System.Drawing.Size(143, 41);
             this.btnAbrirArchivoSQL.TabIndex = 0;
-            this.btnAbrirArchivoSQL.Text = "Seleccionar Archivo";
+            this.btnAbrirArchivoSQL.Text = "Seleccionar Archivo / Select File";
             this.btnAbrirArchivoSQL.UseVisualStyleBackColor = true;
             this.btnAbrirArchivoSQL.Click += new System.EventHandler(this.btnAbrirArchivoSQL_Click);
             // 

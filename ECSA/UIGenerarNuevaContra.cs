@@ -19,12 +19,32 @@ namespace ECSA
         BLL_ABM_Usuario BLLUsuario = new BLL_ABM_Usuario();
         BE.Usuario BEUsuario = new BE.Usuario();
 
-        public UIGenerarNuevaContra()
+        public UIGenerarNuevaContra(List<Traduccion> traducciones)
         {
             InitializeComponent();
+
+
+            #region idioma
+
+            foreach (var traduccion in traducciones)
+            {
+                switch (traduccion.ID_Traduccion)
+                {
+                    case 126:
+                        lblIngreseMail.Text = traduccion.Descripcion;
+                        break;
+                    case 50:
+                        btnGenerarNuevaContraseña.Text = traduccion.Descripcion;
+                        break;                   
+                }
+            }
+
+            #endregion
+
+
         }
 
-        
+
 
         private void btnGenerarNuevaContraseña_Click(object sender, EventArgs e)
         {

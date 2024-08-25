@@ -11,5 +11,7 @@ namespace BE
         public int ID_Idioma { get; set; }
 
         public  string Descripcion { get; set; }
+
+        
     }
 }

@@ -47,7 +47,7 @@ namespace ECSA
 
                         
                         //encripta connectionString para encriptarlo
-                        //string encrip = BLLSeguridad.EncriptarCamposReversible("Data Source=DESKTOP-FJGOIBU\\SQLEXPRESS;Initial Catalog=ECSA;Integrated Security=True");
+                        string encrip = BLLSeguridad.EncriptarCamposReversible("Data Source=DESKTOP-FJGOIBU\\SQLEXPRESS;Initial Catalog=ECSA;Integrated Security=True");
                         
                               
                         using (StreamReader reader = new StreamReader(filePath))

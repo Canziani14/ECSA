@@ -19,7 +19,7 @@ namespace ECSA
         BE.Coche BECoche = new BE.Coche();
         BE.Coche cocheSeleccionado = new BE.Coche();
         private BE.Usuario usuarioLog;
-        public UIGestionarCoches(BE.Usuario usuarioLog, List<Patente> patentes)
+        public UIGestionarCoches(BE.Usuario usuarioLog, List<Patente> patentes, List<Traduccion> traducciones)
         {
             InitializeComponent();
             dtgCoches.DataSource= BLLCoche.Listar();
@@ -28,6 +28,43 @@ namespace ECSA
             btnCrearCoche.Enabled = false;
             btnEliminarCoche.Enabled = false;
 
+
+            #region idioma
+
+            foreach (var traduccion in traducciones)
+            {
+                switch (traduccion.ID_Traduccion)
+                {
+                    case 40:
+                        btnBuscarCoche.Text = traduccion.Descripcion;
+                        break;
+                    case 2:
+                        btnCrearCoche.Text = traduccion.Descripcion;
+                        break;
+                    case 6:
+                        btnEliminarCoche.Text = traduccion.Descripcion;
+                        break;
+                    case 118:
+                        lblBuscarInterno.Text = traduccion.Descripcion;
+                        break;
+                    case 120:
+                        gbGestorCoches.Text = traduccion.Descripcion;
+                        break;
+                    case 96:
+                        lblInterno.Text = traduccion.Descripcion;
+                        break;
+                    case 122:
+                        lblPatente.Text = traduccion.Descripcion;
+                        break;
+                    case 124:
+                        lblLineaAsignar.Text = traduccion.Descripcion;
+                        break;          
+                }
+            }
+
+            #endregion
+
+            #region patente
             foreach (var patente in patentes)
             {
                 switch (patente.ID_Patente)
@@ -43,6 +80,7 @@ namespace ECSA
                         break;
                 }
             }
+            #endregion
 
             #region Perzonalizacion DTG
             dtgCoches.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;

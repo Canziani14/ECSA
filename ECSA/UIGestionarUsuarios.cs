@@ -25,7 +25,7 @@ namespace ECSA
         BE.Familia FamiliaSeleccionadaQuitar = new BE.Familia();
 
 
-        public UIGestionarUsuarios(BE.Usuario usuarioLog, List<Patente> patentes)
+        public UIGestionarUsuarios(BE.Usuario usuarioLog, List<Patente> patentes, List<Traduccion> traducciones)
         {
             this.usuarioLog = usuarioLog;
             InitializeComponent();
@@ -39,6 +39,70 @@ namespace ECSA
             
             dtgFamiliasSinAsignar.Enabled = false;
             dtgFamiliaActual.Enabled = false;
+
+
+            #region idioma
+            foreach (var traduccion in traducciones)
+            {
+                switch (traduccion.ID_Traduccion)
+                {
+                    case 40:
+                        btnBuscarUsuario.Text = traduccion.Descripcion;
+                        break;
+                    case 2:
+                        btnCrearUsuario.Text = traduccion.Descripcion;
+                        break;
+                    case 4:
+                        btnModificarUsuario.Text = traduccion.Descripcion;
+                        break;
+                    case 6:
+                        btnEliminarUsuario.Text = traduccion.Descripcion;
+                        break;
+                    case 8:
+                        btnBloquearUsuario.Text = traduccion.Descripcion;
+                        break;
+                    case 10:
+                        btnDesbloquearUsuario.Text = traduccion.Descripcion;
+                        break;
+                    case 70:
+                        lblApellido.Text = traduccion.Descripcion;
+                        break;
+                    case 72:
+                        lblDNI.Text = traduccion.Descripcion;
+                        break;
+                    case 68:
+                        lblNombre.Text = traduccion.Descripcion;
+                        break;
+                    case 66:
+                        lblidUsuario.Text = traduccion.Descripcion;
+                        break;
+                    case 74:
+                        lblNick.Text = traduccion.Descripcion;
+                        break;
+                    case 76:
+                        lblMail.Text = traduccion.Descripcion;
+                        break;
+                    case 78:
+                        gbGestorFamiliasPorUsuario.Text = traduccion.Descripcion;
+                        break;
+                    case 80:
+                        lblAsignadas.Text = traduccion.Descripcion;
+                        break;
+                    case 82:
+                        lblSinAsignar.Text = traduccion.Descripcion;
+                        break;
+                    case 64:
+                        lblBuscarUsuario.Text = traduccion.Descripcion;
+                        break;
+                    case 16:
+                        gbGestorUsuarios.Text = traduccion.Descripcion;
+                        break;
+                }
+            }
+
+            #endregion
+
+            #region patente
 
             foreach (var patente in patentes)
             {
@@ -66,7 +130,7 @@ namespace ECSA
                 }
 
             }
-
+            #endregion
 
 
 

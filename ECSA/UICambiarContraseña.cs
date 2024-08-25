@@ -1,4 +1,5 @@
-﻿using BLL;
+﻿using BE;
+using BLL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,10 +18,39 @@ namespace ECSA
         private BE.Usuario usuarioLog;
         BLL.BLL_ABM_Usuario BLLUsuario = new BLL.BLL_ABM_Usuario();
 
-        public UICambiarContraseña(BE.Usuario usuarioLog)
+        public UICambiarContraseña(BE.Usuario usuarioLog, List<Traduccion> traducciones)
         {
             InitializeComponent();
             this.usuarioLog = usuarioLog;
+
+            #region idioma
+
+            foreach (var traduccion in traducciones)
+            {
+                switch (traduccion.ID_Traduccion)
+                {
+                    case 36:
+                        btnCambiarContra.Text = traduccion.Descripcion;
+                        break;
+                    case 128:
+                        lblIngreseActual.Text = traduccion.Descripcion;
+                        break;
+                    case 130:
+                        lblIngreseNueva.Text = traduccion.Descripcion;
+                        break;
+                    case 132:
+                        lblConfirmarNueva.Text = traduccion.Descripcion;
+                        break;          
+
+                }
+            }
+
+            #endregion
+
+
+
+
+
         }
 
         private void btnCambiarContra_Click(object sender, EventArgs e)

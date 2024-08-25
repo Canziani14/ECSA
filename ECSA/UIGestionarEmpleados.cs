@@ -23,7 +23,7 @@ namespace ECSA
         BLL.BLL_ABM_Linea BLLinea = new BLL.BLL_ABM_Linea();
         private BE.Usuario usuarioLog;
 
-        public UIGestionarEmpleados(BE.Usuario usuarioLog, List<Patente> patentes)
+        public UIGestionarEmpleados(BE.Usuario usuarioLog, List<Patente> patentes, List<Traduccion> traducciones)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
@@ -31,6 +31,61 @@ namespace ECSA
             this.usuarioLog = usuarioLog;
             LlenarComboBox(cmbLinea);
 
+            #region idioma
+            foreach (var traduccion in traducciones)
+            {
+                switch (traduccion.ID_Traduccion)
+                {
+                    case 6:
+                        btnCrearEmpleado.Text = traduccion.Descripcion;
+                        break;
+                    case 8:
+                        btnEliminarEmpleado.Text = traduccion.Descripcion;
+                        break;
+                    case 4:
+                        btnModificarEmpleado.Text = traduccion.Descripcion;
+                        break;
+                    case 40:
+                        btnBuscarEmpleado.Text = traduccion.Descripcion;
+                        break;
+                    case 108:
+                        lblBuscarEmpleado.Text = traduccion.Descripcion;
+                        break;
+                    case 68:
+                        lblNombre.Text = traduccion.Descripcion;
+                        break;
+                    case 70:
+                        lblApellido.Text = traduccion.Descripcion;
+                        break;
+                    case 72:
+                        lblDNI.Text = traduccion.Descripcion;
+                        break;
+                    case 110:
+                        lblDireccion.Text = traduccion.Descripcion;
+                        break;
+                    case 112:
+                        lblTelefono.Text = traduccion.Descripcion;
+                        break;
+                    case 86:
+                        lblLinea.Text = traduccion.Descripcion;
+                        break;
+                    case 114:
+                        lblFechaDeIngreo.Text = traduccion.Descripcion;
+                        break;
+                    case 116:
+                        lblLegajo.Text = traduccion.Descripcion;
+                        break;
+                    case 12:
+                        gbGestorEmpleados.Text = traduccion.Descripcion;
+                        break;
+                }
+            }
+
+            #endregion
+
+
+
+            #region patente
             btnCrearEmpleado.Enabled = false;
             btnEliminarEmpleado.Enabled = false;
             btnModificarEmpleado.Enabled=false;
@@ -54,7 +109,7 @@ namespace ECSA
                 }
             }
 
-
+            #endregion
 
 
 

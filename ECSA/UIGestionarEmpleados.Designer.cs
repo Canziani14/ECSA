@@ -34,29 +34,29 @@
             this.btnCrearEmpleado = new System.Windows.Forms.Button();
             this.btnModificarEmpleado = new System.Windows.Forms.Button();
             this.btnEliminarEmpleado = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblNombre = new System.Windows.Forms.Label();
+            this.lblApellido = new System.Windows.Forms.Label();
+            this.lblDNI = new System.Windows.Forms.Label();
+            this.lblDireccion = new System.Windows.Forms.Label();
+            this.lblTelefono = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtDNI = new System.Windows.Forms.TextBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.txtTelefono = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.gbGestorEmpleados = new System.Windows.Forms.GroupBox();
+            this.lblLegajo = new System.Windows.Forms.Label();
             this.txtLegajo = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblFechaDeIngreo = new System.Windows.Forms.Label();
             this.txtFechadeIngreso = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblLinea = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cmbLinea = new System.Windows.Forms.ComboBox();
             this.txtBuscarEmpleado = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblBuscarEmpleado = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dtgEmpleados)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.gbGestorEmpleados.SuspendLayout();
             this.SuspendLayout();
             // 
             // dtgEmpleados
@@ -111,50 +111,50 @@
             this.btnEliminarEmpleado.UseVisualStyleBackColor = true;
             this.btnEliminarEmpleado.Click += new System.EventHandler(this.btnEliminarEmpleado_Click);
             // 
-            // label1
+            // lblNombre
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Nombre";
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Location = new System.Drawing.Point(21, 42);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(44, 13);
+            this.lblNombre.TabIndex = 5;
+            this.lblNombre.Text = "Nombre";
             // 
-            // label2
+            // lblApellido
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 74);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Apellido";
+            this.lblApellido.AutoSize = true;
+            this.lblApellido.Location = new System.Drawing.Point(21, 74);
+            this.lblApellido.Name = "lblApellido";
+            this.lblApellido.Size = new System.Drawing.Size(44, 13);
+            this.lblApellido.TabIndex = 6;
+            this.lblApellido.Text = "Apellido";
             // 
-            // label3
+            // lblDNI
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(41, 103);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(26, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "DNI";
+            this.lblDNI.AutoSize = true;
+            this.lblDNI.Location = new System.Drawing.Point(21, 107);
+            this.lblDNI.Name = "lblDNI";
+            this.lblDNI.Size = new System.Drawing.Size(26, 13);
+            this.lblDNI.TabIndex = 7;
+            this.lblDNI.Text = "DNI";
             // 
-            // label4
+            // lblDireccion
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(41, 137);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Direccion";
+            this.lblDireccion.AutoSize = true;
+            this.lblDireccion.Location = new System.Drawing.Point(21, 137);
+            this.lblDireccion.Name = "lblDireccion";
+            this.lblDireccion.Size = new System.Drawing.Size(52, 13);
+            this.lblDireccion.TabIndex = 8;
+            this.lblDireccion.Text = "Direccion";
             // 
-            // label5
+            // lblTelefono
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(41, 176);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 13);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Telefono";
+            this.lblTelefono.AutoSize = true;
+            this.lblTelefono.Location = new System.Drawing.Point(21, 176);
+            this.lblTelefono.Name = "lblTelefono";
+            this.lblTelefono.Size = new System.Drawing.Size(49, 13);
+            this.lblTelefono.TabIndex = 9;
+            this.lblTelefono.Text = "Telefono";
             // 
             // txtNombre
             // 
@@ -191,60 +191,60 @@
             this.txtTelefono.Size = new System.Drawing.Size(158, 20);
             this.txtTelefono.TabIndex = 14;
             // 
-            // groupBox1
+            // gbGestorEmpleados
             // 
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.txtLegajo);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.txtFechadeIngreso);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.cmbLinea);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.btnEliminarEmpleado);
-            this.groupBox1.Controls.Add(this.txtTelefono);
-            this.groupBox1.Controls.Add(this.btnModificarEmpleado);
-            this.groupBox1.Controls.Add(this.txtNombre);
-            this.groupBox1.Controls.Add(this.btnCrearEmpleado);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.txtDireccion);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtDNI);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtApellido);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(641, 74);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(335, 364);
-            this.groupBox1.TabIndex = 15;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Gestor de Empleados";
+            this.gbGestorEmpleados.Controls.Add(this.lblLegajo);
+            this.gbGestorEmpleados.Controls.Add(this.txtLegajo);
+            this.gbGestorEmpleados.Controls.Add(this.lblFechaDeIngreo);
+            this.gbGestorEmpleados.Controls.Add(this.txtFechadeIngreso);
+            this.gbGestorEmpleados.Controls.Add(this.lblLinea);
+            this.gbGestorEmpleados.Controls.Add(this.label7);
+            this.gbGestorEmpleados.Controls.Add(this.cmbLinea);
+            this.gbGestorEmpleados.Controls.Add(this.lblNombre);
+            this.gbGestorEmpleados.Controls.Add(this.btnEliminarEmpleado);
+            this.gbGestorEmpleados.Controls.Add(this.txtTelefono);
+            this.gbGestorEmpleados.Controls.Add(this.btnModificarEmpleado);
+            this.gbGestorEmpleados.Controls.Add(this.txtNombre);
+            this.gbGestorEmpleados.Controls.Add(this.btnCrearEmpleado);
+            this.gbGestorEmpleados.Controls.Add(this.lblTelefono);
+            this.gbGestorEmpleados.Controls.Add(this.txtDireccion);
+            this.gbGestorEmpleados.Controls.Add(this.lblApellido);
+            this.gbGestorEmpleados.Controls.Add(this.txtDNI);
+            this.gbGestorEmpleados.Controls.Add(this.lblDireccion);
+            this.gbGestorEmpleados.Controls.Add(this.txtApellido);
+            this.gbGestorEmpleados.Controls.Add(this.lblDNI);
+            this.gbGestorEmpleados.Location = new System.Drawing.Point(641, 74);
+            this.gbGestorEmpleados.Name = "gbGestorEmpleados";
+            this.gbGestorEmpleados.Size = new System.Drawing.Size(335, 364);
+            this.gbGestorEmpleados.TabIndex = 15;
+            this.gbGestorEmpleados.TabStop = false;
+            this.gbGestorEmpleados.Text = "Gestor de Empleados";
             // 
-            // label10
+            // lblLegajo
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(54, 295);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(39, 13);
-            this.label10.TabIndex = 21;
-            this.label10.Text = "Legajo";
+            this.lblLegajo.AutoSize = true;
+            this.lblLegajo.Location = new System.Drawing.Point(15, 299);
+            this.lblLegajo.Name = "lblLegajo";
+            this.lblLegajo.Size = new System.Drawing.Size(39, 13);
+            this.lblLegajo.TabIndex = 21;
+            this.lblLegajo.Text = "Legajo";
             // 
             // txtLegajo
             // 
             this.txtLegajo.Enabled = false;
-            this.txtLegajo.Location = new System.Drawing.Point(131, 292);
+            this.txtLegajo.Location = new System.Drawing.Point(120, 292);
             this.txtLegajo.Name = "txtLegajo";
             this.txtLegajo.Size = new System.Drawing.Size(100, 20);
             this.txtLegajo.TabIndex = 20;
             // 
-            // label9
+            // lblFechaDeIngreo
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(15, 267);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(90, 13);
-            this.label9.TabIndex = 19;
-            this.label9.Text = "Fecha de Ingreso";
+            this.lblFechaDeIngreo.AutoSize = true;
+            this.lblFechaDeIngreo.Location = new System.Drawing.Point(15, 267);
+            this.lblFechaDeIngreo.Name = "lblFechaDeIngreo";
+            this.lblFechaDeIngreo.Size = new System.Drawing.Size(90, 13);
+            this.lblFechaDeIngreo.TabIndex = 19;
+            this.lblFechaDeIngreo.Text = "Fecha de Ingreso";
             // 
             // txtFechadeIngreso
             // 
@@ -253,14 +253,14 @@
             this.txtFechadeIngreso.Size = new System.Drawing.Size(200, 20);
             this.txtFechadeIngreso.TabIndex = 18;
             // 
-            // label8
+            // lblLinea
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(52, 227);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(33, 13);
-            this.label8.TabIndex = 17;
-            this.label8.Text = "Linea";
+            this.lblLinea.AutoSize = true;
+            this.lblLinea.Location = new System.Drawing.Point(21, 222);
+            this.lblLinea.Name = "lblLinea";
+            this.lblLinea.Size = new System.Drawing.Size(33, 13);
+            this.lblLinea.TabIndex = 17;
+            this.lblLinea.Text = "Linea";
             // 
             // label7
             // 
@@ -285,14 +285,14 @@
             this.txtBuscarEmpleado.Size = new System.Drawing.Size(202, 20);
             this.txtBuscarEmpleado.TabIndex = 15;
             // 
-            // label6
+            // lblBuscarEmpleado
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(-2, 36);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(93, 13);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Buscar Empleado:";
+            this.lblBuscarEmpleado.AutoSize = true;
+            this.lblBuscarEmpleado.Location = new System.Drawing.Point(-2, 36);
+            this.lblBuscarEmpleado.Name = "lblBuscarEmpleado";
+            this.lblBuscarEmpleado.Size = new System.Drawing.Size(93, 13);
+            this.lblBuscarEmpleado.TabIndex = 16;
+            this.lblBuscarEmpleado.Text = "Buscar Empleado:";
             // 
             // contextMenuStrip1
             // 
@@ -304,16 +304,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(998, 450);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblBuscarEmpleado);
             this.Controls.Add(this.txtBuscarEmpleado);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbGestorEmpleados);
             this.Controls.Add(this.btnBuscarEmpleado);
             this.Controls.Add(this.dtgEmpleados);
             this.Name = "UIGestionarEmpleados";
             this.Text = "GestionarEmpleados";
             ((System.ComponentModel.ISupportInitialize)(this.dtgEmpleados)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbGestorEmpleados.ResumeLayout(false);
+            this.gbGestorEmpleados.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -326,25 +326,25 @@
         private System.Windows.Forms.Button btnCrearEmpleado;
         private System.Windows.Forms.Button btnModificarEmpleado;
         private System.Windows.Forms.Button btnEliminarEmpleado;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.Label lblApellido;
+        private System.Windows.Forms.Label lblDNI;
+        private System.Windows.Forms.Label lblDireccion;
+        private System.Windows.Forms.Label lblTelefono;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.TextBox txtDNI;
         private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.TextBox txtTelefono;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbGestorEmpleados;
         private System.Windows.Forms.TextBox txtBuscarEmpleado;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblBuscarEmpleado;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cmbLinea;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblLinea;
+        private System.Windows.Forms.Label lblFechaDeIngreo;
         private System.Windows.Forms.DateTimePicker txtFechadeIngreso;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblLegajo;
         private System.Windows.Forms.TextBox txtLegajo;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }

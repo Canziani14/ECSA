@@ -21,10 +21,39 @@ namespace ECSA
     public partial class UIBitacora : Form
     {
         BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
-        public UIBitacora()
+        private int _IdiomaSeleccionado;
+        public UIBitacora(List<Traduccion> traducciones)
         {
             InitializeComponent();
            dtgBitacora.DataSource= BLLSeguridad.Listar();
+           
+
+            #region idioma
+
+            foreach (var traduccion in traducciones)
+            {
+                switch (traduccion.ID_Traduccion)
+                {
+                    case 40:
+                        btnBuscar.Text = traduccion.Descripcion;
+                        break;
+                    case 56:
+                        btnDescargarBitacora.Text = traduccion.Descripcion;
+                        break;
+                    case 60:
+                        lblDesde.Text = traduccion.Descripcion;
+                        break;
+                    case 62:
+                        lblHasta.Text = traduccion.Descripcion;
+                        break;
+                    case 64:
+                        lblBuscarUsuario.Text = traduccion.Descripcion;
+                        break;                  
+                } 
+            }
+
+            #endregion
+
 
 
             #region Perzonalizacion DTG
@@ -84,6 +113,7 @@ namespace ECSA
             else
             {
                 // Mostrar mensaje de no encontrado y limpiar el DataGridView
+                
                 MessageBox.Show("Bitacoras no encontradas.");
                 dtgBitacora.DataSource = null;
             }

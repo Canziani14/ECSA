@@ -31,14 +31,14 @@
             this.dtgUsuarios = new System.Windows.Forms.DataGridView();
             this.btnBuscarUsuario = new System.Windows.Forms.Button();
             this.txtBuscarUsuario = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.gbGestorPatentes = new System.Windows.Forms.GroupBox();
+            this.lblSinAsignar = new System.Windows.Forms.Label();
+            this.lblAsignadas = new System.Windows.Forms.Label();
             this.dtgPatentesSinAsignar = new System.Windows.Forms.DataGridView();
             this.dtgPatentesActuales = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblBuscar = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.gbGestorPatentes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPatentesSinAsignar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPatentesActuales)).BeginInit();
             this.SuspendLayout();
@@ -69,36 +69,36 @@
             this.txtBuscarUsuario.Size = new System.Drawing.Size(134, 20);
             this.txtBuscarUsuario.TabIndex = 4;
             // 
-            // groupBox1
+            // gbGestorPatentes
             // 
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.dtgPatentesSinAsignar);
-            this.groupBox1.Controls.Add(this.dtgPatentesActuales);
-            this.groupBox1.Location = new System.Drawing.Point(312, 53);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(577, 476);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Gestor de Patentes";
+            this.gbGestorPatentes.Controls.Add(this.lblSinAsignar);
+            this.gbGestorPatentes.Controls.Add(this.lblAsignadas);
+            this.gbGestorPatentes.Controls.Add(this.dtgPatentesSinAsignar);
+            this.gbGestorPatentes.Controls.Add(this.dtgPatentesActuales);
+            this.gbGestorPatentes.Location = new System.Drawing.Point(312, 53);
+            this.gbGestorPatentes.Name = "gbGestorPatentes";
+            this.gbGestorPatentes.Size = new System.Drawing.Size(577, 476);
+            this.gbGestorPatentes.TabIndex = 5;
+            this.gbGestorPatentes.TabStop = false;
+            this.gbGestorPatentes.Text = "Gestor de Patentes";
             // 
-            // label3
+            // lblSinAsignar
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(221, 225);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Sin Asignar";
+            this.lblSinAsignar.AutoSize = true;
+            this.lblSinAsignar.Location = new System.Drawing.Point(221, 225);
+            this.lblSinAsignar.Name = "lblSinAsignar";
+            this.lblSinAsignar.Size = new System.Drawing.Size(60, 13);
+            this.lblSinAsignar.TabIndex = 9;
+            this.lblSinAsignar.Text = "Sin Asignar";
             // 
-            // label2
+            // lblAsignadas
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(218, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Asignadas";
+            this.lblAsignadas.AutoSize = true;
+            this.lblAsignadas.Location = new System.Drawing.Point(218, 20);
+            this.lblAsignadas.Name = "lblAsignadas";
+            this.lblAsignadas.Size = new System.Drawing.Size(56, 13);
+            this.lblAsignadas.TabIndex = 8;
+            this.lblAsignadas.Text = "Asignadas";
             // 
             // dtgPatentesSinAsignar
             // 
@@ -118,30 +118,30 @@
             this.dtgPatentesActuales.TabIndex = 6;
             this.dtgPatentesActuales.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPatentesActuales_CellDoubleClick);
             // 
-            // label1
+            // lblBuscar
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(-1, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Buscar Usuario:";
+            this.lblBuscar.AutoSize = true;
+            this.lblBuscar.Location = new System.Drawing.Point(-1, 35);
+            this.lblBuscar.Name = "lblBuscar";
+            this.lblBuscar.Size = new System.Drawing.Size(82, 13);
+            this.lblBuscar.TabIndex = 6;
+            this.lblBuscar.Text = "Buscar Usuario:";
             // 
             // UIGestionarPatentes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(901, 541);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.lblBuscar);
+            this.Controls.Add(this.gbGestorPatentes);
             this.Controls.Add(this.txtBuscarUsuario);
             this.Controls.Add(this.btnBuscarUsuario);
             this.Controls.Add(this.dtgUsuarios);
             this.Name = "UIGestionarPatentes";
             this.Text = "GestionarPatentes";
             ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbGestorPatentes.ResumeLayout(false);
+            this.gbGestorPatentes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPatentesSinAsignar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPatentesActuales)).EndInit();
             this.ResumeLayout(false);
@@ -154,11 +154,11 @@
         private System.Windows.Forms.DataGridView dtgUsuarios;
         private System.Windows.Forms.Button btnBuscarUsuario;
         private System.Windows.Forms.TextBox txtBuscarUsuario;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbGestorPatentes;
         private System.Windows.Forms.DataGridView dtgPatentesActuales;
         private System.Windows.Forms.DataGridView dtgPatentesSinAsignar;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblBuscar;
+        private System.Windows.Forms.Label lblSinAsignar;
+        private System.Windows.Forms.Label lblAsignadas;
     }
 }

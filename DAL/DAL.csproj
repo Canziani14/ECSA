@@ -76,6 +76,7 @@
     <Compile Include="Mappers\MAPPERSIdioma.cs" />
     <Compile Include="Mappers\MAPPERSLinea.cs" />
     <Compile Include="Mappers\MAPPERSServicio.cs" />
+    <Compile Include="Mappers\MAPPERSTraduccion.cs" />
     <Compile Include="Mappers\MAPPERSUsuario-Familia.cs" />
     <Compile Include="Mappers\MAPPERSUsuario-Patente.cs" />
     <Compile Include="Mappers\MAPPERSUsuario.cs" />

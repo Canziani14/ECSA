@@ -22,12 +22,40 @@ namespace ECSA
         BLL.BLLPatente BLLPatente = new BLL.BLLPatente();
         BE.Patente PatenteSeleccionadaAsignar = new BE.Patente();
         BE.Patente PatenteSeleccionadaQuitar = new BE.Patente();
-        public UIGestionarPatentes(BE.Usuario usuarioLogin, List<Patente> patentes)
+        public UIGestionarPatentes(BE.Usuario usuarioLogin, List<Patente> patentes, List<Traduccion> traducciones)
         {
             InitializeComponent();
             this.usuarioLog = usuarioLogin;
             dtgUsuarios.DataSource = BLLUsuario.Listar();
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            #region idioma
+            
+
+            foreach (var traduccion in traducciones)
+            {
+                switch (traduccion.ID_Traduccion)
+                {
+                    case 40:
+                        btnBuscarUsuario.Text = traduccion.Descripcion;
+                        break;
+                    case 64:
+                        lblBuscar.Text = traduccion.Descripcion;
+                        break;
+                    case 80:
+                        lblAsignadas.Text = traduccion.Descripcion;
+                        break;
+                    case 82:
+                        lblSinAsignar.Text = traduccion.Descripcion;
+                        break;
+                    case 100:
+                        gbGestorPatentes.Text = traduccion.Descripcion;
+                        break;              
+                }
+            }
+            #endregion| 
+
+
 
             #region Perzonalizacion DTG
             dtgUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;

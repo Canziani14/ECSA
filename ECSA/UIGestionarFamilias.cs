@@ -22,11 +22,53 @@ namespace ECSA
         BE.Patente PatenteSeleccionadaQuitar = new BE.Patente();
         private BE.Usuario usuarioLog;       
         BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
-        public UIGestionarFamilias(BE.Usuario usuarioLog, List<Patente> patentes)
+        public UIGestionarFamilias(BE.Usuario usuarioLog, List<Patente> patentes, List<Traduccion> traducciones)
         {
             InitializeComponent();
             dtgFamilias.DataSource= BLLFamilia.Listar();
             this.usuarioLog = usuarioLog;
+
+
+
+            #region idioma
+
+            foreach (var traduccion in traducciones)
+            {
+                switch (traduccion.ID_Traduccion)
+                {
+                    case 2:
+                        btnCrearFamilia.Text = traduccion.Descripcion;
+                        break;
+                    case 4:
+                        btnModificarFamilia.Text = traduccion.Descripcion;
+                        break;
+                    case 6:
+                        btnEliminarFamilia.Text = traduccion.Descripcion;
+                        break;
+                    case 102:
+                        gbGestorFamilias.Text = traduccion.Descripcion;
+                        break;
+                    case 68:
+                        lblNombre.Text = traduccion.Descripcion;
+                        break;
+                    case 84:
+                        lblID.Text = traduccion.Descripcion;
+                        break;
+                    case 140:
+                        lblFamilia.Text = traduccion.Descripcion;
+                        break;
+                    case 80:
+                        lblPatentesActuales.Text = traduccion.Descripcion;
+                        break;
+                    case 82:
+                        lblPatentesSinAsignar.Text = traduccion.Descripcion;
+                        break;                 
+                }   
+            }
+
+            #endregion
+
+            #region patentes
 
             btnCrearFamilia.Enabled= false;
             btnModificarFamilia.Enabled = false;
@@ -55,7 +97,7 @@ namespace ECSA
                 }
 
             }
-
+            #endregion
 
             #region Perzonalizacion DTG
 

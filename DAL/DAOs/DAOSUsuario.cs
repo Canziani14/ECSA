@@ -59,7 +59,7 @@ namespace DAL.DAOs
         string QueryCambiarContraseña = "UPDATE Usuario SET Contraseña = @Contraseña WHERE ID_Usuario = @ID_Usuario";
         string QuerySelectByMail = "select * from Usuario where Mail = @Mail";
         string QuerySelectByDNI = "select * from Usuario where DNI = @DNI";
-
+        string QuerySelectByIdioma = "select * from Traduccion where ID_Idioma=@ID_Idioma";
         #endregion
 
         #region Agregar Usuario
@@ -526,6 +526,17 @@ namespace DAL.DAOs
             };
             DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByMail, parameters);
             return Mappers.MAPPERSUsuario.GetInstance().Map(table);
+        }
+
+        public List<Traduccion> ListarTraduccionesXIdioma(int idIdioma)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@ID_Idioma", idIdioma),
+
+            };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByIdioma, parameters);
+            return Mappers.MAPPERSTraduccion.GetInstance().Map(table);
         }
 
     }   

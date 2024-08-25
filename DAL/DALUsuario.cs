@@ -103,5 +103,10 @@ namespace DAL
             return DAOSUsuario.GetInstance().ValidarMail(Mail);
         }
 
+        public List<Traduccion> ListarTraduccionesXIdioma(int idIdioma)
+        {
+            return DAOSUsuario.GetInstance().ListarTraduccionesXIdioma(idIdioma);
+        }
+
     }
 }

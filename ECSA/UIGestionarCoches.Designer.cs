@@ -32,17 +32,17 @@
             this.btnCrearCoche = new System.Windows.Forms.Button();
             this.btnEliminarCoche = new System.Windows.Forms.Button();
             this.btnBuscarCoche = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.gbGestorCoches = new System.Windows.Forms.GroupBox();
+            this.lblLineaAsignar = new System.Windows.Forms.Label();
             this.cmbLinea = new System.Windows.Forms.ComboBox();
             this.txtPatente = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblPatente = new System.Windows.Forms.Label();
             this.txtInterno = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblInterno = new System.Windows.Forms.Label();
             this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblBuscarInterno = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCoches)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.gbGestorCoches.SuspendLayout();
             this.SuspendLayout();
             // 
             // dtgCoches
@@ -84,31 +84,31 @@
             this.btnBuscarCoche.UseVisualStyleBackColor = true;
             this.btnBuscarCoche.Click += new System.EventHandler(this.btnBuscarCoche_Click);
             // 
-            // groupBox1
+            // gbGestorCoches
             // 
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.cmbLinea);
-            this.groupBox1.Controls.Add(this.txtPatente);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtInterno);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.btnCrearCoche);
-            this.groupBox1.Controls.Add(this.btnEliminarCoche);
-            this.groupBox1.Location = new System.Drawing.Point(164, 102);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(236, 200);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Gestor de Coches";
+            this.gbGestorCoches.Controls.Add(this.lblLineaAsignar);
+            this.gbGestorCoches.Controls.Add(this.cmbLinea);
+            this.gbGestorCoches.Controls.Add(this.txtPatente);
+            this.gbGestorCoches.Controls.Add(this.lblPatente);
+            this.gbGestorCoches.Controls.Add(this.txtInterno);
+            this.gbGestorCoches.Controls.Add(this.lblInterno);
+            this.gbGestorCoches.Controls.Add(this.btnCrearCoche);
+            this.gbGestorCoches.Controls.Add(this.btnEliminarCoche);
+            this.gbGestorCoches.Location = new System.Drawing.Point(164, 102);
+            this.gbGestorCoches.Name = "gbGestorCoches";
+            this.gbGestorCoches.Size = new System.Drawing.Size(236, 200);
+            this.gbGestorCoches.TabIndex = 4;
+            this.gbGestorCoches.TabStop = false;
+            this.gbGestorCoches.Text = "Gestor de Coches";
             // 
-            // label3
+            // lblLineaAsignar
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 93);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Linea a asignar";
+            this.lblLineaAsignar.AutoSize = true;
+            this.lblLineaAsignar.Location = new System.Drawing.Point(6, 93);
+            this.lblLineaAsignar.Name = "lblLineaAsignar";
+            this.lblLineaAsignar.Size = new System.Drawing.Size(79, 13);
+            this.lblLineaAsignar.TabIndex = 10;
+            this.lblLineaAsignar.Text = "Linea a asignar";
             // 
             // cmbLinea
             // 
@@ -125,14 +125,14 @@
             this.txtPatente.Size = new System.Drawing.Size(71, 20);
             this.txtPatente.TabIndex = 8;
             // 
-            // label2
+            // lblPatente
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 62);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Patente";
+            this.lblPatente.AutoSize = true;
+            this.lblPatente.Location = new System.Drawing.Point(6, 58);
+            this.lblPatente.Name = "lblPatente";
+            this.lblPatente.Size = new System.Drawing.Size(44, 13);
+            this.lblPatente.TabIndex = 7;
+            this.lblPatente.Text = "Patente";
             // 
             // txtInterno
             // 
@@ -142,14 +142,14 @@
             this.txtInterno.Size = new System.Drawing.Size(71, 20);
             this.txtInterno.TabIndex = 6;
             // 
-            // label1
+            // lblInterno
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Interno";
+            this.lblInterno.AutoSize = true;
+            this.lblInterno.Location = new System.Drawing.Point(6, 29);
+            this.lblInterno.Name = "lblInterno";
+            this.lblInterno.Size = new System.Drawing.Size(40, 13);
+            this.lblInterno.TabIndex = 3;
+            this.lblInterno.Text = "Interno";
             // 
             // txtBuscar
             // 
@@ -158,30 +158,30 @@
             this.txtBuscar.Size = new System.Drawing.Size(90, 20);
             this.txtBuscar.TabIndex = 5;
             // 
-            // label4
+            // lblBuscarInterno
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 40);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Buscar Interno:";
+            this.lblBuscarInterno.AutoSize = true;
+            this.lblBuscarInterno.Location = new System.Drawing.Point(3, 40);
+            this.lblBuscarInterno.Name = "lblBuscarInterno";
+            this.lblBuscarInterno.Size = new System.Drawing.Size(79, 13);
+            this.lblBuscarInterno.TabIndex = 6;
+            this.lblBuscarInterno.Text = "Buscar Interno:";
             // 
             // UIGestionarCoches
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(405, 450);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblBuscarInterno);
             this.Controls.Add(this.txtBuscar);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbGestorCoches);
             this.Controls.Add(this.btnBuscarCoche);
             this.Controls.Add(this.dtgCoches);
             this.Name = "UIGestionarCoches";
             this.Text = "GestionarCoches";
             ((System.ComponentModel.ISupportInitialize)(this.dtgCoches)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbGestorCoches.ResumeLayout(false);
+            this.gbGestorCoches.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -193,14 +193,14 @@
         private System.Windows.Forms.Button btnCrearCoche;
         private System.Windows.Forms.Button btnEliminarCoche;
         private System.Windows.Forms.Button btnBuscarCoche;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbGestorCoches;
         private System.Windows.Forms.TextBox txtInterno;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblInterno;
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.TextBox txtPatente;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblPatente;
+        private System.Windows.Forms.Label lblLineaAsignar;
         private System.Windows.Forms.ComboBox cmbLinea;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblBuscarInterno;
     }
 }

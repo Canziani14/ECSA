@@ -28,26 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblDesde = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.DateDesde = new System.Windows.Forms.DateTimePicker();
             this.DateHasta = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblHasta = new System.Windows.Forms.Label();
+            this.lblBuscarUsuario = new System.Windows.Forms.Label();
             this.txtBuscarUsuario = new System.Windows.Forms.TextBox();
             this.dtgBitacora = new System.Windows.Forms.DataGridView();
             this.btnDescargarBitacora = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgBitacora)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // lblDesde
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Fecha desde";
+            this.lblDesde.AutoSize = true;
+            this.lblDesde.Location = new System.Drawing.Point(12, 35);
+            this.lblDesde.Name = "lblDesde";
+            this.lblDesde.Size = new System.Drawing.Size(69, 13);
+            this.lblDesde.TabIndex = 0;
+            this.lblDesde.Text = "Fecha desde";
             // 
             // btnBuscar
             // 
@@ -73,23 +73,23 @@
             this.DateHasta.Size = new System.Drawing.Size(200, 20);
             this.DateHasta.TabIndex = 4;
             // 
-            // label2
+            // lblHasta
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(303, 34);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Fecha hasta";
+            this.lblHasta.AutoSize = true;
+            this.lblHasta.Location = new System.Drawing.Point(303, 34);
+            this.lblHasta.Name = "lblHasta";
+            this.lblHasta.Size = new System.Drawing.Size(66, 13);
+            this.lblHasta.TabIndex = 5;
+            this.lblHasta.Text = "Fecha hasta";
             // 
-            // label3
+            // lblBuscarUsuario
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(206, 82);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Usuario";
+            this.lblBuscarUsuario.AutoSize = true;
+            this.lblBuscarUsuario.Location = new System.Drawing.Point(170, 82);
+            this.lblBuscarUsuario.Name = "lblBuscarUsuario";
+            this.lblBuscarUsuario.Size = new System.Drawing.Size(79, 13);
+            this.lblBuscarUsuario.TabIndex = 6;
+            this.lblBuscarUsuario.Text = "Buscar Usuario";
             // 
             // txtBuscarUsuario
             // 
@@ -124,12 +124,12 @@
             this.Controls.Add(this.btnDescargarBitacora);
             this.Controls.Add(this.dtgBitacora);
             this.Controls.Add(this.txtBuscarUsuario);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblBuscarUsuario);
+            this.Controls.Add(this.lblHasta);
             this.Controls.Add(this.DateHasta);
             this.Controls.Add(this.DateDesde);
             this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblDesde);
             this.Name = "UIBitacora";
             this.Text = "UIBitacora";
             ((System.ComponentModel.ISupportInitialize)(this.dtgBitacora)).EndInit();
@@ -140,12 +140,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblDesde;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.DateTimePicker DateDesde;
         private System.Windows.Forms.DateTimePicker DateHasta;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblHasta;
+        private System.Windows.Forms.Label lblBuscarUsuario;
         private System.Windows.Forms.TextBox txtBuscarUsuario;
         private System.Windows.Forms.DataGridView dtgBitacora;
         private System.Windows.Forms.Button btnDescargarBitacora;

@@ -33,14 +33,14 @@
             this.btnModificarLinea = new System.Windows.Forms.Button();
             this.btnEliminarLinea = new System.Windows.Forms.Button();
             this.btnGestionarCoches = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.gbGestorLineas = new System.Windows.Forms.GroupBox();
+            this.lblID = new System.Windows.Forms.Label();
             this.txtIDLinea = new System.Windows.Forms.TextBox();
             this.btnGestionarServicios = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblNombre = new System.Windows.Forms.Label();
             this.txtNombreLinea = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgLineas)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.gbGestorLineas.SuspendLayout();
             this.SuspendLayout();
             // 
             // dtgLineas
@@ -92,32 +92,32 @@
             this.btnGestionarCoches.UseVisualStyleBackColor = true;
             this.btnGestionarCoches.Click += new System.EventHandler(this.btnGestionarCoches_Click);
             // 
-            // groupBox1
+            // gbGestorLineas
             // 
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtIDLinea);
-            this.groupBox1.Controls.Add(this.btnGestionarServicios);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.txtNombreLinea);
-            this.groupBox1.Controls.Add(this.btnModificarLinea);
-            this.groupBox1.Controls.Add(this.btnGestionarCoches);
-            this.groupBox1.Controls.Add(this.btnCrearLinea);
-            this.groupBox1.Controls.Add(this.btnEliminarLinea);
-            this.groupBox1.Location = new System.Drawing.Point(233, 21);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(263, 262);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Gestor de Lineas";
+            this.gbGestorLineas.Controls.Add(this.lblID);
+            this.gbGestorLineas.Controls.Add(this.txtIDLinea);
+            this.gbGestorLineas.Controls.Add(this.btnGestionarServicios);
+            this.gbGestorLineas.Controls.Add(this.lblNombre);
+            this.gbGestorLineas.Controls.Add(this.txtNombreLinea);
+            this.gbGestorLineas.Controls.Add(this.btnModificarLinea);
+            this.gbGestorLineas.Controls.Add(this.btnGestionarCoches);
+            this.gbGestorLineas.Controls.Add(this.btnCrearLinea);
+            this.gbGestorLineas.Controls.Add(this.btnEliminarLinea);
+            this.gbGestorLineas.Location = new System.Drawing.Point(233, 21);
+            this.gbGestorLineas.Name = "gbGestorLineas";
+            this.gbGestorLineas.Size = new System.Drawing.Size(263, 262);
+            this.gbGestorLineas.TabIndex = 5;
+            this.gbGestorLineas.TabStop = false;
+            this.gbGestorLineas.Text = "Gestor de Lineas";
             // 
-            // label2
+            // lblID
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(18, 13);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "ID";
+            this.lblID.AutoSize = true;
+            this.lblID.Location = new System.Drawing.Point(28, 20);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(18, 13);
+            this.lblID.TabIndex = 9;
+            this.lblID.Text = "ID";
             // 
             // txtIDLinea
             // 
@@ -137,14 +137,14 @@
             this.btnGestionarServicios.UseVisualStyleBackColor = true;
             this.btnGestionarServicios.Click += new System.EventHandler(this.btnGestionarServicios_Click);
             // 
-            // label1
+            // lblNombre
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 49);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Nombre";
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Location = new System.Drawing.Point(28, 49);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(44, 13);
+            this.lblNombre.TabIndex = 6;
+            this.lblNombre.Text = "Nombre";
             // 
             // txtNombreLinea
             // 
@@ -158,13 +158,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(508, 295);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbGestorLineas);
             this.Controls.Add(this.dtgLineas);
             this.Name = "UIGestionarLinea";
             this.Text = "GestionarLineas";
             ((System.ComponentModel.ISupportInitialize)(this.dtgLineas)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbGestorLineas.ResumeLayout(false);
+            this.gbGestorLineas.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -176,11 +176,11 @@
         private System.Windows.Forms.Button btnModificarLinea;
         private System.Windows.Forms.Button btnEliminarLinea;
         private System.Windows.Forms.Button btnGestionarCoches;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox gbGestorLineas;
+        private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.TextBox txtNombreLinea;
         private System.Windows.Forms.Button btnGestionarServicios;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.TextBox txtIDLinea;
     }
 }

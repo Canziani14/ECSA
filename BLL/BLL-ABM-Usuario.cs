@@ -115,5 +115,10 @@ namespace BLL
             return DALPatente.ObtenerPatentesPorUsuario(usuarioId);
         }
 
+        public List<Traduccion> ListarTraduccionesXIdioma(int idIdioma)
+        {
+            return DALUsuario.ListarTraduccionesXIdioma(idIdioma);
+        }
+
     }
 }

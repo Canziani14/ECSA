@@ -28,41 +28,41 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblIngreseActual = new System.Windows.Forms.Label();
+            this.lblIngreseNueva = new System.Windows.Forms.Label();
+            this.lblConfirmarNueva = new System.Windows.Forms.Label();
             this.btnCambiarContra = new System.Windows.Forms.Button();
             this.txtContraseñaActual = new System.Windows.Forms.TextBox();
             this.txtContraseñaNueva = new System.Windows.Forms.TextBox();
             this.txtConfirmacionContraseñaNueva = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // label1
+            // lblIngreseActual
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(43, 53);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Increse Contraseña Actual";
+            this.lblIngreseActual.AutoSize = true;
+            this.lblIngreseActual.Location = new System.Drawing.Point(43, 53);
+            this.lblIngreseActual.Name = "lblIngreseActual";
+            this.lblIngreseActual.Size = new System.Drawing.Size(132, 13);
+            this.lblIngreseActual.TabIndex = 0;
+            this.lblIngreseActual.Text = "Ingrese Contraseña Actual";
             // 
-            // label2
+            // lblIngreseNueva
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(43, 84);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Ingrese Contraseña Nueva";
+            this.lblIngreseNueva.AutoSize = true;
+            this.lblIngreseNueva.Location = new System.Drawing.Point(43, 84);
+            this.lblIngreseNueva.Name = "lblIngreseNueva";
+            this.lblIngreseNueva.Size = new System.Drawing.Size(134, 13);
+            this.lblIngreseNueva.TabIndex = 1;
+            this.lblIngreseNueva.Text = "Ingrese Contraseña Nueva";
             // 
-            // label3
+            // lblConfirmarNueva
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(41, 118);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(140, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Confirme Contraseña Nueva";
+            this.lblConfirmarNueva.AutoSize = true;
+            this.lblConfirmarNueva.Location = new System.Drawing.Point(41, 118);
+            this.lblConfirmarNueva.Name = "lblConfirmarNueva";
+            this.lblConfirmarNueva.Size = new System.Drawing.Size(140, 13);
+            this.lblConfirmarNueva.TabIndex = 2;
+            this.lblConfirmarNueva.Text = "Confirme Contraseña Nueva";
             // 
             // btnCambiarContra
             // 
@@ -104,9 +104,9 @@
             this.Controls.Add(this.txtContraseñaNueva);
             this.Controls.Add(this.txtContraseñaActual);
             this.Controls.Add(this.btnCambiarContra);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblConfirmarNueva);
+            this.Controls.Add(this.lblIngreseNueva);
+            this.Controls.Add(this.lblIngreseActual);
             this.Name = "UICambiarContraseña";
             this.Text = "UICambiarContraseña";
             this.ResumeLayout(false);
@@ -116,9 +116,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblIngreseActual;
+        private System.Windows.Forms.Label lblIngreseNueva;
+        private System.Windows.Forms.Label lblConfirmarNueva;
         private System.Windows.Forms.Button btnCambiarContra;
         private System.Windows.Forms.TextBox txtContraseñaActual;
         private System.Windows.Forms.TextBox txtContraseñaNueva;

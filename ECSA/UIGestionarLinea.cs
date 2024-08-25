@@ -20,14 +20,54 @@ namespace ECSA
         BE.Linea LineaSeleccionada = new BE.Linea();
         BLL.BLLSeguridad BLLSeguridad = new BLLSeguridad();
         private BE.Usuario usuarioLog;
-        private List<Patente>  _patentes;
-        public UIGestionarLinea(BE.Usuario usuarioLog, List<Patente> patentes)
+        private List<Patente> _patentes;
+        private List<Traduccion> _traducciones;
+        public UIGestionarLinea(BE.Usuario usuarioLog, List<Patente> patentes, List<Traduccion> traducciones)
         {
             InitializeComponent();
             dtgLineas.DataSource = BLLinea.Listar();
             this.usuarioLog = usuarioLog;
             _patentes = patentes;
+            _traducciones = traducciones;
 
+
+            #region idioma
+
+            foreach (var traduccion in traducciones)
+            {
+                switch (traduccion.ID_Traduccion)
+                {
+                    case 2:
+                        btnCrearLinea.Text = traduccion.Descripcion;
+                        break;
+                    case 4:
+                        btnModificarLinea.Text = traduccion.Descripcion;
+                        break;                   
+                    case 6:
+                        btnEliminarLinea.Text = traduccion.Descripcion;
+                        break;
+                    case 26:
+                        btnGestionarCoches.Text = traduccion.Descripcion;
+                        break;
+                    case 28:
+                        btnGestionarServicios.Text = traduccion.Descripcion;
+                        break;
+                    case 84:
+                        lblID.Text = traduccion.Descripcion;
+                        break;
+                    case 68:
+                        lblNombre.Text = traduccion.Descripcion;
+                        break;
+                    case 14:
+                        gbGestorLineas.Text = traduccion.Descripcion;
+                        break;
+                }      
+                
+            }
+
+            #endregion
+
+            #region patentes
             btnCrearLinea.Enabled = false;
             btnEliminarLinea.Enabled = false;
             btnModificarLinea.Enabled = false;
@@ -56,7 +96,7 @@ namespace ECSA
                 }
 
             }
-
+            #endregion
 
 
             #region Perzonalizacion DTG
@@ -225,7 +265,7 @@ namespace ECSA
 
         private void btnGestionarCoches_Click(object sender, EventArgs e)
         {
-            UIGestionarCoches uiGestionarCoches = new UIGestionarCoches(usuarioLog, _patentes);
+            UIGestionarCoches uiGestionarCoches = new UIGestionarCoches(usuarioLog, _patentes, _traducciones);
             uiGestionarCoches.MdiParent = this.MdiParent;
             uiGestionarCoches.Show();
         }
@@ -243,7 +283,7 @@ namespace ECSA
             if (int.TryParse(txtIDLinea.Text, out int IDLinea))
             {
                 string NombreLinea = txtNombreLinea.Text;
-                UIGestionarServicios uiGestionarServicios = new UIGestionarServicios(IDLinea, NombreLinea, usuarioLog, _patentes);
+                UIGestionarServicios uiGestionarServicios = new UIGestionarServicios(IDLinea, NombreLinea, usuarioLog, _patentes, _traducciones);
                 uiGestionarServicios.MdiParent = this.MdiParent;
                 uiGestionarServicios.Show();
             }

@@ -62,6 +62,7 @@ namespace ECSA
 
                         // Verificar integridad
                         bool integridadCorrecta = BLLDAL.VerificarIntegridad();
+                        BLLSeguridad.RegistrarEnBitacora(33, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
 
                         if (!integridadCorrecta)
                         {
@@ -69,7 +70,7 @@ namespace ECSA
 
                             // Si la integridad no es correcta, reparar
                             BLLDAL.RepararIntegridad();
-
+                            BLLSeguridad.RegistrarEnBitacora(34, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
                             // Mensaje después de reparar
                             MessageBox.Show("La integridad de los datos fue reparada.", "Reparación Completa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
@@ -82,9 +83,12 @@ namespace ECSA
                             {
                                 patentes.Add(iterator.GetNext());
                             }
-
+                        //Idioma
+                            int idIdiomaSeleccionado = (int)cmbIdiomas.SelectedValue;
+                            List<Traduccion> traducciones =BLLUsuario.ListarTraduccionesXIdioma(idIdiomaSeleccionado);
+                            
                             // Crear instancia de la ventana principal con patentes
-                            UIInicio uiInicio = new UIInicio(UsuarioLog, patentes);
+                            UIInicio uiInicio = new UIInicio(UsuarioLog, patentes, traducciones, idIdiomaSeleccionado);
 
                             // Mostrar la ventana principal
                             uiInicio.Show();
@@ -125,7 +129,10 @@ namespace ECSA
 
         private void btnGenerarNuevaClave_Click(object sender, EventArgs e)
         {
-        UIGenerarNuevaContra uIGenerarNuevaContra = new UIGenerarNuevaContra();
+            int idIdiomaSeleccionado = (int)cmbIdiomas.SelectedValue;
+            List<Traduccion> traducciones = BLLUsuario.ListarTraduccionesXIdioma(idIdiomaSeleccionado);
+
+            UIGenerarNuevaContra uIGenerarNuevaContra = new UIGenerarNuevaContra(traducciones);
         uIGenerarNuevaContra.Show();
         }
 

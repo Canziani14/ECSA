@@ -1,4 +1,5 @@
-﻿using BLL;
+﻿using BE;
+using BLL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,11 +17,31 @@ namespace ECSA
         private BE.Usuario usuarioLog;
         BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
         BLL.BLLDAL BLLDAL = new BLL.BLLDAL();
+        
 
-        public UIGestionarBackUp(BE.Usuario usuarioLog)
+        public UIGestionarBackUp(BE.Usuario usuarioLog, List<Traduccion> traducciones)
         {
             InitializeComponent();
             this.usuarioLog = usuarioLog;
+
+            #region idioma
+            foreach (var traduccion in traducciones)
+            {
+                switch (traduccion.ID_Traduccion)
+                {
+                    case 46:
+                        btnBKP.Text = traduccion.Descripcion;
+                        break;
+                    case 48:
+                        btnRestore.Text = traduccion.Descripcion;
+                        break;
+                    
+                }
+            }
+            #endregion
+
+
+
         }
 
         private void btnBKP_Click(object sender, EventArgs e)
