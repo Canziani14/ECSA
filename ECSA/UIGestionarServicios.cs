@@ -32,6 +32,7 @@ namespace ECSA
             InitializeComponent();
             txtIDLinea.Text = (linea).ToString();
             txtNombreLinea.Text = nombreLinea;
+            StartPosition = FormStartPosition.CenterScreen;
 
             dtgServicios.DataSource = BLLServicios.Listar(linea);
             BEServicio.Linea = linea;

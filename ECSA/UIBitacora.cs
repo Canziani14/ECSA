@@ -26,7 +26,8 @@ namespace ECSA
         {
             InitializeComponent();
            dtgBitacora.DataSource= BLLSeguridad.Listar();
-           
+            StartPosition = FormStartPosition.CenterScreen;
+
 
             #region idioma
 

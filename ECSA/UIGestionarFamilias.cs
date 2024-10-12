@@ -27,6 +27,7 @@ namespace ECSA
             InitializeComponent();
             dtgFamilias.DataSource= BLLFamilia.Listar();
             this.usuarioLog = usuarioLog;
+            StartPosition = FormStartPosition.CenterScreen;
 
 
 

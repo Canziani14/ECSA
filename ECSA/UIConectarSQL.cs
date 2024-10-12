@@ -25,6 +25,19 @@ namespace ECSA
         
         BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
 
+
+        private void Encriptar_Click(object sender, EventArgs e)
+        {
+            // Obtén el texto del TextBox con la cadena de conexión original
+            string connectionString = txtConectionStrnig.Text;
+
+            // Encripta el valor usando el método BLLSeguridad.EncriptarCamposReversible
+            string encrip = BLLSeguridad.EncriptarCamposReversible(connectionString);
+
+            // Muestra el resultado en el TextBox de resultado para copiar
+            txtResultadoEncriptado.Text = encrip;
+
+        }
         private void btnAbrirArchivoSQL_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -47,7 +60,7 @@ namespace ECSA
 
                         
                         //encripta connectionString para encriptarlo
-                        string encrip = BLLSeguridad.EncriptarCamposReversible("Data Source=DESKTOP-FJGOIBU\\SQLEXPRESS;Initial Catalog=ECSA;Integrated Security=True");
+                       //string encrip = BLLSeguridad.EncriptarCamposReversible("Data Source=DESKTOP-FJGOIBU\\SQLEXPRESS;Initial Catalog=ECSA;Integrated Security=True");
                         
                               
                         using (StreamReader reader = new StreamReader(filePath))
@@ -61,6 +74,7 @@ namespace ECSA
 
                         if (TestDatabaseConnection(connectionString))
                         {
+                            
                             UpdateConnectionString(connectionString);
                             MessageBox.Show("Connection string actualizada correctamente.");
 
@@ -127,10 +141,7 @@ namespace ECSA
             ConfigurationManager.RefreshSection("connectionStrings");
         }
 
-
-
-
-
+     
     }
 
 }

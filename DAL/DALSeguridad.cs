@@ -40,19 +40,71 @@ namespace DAL
             return encript;
         }
 
+
+
+
+
         public string DesencriptarCamposReversible(string cadenades)
         {
-            if (cadenades == null)
+            // Validación inicial para cadenas nulas o vacías
+            if (string.IsNullOrEmpty(cadenades))
             {
-                return "";
+                return ""; // Retorna una cadena vacía si la entrada es nula o vacía
             }
-            else
+
+            // Limpieza de la cadena (elimina espacios en blanco, si los hay)
+            cadenades = cadenades.Trim();
+
+            // Agregar un log para verificar el contenido
+            Console.WriteLine($"Cadena antes de convertir: {cadenades}");
+
+            // Validación de longitud para Base-64
+            if (cadenades.Length % 4 != 0)
             {
-                string desencript= Encoding.Unicode.GetString(Convert.FromBase64String(cadenades));
-                return desencript;
+                throw new FormatException("La longitud de la cadena Base-64 no es válida.");
             }
-             
+
+            // Validación de caracteres inválidos
+            if (cadenades.Any(c => !char.IsLetterOrDigit(c) && c != '+' && c != '/' && c != '='))
+            {
+                throw new FormatException("La cadena contiene caracteres no válidos para Base-64.");
+            }
+
+            try
+            {
+                // Desencriptar utilizando la codificación adecuada
+                byte[] bytes = Convert.FromBase64String(cadenades);
+                string desencript = Encoding.Unicode.GetString(bytes);
+                return desencript; // Retorna el resultado desencriptado
+            }
+            catch (FormatException ex)
+            {
+                // Captura errores de formato en la conversión Base-64
+                throw new FormatException("Error al intentar convertir la cadena Base-64.", ex);
+            }
+            catch (Exception ex)
+            {
+                // Captura cualquier otro tipo de excepción
+                throw new Exception("Error inesperado al desencriptar la cadena.", ex);
+            }
         }
+
+
+
+        /*
+          public string DesencriptarCamposReversible(string cadenades)
+          {
+              if (cadenades == null)
+              {
+                  return "";
+              }
+              else
+              {
+                  string desencript= Encoding.Unicode.GetString(Convert.FromBase64String(cadenades));
+                  return desencript;
+              }
+
+          }*/
 
 
         public static string EncriptarCamposIrreversible(string str)

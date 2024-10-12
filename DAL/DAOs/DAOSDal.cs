@@ -132,6 +132,7 @@ namespace DAL.DAOs
                     // Comparar los DVH
                     if (dvhCalculado != dvhAlmacenado)
                     {
+                        MessageBox.Show($"Inconsistencia detectada en la tabla {tabla.NombreTabla}, registro ID: {registro[0]}");
                         Console.WriteLine($"Inconsistencia detectada en la tabla {tabla.NombreTabla}, registro ID: {registro[0]}");
                         integridad = false;
                     }
