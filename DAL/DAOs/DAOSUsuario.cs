@@ -33,12 +33,12 @@ namespace DAL.DAOs
 
         string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-        string QueryInsert = "INSERT INTO Usuario (Nombre, Apellido, Nick, Mail, DNI, Contraseña, estado, Contador_Int_Fallidos)" +
-            "VALUES (@Nombre, @Apellido, @Nick, @Mail, @DNI, @Contraseña, 1,@Contador_Int_Fallidos)";
+        string QueryInsert = "INSERT INTO Usuario (Nombre, Apellido, Nick, Mail, DNI, Contraseña, estado, Contador_Int_Fallidos, Eliminado)" +
+            "VALUES (@Nombre, @Apellido, @Nick, @Mail, @DNI, @Contraseña, 1,@Contador_Int_Fallidos, @Eliminado)";
 
-        string QueryDelete = "delete from Usuario where ID_Usuario = @ID_Usuario";
+        string QueryDelete = "update Usuario set Eliminado = 0 where ID_Usuario = @Id_Usuario";
 
-        string QuerySelect = "SELECT * FROM [ECSA].[dbo].[Usuario]";
+        string QuerySelect = "select * from usuario order by 11 desc";
 
         string QueryUpdate = "UPDATE Usuario " +
                          "SET Nombre = @Nombre, Apellido = @Apellido, DNI = @DNI, " +
@@ -60,10 +60,11 @@ namespace DAL.DAOs
         string QuerySelectByMail = "select * from Usuario where Mail = @Mail";
         string QuerySelectByDNI = "select * from Usuario where DNI = @DNI";
         string QuerySelectByIdioma = "select * from Traduccion where ID_Idioma=@ID_Idioma";
+        string queryRecuperarUsuario = "update usuario set eliminado = 1 where ID_Usuario = @id_usuario";
         #endregion
 
         #region Agregar Usuario
-        public bool Agregar(string Nombre, string Apellido,string Nick, string Mail, string DNI, string contraseña, int cii)
+        public bool Agregar(string Nombre, string Apellido,string Nick, string Mail, string DNI, string contraseña, int cii, bool Eliminado)
         {
             bool returnValue = false;
 
@@ -76,6 +77,7 @@ namespace DAL.DAOs
                 new SqlParameter("@DNI",DNI ),
                 new SqlParameter("@Contraseña",contraseña ),
                 new SqlParameter("@Contador_Int_Fallidos",cii ),
+                new SqlParameter("@Eliminado",Eliminado ),
             };
 
             try
@@ -405,6 +407,50 @@ namespace DAL.DAOs
 
 
 
+        public bool RecuperarUsuario(int ID_Usuario)
+        {
+            bool returnValue = false;
+
+
+
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                 new SqlParameter("@ID_Usuario", ID_Usuario)
+
+             };
+
+            try
+            {
+                Console.WriteLine("Executing SQL: " + queryRecuperarUsuario);
+                foreach (var param in parameters)
+                {
+                    Console.WriteLine($"{param.ParameterName}: {param.Value}");
+                }
+
+                int rowsAffected = SqlHelper.GetInstance(connectionString).ExecuteNonQuery(queryRecuperarUsuario, parameters);
+                returnValue = true;
+
+                if (returnValue)
+                {
+                    Console.WriteLine("Usuario actualizado con éxito.");
+                }
+                else
+                {
+                    Console.WriteLine("No se actualizó ninguna fila.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                returnValue = false;
+            }
+
+
+            return returnValue;
+        }
+
+
+        
         /*
 
         {

@@ -97,6 +97,9 @@ namespace ECSA
                     case 16:
                         gbGestorUsuarios.Text = traduccion.Descripcion;
                         break;
+                    case 142:
+                        btnRecuperarUsuario.Text=traduccion.Descripcion;
+                        break;
                 }
             }
 
@@ -240,12 +243,21 @@ namespace ECSA
         private void btnEliminarUsuario_Click(object sender, EventArgs e)
         {
             DialogResult respuesta = MessageBox.Show("¿Está seguro de eliminar este usuario?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
             if (respuesta == DialogResult.Yes)
             {
                 if (UsuarioSeleccionado != null)
                 {
                     try
                     {
+                        // Verifica si el usuario seleccionado es el mismo que el usuario en sesión
+                        if (UsuarioSeleccionado.ID_Usuario == usuarioLog.ID_Usuario)
+                        {
+                            MessageBox.Show("No se puede eliminar el usuario que está actualmente en sesión.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return; // Salir del método si no se puede eliminar
+                        }
+
+                        // Verifica si el usuario tiene patentes exclusivas
                         if (BLLSeguridad.TienePatentesExclusivas(UsuarioSeleccionado.ID_Usuario))
                         {
                             MessageBox.Show("El usuario " + UsuarioSeleccionado.Nick + " tiene asignada una patente única, no puede ser eliminado.");
@@ -283,6 +295,7 @@ namespace ECSA
             }
         }
 
+
         #endregion
 
 
@@ -305,6 +318,7 @@ namespace ECSA
                     BEUsuario.Mail = BLLSeguridad.EncriptarCamposReversible(txtMail.Text);
                     BEUsuario.DNI= BLLSeguridad.EncriptarCamposReversible(txtDNI.Text);
                     BEUsuario.CII = 0;
+                    BEUsuario.Eliminado = true;
 
                     int longitudClave = 12; // Puedes cambiar la longitud de la clave aquí
                     string claveGenerada = BLLSeguridad.GenerarClave(longitudClave);
@@ -439,7 +453,43 @@ namespace ECSA
         }
 
         #endregion
+        private void btnRecuperarUsuario_Click(object sender, EventArgs e)
+        {
+            DialogResult respuesta = MessageBox.Show("¿Esta seguro de recuperar este usuario?", "Confirmación de recuperacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (respuesta == DialogResult.Yes)
+            {
 
+                if (UsuarioSeleccionado != null)
+                {
+                    bool UsuarioRecuperado = BLLUsuario.RecuperarUsuario(UsuarioSeleccionado.ID_Usuario);
+
+                    try
+                    {
+                        if (UsuarioRecuperado)
+                        {
+                            //ver agregar recuperar usuario en bitacora
+                            BLLSeguridad.RegistrarEnBitacora(37, usuarioLog.Nick, usuarioLog.ID_Usuario);
+                            MessageBox.Show("Usuario Recuperado");
+                            CalcularDigitos();
+                            limpiarGrilla();
+                            limpiartxt();
+                        }
+                        else
+                        {
+                            MessageBox.Show("no se puede recuperar el usuario");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ha ocurrido un error al recuperar el usuario: " + ex.Message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione un usuario para recuperar");
+                }
+            }
+        }
 
         #region Bloquear y Desbloquear Usuario
         private void btnBloquearUsuario_Click(object sender, EventArgs e)

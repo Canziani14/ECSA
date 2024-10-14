@@ -158,6 +158,11 @@ namespace DAL
            return  DAOs.DAOSSeguridad.GetInstance().ValidarPatentes(idUsuario, idPatente);
         }
 
+       /* public bool ValidarPatentes(int idUsuario, int idPatente, int id_Familia)
+        {
+            return DAOs.DAOSSeguridad.GetInstance().ValidarPatentes(idUsuario, idPatente, id_Familia);
+        }*/
+
         public bool TienePatentesExclusivas(int usuarioId)
         {
             return DAOs.DAOSSeguridad.GetInstance().TienePatentesExclusivas(usuarioId);

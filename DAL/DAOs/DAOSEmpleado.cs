@@ -36,12 +36,14 @@ namespace DAL.DAOs
 
         string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-        string QueryInsert = "INSERT INTO Empleado (Nombre, Apellido, DNI, Direccion, Telefono, FechaIngreso, ID_Linea)"+
-            "VALUES (@Nombre, @Apellido, @DNI, @Direccion, @Telefono, @FechaDeingreso, @LineaPertenece)";
+        string QueryInsert = "INSERT INTO Empleado (Nombre, Apellido, DNI, Direccion, Telefono, FechaIngreso,Eliminado ,ID_Linea)"+
+            "VALUES (@Nombre, @Apellido, @DNI, @Direccion, @Telefono, @FechaDeingreso,@Eliminado ,@LineaPertenece)";
 
-        string QueryDelete = "delete from empleado where legajo = @Legajo";
+        string QueryDelete = "update empleado set eliminado = 0 where Legajo = @legajo";
 
-        string QuerySelect = "SELECT * FROM [ECSA].[dbo].[Empleado]";
+        string QueryRecuperarEmpleado = "update empleado set eliminado = 1 where Legajo = @legajo";
+
+        string QuerySelect = "select * from empleado order by 10 desc";
 
         string QueryUpdate = "UPDATE Empleado " +
                          "SET Nombre = @Nombre, Apellido = @Apellido, DNI = @DNI, " +
@@ -57,7 +59,7 @@ namespace DAL.DAOs
         #endregion
 
         #region AgregarEmpleado
-        public bool Agregar(string Nombre, string Apellido, DateTime FechaDeingreso, string DNI, string Telefono, string Direccion, int LineaPertenece)
+        public bool Agregar(string Nombre, string Apellido, DateTime FechaDeingreso, string DNI, string Telefono, string Direccion,bool eliminado, int LineaPertenece)
         {
             bool returnValue = false;
             
@@ -70,6 +72,7 @@ namespace DAL.DAOs
                 new SqlParameter("@Telefono", Telefono),
                 new SqlParameter("@Direccion", Direccion),
                 new SqlParameter("@LineaPertenece", LineaPertenece),
+                new SqlParameter("@Eliminado", eliminado),
             };
 
             try
@@ -216,8 +219,22 @@ namespace DAL.DAOs
             returnValue = true;
             return returnValue;
         }
-
         #endregion
+        public bool RecuperarEmpleado(int Legajo)
+        {
+            bool returnValue = false;
+
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+            new SqlParameter("@Legajo", Legajo),
+            };
+
+            SqlHelper.GetInstance(connectionString).ExecuteNonQuery(QueryRecuperarEmpleado, parameters);
+            returnValue = true;
+            return returnValue;
+        }
+
+       
 
         public List<Empleado> ValidarDNI(string DNI)
         {

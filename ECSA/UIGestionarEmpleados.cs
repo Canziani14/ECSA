@@ -175,6 +175,7 @@ namespace ECSA
                 BEEmpleado.Telefono = BLLSeguridad.EncriptarCamposReversible(txtTelefono.Text);
                 BEEmpleado.LineaPertenece = int.Parse(cmbLinea.Text);
                 BEEmpleado.FechaDeingreso = DateTime.Parse(txtFechadeIngreso.Text);
+                BEEmpleado.Eliminado = true;
                 if (cmbLinea.SelectedValue != null)
                 {
 
@@ -335,6 +336,44 @@ namespace ECSA
             }
 
         }
+
+        private void btnRecuperarEmlpeado_Click(object sender, EventArgs e)
+        {
+            DialogResult respuesta = MessageBox.Show("¿Esta seguro de recuperar este empleado?", "Confirmación de recuperacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (respuesta == DialogResult.Yes)
+            {
+
+                if (EmpleadoSeleccionado != null)
+                {
+                    bool EmpleadoRecuperado = BLLEmpleado.RecuperarUsuario(EmpleadoSeleccionado);
+
+                    try
+                    {
+                        if (EmpleadoRecuperado)
+                        {
+                            //ver agregar recuperar empleado en bitacora
+                            BLLSeguridad.RegistrarEnBitacora(38, usuarioLog.Nick, usuarioLog.ID_Usuario);
+                            MessageBox.Show("Usuario Recuperado");
+                            CalcularDigitos();
+                            limpiarGrilla();
+                            limpiartxt();
+                        }
+                        else
+                        {
+                            MessageBox.Show("no se puede recuperar el empleado");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ha ocurrido un error al recuperar el empleado: " + ex.Message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione un usuario para recuperar");
+                }
+            }
+        }
         #endregion
 
         #region BuscarEmlpeado
@@ -412,10 +451,11 @@ namespace ECSA
 
         }
 
+
+
         #endregion
 
-
-
+       
     }
 
 

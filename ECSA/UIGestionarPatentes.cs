@@ -28,9 +28,10 @@ namespace ECSA
             this.usuarioLog = usuarioLogin;
             dtgUsuarios.DataSource = BLLUsuario.Listar();
             this.StartPosition = FormStartPosition.CenterScreen;
+            
 
             #region idioma
-            
+
 
             foreach (var traduccion in traducciones)
             {
@@ -156,59 +157,9 @@ namespace ECSA
             dtgPatentesActuales.GridColor = Color.FromArgb(231, 231, 231);
             #endregion
 
-
-
-
-
-
-
-
-
         }
 
-        /*        private void btnAsignarPatente_Click(object sender, EventArgs e)
-                {
-                    if (UsuarioSeleccionado == null)
-                    {
-                        MessageBox.Show("No se ha seleccionado ningún usuario.");
-                        return;
-                    }
-
-                    if (PatenteSeleccionadaAsignar == null)
-                    {
-                        MessageBox.Show("No se ha seleccionado ninguna patente para asignar.");
-                        return;
-                    }
-
-                    BLLPatente.Asignar(UsuarioSeleccionado.ID_Usuario, PatenteSeleccionadaAsignar.ID_Patente);
-
-                    MessageBox.Show("Patente asignada correctamente");
-                    RefrescarDTG();
-                    PatenteSeleccionadaAsignar = null;
-                }
-
-                private void btnQuitarPatente_Click(object sender, EventArgs e)
-                {
-                    if (UsuarioSeleccionado == null)
-                    {
-                        MessageBox.Show("No se ha seleccionado ningún usuario.");
-                        return;
-                    }
-
-                    if (PatenteSeleccionadaQuitar == null)
-                    {
-                        MessageBox.Show("No se ha seleccionado ninguna patente para quitar.");
-                        return;
-                    }
-
-                    BLLPatente.Quitar(UsuarioSeleccionado.ID_Usuario, PatenteSeleccionadaQuitar.ID_Patente);
-
-                    MessageBox.Show("Patente quitada correctamente");
-                    RefrescarDTG();
-                    PatenteSeleccionadaQuitar = null;
-
-                }
-        */
+      
 
         private void btnBuscarUsuario_Click(object sender, EventArgs e)
         {
@@ -251,6 +202,11 @@ namespace ECSA
             return PatenteSeleccionadaQuitar;
         }
 
+
+
+     
+
+      
         public BE.Patente ObtenerPatenteSeleccionadaNoActuales()
         {
             if (dtgPatentesSinAsignar.SelectedRows.Count > 0)
@@ -261,53 +217,82 @@ namespace ECSA
         }
 
 
-        private void dtgPatentesActuales_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            ObtenerPatenteSeleccionadaActuales();
-            BE.Usuario usuarioSeleccionado = ObtenerUsuarioSeleccionado();
+       
 
-            if (usuarioSeleccionado == null)
+
+
+         private void dtgPatentesActuales_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+         {
+             ObtenerPatenteSeleccionadaActuales();
+             BE.Usuario usuarioSeleccionado = ObtenerUsuarioSeleccionado();
+
+             if (usuarioSeleccionado == null)
+             {
+                 MessageBox.Show("No se ha seleccionado un usuario.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                 return;
+             }
+
+             int idUsuario = usuarioSeleccionado.ID_Usuario;
+             int idPatente = PatenteSeleccionadaQuitar.ID_Patente;
+
+             Console.WriteLine($"ID Usuario seleccionado: {idUsuario}");
+             Console.WriteLine($"ID Patente seleccionada para quitar: {idPatente}");
+
+            // Validar patentes del usuario antes de quitar
+            if (BLLSeguridad.ValidarPatentes(idUsuario, idPatente))
             {
-                MessageBox.Show("No se ha seleccionado un usuario.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No se puede eliminar la patente porque es el único propietario o está asociada a una familia.",
+                                "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            int idUsuario = usuarioSeleccionado.ID_Usuario;
-            int idPatente = PatenteSeleccionadaQuitar.ID_Patente;
-
-            // Depuración: Verificar valores seleccionados
-            Console.WriteLine($"ID Usuario seleccionado: {idUsuario}");
-            Console.WriteLine($"ID Patente seleccionada para quitar: {idPatente}");
-
-            // Validar patentes del usuario antes de quitar
-            bool tienePatentesExclusivas = BLLSeguridad.ValidarPatentes(idUsuario, idPatente);
-
-            // Depuración: Mostrar el resultado de la validación
-            Console.WriteLine($"Tiene patentes exclusivas: {tienePatentesExclusivas}");
-
-            if (tienePatentesExclusivas)
+            // Si se puede borrar, proceder a quitar la patente
+            try
             {
-                MessageBox.Show("No se puede eliminar la patente porque el usuario es el único propietario.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                // Quitar patente
                 BLLPatente.Quitar(idUsuario, idPatente);
-
-                // Actualizar los DataGridViews
-                dtgPatentesActuales.DataSource = BLLPatente.ListarActuales(idUsuario);
-                dtgPatentesSinAsignar.DataSource = BLLPatente.ListarSinAsignar(idUsuario);
-
-                // Calcular dígitos verificadores
+                ActualizarDataGridViews(idUsuario);
                 CalcularDigitos();
-
-                // Registrar acción en la bitácora
                 BLLSeguridad.RegistrarEnBitacora(28, usuarioLog.Nick, usuarioLog.ID_Usuario);
 
-                // Mostrar mensaje de éxito
+                dtgPatentesActuales.Columns["ID_Usuario"].Visible = false;
                 MessageBox.Show("Patente quitada correctamente");
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al quitar la patente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+
+
+            /* if (BLLSeguridad.ValidarPatentes(idUsuario, idPatente))
+              {
+                  MessageBox.Show("No se puede eliminar la patente porque el usuario es el único propietario.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                  return;
+              }
+
+              try
+              {
+                  BLLPatente.Quitar(idUsuario, idPatente);
+                  ActualizarDataGridViews(idUsuario);
+                  CalcularDigitos();
+                  BLLSeguridad.RegistrarEnBitacora(28, usuarioLog.Nick, usuarioLog.ID_Usuario);
+
+                  dtgPatentesActuales.Columns["ID_Usuario"].Visible = false;
+                  MessageBox.Show("Patente quitada correctamente");
+              }
+              catch (Exception ex)
+              {
+                  MessageBox.Show($"Error al quitar la patente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+              }*/
         }
+
+        private void ActualizarDataGridViews(int idUsuario)
+        {
+            dtgPatentesActuales.DataSource = BLLPatente.ListarActuales(idUsuario);
+            dtgPatentesSinAsignar.DataSource = BLLPatente.ListarSinAsignar(idUsuario);
+        }
+
 
 
 
@@ -317,13 +302,6 @@ namespace ECSA
         {
             ObtenerPatenteSeleccionadaNoActuales();
             ObtenerUsuarioSeleccionado();
-
-
-            
-
-
-
-
             int id_Usuario = UsuarioSeleccionado.ID_Usuario;
             int id_Patente=PatenteSeleccionadaAsignar.ID_Patente;
             BLLPatente.Asignar(id_Usuario, id_Patente);
@@ -331,14 +309,17 @@ namespace ECSA
             dtgPatentesSinAsignar.DataSource = BLLPatente.ListarSinAsignar(id_Usuario);
             CalcularDigitos();
             BLLSeguridad.RegistrarEnBitacora(27, usuarioLog.Nick, usuarioLog.ID_Usuario);
+            dtgPatentesSinAsignar.Columns["ID_Usuario"].Visible = false;
             MessageBox.Show("Patente asignada correctamente");
         }
         
+
         public void RefrescarDTG()
         {
             int id_Usuario = UsuarioSeleccionado.ID_Usuario;
             dtgPatentesActuales.DataSource = BLLPatente.ListarActuales(id_Usuario);
             dtgPatentesSinAsignar.DataSource = BLLPatente.ListarSinAsignar(id_Usuario);
+
         }
 
         public BE.Usuario ObtenerUsuarioSeleccionado()
@@ -357,7 +338,9 @@ namespace ECSA
             int id_Usuario=UsuarioSeleccionado.ID_Usuario;
             dtgPatentesActuales.DataSource = BLLPatente.ListarActuales(id_Usuario);
             dtgPatentesSinAsignar.DataSource = BLLPatente.ListarSinAsignar(id_Usuario);
-            
+            dtgPatentesActuales.Columns["ID_Usuario"].Visible = false;
+            dtgPatentesSinAsignar.Columns["ID_Usuario"].Visible = false;
+
         }
 
         public void CalcularDigitos()

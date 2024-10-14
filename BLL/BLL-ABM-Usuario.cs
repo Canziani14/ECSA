@@ -76,7 +76,13 @@ namespace BLL
         {
             return DALUsuario.DesbloquearUsuario(ID_Usuario);
         }
+        public bool RecuperarUsuario(int ID_Usuario)
+        {
+            return DALUsuario.RecuperarUsuario(ID_Usuario);
+        }
         
+
+
         public bool ContadorIngresos0(BE.Usuario usuariolog)
         {
             return DALUsuario.ContadorIngresos0(usuariolog);
@@ -120,5 +126,6 @@ namespace BLL
             return DALUsuario.ListarTraduccionesXIdioma(idIdioma);
         }
 
+       
     }
 }

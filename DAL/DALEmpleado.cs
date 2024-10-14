@@ -16,12 +16,17 @@ namespace DAL
 
         public bool Crear(BE.Empleado objAgregar)
         {
-            return DAOs.DAOSEmpleado.GetInstance().Agregar(objAgregar.Nombre, objAgregar.Apellido, objAgregar.FechaDeingreso, objAgregar.DNI, objAgregar.Telefono, objAgregar.Direccion, objAgregar.LineaPertenece);
+            return DAOs.DAOSEmpleado.GetInstance().Agregar(objAgregar.Nombre, objAgregar.Apellido, objAgregar.FechaDeingreso, objAgregar.DNI, objAgregar.Telefono, objAgregar.Direccion,objAgregar.Eliminado ,objAgregar.LineaPertenece);
         }
 
         public bool Eliminar(BE.Empleado objEliminar)
         {
             return DAOs.DAOSEmpleado.GetInstance().Eliminar(objEliminar.Legajo);
+        }
+
+        public bool RecuperarUsuario(Empleado objEliminar)
+        {
+            return DAOs.DAOSEmpleado.GetInstance().RecuperarEmpleado(objEliminar.Legajo);
         }
 
         public List<BE.Empleado> Listar()

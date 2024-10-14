@@ -59,6 +59,7 @@
             this.lblAsignadas = new System.Windows.Forms.Label();
             this.dtgFamiliasSinAsignar = new System.Windows.Forms.DataGridView();
             this.lblBuscarUsuario = new System.Windows.Forms.Label();
+            this.btnRecuperarUsuario = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eCSADataSetBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).BeginInit();
@@ -120,7 +121,7 @@
             // 
             // btnDesbloquearUsuario
             // 
-            this.btnDesbloquearUsuario.Location = new System.Drawing.Point(145, 209);
+            this.btnDesbloquearUsuario.Location = new System.Drawing.Point(6, 225);
             this.btnDesbloquearUsuario.Name = "btnDesbloquearUsuario";
             this.btnDesbloquearUsuario.Size = new System.Drawing.Size(116, 23);
             this.btnDesbloquearUsuario.TabIndex = 8;
@@ -130,9 +131,9 @@
             // 
             // btnBloquearUsuario
             // 
-            this.btnBloquearUsuario.Location = new System.Drawing.Point(37, 209);
+            this.btnBloquearUsuario.Location = new System.Drawing.Point(6, 197);
             this.btnBloquearUsuario.Name = "btnBloquearUsuario";
-            this.btnBloquearUsuario.Size = new System.Drawing.Size(97, 23);
+            this.btnBloquearUsuario.Size = new System.Drawing.Size(116, 23);
             this.btnBloquearUsuario.TabIndex = 9;
             this.btnBloquearUsuario.Text = "Bloquear Usuario";
             this.btnBloquearUsuario.UseVisualStyleBackColor = true;
@@ -144,6 +145,7 @@
             // 
             // gbGestorUsuarios
             // 
+            this.gbGestorUsuarios.Controls.Add(this.btnRecuperarUsuario);
             this.gbGestorUsuarios.Controls.Add(this.txtIDUsuario);
             this.gbGestorUsuarios.Controls.Add(this.lblidUsuario);
             this.gbGestorUsuarios.Controls.Add(this.txtDNI);
@@ -279,7 +281,7 @@
             this.dtgFamiliaActual.DataSource = this.eCSADataSetBindingSource1;
             this.dtgFamiliaActual.Location = new System.Drawing.Point(19, 46);
             this.dtgFamiliaActual.Name = "dtgFamiliaActual";
-            this.dtgFamiliaActual.Size = new System.Drawing.Size(217, 210);
+            this.dtgFamiliaActual.Size = new System.Drawing.Size(217, 207);
             this.dtgFamiliaActual.TabIndex = 19;
             this.dtgFamiliaActual.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFamiliaActual_CellDoubleClick);
             // 
@@ -289,7 +291,7 @@
             this.gbGestorFamiliasPorUsuario.Controls.Add(this.lblAsignadas);
             this.gbGestorFamiliasPorUsuario.Controls.Add(this.dtgFamiliasSinAsignar);
             this.gbGestorFamiliasPorUsuario.Controls.Add(this.dtgFamiliaActual);
-            this.gbGestorFamiliasPorUsuario.Location = new System.Drawing.Point(119, 283);
+            this.gbGestorFamiliasPorUsuario.Location = new System.Drawing.Point(132, 283);
             this.gbGestorFamiliasPorUsuario.Name = "gbGestorFamiliasPorUsuario";
             this.gbGestorFamiliasPorUsuario.Size = new System.Drawing.Size(539, 256);
             this.gbGestorFamiliasPorUsuario.TabIndex = 21;
@@ -333,6 +335,16 @@
             this.lblBuscarUsuario.Size = new System.Drawing.Size(82, 13);
             this.lblBuscarUsuario.TabIndex = 22;
             this.lblBuscarUsuario.Text = "Buscar Usuario:";
+            // 
+            // btnRecuperarUsuario
+            // 
+            this.btnRecuperarUsuario.Location = new System.Drawing.Point(186, 197);
+            this.btnRecuperarUsuario.Name = "btnRecuperarUsuario";
+            this.btnRecuperarUsuario.Size = new System.Drawing.Size(75, 36);
+            this.btnRecuperarUsuario.TabIndex = 22;
+            this.btnRecuperarUsuario.Text = "Recuperar Usuario";
+            this.btnRecuperarUsuario.UseVisualStyleBackColor = true;
+            this.btnRecuperarUsuario.Click += new System.EventHandler(this.btnRecuperarUsuario_Click);
             // 
             // UIGestionarUsuarios
             // 
@@ -396,5 +408,6 @@
         private System.Windows.Forms.Label lblidUsuario;
         private System.Windows.Forms.Label lblSinAsignar;
         private System.Windows.Forms.Label lblAsignadas;
+        private System.Windows.Forms.Button btnRecuperarUsuario;
     }
 }

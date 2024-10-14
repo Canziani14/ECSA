@@ -677,7 +677,8 @@ namespace DAL.DAOs
                                 (r["Direccion"]?.ToString() ?? "") +
                                 (r["Telefono"]?.ToString() ?? "") +
                                 (r["FechaIngreso"]?.ToString() ?? "") +
-                                (r["ID_Linea"]?.ToString() ?? "");
+                                (r["ID_Linea"]?.ToString() ?? "") +
+                                (r["Eliminado"].ToString() ?? "");
 
             return CalcularNumero(concatenar);
         }
@@ -704,7 +705,8 @@ namespace DAL.DAOs
                                 r["Apellido"].ToString() + r["DNI"].ToString() +
                                 r["Nick"].ToString() + r["Mail"].ToString() +
                                 r["Contraseña"].ToString() + r["Contador_Int_Fallidos"].ToString() +
-                                r["Estado"].ToString();
+                                r["Estado"].ToString() +
+                                r["Eliminado"].ToString();
 
             return CalcularNumero(concatenar);
         }
@@ -1081,6 +1083,18 @@ namespace DAL.DAOs
                     BEBitacora.Descripcion = "Realizar restore";
                     BEBitacora.Criticidad = 3;
                     break;
+                case 37:
+                    BEBitacora.Descripcion = "Recuperacion de Usuario";
+                    BEBitacora.Criticidad = 3;
+                    break;
+                case 38:
+                    BEBitacora.Descripcion = "Recuperacion de Empleado";
+                    BEBitacora.Criticidad = 3;
+                    break;
+                case 39:
+                    BEBitacora.Descripcion = "Intento de inicio de sesion con usuario eliminado";
+                    BEBitacora.Criticidad = 3;
+                    break;
                 default:
                     BEBitacora.Descripcion = "Acción desconocida";
                     BEBitacora.Criticidad = 0;
@@ -1185,79 +1199,435 @@ namespace DAL.DAOs
 
         public bool ValidarPatentes(int idUsuario, int idPatente)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                // Consulta para verificar si hay otros usuarios con la misma patente
-                string queryPatentesCompartidas = @"
-                SELECT COUNT(*) 
-                FROM Usuario_Patente AS up
-                WHERE up.ID_Patente = @ID_Patente
-                AND up.ID_Usuario != @ID_Usuario";
-
-                // Ejecutar la consulta
-                int countPatentesCompartidas = EjecutarConsultaContar(queryPatentesCompartidas, connection,
+                // Consulta 1: Verificar si el usuario tiene la patente
+                string queryPatenteUsuario = "SELECT COUNT(*) FROM usuario_patente WHERE ID_Usuario = @ID_Usuario AND ID_Patente = @ID_Patente;";
+                int countPatenteUsuario = EjecutarConsultaContar(queryPatenteUsuario, connection,
                     new SqlParameter("@ID_Usuario", idUsuario),
                     new SqlParameter("@ID_Patente", idPatente));
 
-                // Depuración: Imprimir la cantidad de usuarios con la misma patente
-                Console.WriteLine($"Cantidad de usuarios con la misma patente: {countPatentesCompartidas}");
-
-                // Si hay otros usuarios con la misma patente, no es exclusiva
-                if (countPatentesCompartidas > 0)
-                {
-                    return false; // No es exclusiva, se puede eliminar
-                }
-
-                // Si no hay otros usuarios, verificar si es familia de patentes
-                string queryPatentesFamilia = @"
-                SELECT COUNT(*) 
-                FROM Familia_Patente AS fp
-                INNER JOIN Usuario_Familia AS uf ON fp.ID_Familia = uf.ID_Familia
-                WHERE fp.ID_Patente = @ID_Patente
-                AND uf.ID_Usuario != @ID_Usuario";
-
-                int countPatentesFamilia = EjecutarConsultaContar(queryPatentesFamilia, connection,
-                    new SqlParameter("@ID_Usuario", idUsuario),
+                // Consulta 2: Verificar si es el único propietario de la patente
+                string queryUnicoUsuario = "SELECT COUNT(*) FROM usuario_patente WHERE ID_Patente = @ID_Patente;";
+                int countUnicoUsuario = EjecutarConsultaContar(queryUnicoUsuario, connection,
                     new SqlParameter("@ID_Patente", idPatente));
 
-                // Depuración: Imprimir la cantidad de usuarios con patentes familiares
-                Console.WriteLine($"Cantidad de usuarios con la patente como parte de una familia: {countPatentesFamilia}");
+                // Consulta 3: Verificar si la familia tiene la patente asignada
+                string queryFamilia = "SELECT COUNT(*) FROM familia_patente WHERE ID_Patente = @ID_Patente;";
+                int countFamilia = EjecutarConsultaContar(queryFamilia, connection,
+                    new SqlParameter("@ID_Patente", idPatente));
 
-                // Si otros usuarios tienen la patente a través de una familia, no es exclusiva
-                return countPatentesFamilia == 0; // Si es 0, es exclusiva y no se puede eliminar
-            }
-        }
+                // Consulta 4: Verificar si el usuario tiene asignada una familia
+                string queryFamiliaUsuario = "SELECT COUNT(*) FROM usuario_familia WHERE ID_Usuario = @ID_Usuario;";
+                int countFamiliaUsuario = EjecutarConsultaContar(queryFamiliaUsuario, connection,
+                    new SqlParameter("@ID_Usuario", idUsuario));
 
-        private int EjecutarConsultaContar(string query, SqlConnection connection, params SqlParameter[] parametros)
-        {
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                command.Parameters.AddRange(parametros);
-                return (int)command.ExecuteScalar(); // Retorna el resultado de COUNT(*)
-            }
-        }
-
-
-        DALPatente DALPatente = new DALPatente();
-        public bool TienePatentesExclusivas(int usuarioId)
-        {
-            Iterator<Patente> iterator = DALPatente.ObtenerPatentesPorUsuario(usuarioId.ToString());
-
-            while (iterator.HasNext())
-            {
-                Patente patente = iterator.GetNext();
-
-                // Validar si la patente es exclusiva
-                if (ValidarPatentes(usuarioId, patente.ID_Patente))
+                if (countPatenteUsuario > 0 && countFamiliaUsuario == 0)
                 {
-                    return true; // Si alguna patente es exclusiva, retornar true
+                    return true; // No se puede eliminar porque tiene la patente y no pertenece a una familia.
                 }
-            }
 
-            return false; // Si no hay patentes exclusivas, retornar false
+                if (countPatenteUsuario > 0 && countFamilia == 0)
+                {
+                    return true; // No se puede eliminar porque tiene la patente y no hay familia asignada.
+                }
+
+                if (countUnicoUsuario == 1 && countFamiliaUsuario == 0)
+                {
+                    return false; // Se puede eliminar porque es el único propietario y su familia no tiene la patente.
+                }
+
+                if (countPatenteUsuario == 0 && countFamilia > 0 && countFamiliaUsuario > 0)
+                {
+                    return false; // Se puede eliminar porque no tiene la patente, pero pertenece a una familia que la tiene.
+                }
+
+                return false; // Si ninguna de las condiciones anteriores se cumple, se puede eliminar.
+
+
+            }
+            return false; // Se puede eliminar
         }
+
+
+
+
+
+
+
+
+
+
+
+
+        /*      
+          public bool ValidarPatentes(int idUsuario, int idPatente)
+          {
+              using (SqlConnection connection = new SqlConnection(connectionString))
+              {
+                  connection.Open();
+
+                  // Consulta para verificar si hay otros usuarios con la misma patente
+                  string queryPatentesCompartidas = @"
+                      SELECT COUNT(*) 
+                      FROM Usuario_Patente AS up
+                      WHERE up.ID_Patente = @ID_Patente
+                      AND up.ID_Usuario != @ID_Usuario";
+
+                  // Ejecutar la consulta
+                  int countPatentesCompartidas = EjecutarConsultaContar(queryPatentesCompartidas, connection,
+                      new SqlParameter("@ID_Usuario", idUsuario),
+                      new SqlParameter("@ID_Patente", idPatente));
+
+                  // Si hay otros usuarios con la misma patente, no es exclusiva
+                  if (countPatentesCompartidas > 0)
+                  {
+                      return false; // No es exclusiva, se puede eliminar
+                  }
+
+                  // Nueva verificación: asegurarse de que no es la única patente asignada al usuario
+                  string queryVerificarUnicoUsuario = @"
+                      SELECT COUNT(*) 
+                      FROM Usuario_Patente
+                      WHERE ID_Patente = @ID_Patente";
+
+                  int countUnicoUsuario = EjecutarConsultaContar(queryVerificarUnicoUsuario, connection,
+                      new SqlParameter("@ID_Patente", idPatente));
+
+                  // Si el conteo es 1, significa que el usuario es el único que tiene la patente
+                  if (countUnicoUsuario == 1)
+                  {
+                      Console.WriteLine("No se puede quitar la patente porque es la única asignada al usuario.");
+                      return false; // No se puede eliminar porque es la única asignada
+                  }
+
+                  // Verificar si el usuario pertenece a una familia que tiene la patente
+                  string queryPatenteEnFamilia = @"
+                      SELECT COUNT(*)
+                      FROM Familia_Patente AS fp
+                      INNER JOIN Usuario_Familia AS uf ON fp.ID_Familia = uf.ID_Familia
+                      WHERE fp.ID_Patente = @ID_Patente
+                      AND uf.ID_Usuario = @ID_Usuario";
+
+                  int countPatenteEnFamilia = EjecutarConsultaContar(queryPatenteEnFamilia, connection,
+                      new SqlParameter("@ID_Usuario", idUsuario),
+                      new SqlParameter("@ID_Patente", idPatente));
+
+                  // Si el usuario pertenece a una familia que tiene la patente, no se puede eliminar
+                  if (countPatenteEnFamilia > 0)
+                  {
+                      return false; // El usuario no puede eliminar la patente
+                  }
+
+                  // Validar si la patente está asignada a alguna familia
+                  string queryPatenteEnFamiliaGeneral = @"
+                      SELECT COUNT(*)
+                      FROM Familia_Patente AS fp
+                      WHERE fp.ID_Patente = @ID_Patente";
+
+                  int countPatenteEnFamiliaGeneral = EjecutarConsultaContar(queryPatenteEnFamiliaGeneral, connection,
+                      new SqlParameter("@ID_Patente", idPatente));
+
+                  // Si no hay familias que tengan la patente, no se puede eliminar
+                  if (countPatenteEnFamiliaGeneral == 0)
+                  {
+                      Console.WriteLine("No se puede quitar la patente porque quedaría sin asignar.");
+                      return false; // No se puede quitar porque la patente quedaría sin asignar
+                  }
+
+                  // Si todas las validaciones pasan, se puede eliminar
+                  return true; // Se puede eliminar
+              }
+          }
+        */
+
+        /*  public bool ValidarPatentes(int idUsuario, int idPatente, int idFamilia)
+          {
+              using(SqlConnection connection = new SqlConnection(connectionString))
+              {
+                  connection.Open();
+
+                  // Consulta para verificar si hay otros usuarios con la misma patente
+                  string queryPatentesCompartidas = @"
+                      SELECT COUNT(*) 
+                      FROM Usuario_Patente AS up
+                      WHERE up.ID_Patente = @ID_Patente
+                      AND up.ID_Usuario != @ID_Usuario";
+
+                  // Ejecutar la consulta
+                  int countPatentesCompartidas = EjecutarConsultaContar(queryPatentesCompartidas, connection,
+                      new SqlParameter("@ID_Usuario", idUsuario),
+                      new SqlParameter("@ID_Patente", idPatente));
+
+                  // Si hay otros usuarios con la misma patente, no es exclusiva
+                  if (countPatentesCompartidas > 0)
+                  {
+                      return false; // No es exclusiva, se puede eliminar
+                  }
+
+                  // Nueva verificación: asegurarse de que no es la única patente asignada al usuario
+                  string queryVerificarUnicoUsuario = @"
+                      SELECT COUNT(*) 
+                      FROM Usuario_Patente
+                      WHERE ID_Patente = @ID_Patente";
+
+                  int countUnicoUsuario = EjecutarConsultaContar(queryVerificarUnicoUsuario, connection,
+                      new SqlParameter("@ID_Patente", idPatente));
+
+                  // Si el conteo es 1, significa que el usuario es el único que tiene la patente
+                  if (countUnicoUsuario == 1)
+                  {
+                      Console.WriteLine("No se puede quitar la patente porque es la única asignada al usuario.");
+                      return false; // No se puede eliminar porque es la única asignada
+                  }
+
+                  // Verificar si el usuario pertenece a una familia que tiene la patente
+                  string queryPatenteEnFamilia = @"
+                      SELECT COUNT(*)
+                      FROM Familia_Patente AS fp
+                      INNER JOIN Usuario_Familia AS uf ON fp.ID_Familia = uf.ID_Familia
+                      WHERE fp.ID_Patente = @ID_Patente
+                      AND uf.ID_Usuario = @ID_Usuario";
+
+                  int countPatenteEnFamilia = EjecutarConsultaContar(queryPatenteEnFamilia, connection,
+                      new SqlParameter("@ID_Usuario", idUsuario),
+                      new SqlParameter("@ID_Patente", idPatente));
+
+                  // Si el usuario pertenece a una familia que tiene la patente, no se puede eliminar
+                  if (countPatenteEnFamilia > 0)
+                  {
+                      return false; // El usuario no puede eliminar la patente
+                  }
+
+                  // Validar si la patente está asignada a alguna familia
+                  string queryPatenteEnFamiliaGeneral = @"
+                      SELECT COUNT(*)
+                      FROM Familia_Patente AS fp
+                      WHERE fp.ID_Patente = @ID_Patente";
+
+                  int countPatenteEnFamiliaGeneral = EjecutarConsultaContar(queryPatenteEnFamiliaGeneral, connection,
+                      new SqlParameter("@ID_Patente", idPatente));
+
+                  // Si no hay familias que tengan la patente, no se puede eliminar
+                  if (countPatenteEnFamiliaGeneral == 0)
+                  {
+                      Console.WriteLine("No se puede quitar la patente porque quedaría sin asignar.");
+                      return false; // No se puede quitar porque la patente quedaría sin asignar
+                  }
+
+                  // Si todas las validaciones pasan, se puede eliminar
+                  return true; // Se puede eliminar
+              }
+          }
+        */
+
+
+        // Implementación de la nueva función para verificar si la patente ya está asignada
+        private bool PatenteYaAsignadaAUsuario(int idPatente, int idUsuario, SqlConnection connection)
+           {
+               string query = "SELECT COUNT(*) FROM Asignaciones WHERE idPatente = @idPatente AND idUsuario <> @idUsuario";
+
+               using (SqlCommand command = new SqlCommand(query, connection))
+               {
+                   command.Parameters.AddWithValue("@idPatente", idPatente);
+                   command.Parameters.AddWithValue("@idUsuario", idUsuario);
+
+                   int count = (int)command.ExecuteScalar();
+                   return count > 0; // Si hay algún registro, significa que está asignada a otro usuario
+               }
+           }
+
+
+           private bool EsPatenteExclusivaParaUsuario(int idUsuario, int idPatente, SqlConnection connection)
+           {
+               string query = @"
+                       SELECT COUNT(*) 
+                       FROM Usuario_Patente AS up
+                       WHERE up.ID_Patente = @ID_Patente
+                       AND up.ID_Usuario != @ID_Usuario";
+
+               int count = EjecutarConsultaContar(query, connection,
+                   new SqlParameter("@ID_Usuario", idUsuario),
+                   new SqlParameter("@ID_Patente", idPatente));
+
+               return count == 0; // Es exclusiva si el conteo es 0
+           }
+
+           private bool UsuarioPerteneceAFamiliaConPatente(int idUsuario, int idPatente, SqlConnection connection)
+           {
+               string query = @"
+                       SELECT COUNT(*)
+                       FROM Familia_Patente AS fp
+                       INNER JOIN Usuario_Familia AS uf ON fp.ID_Familia = uf.ID_Familia
+                       WHERE fp.ID_Patente = @ID_Patente
+                       AND uf.ID_Usuario = @ID_Usuario";
+
+               int count = EjecutarConsultaContar(query, connection,
+                   new SqlParameter("@ID_Usuario", idUsuario),
+                   new SqlParameter("@ID_Patente", idPatente));
+
+               return count == 0; // No pertenece a la familia si el conteo es 0
+           }
+
+           private bool PatenteTieneOtrasFamilias(int idPatente, int idFamilia, SqlConnection connection)
+           {
+               string query = @"
+                   SELECT COUNT(*)
+                   FROM Familia_Patente
+                   WHERE ID_Patente = @ID_Patente
+                   AND ID_Familia != @ID_Familia";
+
+               int count = EjecutarConsultaContar(query, connection,
+                   new SqlParameter("@ID_Patente", idPatente),
+                   new SqlParameter("@ID_Familia", idFamilia));
+
+               return count > 0; // Tiene otras familias si el conteo es mayor a 0
+           }
+
+
+
+
+
+           private bool ValidarPatentesFamilia(int idUsuario, int idPatente, int idFamilia, SqlConnection connection)
+           {
+               // Verificar si hay otras familias que tienen la misma patente
+               string queryPatenteCompartidaEntreFamilias = @"
+                   SELECT COUNT(*)
+                   FROM Familia_Patente AS fp
+                   WHERE fp.ID_Patente = @ID_Patente
+                   AND fp.ID_Familia != @ID_Familia";
+
+               int countPatenteCompartidaEntreFamilias = EjecutarConsultaContar(queryPatenteCompartidaEntreFamilias, connection,
+                   new SqlParameter("@ID_Familia", idFamilia),
+                   new SqlParameter("@ID_Patente", idPatente));
+
+               if (countPatenteCompartidaEntreFamilias > 0)
+               {
+                   return false; // La patente es compartida entre otras familias, no es exclusiva
+               }
+
+               // Verificar si el usuario pertenece a la familia que tiene la patente
+               string queryUsuarioEnFamiliaConPatente = @"
+                   SELECT COUNT(*)
+                   FROM Usuario_Familia AS uf
+                   WHERE uf.ID_Familia = @ID_Familia
+                   AND uf.ID_Usuario = @ID_Usuario";
+
+               int countUsuarioEnFamiliaConPatente = EjecutarConsultaContar(queryUsuarioEnFamiliaConPatente, connection,
+                   new SqlParameter("@ID_Familia", idFamilia),
+                   new SqlParameter("@ID_Usuario", idUsuario));
+
+               if (countUsuarioEnFamiliaConPatente == 0)
+               {
+                   return false; // El usuario no pertenece a la familia que tiene la patente
+               }
+
+               // Si todas las validaciones pasan, se puede eliminar
+               return true; // Se puede eliminar la patente
+           }
+
+
+           private bool ValidarPatentesUsuario(int idUsuario, int idPatente, SqlConnection connection)
+           {
+               // Lógica original que ya tienes implementada para validar patentes a nivel de usuario
+               // Verificar si otros usuarios tienen la misma patente
+               string queryPatentesCompartidas = @"
+                   SELECT COUNT(*) 
+                   FROM Usuario_Patente AS up
+                   WHERE up.ID_Patente = @ID_Patente
+                   AND up.ID_Usuario != @ID_Usuario";
+
+               int countPatentesCompartidas = EjecutarConsultaContar(queryPatentesCompartidas, connection,
+                   new SqlParameter("@ID_Usuario", idUsuario),
+                   new SqlParameter("@ID_Patente", idPatente));
+
+               if (countPatentesCompartidas > 0)
+               {
+                   return false; // No es exclusiva
+               }
+
+               // Verificar si el usuario pertenece a una familia que tiene la patente
+               string queryPatenteEnFamilia = @"
+                   SELECT COUNT(*)
+                   FROM Familia_Patente AS fp
+                   INNER JOIN Usuario_Familia AS uf ON fp.ID_Familia = uf.ID_Familia
+                   WHERE fp.ID_Patente = @ID_Patente
+                   AND uf.ID_Usuario = @ID_Usuario";
+
+               int countPatenteEnFamilia = EjecutarConsultaContar(queryPatenteEnFamilia, connection,
+                   new SqlParameter("@ID_Usuario", idUsuario),
+                   new SqlParameter("@ID_Patente", idPatente));
+
+               if (countPatenteEnFamilia > 0)
+               {
+                   return false; // El usuario pertenece a una familia con la patente
+               }
+
+               // Validar si la patente está asignada a alguna familia
+               string queryPatenteEnFamiliaGeneral = @"
+                   SELECT COUNT(*)
+                   FROM Familia_Patente AS fp
+                   WHERE fp.ID_Patente = @ID_Patente";
+
+               int countPatenteEnFamiliaGeneral = EjecutarConsultaContar(queryPatenteEnFamiliaGeneral, connection,
+                   new SqlParameter("@ID_Patente", idPatente));
+
+               if (countPatenteEnFamiliaGeneral == 0)
+               {
+                   Console.WriteLine("No se puede quitar la patente porque quedaría sin asignar.");
+                   return false;
+               }
+
+               return true; // Se puede eliminar la patente
+           }
+
+
+
+
+
+
+
+           private int EjecutarConsultaContar(string query, SqlConnection connection, params SqlParameter[] parametros)
+           {
+               using (SqlCommand command = new SqlCommand(query, connection))
+               {
+                   command.Parameters.AddRange(parametros);
+                   // Ejecutar la consulta y obtener el resultado
+                   object resultado = command.ExecuteScalar(); // Retorna el resultado de COUNT(*)
+
+                   // Verificar si el resultado es null y retornar 0 en ese caso
+                   return resultado != null ? Convert.ToInt32(resultado) : 0;
+               }
+           }
+
+
+
+           DALPatente DALPatente = new DALPatente();
+           public bool TienePatentesExclusivas(int usuarioId)
+           {
+               Iterator<Patente> iterator = DALPatente.ObtenerPatentesPorUsuario(usuarioId.ToString());
+
+               while (iterator.HasNext())
+               {
+                   Patente patente = iterator.GetNext();
+
+                   // Validar si la patente es exclusiva
+                   if (ValidarPatentes(usuarioId, patente.ID_Patente))
+                   {
+                       return true; // Si alguna patente es exclusiva, retornar true
+                   }
+               }
+
+               return false; // Si no hay patentes exclusivas, retornar false
+           }
+
+           
+
+
+
+
 
 
 

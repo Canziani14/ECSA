@@ -126,7 +126,22 @@ namespace ECSA
             }
             _patentes = patentes;
             #endregion
+
+            this.KeyPreview = true; // Permite que el formulario capture teclas
+            this.KeyDown += new KeyEventHandler(F1);
+
+            
         }
+
+        private void F1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+            {
+                // Acción a realizar cuando se presiona la tecla Enter
+                MessageBox.Show("Vista de manuales");
+            }
+        }
+
 
 
 

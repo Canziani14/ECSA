@@ -26,5 +26,7 @@ namespace BE
 
         public int CII { get; set; }
         public bool Estado { get; set; }
+
+        public bool Eliminado { get; set; }
     }
 }

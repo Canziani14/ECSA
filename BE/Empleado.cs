@@ -20,5 +20,7 @@ namespace BE
 
        // public int ServicioAsignado { get; set; }
         public int DVH { get; set; }
+
+        public bool Eliminado { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace DAL
 
         public bool Crear(BE.Usuario objAgregar)
         {
-            return DAOs.DAOSUsuario.GetInstance().Agregar(objAgregar.Nombre, objAgregar.Apellido, objAgregar.Nick, objAgregar.Mail, objAgregar.DNI, objAgregar.Contraseña, objAgregar.CII);
+            return DAOs.DAOSUsuario.GetInstance().Agregar(objAgregar.Nombre, objAgregar.Apellido, objAgregar.Nick, objAgregar.Mail, objAgregar.DNI, objAgregar.Contraseña, objAgregar.CII, objAgregar.Eliminado);
         }
 
         public bool Eliminar(BE.Usuario objEliminar)
@@ -74,6 +74,10 @@ namespace DAL
             return DAOSUsuario.GetInstance().DesbloquearUsuario(ID_Usuario);
         }
 
+        public bool RecuperarUsuario(int ID_Usuario)
+        {
+            return DAOSUsuario.GetInstance().RecuperarUsuario(ID_Usuario);
+        }
 
         public List<BE.Familia> AsignarFamilia(int id_Usuario, int id_Familia)
         {

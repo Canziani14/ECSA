@@ -28,8 +28,8 @@ namespace ECSA
             dtgFamilias.DataSource= BLLFamilia.Listar();
             this.usuarioLog = usuarioLog;
             StartPosition = FormStartPosition.CenterScreen;
-
-
+            dtgFamilias.Columns["ID_Usuario"].Visible = false;
+            dtgFamilias.Columns["ID_Patente"].Visible = false;
 
             #region idioma
 
@@ -312,23 +312,36 @@ namespace ECSA
                 }
             }        
         }
+        
+                private void dtgPatentesActuales_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+                {
 
-        private void dtgPatentesActuales_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+
+                    ObtenerPatenteSeleccionadaActuales();
+                    ObtenerFamiliaSeleccionado();
+
+                    int id_Familia = familiaSeleccionada.ID_Familia;
+                    int id_Patente = PatenteSeleccionadaQuitar.ID_Patente;
+                    BLLFamilia.QuitarXFamilia(id_Familia, id_Patente);
+                    dtgPatentesActuales.DataSource = BLLFamilia.ListarActualesXFamilia(id_Familia, id_Patente);
+                    dtgPatentesSinAsignar.DataSource = BLLFamilia.ListarSinAsignarXFamilia(id_Familia, id_Patente);
+
+                    CalcularDigitos();
+                    MessageBox.Show("Patente quitada de la familia correctamente");
+
+                }
+
+        
+        
+
+        private void ActualizarDataGridViewsFamilia(int id_Familia, int id_Patente)
         {
-           
-            
-            ObtenerPatenteSeleccionadaActuales();
-            ObtenerFamiliaSeleccionado();
-            
-            int id_Familia = familiaSeleccionada.ID_Familia;
-            int id_Patente = PatenteSeleccionadaQuitar.ID_Patente;
-            BLLFamilia.QuitarXFamilia(id_Familia, id_Patente);
             dtgPatentesActuales.DataSource = BLLFamilia.ListarActualesXFamilia(id_Familia, id_Patente);
             dtgPatentesSinAsignar.DataSource = BLLFamilia.ListarSinAsignarXFamilia(id_Familia, id_Patente);
-            CalcularDigitos();
-            MessageBox.Show("Patente quitada de la familia correctamente");
-            
         }
+
+
+
 
         private void dtgPatentesSinAsignar_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -408,6 +421,8 @@ namespace ECSA
                 familiaSeleccionada = ((BE.Familia)dtgFamilias.SelectedRows[0].DataBoundItem);
                 txtID.Text = familiaSeleccionada.ID_Familia.ToString();
                 txtNombre.Text = familiaSeleccionada.Descripcion;
+                txtNombreFamilia.Text = familiaSeleccionada.Descripcion;
+                
             }
 
             return familiaSeleccionada;
@@ -424,6 +439,8 @@ namespace ECSA
             dtgPatentesSinAsignar.DataSource = BLLFamilia.ListarSinAsignarXFamilia(familia, patente);
             dtgPatentesActuales.Columns["ID_Usuario"].Visible = false;
             dtgPatentesSinAsignar.Columns["ID_Usuario"].Visible = false;
+            dtgFamilias.Columns["ID_Usuario"].Visible = false;
+            dtgFamilias.Columns["ID_Patente"].Visible = false;
 
 
         }
@@ -432,6 +449,8 @@ namespace ECSA
         {
             dtgFamilias.DataSource = null;
             dtgFamilias.DataSource = BLLFamilia.Listar();
+            dtgFamilias.Columns["ID_Usuario"].Visible = false;
+            dtgFamilias.Columns["ID_Patente"].Visible = false;
         }
 
         private void limpiartxt()

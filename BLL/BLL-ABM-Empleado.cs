@@ -27,6 +27,12 @@ namespace BLL
         {
             return DALEmpleado.Eliminar(objEliminar);
         }
+        
+
+        public bool RecuperarUsuario(Empleado objEliminar)
+        {
+            return DALEmpleado.RecuperarUsuario(objEliminar);
+        }
 
         public List<Empleado> Listar()
         {

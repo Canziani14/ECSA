@@ -114,6 +114,12 @@ namespace BLL
              return DALSeguridad.ValidarPatentes(idUsuario, idPatente);
         }
 
+       
+     /*   public bool ValidarPatentes(int idUsuario, int idPatente, int id_Familia)
+        {
+            return DALSeguridad.ValidarPatentes(idUsuario, idPatente, id_Familia);
+        }*/
+       
         public bool TienePatentesExclusivas(int usuarioId)
         {
             return DALSeguridad.TienePatentesExclusivas(usuarioId);

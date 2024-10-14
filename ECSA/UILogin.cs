@@ -34,110 +34,208 @@ namespace ECSA
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
-            
-        string nick =txtUsuario.Text;
-        string contraseña = BLLSeguridad.EncriptarCamposIrreversible(txtContraseña.Text);
+            string nick = txtUsuario.Text;
+            string contraseña = BLLSeguridad.EncriptarCamposIrreversible(txtContraseña.Text);
 
-        BE.Usuario UsuarioLog =BLLUsuario.BuscarNick(nick);
-
-        List<BE.Usuario> ContraseñaBuscada = BLLUsuario.BuscarContraseña(contraseña);
-
-            if (string.IsNullOrWhiteSpace(txtUsuario.Text) || string.IsNullOrWhiteSpace(txtContraseña.Text))
+            // Verificar si los campos están vacíos
+            if (string.IsNullOrWhiteSpace(nick) || string.IsNullOrWhiteSpace(txtContraseña.Text))
             {
                 MessageBox.Show("Complete todos los campos, por favor", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Salir de la función si hay campos vacíos
+            }
+
+            // Obtener el usuario desde la base de datos
+            BE.Usuario UsuarioLog = BLLUsuario.BuscarNick(nick);
+
+            // Verificar si el usuario existe
+            if (UsuarioLog == null || string.IsNullOrEmpty(UsuarioLog.Nick))
+            {
+                MessageBox.Show("Error al ingresar. Usuario no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtUsuario.Clear();
+                txtContraseña.Clear();
+                txtUsuario.Focus();
+                return; // Salir si el usuario no se encuentra
+            }
+
+            // Verificar si el usuario está bloqueado
+            if (!UsuarioLog.Estado)
+            {
+                BLLSeguridad.RegistrarEnBitacora(4, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
+                MessageBox.Show("No puede iniciar sesión. " + UsuarioLog.Nick + " está bloqueado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Salir si el usuario está bloqueado
+            }
+
+            if (!UsuarioLog.Eliminado)
+            {
+                BLLSeguridad.RegistrarEnBitacora(39, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
+                MessageBox.Show("No puede iniciar sesión. " + UsuarioLog.Nick + " está eliminado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Salir si el usuario está eliminado
+            }
+
+            // Buscar contraseña
+            List<BE.Usuario> ContraseñaBuscada = BLLUsuario.BuscarContraseña(contraseña);
+
+            // Verificar si la contraseña es correcta
+            if (ContraseñaBuscada.Count > 0)
+            {
+                BLLUsuario.ContadorIngresos0(UsuarioLog);
+                BLLSeguridad.RegistrarEnBitacora(1, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
+                MessageBox.Show("Login exitoso. ¡Bienvenido " + UsuarioLog.Nick + "!", "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Verificar integridad de datos
+                bool integridadCorrecta = BLLDAL.VerificarIntegridad();
+                BLLSeguridad.RegistrarEnBitacora(33, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
+
+                if (!integridadCorrecta)
+                {
+                    MessageBox.Show("Error en la integridad de los datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Si la integridad no es correcta, reparar
+                    BLLDAL.RepararIntegridad();
+                    BLLSeguridad.RegistrarEnBitacora(34, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
+                    // Mensaje después de reparar
+                    MessageBox.Show("La integridad de los datos fue reparada.", "Reparación Completa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                // Obtener las patentes del usuario
+                var iterator = BLLUsuario.ObtenerPatentesPorUsuario(UsuarioLog.ID_Usuario.ToString());
+                var patentes = new List<Patente>();
+
+                while (iterator.HasNext())
+                {
+                    patentes.Add(iterator.GetNext());
+                }
+
+                // Idioma
+                int idIdiomaSeleccionado = (int)cmbIdiomas.SelectedValue;
+                List<Traduccion> traducciones = BLLUsuario.ListarTraduccionesXIdioma(idIdiomaSeleccionado);
+
+                // Crear instancia de la ventana principal con patentes
+                UIInicio uiInicio = new UIInicio(UsuarioLog, patentes, traducciones, idIdiomaSeleccionado);
+
+                // Mostrar la ventana principal
+                uiInicio.Show();
+                this.Hide();
             }
             else
             {
-                if (UsuarioLog.Estado)
+                // Manejo de intentos fallidos
+                int intentosFallidos = BLLUsuario.SumarIntento(UsuarioLog);
+
+                if (intentosFallidos >= 3)
                 {
-                    if (UsuarioLog == null || UsuarioLog.Nick == null)
-                    {
-                        MessageBox.Show("Error al ingresar. Usuario no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtUsuario.Clear();
-                        txtContraseña.Clear();
-                        txtUsuario.Focus();
-                    }
-                    else
-                    {
-                        if (ContraseñaBuscada.Count > 0)
-                        {
-
-                            BLLUsuario.ContadorIngresos0(UsuarioLog);
-                            BLLSeguridad.RegistrarEnBitacora(1, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
-                            MessageBox.Show("Login exitoso. ¡Bienvenido " + UsuarioLog.Nick + "!", "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            // Verificar integridad
-                            bool integridadCorrecta = BLLDAL.VerificarIntegridad();
-                            BLLSeguridad.RegistrarEnBitacora(33, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
-
-                            if (!integridadCorrecta)
-                            {
-                                MessageBox.Show("Error en la Integridad de los datos");
-
-                                // Si la integridad no es correcta, reparar
-                                BLLDAL.RepararIntegridad();
-                                BLLSeguridad.RegistrarEnBitacora(34, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
-                                // Mensaje después de reparar
-                                MessageBox.Show("La integridad de los datos fue reparada.", "Reparación Completa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-
-                            // Obtener las patentes del usuario
-                            var iterator = BLLUsuario.ObtenerPatentesPorUsuario(UsuarioLog.ID_Usuario.ToString());
-                            var patentes = new List<Patente>();
-
-                            while (iterator.HasNext())
-                            {
-                                patentes.Add(iterator.GetNext());
-                            }
-                            //Idioma
-                            int idIdiomaSeleccionado = (int)cmbIdiomas.SelectedValue;
-                            List<Traduccion> traducciones = BLLUsuario.ListarTraduccionesXIdioma(idIdiomaSeleccionado);
-
-                            // Crear instancia de la ventana principal con patentes
-                            UIInicio uiInicio = new UIInicio(UsuarioLog, patentes, traducciones, idIdiomaSeleccionado);
-
-                            // Mostrar la ventana principal
-                            uiInicio.Show();
-                            this.Hide();
-                        }
-                        else
-                        {
-                            int intentosFallidos = BLLUsuario.SumarIntento(UsuarioLog);
-
-                            if (intentosFallidos >= 3)
-                            {
-                                BLLSeguridad.RegistrarEnBitacora(3, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
-                                BLLUsuario.BloquearUsuario(UsuarioLog.ID_Usuario);
-                                MessageBox.Show("Cuenta bloqueada después de 3 intentos fallidos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                            else
-                            {
-                                BLLSeguridad.RegistrarEnBitacora(2, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
-                                MessageBox.Show("Contraseña incorrecta. Intento " + intentosFallidos + " de 3.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                txtContraseña.Clear();
-                                txtContraseña.Focus();
-                            }
-                        }
-                    }
-
+                    BLLSeguridad.RegistrarEnBitacora(3, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
+                    BLLUsuario.BloquearUsuario(UsuarioLog.ID_Usuario);
+                    MessageBox.Show("Cuenta bloqueada después de 3 intentos fallidos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    BLLSeguridad.RegistrarEnBitacora(4, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
-                    MessageBox.Show("No puede iniciar sesion. " + UsuarioLog.Nick + " bloqueado");
+                    BLLSeguridad.RegistrarEnBitacora(2, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
+                    MessageBox.Show("Contraseña incorrecta. Intento " + intentosFallidos + " de 3.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtContraseña.Clear();
+                    txtContraseña.Focus();
                 }
             }
-
-
-
-            
-
-            
-
-
-
         }
 
+
+        /*
+                private void btnIniciar_Click(object sender, EventArgs e)
+                {
+
+                string nick =txtUsuario.Text;
+                string contraseña = BLLSeguridad.EncriptarCamposIrreversible(txtContraseña.Text);
+
+                BE.Usuario UsuarioLog =BLLUsuario.BuscarNick(nick);
+
+                List<BE.Usuario> ContraseñaBuscada = BLLUsuario.BuscarContraseña(contraseña);
+
+                    if (string.IsNullOrWhiteSpace(txtUsuario.Text) || string.IsNullOrWhiteSpace(txtContraseña.Text))
+                    {
+                        MessageBox.Show("Complete todos los campos, por favor", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        if (UsuarioLog.Estado)
+                        {
+                            if (UsuarioLog == null || UsuarioLog.Nick == null)
+                            {
+                                MessageBox.Show("Error al ingresar. Usuario no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                txtUsuario.Clear();
+                                txtContraseña.Clear();
+                                txtUsuario.Focus();
+                            }
+                            else
+                            {
+                                if (ContraseñaBuscada.Count > 0)
+                                {
+
+                                    BLLUsuario.ContadorIngresos0(UsuarioLog);
+                                    BLLSeguridad.RegistrarEnBitacora(1, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
+                                    MessageBox.Show("Login exitoso. ¡Bienvenido " + UsuarioLog.Nick + "!", "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                    // Verificar integridad
+                                    bool integridadCorrecta = BLLDAL.VerificarIntegridad();
+                                    BLLSeguridad.RegistrarEnBitacora(33, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
+
+                                    if (!integridadCorrecta)
+                                    {
+                                        MessageBox.Show("Error en la Integridad de los datos");
+
+                                        // Si la integridad no es correcta, reparar
+                                        BLLDAL.RepararIntegridad();
+                                        BLLSeguridad.RegistrarEnBitacora(34, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
+                                        // Mensaje después de reparar
+                                        MessageBox.Show("La integridad de los datos fue reparada.", "Reparación Completa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
+
+                                    // Obtener las patentes del usuario
+                                    var iterator = BLLUsuario.ObtenerPatentesPorUsuario(UsuarioLog.ID_Usuario.ToString());
+                                    var patentes = new List<Patente>();
+
+                                    while (iterator.HasNext())
+                                    {
+                                        patentes.Add(iterator.GetNext());
+                                    }
+                                    //Idioma
+                                    int idIdiomaSeleccionado = (int)cmbIdiomas.SelectedValue;
+                                    List<Traduccion> traducciones = BLLUsuario.ListarTraduccionesXIdioma(idIdiomaSeleccionado);
+
+                                    // Crear instancia de la ventana principal con patentes
+                                    UIInicio uiInicio = new UIInicio(UsuarioLog, patentes, traducciones, idIdiomaSeleccionado);
+
+                                    // Mostrar la ventana principal
+                                    uiInicio.Show();
+                                    this.Hide();
+                                }
+                                else
+                                {
+                                    int intentosFallidos = BLLUsuario.SumarIntento(UsuarioLog);
+
+                                    if (intentosFallidos >= 3)
+                                    {
+                                        BLLSeguridad.RegistrarEnBitacora(3, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
+                                        BLLUsuario.BloquearUsuario(UsuarioLog.ID_Usuario);
+                                        MessageBox.Show("Cuenta bloqueada después de 3 intentos fallidos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                    else
+                                    {
+                                        BLLSeguridad.RegistrarEnBitacora(2, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
+                                        MessageBox.Show("Contraseña incorrecta. Intento " + intentosFallidos + " de 3.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        txtContraseña.Clear();
+                                        txtContraseña.Focus();
+                                    }
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            BLLSeguridad.RegistrarEnBitacora(4, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
+                            MessageBox.Show("No puede iniciar sesion. " + UsuarioLog.Nick + " bloqueado");
+                        }
+                    }
+                }
+                */
         private void btnGenerarNuevaClave_Click(object sender, EventArgs e)
         {
             int idIdiomaSeleccionado = (int)cmbIdiomas.SelectedValue;

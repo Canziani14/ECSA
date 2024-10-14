@@ -55,6 +55,7 @@
             this.txtBuscarEmpleado = new System.Windows.Forms.TextBox();
             this.lblBuscarEmpleado = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnRecuperarEmlpeado = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgEmpleados)).BeginInit();
             this.gbGestorEmpleados.SuspendLayout();
             this.SuspendLayout();
@@ -83,7 +84,7 @@
             // 
             // btnCrearEmpleado
             // 
-            this.btnCrearEmpleado.Location = new System.Drawing.Point(18, 331);
+            this.btnCrearEmpleado.Location = new System.Drawing.Point(6, 311);
             this.btnCrearEmpleado.Name = "btnCrearEmpleado";
             this.btnCrearEmpleado.Size = new System.Drawing.Size(75, 23);
             this.btnCrearEmpleado.TabIndex = 2;
@@ -93,7 +94,7 @@
             // 
             // btnModificarEmpleado
             // 
-            this.btnModificarEmpleado.Location = new System.Drawing.Point(143, 331);
+            this.btnModificarEmpleado.Location = new System.Drawing.Point(126, 311);
             this.btnModificarEmpleado.Name = "btnModificarEmpleado";
             this.btnModificarEmpleado.Size = new System.Drawing.Size(75, 23);
             this.btnModificarEmpleado.TabIndex = 3;
@@ -103,7 +104,7 @@
             // 
             // btnEliminarEmpleado
             // 
-            this.btnEliminarEmpleado.Location = new System.Drawing.Point(254, 331);
+            this.btnEliminarEmpleado.Location = new System.Drawing.Point(242, 311);
             this.btnEliminarEmpleado.Name = "btnEliminarEmpleado";
             this.btnEliminarEmpleado.Size = new System.Drawing.Size(75, 23);
             this.btnEliminarEmpleado.TabIndex = 4;
@@ -114,7 +115,7 @@
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(21, 42);
+            this.lblNombre.Location = new System.Drawing.Point(27, 23);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(44, 13);
             this.lblNombre.TabIndex = 5;
@@ -123,7 +124,7 @@
             // lblApellido
             // 
             this.lblApellido.AutoSize = true;
-            this.lblApellido.Location = new System.Drawing.Point(21, 74);
+            this.lblApellido.Location = new System.Drawing.Point(27, 55);
             this.lblApellido.Name = "lblApellido";
             this.lblApellido.Size = new System.Drawing.Size(44, 13);
             this.lblApellido.TabIndex = 6;
@@ -132,7 +133,7 @@
             // lblDNI
             // 
             this.lblDNI.AutoSize = true;
-            this.lblDNI.Location = new System.Drawing.Point(21, 107);
+            this.lblDNI.Location = new System.Drawing.Point(27, 88);
             this.lblDNI.Name = "lblDNI";
             this.lblDNI.Size = new System.Drawing.Size(26, 13);
             this.lblDNI.TabIndex = 7;
@@ -141,7 +142,7 @@
             // lblDireccion
             // 
             this.lblDireccion.AutoSize = true;
-            this.lblDireccion.Location = new System.Drawing.Point(21, 137);
+            this.lblDireccion.Location = new System.Drawing.Point(27, 118);
             this.lblDireccion.Name = "lblDireccion";
             this.lblDireccion.Size = new System.Drawing.Size(52, 13);
             this.lblDireccion.TabIndex = 8;
@@ -150,7 +151,7 @@
             // lblTelefono
             // 
             this.lblTelefono.AutoSize = true;
-            this.lblTelefono.Location = new System.Drawing.Point(21, 176);
+            this.lblTelefono.Location = new System.Drawing.Point(27, 157);
             this.lblTelefono.Name = "lblTelefono";
             this.lblTelefono.Size = new System.Drawing.Size(49, 13);
             this.lblTelefono.TabIndex = 9;
@@ -158,41 +159,42 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(120, 35);
+            this.txtNombre.Location = new System.Drawing.Point(126, 16);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(158, 20);
             this.txtNombre.TabIndex = 10;
             // 
             // txtApellido
             // 
-            this.txtApellido.Location = new System.Drawing.Point(120, 67);
+            this.txtApellido.Location = new System.Drawing.Point(126, 48);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(158, 20);
             this.txtApellido.TabIndex = 11;
             // 
             // txtDNI
             // 
-            this.txtDNI.Location = new System.Drawing.Point(120, 100);
+            this.txtDNI.Location = new System.Drawing.Point(126, 81);
             this.txtDNI.Name = "txtDNI";
             this.txtDNI.Size = new System.Drawing.Size(158, 20);
             this.txtDNI.TabIndex = 12;
             // 
             // txtDireccion
             // 
-            this.txtDireccion.Location = new System.Drawing.Point(120, 137);
+            this.txtDireccion.Location = new System.Drawing.Point(126, 118);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(158, 20);
             this.txtDireccion.TabIndex = 13;
             // 
             // txtTelefono
             // 
-            this.txtTelefono.Location = new System.Drawing.Point(120, 176);
+            this.txtTelefono.Location = new System.Drawing.Point(126, 157);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(158, 20);
             this.txtTelefono.TabIndex = 14;
             // 
             // gbGestorEmpleados
             // 
+            this.gbGestorEmpleados.Controls.Add(this.btnRecuperarEmlpeado);
             this.gbGestorEmpleados.Controls.Add(this.lblLegajo);
             this.gbGestorEmpleados.Controls.Add(this.txtLegajo);
             this.gbGestorEmpleados.Controls.Add(this.lblFechaDeIngreo);
@@ -215,7 +217,7 @@
             this.gbGestorEmpleados.Controls.Add(this.lblDNI);
             this.gbGestorEmpleados.Location = new System.Drawing.Point(641, 74);
             this.gbGestorEmpleados.Name = "gbGestorEmpleados";
-            this.gbGestorEmpleados.Size = new System.Drawing.Size(335, 364);
+            this.gbGestorEmpleados.Size = new System.Drawing.Size(335, 390);
             this.gbGestorEmpleados.TabIndex = 15;
             this.gbGestorEmpleados.TabStop = false;
             this.gbGestorEmpleados.Text = "Gestor de Empleados";
@@ -223,7 +225,7 @@
             // lblLegajo
             // 
             this.lblLegajo.AutoSize = true;
-            this.lblLegajo.Location = new System.Drawing.Point(15, 299);
+            this.lblLegajo.Location = new System.Drawing.Point(21, 280);
             this.lblLegajo.Name = "lblLegajo";
             this.lblLegajo.Size = new System.Drawing.Size(39, 13);
             this.lblLegajo.TabIndex = 21;
@@ -232,7 +234,7 @@
             // txtLegajo
             // 
             this.txtLegajo.Enabled = false;
-            this.txtLegajo.Location = new System.Drawing.Point(120, 292);
+            this.txtLegajo.Location = new System.Drawing.Point(126, 273);
             this.txtLegajo.Name = "txtLegajo";
             this.txtLegajo.Size = new System.Drawing.Size(100, 20);
             this.txtLegajo.TabIndex = 20;
@@ -240,7 +242,7 @@
             // lblFechaDeIngreo
             // 
             this.lblFechaDeIngreo.AutoSize = true;
-            this.lblFechaDeIngreo.Location = new System.Drawing.Point(15, 267);
+            this.lblFechaDeIngreo.Location = new System.Drawing.Point(21, 248);
             this.lblFechaDeIngreo.Name = "lblFechaDeIngreo";
             this.lblFechaDeIngreo.Size = new System.Drawing.Size(90, 13);
             this.lblFechaDeIngreo.TabIndex = 19;
@@ -248,7 +250,7 @@
             // 
             // txtFechadeIngreso
             // 
-            this.txtFechadeIngreso.Location = new System.Drawing.Point(111, 261);
+            this.txtFechadeIngreso.Location = new System.Drawing.Point(117, 242);
             this.txtFechadeIngreso.Name = "txtFechadeIngreso";
             this.txtFechadeIngreso.Size = new System.Drawing.Size(200, 20);
             this.txtFechadeIngreso.TabIndex = 18;
@@ -256,7 +258,7 @@
             // lblLinea
             // 
             this.lblLinea.AutoSize = true;
-            this.lblLinea.Location = new System.Drawing.Point(21, 222);
+            this.lblLinea.Location = new System.Drawing.Point(27, 203);
             this.lblLinea.Name = "lblLinea";
             this.lblLinea.Size = new System.Drawing.Size(33, 13);
             this.lblLinea.TabIndex = 17;
@@ -265,7 +267,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(44, 227);
+            this.label7.Location = new System.Drawing.Point(50, 208);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(0, 13);
             this.label7.TabIndex = 16;
@@ -273,7 +275,7 @@
             // cmbLinea
             // 
             this.cmbLinea.FormattingEnabled = true;
-            this.cmbLinea.Location = new System.Drawing.Point(120, 219);
+            this.cmbLinea.Location = new System.Drawing.Point(126, 200);
             this.cmbLinea.Name = "cmbLinea";
             this.cmbLinea.Size = new System.Drawing.Size(121, 21);
             this.cmbLinea.TabIndex = 15;
@@ -299,11 +301,21 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // btnRecuperarEmlpeado
+            // 
+            this.btnRecuperarEmlpeado.Location = new System.Drawing.Point(242, 341);
+            this.btnRecuperarEmlpeado.Name = "btnRecuperarEmlpeado";
+            this.btnRecuperarEmlpeado.Size = new System.Drawing.Size(75, 43);
+            this.btnRecuperarEmlpeado.TabIndex = 22;
+            this.btnRecuperarEmlpeado.Text = "Recuperar Empleado";
+            this.btnRecuperarEmlpeado.UseVisualStyleBackColor = true;
+            this.btnRecuperarEmlpeado.Click += new System.EventHandler(this.btnRecuperarEmlpeado_Click);
+            // 
             // UIGestionarEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(998, 450);
+            this.ClientSize = new System.Drawing.Size(998, 476);
             this.Controls.Add(this.lblBuscarEmpleado);
             this.Controls.Add(this.txtBuscarEmpleado);
             this.Controls.Add(this.gbGestorEmpleados);
@@ -347,5 +359,6 @@
         private System.Windows.Forms.Label lblLegajo;
         private System.Windows.Forms.TextBox txtLegajo;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Button btnRecuperarEmlpeado;
     }
 }

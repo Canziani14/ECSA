@@ -37,7 +37,8 @@ namespace DAL.Mappers
                     DNI =DALSeguridad.DesencriptarCamposReversible(item.Field<string>("DNI")),
                     Telefono= DALSeguridad.DesencriptarCamposReversible(item.Field<string>("Telefono")),
                     Direccion= DALSeguridad.DesencriptarCamposReversible(item.Field<string>("Direccion")),
-                    LineaPertenece =item.Field<int>("ID_Linea")
+                    LineaPertenece =item.Field<int>("ID_Linea"),
+                    Eliminado = item.IsNull("Eliminado") ? false : item.Field<bool>("Eliminado")
                 });
             }
             return empleados;
