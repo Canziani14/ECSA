@@ -108,22 +108,54 @@ namespace BLL
 
         #endregion
 
-       
-        public bool ValidarPatentes(int idUsuario, int idPatente)
+
+        #region validaciones eliminar/bloquear usuario
+        public bool TienePatenteUnica(int idUsuario)
         {
-             return DALSeguridad.ValidarPatentes(idUsuario, idPatente);
+            return DALSeguridad.TienePatenteUnica(idUsuario);
         }
 
-       
-     /*   public bool ValidarPatentes(int idUsuario, int idPatente, int id_Familia)
+        public bool TieneFamiliaConPatenteUnica(int idUsuario)
         {
-            return DALSeguridad.ValidarPatentes(idUsuario, idPatente, id_Familia);
-        }*/
-       
-        public bool TienePatentesExclusivas(int usuarioId)
-        {
-            return DALSeguridad.TienePatentesExclusivas(usuarioId);
+            return DALSeguridad.TieneFamiliaConPatenteUnica(idUsuario);
         }
+        #endregion
+
+
+        #region validacion familia
+        public bool FamiliaContienePatenteUnicaParaUsuario(int idUsuario, int idFamilia)
+        {
+            return DALSeguridad.FamiliaContienePatenteUnicaParaUsuario(idUsuario, idFamilia);
+        }
+        public bool PuedeEliminarFamilia(int idFamilia)
+        {
+            return DALSeguridad.PuedeEliminarFamilia(idFamilia);
+        }
+
+        public bool PuedeEliminarPatenteDeFamilia2(int idPatente, int idUsuario)
+        {
+           
+                return DALSeguridad.PuedeEliminarPatenteDeFamilia2(idPatente, idUsuario);
+            
+        }
+
+
+        #endregion
+
+        #region Validar Patentes
+        public bool PuedeEliminarPatenteDeUsuario(int idUsuario, int idPatente)
+        {
+            return DALSeguridad.PuedeEliminarPatenteDeUsuario(idUsuario, idPatente);
+        }
+
+        public bool PuedeEliminarPatenteDeFamilia(int idFamilia, int idPatente)
+        {
+            return DALSeguridad.PuedeEliminarPatenteDeFamilia(idFamilia, idPatente);
+        }
+
+        #endregion
+
+
 
 
     }

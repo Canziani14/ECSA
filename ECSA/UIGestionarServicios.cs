@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 using System.Diagnostics;
+using Bogus;
 
 namespace ECSA
 {
@@ -666,8 +667,144 @@ namespace ECSA
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var lineasPermitidas = new[] { 1, 7, 8 };
+            var faker = new Faker<Coche>()
+                    .RuleFor(c => c.Patente, f => BLLSeguridad.EncriptarCamposReversible( f.Vehicle.Vin()))
+                    .RuleFor(c => c.ID_Linea, f => f.PickRandom(new[] { 1, 7, 8 }))
+                    .RuleFor(c => c.DVH, f => 0)
+                    .Generate(150);
+
+            // Insertar los empleados en la base de datos
+            foreach (var coche in faker)
+            {
+                BLLCoche.Crear(coche);
+            }
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            /*
+            var linea1Servicios = new Dictionary<int, (List<int> Empleados, List<int> Coches)>
+{
+    { 1, (
+        new List<int> { 77, 80, 123, 124, 133, 142, 153, 155, 165, 168, 175, 197, 201, 214, 221, 222, 231, 233, 235, 238, 242, 245 },
+        new List<int> { 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 20, 21, 24, 26, 28, 31, 33, 38, 39 }
+    ) },
+
+    { 2, (
+        new List<int> { 250, 276, 282, 285, 287, 296, 297, 306, 312, 313, 315, 319, 323, 327, 332, 335, 338, 340, 351, 365, 369, 377 },
+        new List<int> { 45, 47, 50, 61, 65, 70, 73, 74, 75, 77, 84, 85, 86, 95, 96, 105, 116, 118, 119 }
+    ) },
+
+    { 3, (
+        new List<int> { 382, 384, 385, 388, 395, 396, 400, 410, 415, 422, 430, 435, 444, 446, 449, 451, 454, 457, 458, 463, 476, 485 },
+        new List<int> { 120, 123, 124, 126, 127, 130, 132, 133, 134, 138, 140, 143, 146, 147, 148, 152, 153, 154, 156, 157, 161, 162, 163, 164, 167, 168, 169, 171 }
+    ) }
+};
+
+            // Generador Faker utilizando los datos de los servicios
+            var faker = new Faker<Servicio>()
+                .RuleFor(s => s.HorarioSalida, f => f.Date.Recent(10)) // Fecha reciente
+                .RuleFor(s => s.HorarioLlegada, f => f.Date.Recent(5))  // Fecha reciente
+                .RuleFor(s => s.Linea, f => 7) // Selecciona una línea aleatoria // Selecciona una línea aleatoria
+                .RuleFor(s => s.LegajoEmpleado, (f, s) =>
+                {
+                    // Selecciona aleatoriamente un legajo basado en la línea del servicio
+                    var empleados = linea1Servicios[s.Linea].Empleados;
+                    return f.PickRandom(empleados);
+                })
+                .RuleFor(s => s.Coche, (f, s) =>
+                {
+                    // Selecciona aleatoriamente un coche basado en la línea del servicio
+                    var coches = linea1Servicios[s.Linea].Coches;
+                    return f.PickRandom(coches);
+                })
+                .RuleFor(s => s.DVH, f => 0) // Inicializa DVH en 0
+                .Generate(150); // Genera 150 servicios
+
+            BLL.BLL_ABM_Servicio BLLServicio = new BLL_ABM_Servicio();
+            // Insertar los servicios en la base de datos
+            foreach (var servicio in faker)
+            {
+                BLLServicio.Crear(servicio);
+            }*/
+
+            /*
+            var linea7Servicios = new Dictionary<int, (List<int> Empleados, List<int> Coches)>
+                {
+                    { 7, (
+                        new List<int> { 97, 113, 115, 120, 128, 130, 131, 134, 173, 185, 186, 190, 193, 195, 215, 220, 227, 236, 237, 247, 248, 261, 266, 267, 268, 270, 278, 329, 341, 344, 346, 370, 392, 398, 407, 417, 424, 426, 438, 447, 452, 470, 498, 509, 529, 531, 536, 554, 560, 562, 573, 574, 578, 606, 607, 631, 644, 652, 655, 668, 670, 672, 682, 683, 693, 699, 700, 716, 724, 729, 733, 742, 749, 750, 752, 763, 765, 768, 778, 784, 803, 806, 809, 815, 817, 823, 828, 847 },
+                        new List<int> { 22, 30, 35, 41, 46, 48, 49, 51, 52, 58, 59, 62, 63, 67, 68, 69, 79, 80, 81, 83, 87, 93, 98, 104, 106, 108, 110, 112, 113, 125, 129, 137, 139, 141, 150, 151, 155, 159, 166, 170 }
+                    ) }
+                };
+
+            // Generador Faker utilizando los datos de los servicios
+            var faker = new Faker<Servicio>()
+                .RuleFor(s => s.HorarioSalida, f => f.Date.Recent(10)) // Fecha reciente
+                .RuleFor(s => s.HorarioLlegada, f => f.Date.Recent(5))  // Fecha reciente
+                .RuleFor(s => s.Linea, f => 7) // Fijar línea 7
+                .RuleFor(s => s.LegajoEmpleado, (f, s) =>
+                {
+                    // Selecciona aleatoriamente un legajo basado en la línea del servicio
+                    var empleados = linea7Servicios[s.Linea].Empleados;
+                    return f.PickRandom(empleados);
+                })
+                .RuleFor(s => s.Coche, (f, s) =>
+                {
+                    // Selecciona aleatoriamente un coche basado en la línea del servicio
+                    var coches = linea7Servicios[s.Linea].Coches;
+                    return f.PickRandom(coches);
+                })
+                .RuleFor(s => s.DVH, f => 0) // Inicializa DVH en 0
+                .Generate(150); // Genera 150 servicios
+
+            BLL.BLL_ABM_Servicio BLLServicio = new BLL_ABM_Servicio();
+            // Insertar los servicios en la base de datos
+            foreach (var servicio in faker)
+            {
+                BLLServicio.Crear(servicio);
+            }*/
+            var linea8Servicios = new Dictionary<int, (List<int> Empleados, List<int> Coches)>
+{
+    { 8, (
+        new List<int> { 103, 104, 107, 108, 111, 114, 127, 143, 148, 150, 166, 172, 183, 191, 199, 203, 213, 217, 226, 240, 244, 251, 274, 284, 288, 294, 303, 308, 328, 334, 337, 347, 360, 366, 375, 378, 412, 413, 414, 428, 431, 442, 461, 472, 488, 507, 543, 544, 550, 551, 556, 569, 577, 586, 595, 615, 618, 624, 626, 630, 632, 636, 649, 662, 663, 667, 687, 690, 692, 697, 704, 707, 713, 715, 717, 722, 726, 727, 728, 734, 736, 744, 751, 753, 775, 791, 798, 810, 811, 827, 829, 831, 839, 842 },
+        new List<int> { 23, 25, 27, 29, 32, 34, 36, 37, 40, 42, 43, 44, 53, 54, 55, 56, 57, 60, 64, 66, 71, 72, 76, 78, 82, 88, 89, 90, 91, 92, 94, 97, 99, 100, 101, 102, 103, 107, 109, 111, 114, 115, 117, 121, 122, 128, 131, 135, 136, 142, 144, 145, 149, 158, 160, 165 }
+    ) }
+};
+
+            // Generador Faker utilizando los datos de los servicios
+            var faker = new Faker<Servicio>()
+                .RuleFor(s => s.HorarioSalida, f => f.Date.Recent(10)) // Fecha reciente
+                .RuleFor(s => s.HorarioLlegada, f => f.Date.Recent(5))  // Fecha reciente
+                .RuleFor(s => s.Linea, f => 8) // Fijar línea 8
+                .RuleFor(s => s.LegajoEmpleado, (f, s) =>
+                {
+                    // Selecciona aleatoriamente un legajo basado en la línea del servicio
+                    var empleados = linea8Servicios[s.Linea].Empleados;
+                    return f.PickRandom(empleados);
+                })
+                .RuleFor(s => s.Coche, (f, s) =>
+                {
+                    // Selecciona aleatoriamente un coche basado en la línea del servicio
+                    var coches = linea8Servicios[s.Linea].Coches;
+                    return f.PickRandom(coches);
+                })
+                .RuleFor(s => s.DVH, f => 0) // Inicializa DVH en 0
+                .Generate(150); // Genera 150 servicios
+
+            BLL.BLL_ABM_Servicio BLLServicio = new BLL_ABM_Servicio();
+            // Insertar los servicios en la base de datos
+            foreach (var servicio in faker)
+            {
+                BLLServicio.Crear(servicio);
+            }
 
 
+
+        }
 
     }
 }

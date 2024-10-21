@@ -138,7 +138,9 @@ namespace ECSA
             if (e.KeyCode == Keys.F1)
             {
                 // Acción a realizar cuando se presiona la tecla Enter
-                MessageBox.Show("Vista de manuales");
+                UIAyuda uIAyuda = new UIAyuda();
+                uIAyuda.MdiParent = this;
+                uIAyuda.Show();
             }
         }
 

@@ -275,21 +275,32 @@ namespace ECSA
             }
 
         }
-        
+
 
         private void btnEliminarFamilia_Click(object sender, EventArgs e)
         {
-        DialogResult respuesta = MessageBox.Show("¿Esta seguro de eliminar esta familia?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de eliminar esta familia?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
             if (respuesta == DialogResult.Yes)
             {
-
                 if (familiaSeleccionada != null)
                 {
-                    bool FamiliaEliminada = BLLFamilia.Eliminar(familiaSeleccionada);
+                    // Verificar si se puede eliminar la familia
+                    if (!BLLSeguridad.PuedeEliminarFamilia(familiaSeleccionada.ID_Familia))
+                    {
+                        // Solo mostrar el mensaje si no se puede eliminar
+                        MessageBox.Show("No se puede eliminar la familia porque contiene patentes únicas que están asignadas solo a un usuario.");
+                        return; // Salir del método si no se puede eliminar
+                    }
+
+                    bool familiaEliminada = false;
 
                     try
                     {
-                        if (FamiliaEliminada)
+                        // Intentar eliminar la familia
+                        familiaEliminada = BLLFamilia.Eliminar(familiaSeleccionada);
+
+                        if (familiaEliminada)
                         {
                             MessageBox.Show("Familia eliminada correctamente");
                             BLLSeguridad.RegistrarEnBitacora(13, usuarioLog.Nick, usuarioLog.ID_Usuario);
@@ -298,7 +309,7 @@ namespace ECSA
                         }
                         else
                         {
-                            MessageBox.Show("no se puede borrar la familia");
+                            MessageBox.Show("No se puede borrar la familia");
                         }
                     }
                     catch (Exception ex)
@@ -310,10 +321,11 @@ namespace ECSA
                 {
                     MessageBox.Show("Seleccione una familia para borrar");
                 }
-            }        
+            }
         }
-        
-                private void dtgPatentesActuales_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+
+
+        private void dtgPatentesActuales_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
                 {
 
 
@@ -322,6 +334,14 @@ namespace ECSA
 
                     int id_Familia = familiaSeleccionada.ID_Familia;
                     int id_Patente = PatenteSeleccionadaQuitar.ID_Patente;
+
+                    // Validar si la patente puede ser quitada de la familia
+                    if (!BLLSeguridad.PuedeEliminarPatenteDeFamilia(id_Familia, id_Patente))
+                    {
+                        MessageBox.Show("No se puede eliminar la patente porque es la única asignada a esta familia.",
+                                        "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; // Salir del método sin hacer nada
+                    }
                     BLLFamilia.QuitarXFamilia(id_Familia, id_Patente);
                     dtgPatentesActuales.DataSource = BLLFamilia.ListarActualesXFamilia(id_Familia, id_Patente);
                     dtgPatentesSinAsignar.DataSource = BLLFamilia.ListarSinAsignarXFamilia(id_Familia, id_Patente);

@@ -242,6 +242,7 @@ namespace ECSA
         #region EliminarUsuario
         private void btnEliminarUsuario_Click(object sender, EventArgs e)
         {
+            // Confirmación antes de eliminar
             DialogResult respuesta = MessageBox.Show("¿Está seguro de eliminar este usuario?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (respuesta == DialogResult.Yes)
@@ -257,26 +258,38 @@ namespace ECSA
                             return; // Salir del método si no se puede eliminar
                         }
 
-                        // Verifica si el usuario tiene patentes exclusivas
-                        if (BLLSeguridad.TienePatentesExclusivas(UsuarioSeleccionado.ID_Usuario))
+                        // Validaciones para evitar la eliminación
+                        bool tienePatenteUnica = BLLSeguridad.TienePatenteUnica(UsuarioSeleccionado.ID_Usuario);
+                        bool tieneFamiliaConPatenteUnica = BLLSeguridad.TieneFamiliaConPatenteUnica(UsuarioSeleccionado.ID_Usuario);
+
+                        // Mensajes de advertencia en caso de que el usuario no pueda ser eliminado
+                        if (tienePatenteUnica)
                         {
-                            MessageBox.Show("El usuario " + UsuarioSeleccionado.Nick + " tiene asignada una patente única, no puede ser eliminado.");
+                            MessageBox.Show("El usuario " + UsuarioSeleccionado.Nick + " tiene asignada una patente única, no puede ser eliminado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        if (!tieneFamiliaConPatenteUnica)
+                        {
+                            MessageBox.Show("El usuario " + UsuarioSeleccionado.Nick + " tiene patentes asignadas a familias y no puede ser eliminado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        // Si todas las condiciones son satisfechas, proceder a eliminar el usuario
+                        bool usuarioEliminado = BLLUsuario.Eliminar(UsuarioSeleccionado);
+
+                        // Manejo del resultado de la eliminación
+                        if (usuarioEliminado)
+                        {
+                            BLLSeguridad.RegistrarEnBitacora(7, usuarioLog.Nick, usuarioLog.ID_Usuario);
+                            CalcularDigitos();
+                            limpiarGrilla();
+                            limpiartxt();
+                            MessageBox.Show("Usuario eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
-                            bool UsuarioEliminado = BLLUsuario.Eliminar(UsuarioSeleccionado);
-
-                            if (UsuarioEliminado)
-                            {
-                                BLLSeguridad.RegistrarEnBitacora(7, usuarioLog.Nick, usuarioLog.ID_Usuario);
-                                CalcularDigitos();
-                                limpiarGrilla();
-                                limpiartxt();
-                            }
-                            else
-                            {
-                                MessageBox.Show("No se puede borrar el usuario.");
-                            }
+                            MessageBox.Show("No se puede borrar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     catch (InvalidOperationException ex)
@@ -285,15 +298,18 @@ namespace ECSA
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Ha ocurrido un error al borrar el usuario: " + ex.Message);
+                        MessageBox.Show("Ha ocurrido un error al borrar el usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Seleccione un usuario para borrar.");
+                    MessageBox.Show("Seleccione un usuario para borrar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
+
+
+
 
 
         #endregion
@@ -502,9 +518,13 @@ namespace ECSA
                 {
                     try
                     {
-                        if (BLLSeguridad.TienePatentesExclusivas(UsuarioSeleccionado.ID_Usuario))
+                        if (BLLSeguridad.TienePatenteUnica(UsuarioSeleccionado.ID_Usuario))
                         {
                             MessageBox.Show("El usuario " + UsuarioSeleccionado.Nick + " tiene asignada una patente unica, no puede ser bloqueado");
+                        }
+                        else if (BLLSeguridad.TieneFamiliaConPatenteUnica(UsuarioSeleccionado.ID_Usuario))
+                        {
+                            MessageBox.Show("El usuario " + UsuarioSeleccionado.Nick + " tiene patentes asignadas a familias, no puede ser bloqueado.");
                         }
                         else
                         {
@@ -583,16 +603,24 @@ namespace ECSA
             
             int id_Usuario = UsuarioSeleccionado.ID_Usuario;
             int id_Familia =FamiliaSeleccionadaQuitar.ID_Familia ;
-            BLLUsuario.QuitarFamilia(id_Usuario, id_Familia);
-            dtgFamiliaActual.DataSource = BLLFamilia.ListarFamiliasActualesXUsuario(id_Usuario);
-            dtgFamiliasSinAsignar.DataSource = BLLFamilia.ListarFamiliasSinAsignarXUsuario(id_Usuario);
-            dtgFamiliasSinAsignar.AutoGenerateColumns = true;
-            dtgFamiliaActual.AutoGenerateColumns = true;
-            CalcularDigitos2();
-            BLLSeguridad.RegistrarEnBitacora(11, usuarioLog.Nick, usuarioLog.ID_Usuario);
-            MessageBox.Show("Familia quitada correctamente");
-           
 
+            var patentesFamilia = BLLSeguridad.FamiliaContienePatenteUnicaParaUsuario(UsuarioSeleccionado.ID_Usuario,id_Familia);
+
+            if (!patentesFamilia)
+            {
+                MessageBox.Show("No se puede eliminar la familia porque contiene patentes únicas asignadas al usuario.");
+            }
+            else
+            {
+                BLLUsuario.QuitarFamilia(id_Usuario, id_Familia);
+                dtgFamiliaActual.DataSource = BLLFamilia.ListarFamiliasActualesXUsuario(id_Usuario);
+                dtgFamiliasSinAsignar.DataSource = BLLFamilia.ListarFamiliasSinAsignarXUsuario(id_Usuario);
+                dtgFamiliasSinAsignar.AutoGenerateColumns = true;
+                dtgFamiliaActual.AutoGenerateColumns = true;
+                CalcularDigitos2();
+                BLLSeguridad.RegistrarEnBitacora(11, usuarioLog.Nick, usuarioLog.ID_Usuario);
+                MessageBox.Show("Familia quitada correctamente");
+            } 
         }
 
         private void dtgFamiliasSinAsignar_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

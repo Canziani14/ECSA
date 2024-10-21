@@ -36,7 +36,9 @@ namespace DAL.DAOs
         string QueryInsert = "INSERT INTO Usuario (Nombre, Apellido, Nick, Mail, DNI, Contraseña, estado, Contador_Int_Fallidos, Eliminado)" +
             "VALUES (@Nombre, @Apellido, @Nick, @Mail, @DNI, @Contraseña, 1,@Contador_Int_Fallidos, @Eliminado)";
 
-        string QueryDelete = "update Usuario set Eliminado = 0 where ID_Usuario = @Id_Usuario";
+        string QueryDelete = "DELETE FROM Usuario_Patente WHERE ID_Usuario = @ID_Usuario; " +
+            " DELETE FROM Usuario_Familia WHERE ID_Usuario = @ID_Usuario;" +
+            " UPDATE Usuario SET Eliminado = 0 WHERE ID_Usuario = @ID_Usuario;";
 
         string QuerySelect = "select * from usuario order by 11 desc";
 
@@ -48,7 +50,6 @@ namespace DAL.DAOs
         string QuerySelectByID = "SELECT * FROM [ECSA].[dbo].[Usuario] where Legajo = @ID_Usuario";
         string QuerySelectByNick = "SELECT * FROM [ECSA].[dbo].[Usuario] where Nick = @Nick";
         string QuerySelectByContraseña = "SELECT * FROM [ECSA].[dbo].[Usuario] where Contraseña = @Contraseña";
-        string QuerySumarIntento = "UPDATE Usuario SET Contador_Int_Fallidos = Contador_Int_Fallidos + 1 WHERE ID_Usuario = @ID_Usuario";
         string QueryBloquearUsuario = "Update usuario set Estado = 'False' where ID_Usuario = @ID_Usuario";
         string QueryDesbloquearUsuario = "Update usuario set Estado = 'True', Contador_Int_Fallidos=0 where ID_Usuario = @ID_Usuario";
         string QueryUpdateContador0 = "update usuario set Contador_Int_Fallidos = 0 where ID_Usuario = @ID_Usuario";

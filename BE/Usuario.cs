@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public class Usuario
+    public class Usuario 
     {
         public int ID_Usuario { get; set; }
 
@@ -28,5 +28,11 @@ namespace BE
         public bool Estado { get; set; }
 
         public bool Eliminado { get; set; }
+
+
+        public List<Patente> Patentes { get; set; } = new List<Patente>();
+
+       
+
     }
 }

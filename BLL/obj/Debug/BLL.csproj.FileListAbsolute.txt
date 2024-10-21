@@ -34,3 +34,5 @@ C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\BouncyCastle.Cryptography.dll
 C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\itextsharp.dll
 C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\BouncyCastle.Cryptography.xml
 C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\itextsharp.xml
+C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\Bogus.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\Bogus.xml

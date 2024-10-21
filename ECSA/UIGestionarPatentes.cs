@@ -217,75 +217,64 @@ namespace ECSA
         }
 
 
-       
 
 
 
-         private void dtgPatentesActuales_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-         {
-             ObtenerPatenteSeleccionadaActuales();
-             BE.Usuario usuarioSeleccionado = ObtenerUsuarioSeleccionado();
 
-             if (usuarioSeleccionado == null)
-             {
-                 MessageBox.Show("No se ha seleccionado un usuario.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                 return;
-             }
+        private void dtgPatentesActuales_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ObtenerPatenteSeleccionadaActuales();
+            BE.Usuario usuarioSeleccionado = ObtenerUsuarioSeleccionado();
 
-             int idUsuario = usuarioSeleccionado.ID_Usuario;
-             int idPatente = PatenteSeleccionadaQuitar.ID_Patente;
-
-             Console.WriteLine($"ID Usuario seleccionado: {idUsuario}");
-             Console.WriteLine($"ID Patente seleccionada para quitar: {idPatente}");
-
-            // Validar patentes del usuario antes de quitar
-            if (BLLSeguridad.ValidarPatentes(idUsuario, idPatente))
+            if (usuarioSeleccionado == null)
             {
-                MessageBox.Show("No se puede eliminar la patente porque es el único propietario o está asociada a una familia.",
-                                "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No se ha seleccionado un usuario.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Si se puede borrar, proceder a quitar la patente
-            try
+            int idUsuario = usuarioSeleccionado.ID_Usuario;
+            int idPatente = PatenteSeleccionadaQuitar.ID_Patente;
+
+            Console.WriteLine($"ID Usuario seleccionado: {idUsuario}");
+            Console.WriteLine($"ID Patente seleccionada para quitar: {idPatente}");
+
+            // Validar si el usuario puede eliminar la patente
+            bool puedeEliminarPorUsuario = BLLSeguridad.PuedeEliminarPatenteDeUsuario(idPatente, idUsuario);
+            // Validación adicional: comprobar si la patente está asociada a la familia del usuario
+            bool puedeEliminarPorFamilia = BLLSeguridad.PuedeEliminarPatenteDeFamilia2(idPatente, idUsuario);
+
+            // Si puede eliminar por alguna de las razones, proceder a quitar la patente
+            if (puedeEliminarPorUsuario || puedeEliminarPorFamilia)
             {
-                BLLPatente.Quitar(idUsuario, idPatente);
-                ActualizarDataGridViews(idUsuario);
-                CalcularDigitos();
-                BLLSeguridad.RegistrarEnBitacora(28, usuarioLog.Nick, usuarioLog.ID_Usuario);
+                try
+                {
+                    BLLPatente.Quitar(idUsuario, idPatente);
+                    ActualizarDataGridViews(idUsuario);
+                    CalcularDigitos();
+                    BLLSeguridad.RegistrarEnBitacora(28, usuarioLog.Nick, usuarioLog.ID_Usuario);
 
-                dtgPatentesActuales.Columns["ID_Usuario"].Visible = false;
-                MessageBox.Show("Patente quitada correctamente");
+                    dtgPatentesActuales.Columns["ID_Usuario"].Visible = false;
+                    MessageBox.Show("Patente quitada correctamente");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al quitar la patente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Error al quitar la patente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se puede eliminar la patente porque es el único propietario o está asociada a una familia a la que pertenece el usuario.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-
-
-
-            /* if (BLLSeguridad.ValidarPatentes(idUsuario, idPatente))
-              {
-                  MessageBox.Show("No se puede eliminar la patente porque el usuario es el único propietario.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                  return;
-              }
-
-              try
-              {
-                  BLLPatente.Quitar(idUsuario, idPatente);
-                  ActualizarDataGridViews(idUsuario);
-                  CalcularDigitos();
-                  BLLSeguridad.RegistrarEnBitacora(28, usuarioLog.Nick, usuarioLog.ID_Usuario);
-
-                  dtgPatentesActuales.Columns["ID_Usuario"].Visible = false;
-                  MessageBox.Show("Patente quitada correctamente");
-              }
-              catch (Exception ex)
-              {
-                  MessageBox.Show($"Error al quitar la patente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-              }*/
         }
+
+
+
+
+
+
+
+
+
 
         private void ActualizarDataGridViews(int idUsuario)
         {

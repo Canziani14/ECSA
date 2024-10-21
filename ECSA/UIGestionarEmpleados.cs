@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Bogus;
 
 namespace ECSA
 {
@@ -453,9 +454,34 @@ namespace ECSA
 
 
 
+
         #endregion
 
-       
+
+
+    private void button1_Click(object sender, EventArgs e)
+        {
+            var faker = new Faker<BE.Empleado>()
+                .RuleFor(employee => employee.Nombre, f => f.Name.FirstName())
+                .RuleFor(employee => employee.Apellido, f => f.Name.LastName())
+                .RuleFor(employee => employee.DNI, f => BLLSeguridad.EncriptarCamposReversible(f.Random.Number(10000000, 99999999).ToString()))
+                .RuleFor(employee => employee.Direccion, f => BLLSeguridad.EncriptarCamposReversible(f.Address.StreetAddress()))
+                .RuleFor(employee => employee.Telefono, f => BLLSeguridad.EncriptarCamposReversible(f.Phone.PhoneNumber()))
+                .RuleFor(employee => employee.FechaDeingreso, f => f.Date.Past())
+                .RuleFor(employee => employee.LineaPertenece, f => f.PickRandom(new[] { 1, 7, 8 })) // Seleccionar entre líneas 1, 7 y 8
+                 .RuleFor(employee => employee.DVH, f => 0)
+                .Generate(150);
+
+            // Insertar los empleados en la base de datos
+            foreach (var empleado in faker)
+            {
+                BLLEmpleado.Crear(empleado);
+            }
+        }
+
+
+
+
     }
 
 

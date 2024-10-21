@@ -21,3 +21,5 @@ C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Debug\itextsharp.dll
 C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Debug\BouncyCastle.Cryptography.xml
 C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Debug\itextsharp.xml
 C:\Users\CASA\Desktop\ECSA\ECSA\BE\obj\Debug\BE.csproj.CopyComplete
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Debug\Bogus.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Debug\Bogus.xml

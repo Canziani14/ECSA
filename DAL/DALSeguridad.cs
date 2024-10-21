@@ -153,22 +153,50 @@ namespace DAL
         }
         #endregion
 
-        public bool ValidarPatentes(int idUsuario, int idPatente)
+
+
+        #region validaciones eliminar/bloquear usuario
+        public bool TienePatenteUnica(int idUsuario)
         {
-           return  DAOs.DAOSSeguridad.GetInstance().ValidarPatentes(idUsuario, idPatente);
+            return DAOSSeguridad.GetInstance().TienePatenteUnica(idUsuario);
         }
 
-       /* public bool ValidarPatentes(int idUsuario, int idPatente, int id_Familia)
+        public bool TieneFamiliaConPatenteUnica(int idUsuario)
         {
-            return DAOs.DAOSSeguridad.GetInstance().ValidarPatentes(idUsuario, idPatente, id_Familia);
-        }*/
+            return DAOSSeguridad.GetInstance().TieneFamiliaConPatenteUnica(idUsuario);
+        }
+        #endregion
 
-        public bool TienePatentesExclusivas(int usuarioId)
+        #region validacion familia
+        public bool FamiliaContienePatenteUnicaParaUsuario(int idUsuario, int idFamilia)
         {
-            return DAOs.DAOSSeguridad.GetInstance().TienePatentesExclusivas(usuarioId);
+            return DAOSSeguridad.GetInstance().FamiliaContienePatenteUnicaParaUsuario(idUsuario, idFamilia);
         }
 
+        public bool PuedeEliminarFamilia(int idFamilia)
+        {
+            return DAOSSeguridad.GetInstance().PuedeEliminarFamilia(idFamilia);
+        }
 
+        public bool PuedeEliminarPatenteDeFamilia2(int idPatente, int idUsuario)
+        {
+
+            return DAOSSeguridad.GetInstance().PuedeEliminarPatenteDeFamilia2(idPatente, idUsuario);
+
+        }
+        #endregion
+
+        #region Validar Patentes
+        public bool PuedeEliminarPatenteDeUsuario(int idUsuario, int idPatente)
+        {
+            return DAOSSeguridad.GetInstance().PuedeEliminarPatenteDeUsuario(idUsuario, idPatente);
+        }
+
+        public bool PuedeEliminarPatenteDeFamilia(int idFamilia, int idPatente)
+        {
+            return DAOSSeguridad.GetInstance().PuedeEliminarPatenteDeFamilia(idFamilia, idPatente);
+        }
+        #endregion
 
 
     }

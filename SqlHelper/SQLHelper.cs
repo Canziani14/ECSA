@@ -104,6 +104,19 @@ namespace SQLHelper
 
             return table;
         }
+
+        public DataTable ExecuteDataTable(SqlCommand cmd)
+        {
+            DataTable table = new DataTable();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                cmd.Connection = connection; // Asigna la conexión al comando
+                connection.Open();
+                table.Load(cmd.ExecuteReader());
+            }
+            return table;
+        }
+
         #endregion
 
         #region Update,Delete e Insert
@@ -188,7 +201,32 @@ namespace SQLHelper
         }
     }
 
-    public static DataTable ExecuteQuery(string connectionString, string query)
+
+        public static object ExecuteScalar(SqlCommand cmd)
+        {
+            using (SqlConnection conn = new SqlConnection("your_connection_string"))
+            {
+                cmd.Connection = conn;
+                conn.Open();
+                return cmd.ExecuteScalar();
+            }
+        }
+
+        public static object ExecuteScalar(string connectionString, string query, params SqlParameter[] parameters)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+
+                // Añadir los parámetros al comando
+                command.Parameters.AddRange(parameters);
+
+                connection.Open();
+                return command.ExecuteScalar();
+            }
+        }
+
+        public static DataTable ExecuteQuery(string connectionString, string query)
     {
         using (SqlConnection connection = new SqlConnection(connectionString))
         {

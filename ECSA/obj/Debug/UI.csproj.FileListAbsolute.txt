@@ -89,3 +89,6 @@ C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\itextsharp.dll
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\BouncyCastle.Cryptography.xml
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\itextsharp.xml
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIConectarSQL.resources
+C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\Bogus.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\Bogus.xml
+C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIAyuda.resources

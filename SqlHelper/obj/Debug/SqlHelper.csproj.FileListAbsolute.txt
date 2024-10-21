@@ -21,3 +21,5 @@ C:\Users\CASA\Desktop\ECSA\ECSA\SqlHelper\bin\Debug\itextsharp.dll
 C:\Users\CASA\Desktop\ECSA\ECSA\SqlHelper\bin\Debug\BouncyCastle.Cryptography.xml
 C:\Users\CASA\Desktop\ECSA\ECSA\SqlHelper\bin\Debug\itextsharp.xml
 C:\Users\CASA\Desktop\ECSA\ECSA\SqlHelper\obj\Debug\SqlHelper.csproj.CopyComplete
+C:\Users\CASA\Desktop\ECSA\ECSA\SqlHelper\bin\Debug\Bogus.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\SqlHelper\bin\Debug\Bogus.xml
