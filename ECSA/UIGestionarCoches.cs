@@ -52,13 +52,17 @@ namespace ECSA
                         break;
                     case 96:
                         lblInterno.Text = traduccion.Descripcion;
+                        dtgCoches.Columns["Interno"].HeaderText = traduccion.Descripcion;
                         break;
                     case 122:
                         lblPatente.Text = traduccion.Descripcion;
+                        dtgCoches.Columns["Patente"].HeaderText = traduccion.Descripcion;
                         break;
                     case 124:
                         lblLineaAsignar.Text = traduccion.Descripcion;
-                        break;          
+                        break;
+                    
+
                 }
             }
 
@@ -256,6 +260,8 @@ namespace ECSA
         {
             dtgCoches.DataSource = null;
             dtgCoches.DataSource = BLLCoche.Listar();
+            dtgCoches.Columns["ID_Linea"].Visible = false;
+            dtgCoches.Columns["DVH"].Visible = false;
         }
 
         private void limpiartxt()

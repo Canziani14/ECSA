@@ -33,6 +33,10 @@ namespace DAL
         {
             return DAOs.DAOSServicio.GetInstance().Listar(idLinea);
         }
+        public List<Servicio> Listar(int idLinea, string date1, string date2)
+        {
+            return DAOs.DAOSServicio.GetInstance().Listar(idLinea, date1, date2);
+        }
         public List<Servicio> Listar()
         {
             return DAOs.DAOSServicio.GetInstance().Listar();

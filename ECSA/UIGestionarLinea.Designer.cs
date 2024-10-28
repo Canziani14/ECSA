@@ -48,7 +48,7 @@
             this.dtgLineas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgLineas.Location = new System.Drawing.Point(12, 21);
             this.dtgLineas.Name = "dtgLineas";
-            this.dtgLineas.Size = new System.Drawing.Size(194, 262);
+            this.dtgLineas.Size = new System.Drawing.Size(173, 262);
             this.dtgLineas.TabIndex = 0;
             this.dtgLineas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgLineas_CellDoubleClick);
             // 
@@ -103,7 +103,7 @@
             this.gbGestorLineas.Controls.Add(this.btnGestionarCoches);
             this.gbGestorLineas.Controls.Add(this.btnCrearLinea);
             this.gbGestorLineas.Controls.Add(this.btnEliminarLinea);
-            this.gbGestorLineas.Location = new System.Drawing.Point(233, 21);
+            this.gbGestorLineas.Location = new System.Drawing.Point(191, 21);
             this.gbGestorLineas.Name = "gbGestorLineas";
             this.gbGestorLineas.Size = new System.Drawing.Size(263, 262);
             this.gbGestorLineas.TabIndex = 5;
@@ -157,7 +157,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 295);
+            this.ClientSize = new System.Drawing.Size(466, 295);
             this.Controls.Add(this.gbGestorLineas);
             this.Controls.Add(this.dtgLineas);
             this.Name = "UIGestionarLinea";

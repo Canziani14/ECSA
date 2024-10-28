@@ -187,6 +187,7 @@
             // 
             // cmbConductor
             // 
+            this.cmbConductor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbConductor.FormattingEnabled = true;
             this.cmbConductor.Location = new System.Drawing.Point(109, 76);
             this.cmbConductor.Name = "cmbConductor";
@@ -195,6 +196,7 @@
             // 
             // cmbInterno
             // 
+            this.cmbInterno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbInterno.FormattingEnabled = true;
             this.cmbInterno.Location = new System.Drawing.Point(109, 35);
             this.cmbInterno.Name = "cmbInterno";

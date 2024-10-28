@@ -125,8 +125,9 @@
             // 
             // cmbIdiomas
             // 
+            this.cmbIdiomas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbIdiomas.FormattingEnabled = true;
-            this.cmbIdiomas.Location = new System.Drawing.Point(217, 214);
+            this.cmbIdiomas.Location = new System.Drawing.Point(218, 215);
             this.cmbIdiomas.Name = "cmbIdiomas";
             this.cmbIdiomas.Size = new System.Drawing.Size(93, 21);
             this.cmbIdiomas.TabIndex = 10;

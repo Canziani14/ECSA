@@ -69,7 +69,7 @@
             this.dtgEmpleados.Name = "dtgEmpleados";
             this.dtgEmpleados.RowHeadersVisible = false;
             this.dtgEmpleados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgEmpleados.Size = new System.Drawing.Size(634, 364);
+            this.dtgEmpleados.Size = new System.Drawing.Size(764, 445);
             this.dtgEmpleados.TabIndex = 0;
             this.dtgEmpleados.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgEmpleados_CellDoubleClick);
             // 
@@ -95,7 +95,7 @@
             // 
             // btnModificarEmpleado
             // 
-            this.btnModificarEmpleado.Location = new System.Drawing.Point(126, 311);
+            this.btnModificarEmpleado.Location = new System.Drawing.Point(102, 311);
             this.btnModificarEmpleado.Name = "btnModificarEmpleado";
             this.btnModificarEmpleado.Size = new System.Drawing.Size(75, 23);
             this.btnModificarEmpleado.TabIndex = 3;
@@ -105,7 +105,7 @@
             // 
             // btnEliminarEmpleado
             // 
-            this.btnEliminarEmpleado.Location = new System.Drawing.Point(242, 311);
+            this.btnEliminarEmpleado.Location = new System.Drawing.Point(209, 311);
             this.btnEliminarEmpleado.Name = "btnEliminarEmpleado";
             this.btnEliminarEmpleado.Size = new System.Drawing.Size(75, 23);
             this.btnEliminarEmpleado.TabIndex = 4;
@@ -216,16 +216,16 @@
             this.gbGestorEmpleados.Controls.Add(this.lblDireccion);
             this.gbGestorEmpleados.Controls.Add(this.txtApellido);
             this.gbGestorEmpleados.Controls.Add(this.lblDNI);
-            this.gbGestorEmpleados.Location = new System.Drawing.Point(641, 74);
+            this.gbGestorEmpleados.Location = new System.Drawing.Point(771, 74);
             this.gbGestorEmpleados.Name = "gbGestorEmpleados";
-            this.gbGestorEmpleados.Size = new System.Drawing.Size(335, 390);
+            this.gbGestorEmpleados.Size = new System.Drawing.Size(299, 390);
             this.gbGestorEmpleados.TabIndex = 15;
             this.gbGestorEmpleados.TabStop = false;
             this.gbGestorEmpleados.Text = "Gestor de Empleados";
             // 
             // btnRecuperarEmlpeado
             // 
-            this.btnRecuperarEmlpeado.Location = new System.Drawing.Point(242, 341);
+            this.btnRecuperarEmlpeado.Location = new System.Drawing.Point(209, 341);
             this.btnRecuperarEmlpeado.Name = "btnRecuperarEmlpeado";
             this.btnRecuperarEmlpeado.Size = new System.Drawing.Size(75, 43);
             this.btnRecuperarEmlpeado.TabIndex = 22;
@@ -263,7 +263,7 @@
             // 
             this.txtFechadeIngreso.Location = new System.Drawing.Point(117, 242);
             this.txtFechadeIngreso.Name = "txtFechadeIngreso";
-            this.txtFechadeIngreso.Size = new System.Drawing.Size(200, 20);
+            this.txtFechadeIngreso.Size = new System.Drawing.Size(167, 20);
             this.txtFechadeIngreso.TabIndex = 18;
             // 
             // lblLinea
@@ -285,6 +285,7 @@
             // 
             // cmbLinea
             // 
+            this.cmbLinea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLinea.FormattingEnabled = true;
             this.cmbLinea.Location = new System.Drawing.Point(126, 200);
             this.cmbLinea.Name = "cmbLinea";
@@ -326,7 +327,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(998, 476);
+            this.ClientSize = new System.Drawing.Size(1073, 523);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblBuscarEmpleado);
             this.Controls.Add(this.txtBuscarEmpleado);

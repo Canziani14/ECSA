@@ -38,7 +38,7 @@
             this.dtgAlertas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgAlertas.Location = new System.Drawing.Point(12, 45);
             this.dtgAlertas.Name = "dtgAlertas";
-            this.dtgAlertas.Size = new System.Drawing.Size(387, 303);
+            this.dtgAlertas.Size = new System.Drawing.Size(770, 425);
             this.dtgAlertas.TabIndex = 0;
             // 
             // lblAlertasCriticidad
@@ -54,7 +54,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(411, 360);
+            this.ClientSize = new System.Drawing.Size(794, 482);
             this.Controls.Add(this.lblAlertasCriticidad);
             this.Controls.Add(this.dtgAlertas);
             this.Name = "UIAlertas";

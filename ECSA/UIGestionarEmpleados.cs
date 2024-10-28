@@ -235,7 +235,7 @@ namespace ECSA
                         DNI = BLLSeguridad.EncriptarCamposReversible(txtDNI.Text),
                         Direccion = BLLSeguridad.EncriptarCamposReversible(txtDireccion.Text),
                         Telefono = BLLSeguridad.EncriptarCamposReversible(txtTelefono.Text),
-                        LineaPertenece = int.Parse(cmbLinea.Text),
+                        LineaPertenece = (int)cmbLinea.SelectedValue,
                         FechaDeingreso = DateTime.Parse(txtFechadeIngreso.Text),
                         Legajo = int.Parse(txtLegajo.Text),
                     }
@@ -412,6 +412,8 @@ namespace ECSA
         {
             dtgEmpleados.DataSource = null;
             dtgEmpleados.DataSource = BLLEmpleado.Listar();
+            dtgEmpleados.Columns["ID_Linea"].Visible = false;
+            dtgEmpleados.Columns["DVH"].Visible = false;
         }
 
         private void limpiartxt()

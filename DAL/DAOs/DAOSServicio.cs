@@ -37,7 +37,9 @@ namespace DAL.DAOs
         string QueryInsert = "INSERT INTO Servicio (Hora_Cabecera_Principal, Hora_Cabecera_Retorno, Legajo, Interno, ID_Linea) " +
                        "VALUES (@Hora_Cabecera_Principal, @Hora_Cabecera_Retorno, @Legajo, @Interno, @ID_Linea)";
 
-        
+        string queryReporte = "SELECT * FROM servicio WHERE ID_Linea = @ID_Linea " +
+            " AND (Hora_Cabecera_Principal BETWEEN @Date1 AND @Date2 OR Hora_Cabecera_Retorno" +
+            " BETWEEN @Date1 AND @Date2);";
 
         string QueryDelete = "delete from servicio where ID_Servicio = @ID_Servicio";
         string QueryUpdate = "UPDATE Servicio SET Hora_Cabecera_Principal = @Hora_Cabecera_Principal,Hora_Cabecera_Retorno = @Hora_Cabecera_Retorno WHERE ID_Servicio = @ID_Servicio";
@@ -183,6 +185,19 @@ namespace DAL.DAOs
             DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByLinea, parameters);
             return Mappers.MAPPERServicio.GetInstance().Map(table);
         }
+
+        public List<Servicio> Listar(int IDLinea, string date1, string date2)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@ID_Linea", IDLinea),
+                new SqlParameter("@Date1", date1),
+                new SqlParameter("@Date2", date2),
+            };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(queryReporte, parameters);
+            return Mappers.MAPPERServicio.GetInstance().Map(table);
+        }
+
 
         public bool Modificar(DateTime salida, DateTime llegada, int idServicio)
         {

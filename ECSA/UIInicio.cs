@@ -15,7 +15,7 @@ namespace ECSA
 {
     public partial class UIInicio : Form
     {
-        BLL.BLLSeguridad BLLSeguridad= new BLL.BLLSeguridad();
+        BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
 
         private BE.Usuario usuarioLogin;
         private List<Patente> _patentes;
@@ -28,7 +28,7 @@ namespace ECSA
             this.usuarioLogin = usuarioLog;
             BLLSeguridad.VerificarDigitosVerificadores("Usuario");
             BLLSeguridad.CalcularDVV("Usuario");
-            _idIdiomaSeleccionado= idIdiomaSeleccionado;
+            _idIdiomaSeleccionado = idIdiomaSeleccionado;
 
             #region idioma
 
@@ -74,7 +74,7 @@ namespace ECSA
                         break;
 
                 }
-                _traducciones=traducciones;
+                _traducciones = traducciones;
             }
 
             #endregion
@@ -87,7 +87,7 @@ namespace ECSA
             btnGestionarPatentes.Enabled = false;
             btnGestionarFamilias.Enabled = false;
             btnReportes.Enabled = false;
-            btnAlertas.Enabled  = false;
+            btnAlertas.Enabled = false;
             btnBitacora.Enabled = false;
 
             foreach (var patente in patentes)
@@ -130,8 +130,45 @@ namespace ECSA
             this.KeyPreview = true; // Permite que el formulario capture teclas
             this.KeyDown += new KeyEventHandler(F1);
 
-            
+            #region alerta
+            Timer timer = new Timer();
+            bool isRed = false;
+
+            // Configura el temporizador
+            timer.Interval = 500; // Intervalo en milisegundos (500ms = 0.5s)
+            timer.Tick += (s, e) =>
+            {
+                // Alterna el color del botón
+                if (isRed)
+                {
+                    btnAlertas.BackColor = Color.Red;
+                }
+                else
+                {
+                    btnAlertas.BackColor = SystemColors.Control;
+                }
+
+                // Cambia el estado del color
+                isRed = !isRed;
+            };
+
+            // Inicia el temporizador
+            timer.Start();
+            btnAlertas.Click += (s, e) =>
+            {
+                // Detiene el temporizador cuando se hace clic
+                timer.Stop();
+
+                // Restablece el color del botón
+                btnAlertas.BackColor = SystemColors.Control;
+            };
+            #endregion
+
         }
+
+
+
+
 
         private void F1(object sender, KeyEventArgs e)
         {
@@ -156,7 +193,7 @@ namespace ECSA
 
         private void btnGestionarUsuarios_Click_1(object sender, EventArgs e)
         {
-            UIGestionarUsuarios uigestionarUsuarios = new UIGestionarUsuarios(usuarioLogin, _patentes, _traducciones);
+            UIGestionarUsuarios uigestionarUsuarios = new UIGestionarUsuarios(usuarioLogin, _patentes, _traducciones, _idIdiomaSeleccionado);
             uigestionarUsuarios.MdiParent = this;
             uigestionarUsuarios.Show();
         }
@@ -184,14 +221,14 @@ namespace ECSA
 
         private void btnGestionarPatentes_Click(object sender, EventArgs e)
         {
-            UIGestionarPatentes uiGestionarPatentes = new UIGestionarPatentes(usuarioLogin, _patentes, _traducciones);
+            UIGestionarPatentes uiGestionarPatentes = new UIGestionarPatentes(usuarioLogin, _patentes, _traducciones, _idIdiomaSeleccionado);
             uiGestionarPatentes.MdiParent = this;
             uiGestionarPatentes.Show();
         }
 
         private void btnGestionarFamilias_Click(object sender, EventArgs e)
         {
-            UIGestionarFamilias uiGestionarFamilias = new UIGestionarFamilias(usuarioLogin, _patentes, _traducciones);
+            UIGestionarFamilias uiGestionarFamilias = new UIGestionarFamilias(usuarioLogin, _patentes, _traducciones, _idIdiomaSeleccionado);
             uiGestionarFamilias.MdiParent = this;
             uiGestionarFamilias.Show();
         }

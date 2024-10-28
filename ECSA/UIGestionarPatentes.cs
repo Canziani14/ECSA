@@ -22,13 +22,14 @@ namespace ECSA
         BLL.BLLPatente BLLPatente = new BLL.BLLPatente();
         BE.Patente PatenteSeleccionadaAsignar = new BE.Patente();
         BE.Patente PatenteSeleccionadaQuitar = new BE.Patente();
-        public UIGestionarPatentes(BE.Usuario usuarioLogin, List<Patente> patentes, List<Traduccion> traducciones)
+        int _idiomaSeleccionado;
+        public UIGestionarPatentes(BE.Usuario usuarioLogin, List<Patente> patentes, List<Traduccion> traducciones, int idiomaSeleccionado)
         {
             InitializeComponent();
             this.usuarioLog = usuarioLogin;
             dtgUsuarios.DataSource = BLLUsuario.Listar();
             this.StartPosition = FormStartPosition.CenterScreen;
-            
+            this._idiomaSeleccionado = idiomaSeleccionado;
 
             #region idioma
 
@@ -51,7 +52,30 @@ namespace ECSA
                         break;
                     case 100:
                         gbGestorPatentes.Text = traduccion.Descripcion;
-                        break;              
+                        break;
+                    case 84:
+                        dtgUsuarios.Columns["ID_Usuario"].HeaderText = traduccion.Descripcion;
+                        break;
+                    case 68:
+                        dtgUsuarios.Columns["Nombre"].HeaderText = traduccion.Descripcion;
+                        break;
+                    case 70:
+                        dtgUsuarios.Columns["Apellido"].HeaderText = traduccion.Descripcion;
+                        break;
+                    case 72:
+                        dtgUsuarios.Columns["DNI"].HeaderText = traduccion.Descripcion;
+                        break;
+                    case 74:
+                        dtgUsuarios.Columns["Nick"].HeaderText = traduccion.Descripcion;
+                        break;
+                    case 148:
+                        dtgUsuarios.Columns["Estado"].HeaderText = traduccion.Descripcion;
+                        break;
+                    case 149:
+                        dtgUsuarios.Columns["Eliminado"].HeaderText = traduccion.Descripcion;
+                        break;
+
+
                 }
             }
             #endregion| 
@@ -167,7 +191,7 @@ namespace ECSA
             string nickEncriptado = BLLSeguridad.EncriptarCamposReversible(nick);
             if (!string.IsNullOrEmpty(nick))
             {
-                // Perform the search using the parsed legajo
+               
                 List<BE.Usuario> usuarios = BLLUsuario.Buscar(nickEncriptado);
 
 
@@ -183,7 +207,7 @@ namespace ECSA
             }
             else
             {
-                // Show error message if the input is not a valid integer
+                
                 MessageBox.Show("Por favor, ingrese un Nick válido.");
                 dtgUsuarios.DataSource = null;
             }
@@ -230,6 +254,13 @@ namespace ECSA
             {
                 MessageBox.Show("No se ha seleccionado un usuario.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
+            }
+            if (_idiomaSeleccionado == 2)
+            {
+                dtgPatentesActuales.Columns["ID_Patente"].HeaderText = "ID";
+                dtgPatentesSinAsignar.Columns["ID_Patente"].HeaderText = "ID";
+                dtgPatentesActuales.Columns["Descripcion"].HeaderText = "Description";
+                dtgPatentesSinAsignar.Columns["Descripcion"].HeaderText = "Description";
             }
 
             int idUsuario = usuarioSeleccionado.ID_Usuario;
@@ -296,6 +327,13 @@ namespace ECSA
             BLLPatente.Asignar(id_Usuario, id_Patente);
             dtgPatentesActuales.DataSource = BLLPatente.ListarActuales(id_Usuario);
             dtgPatentesSinAsignar.DataSource = BLLPatente.ListarSinAsignar(id_Usuario);
+            if (_idiomaSeleccionado == 2)
+            {
+                dtgPatentesActuales.Columns["ID_Patente"].HeaderText = "ID";
+                dtgPatentesSinAsignar.Columns["ID_Patente"].HeaderText = "ID";
+                dtgPatentesActuales.Columns["Descripcion"].HeaderText = "Description";
+                dtgPatentesSinAsignar.Columns["Descripcion"].HeaderText = "Description";
+            }
             CalcularDigitos();
             BLLSeguridad.RegistrarEnBitacora(27, usuarioLog.Nick, usuarioLog.ID_Usuario);
             dtgPatentesSinAsignar.Columns["ID_Usuario"].Visible = false;
@@ -327,6 +365,13 @@ namespace ECSA
             int id_Usuario=UsuarioSeleccionado.ID_Usuario;
             dtgPatentesActuales.DataSource = BLLPatente.ListarActuales(id_Usuario);
             dtgPatentesSinAsignar.DataSource = BLLPatente.ListarSinAsignar(id_Usuario);
+            if (_idiomaSeleccionado == 2)
+            {
+                dtgPatentesActuales.Columns["ID_Patente"].HeaderText = "ID";
+                dtgPatentesSinAsignar.Columns["ID_Patente"].HeaderText = "ID";
+                dtgPatentesActuales.Columns["Descripcion"].HeaderText = "Description";
+                dtgPatentesSinAsignar.Columns["Descripcion"].HeaderText = "Description";
+            }
             dtgPatentesActuales.Columns["ID_Usuario"].Visible = false;
             dtgPatentesSinAsignar.Columns["ID_Usuario"].Visible = false;
 

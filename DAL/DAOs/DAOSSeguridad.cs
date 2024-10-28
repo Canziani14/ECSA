@@ -43,7 +43,7 @@ namespace DAL.DAOs
 
 
         string QuerySelect = "select * from bitacora order by Fecha desc";
-        string QuerySelectCrit3 = "select * from Bitacora where criticidad = 3";
+        string QuerySelectCrit3 = "select * from Bitacora where criticidad = 3 order by 2 desc";
 
         #endregion
 

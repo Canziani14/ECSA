@@ -28,7 +28,23 @@ namespace ECSA
                     case 138:
                         lblAlertasCriticidad.Text = traduccion.Descripcion;
                         break;
+                    case 84:
+                        dtgAlertas.Columns["ID_Bitacora"].HeaderText = traduccion.Descripcion;
+                        break;
+                    case 145:
+                        dtgAlertas.Columns["Descripcion"].HeaderText = traduccion.Descripcion; 
+                        break;
+                    case 146:
+                        dtgAlertas.Columns["Fecha"].HeaderText = traduccion.Descripcion;
+                        break;
+                    case 147:
+                        dtgAlertas.Columns["Criticidad"].HeaderText = traduccion.Descripcion;  
+                        break;
+                    case 74:
+                        dtgAlertas.Columns["NickUsuarioLogin"].HeaderText = traduccion.Descripcion;
+                        break;
                 }
+
             }
 
             #endregion

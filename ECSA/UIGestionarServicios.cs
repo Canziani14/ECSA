@@ -49,6 +49,7 @@ namespace ECSA
                 {
                     case 84:
                         lblID.Text = traduccion.Descripcion;
+                        dtgServicios.Columns["ID_Servicio"].HeaderText = traduccion.Descripcion;
                         break;
                     case 86:
                         lblLinea.Text = traduccion.Descripcion;
@@ -58,9 +59,11 @@ namespace ECSA
                         break;
                     case 88:
                         lblHoraPrincipal.Text = traduccion.Descripcion;
+                        dtgServicios.Columns["HorarioLlegada"].HeaderText = traduccion.Descripcion;
                         break;
                     case 90:
                         lblHoraRebote.Text = traduccion.Descripcion;
+                        dtgServicios.Columns["HorarioSalida"].HeaderText = traduccion.Descripcion;
                         break;
                     case 2:
                         btnCrearServicio.Text = traduccion.Descripcion;
@@ -76,6 +79,7 @@ namespace ECSA
                         break;
                     case 96:
                         lblInterno.Text = traduccion.Descripcion;
+                        dtgServicios.Columns["Coche"].HeaderText = traduccion.Descripcion;
                         break;
                     case 98:
                         lblConductor.Text = traduccion.Descripcion;
@@ -88,6 +92,15 @@ namespace ECSA
                         break;
                     case 92:
                         lblServicio.Text = traduccion.Descripcion;
+                        break;
+                    case 116:
+                        dtgServicios.Columns["LegajoEmpleado"].HeaderText = traduccion.Descripcion;
+                        break;
+                    case 68:
+                        dtgServicios.Columns["NombreEmpleado"].HeaderText = traduccion.Descripcion;
+                        break;
+                    case 70:
+                        dtgServicios.Columns["ApellidoEmpleado"].HeaderText = traduccion.Descripcion;
                         break;
                 }
             }

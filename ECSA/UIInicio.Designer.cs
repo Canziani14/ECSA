@@ -64,7 +64,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(127, 601);
+            this.panel1.Size = new System.Drawing.Size(115, 658);
             this.panel1.TabIndex = 1;
             // 
             // btnReportes
@@ -74,7 +74,7 @@
             this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReportes.Location = new System.Drawing.Point(0, 354);
             this.btnReportes.Name = "btnReportes";
-            this.btnReportes.Size = new System.Drawing.Size(127, 46);
+            this.btnReportes.Size = new System.Drawing.Size(115, 46);
             this.btnReportes.TabIndex = 9;
             this.btnReportes.Text = "Generar Reportes";
             this.btnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -88,7 +88,7 @@
             this.btnGestionarFamilias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGestionarFamilias.Location = new System.Drawing.Point(0, 308);
             this.btnGestionarFamilias.Name = "btnGestionarFamilias";
-            this.btnGestionarFamilias.Size = new System.Drawing.Size(127, 46);
+            this.btnGestionarFamilias.Size = new System.Drawing.Size(115, 46);
             this.btnGestionarFamilias.TabIndex = 8;
             this.btnGestionarFamilias.Text = "Gestionar Familias";
             this.btnGestionarFamilias.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -102,7 +102,7 @@
             this.btnGestionarPatentes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGestionarPatentes.Location = new System.Drawing.Point(0, 262);
             this.btnGestionarPatentes.Name = "btnGestionarPatentes";
-            this.btnGestionarPatentes.Size = new System.Drawing.Size(127, 46);
+            this.btnGestionarPatentes.Size = new System.Drawing.Size(115, 46);
             this.btnGestionarPatentes.TabIndex = 7;
             this.btnGestionarPatentes.Text = "Gestionar Patentes";
             this.btnGestionarPatentes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -116,7 +116,7 @@
             this.btnGestionarLineas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGestionarLineas.Location = new System.Drawing.Point(0, 216);
             this.btnGestionarLineas.Name = "btnGestionarLineas";
-            this.btnGestionarLineas.Size = new System.Drawing.Size(127, 46);
+            this.btnGestionarLineas.Size = new System.Drawing.Size(115, 46);
             this.btnGestionarLineas.TabIndex = 4;
             this.btnGestionarLineas.Text = "Gestionar Lineas";
             this.btnGestionarLineas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -130,7 +130,7 @@
             this.btnBKP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBKP.Location = new System.Drawing.Point(0, 170);
             this.btnBKP.Name = "btnBKP";
-            this.btnBKP.Size = new System.Drawing.Size(127, 46);
+            this.btnBKP.Size = new System.Drawing.Size(115, 46);
             this.btnBKP.TabIndex = 3;
             this.btnBKP.Text = "Gestionar BackUp";
             this.btnBKP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -144,7 +144,7 @@
             this.btnGestionarUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGestionarUsuarios.Location = new System.Drawing.Point(0, 124);
             this.btnGestionarUsuarios.Name = "btnGestionarUsuarios";
-            this.btnGestionarUsuarios.Size = new System.Drawing.Size(127, 46);
+            this.btnGestionarUsuarios.Size = new System.Drawing.Size(115, 46);
             this.btnGestionarUsuarios.TabIndex = 2;
             this.btnGestionarUsuarios.Text = "Gestionar Usuarios";
             this.btnGestionarUsuarios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -158,7 +158,7 @@
             this.btnGestionarEmpleados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGestionarEmpleados.Location = new System.Drawing.Point(0, 78);
             this.btnGestionarEmpleados.Name = "btnGestionarEmpleados";
-            this.btnGestionarEmpleados.Size = new System.Drawing.Size(127, 46);
+            this.btnGestionarEmpleados.Size = new System.Drawing.Size(115, 46);
             this.btnGestionarEmpleados.TabIndex = 1;
             this.btnGestionarEmpleados.Text = "Gestionar Empleados";
             this.btnGestionarEmpleados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -171,7 +171,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(127, 78);
+            this.panel3.Size = new System.Drawing.Size(115, 78);
             this.panel3.TabIndex = 0;
             // 
             // pictureBox1
@@ -192,9 +192,9 @@
             this.panel2.Controls.Add(this.btnBitacora);
             this.panel2.Controls.Add(this.btnAlertas);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(1146, 0);
+            this.panel2.Location = new System.Drawing.Point(1199, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(72, 601);
+            this.panel2.Size = new System.Drawing.Size(70, 658);
             this.panel2.TabIndex = 3;
             // 
             // btnCerrarSesion
@@ -202,9 +202,9 @@
             this.btnCerrarSesion.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnCerrarSesion.FlatAppearance.BorderSize = 0;
             this.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrarSesion.Location = new System.Drawing.Point(0, 496);
+            this.btnCerrarSesion.Location = new System.Drawing.Point(0, 553);
             this.btnCerrarSesion.Name = "btnCerrarSesion";
-            this.btnCerrarSesion.Size = new System.Drawing.Size(72, 35);
+            this.btnCerrarSesion.Size = new System.Drawing.Size(70, 35);
             this.btnCerrarSesion.TabIndex = 5;
             this.btnCerrarSesion.Text = "Cerrar Sesion";
             this.btnCerrarSesion.UseVisualStyleBackColor = true;
@@ -215,9 +215,9 @@
             this.btnCambiarContra.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnCambiarContra.FlatAppearance.BorderSize = 0;
             this.btnCambiarContra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCambiarContra.Location = new System.Drawing.Point(0, 531);
+            this.btnCambiarContra.Location = new System.Drawing.Point(0, 588);
             this.btnCambiarContra.Name = "btnCambiarContra";
-            this.btnCambiarContra.Size = new System.Drawing.Size(72, 35);
+            this.btnCambiarContra.Size = new System.Drawing.Size(70, 35);
             this.btnCambiarContra.TabIndex = 4;
             this.btnCambiarContra.Text = "Cambiar contraseña";
             this.btnCambiarContra.UseVisualStyleBackColor = true;
@@ -228,9 +228,9 @@
             this.btnAyuda.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnAyuda.FlatAppearance.BorderSize = 0;
             this.btnAyuda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAyuda.Location = new System.Drawing.Point(0, 566);
+            this.btnAyuda.Location = new System.Drawing.Point(0, 623);
             this.btnAyuda.Name = "btnAyuda";
-            this.btnAyuda.Size = new System.Drawing.Size(72, 35);
+            this.btnAyuda.Size = new System.Drawing.Size(70, 35);
             this.btnAyuda.TabIndex = 3;
             this.btnAyuda.Text = "Ayuda";
             this.btnAyuda.UseVisualStyleBackColor = true;
@@ -242,7 +242,7 @@
             this.btnBitacora.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBitacora.Location = new System.Drawing.Point(0, 23);
             this.btnBitacora.Name = "btnBitacora";
-            this.btnBitacora.Size = new System.Drawing.Size(72, 35);
+            this.btnBitacora.Size = new System.Drawing.Size(70, 35);
             this.btnBitacora.TabIndex = 2;
             this.btnBitacora.Text = "Consultar Bitacora";
             this.btnBitacora.UseVisualStyleBackColor = true;
@@ -255,7 +255,7 @@
             this.btnAlertas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAlertas.Location = new System.Drawing.Point(0, 0);
             this.btnAlertas.Name = "btnAlertas";
-            this.btnAlertas.Size = new System.Drawing.Size(72, 23);
+            this.btnAlertas.Size = new System.Drawing.Size(70, 23);
             this.btnAlertas.TabIndex = 0;
             this.btnAlertas.Text = "Ver Alertas";
             this.btnAlertas.UseVisualStyleBackColor = true;
@@ -265,7 +265,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1218, 601);
+            this.ClientSize = new System.Drawing.Size(1269, 658);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.IsMdiContainer = true;

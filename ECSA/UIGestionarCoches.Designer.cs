@@ -48,9 +48,9 @@
             // dtgCoches
             // 
             this.dtgCoches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgCoches.Location = new System.Drawing.Point(3, 76);
+            this.dtgCoches.Location = new System.Drawing.Point(6, 76);
             this.dtgCoches.Name = "dtgCoches";
-            this.dtgCoches.Size = new System.Drawing.Size(155, 362);
+            this.dtgCoches.Size = new System.Drawing.Size(251, 362);
             this.dtgCoches.TabIndex = 0;
             this.dtgCoches.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgUsuarios_CellDoubleClick);
             // 
@@ -94,7 +94,7 @@
             this.gbGestorCoches.Controls.Add(this.lblInterno);
             this.gbGestorCoches.Controls.Add(this.btnCrearCoche);
             this.gbGestorCoches.Controls.Add(this.btnEliminarCoche);
-            this.gbGestorCoches.Location = new System.Drawing.Point(164, 102);
+            this.gbGestorCoches.Location = new System.Drawing.Point(263, 118);
             this.gbGestorCoches.Name = "gbGestorCoches";
             this.gbGestorCoches.Size = new System.Drawing.Size(236, 200);
             this.gbGestorCoches.TabIndex = 4;
@@ -171,7 +171,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(405, 450);
+            this.ClientSize = new System.Drawing.Size(505, 450);
             this.Controls.Add(this.lblBuscarInterno);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.gbGestorCoches);

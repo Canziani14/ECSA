@@ -53,15 +53,15 @@
             // dtgPatentesActuales
             // 
             this.dtgPatentesActuales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgPatentesActuales.Location = new System.Drawing.Point(275, 98);
+            this.dtgPatentesActuales.Location = new System.Drawing.Point(212, 98);
             this.dtgPatentesActuales.Name = "dtgPatentesActuales";
-            this.dtgPatentesActuales.Size = new System.Drawing.Size(351, 330);
+            this.dtgPatentesActuales.Size = new System.Drawing.Size(389, 353);
             this.dtgPatentesActuales.TabIndex = 0;
             this.dtgPatentesActuales.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPatentesActuales_CellDoubleClick);
             // 
             // btnCrearFamilia
             // 
-            this.btnCrearFamilia.Location = new System.Drawing.Point(46, 367);
+            this.btnCrearFamilia.Location = new System.Drawing.Point(13, 353);
             this.btnCrearFamilia.Name = "btnCrearFamilia";
             this.btnCrearFamilia.Size = new System.Drawing.Size(75, 23);
             this.btnCrearFamilia.TabIndex = 1;
@@ -71,7 +71,7 @@
             // 
             // btnModificarFamilia
             // 
-            this.btnModificarFamilia.Location = new System.Drawing.Point(127, 367);
+            this.btnModificarFamilia.Location = new System.Drawing.Point(94, 353);
             this.btnModificarFamilia.Name = "btnModificarFamilia";
             this.btnModificarFamilia.Size = new System.Drawing.Size(75, 23);
             this.btnModificarFamilia.TabIndex = 2;
@@ -81,7 +81,7 @@
             // 
             // btnEliminarFamilia
             // 
-            this.btnEliminarFamilia.Location = new System.Drawing.Point(87, 396);
+            this.btnEliminarFamilia.Location = new System.Drawing.Point(54, 382);
             this.btnEliminarFamilia.Name = "btnEliminarFamilia";
             this.btnEliminarFamilia.Size = new System.Drawing.Size(75, 23);
             this.btnEliminarFamilia.TabIndex = 3;
@@ -99,14 +99,14 @@
             this.gbGestorFamilias.Controls.Add(this.btnModificarFamilia);
             this.gbGestorFamilias.Location = new System.Drawing.Point(2, 3);
             this.gbGestorFamilias.Name = "gbGestorFamilias";
-            this.gbGestorFamilias.Size = new System.Drawing.Size(267, 425);
+            this.gbGestorFamilias.Size = new System.Drawing.Size(204, 425);
             this.gbGestorFamilias.TabIndex = 4;
             this.gbGestorFamilias.TabStop = false;
             this.gbGestorFamilias.Text = "Gestor de Familias";
             // 
             // txtNombreFamilia
             // 
-            this.txtNombreFamilia.Location = new System.Drawing.Point(98, 326);
+            this.txtNombreFamilia.Location = new System.Drawing.Point(65, 312);
             this.txtNombreFamilia.Name = "txtNombreFamilia";
             this.txtNombreFamilia.Size = new System.Drawing.Size(100, 20);
             this.txtNombreFamilia.TabIndex = 7;
@@ -114,7 +114,7 @@
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(52, 329);
+            this.lblNombre.Location = new System.Drawing.Point(19, 315);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(44, 13);
             this.lblNombre.TabIndex = 6;
@@ -125,23 +125,23 @@
             this.dtgFamilias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgFamilias.Location = new System.Drawing.Point(5, 19);
             this.dtgFamilias.Name = "dtgFamilias";
-            this.dtgFamilias.Size = new System.Drawing.Size(237, 287);
+            this.dtgFamilias.Size = new System.Drawing.Size(193, 287);
             this.dtgFamilias.TabIndex = 5;
             this.dtgFamilias.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFamilias_CellDoubleClick);
             // 
             // dtgPatentesSinAsignar
             // 
             this.dtgPatentesSinAsignar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgPatentesSinAsignar.Location = new System.Drawing.Point(643, 98);
+            this.dtgPatentesSinAsignar.Location = new System.Drawing.Point(615, 98);
             this.dtgPatentesSinAsignar.Name = "dtgPatentesSinAsignar";
-            this.dtgPatentesSinAsignar.Size = new System.Drawing.Size(351, 330);
+            this.dtgPatentesSinAsignar.Size = new System.Drawing.Size(369, 353);
             this.dtgPatentesSinAsignar.TabIndex = 5;
             this.dtgPatentesSinAsignar.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPatentesSinAsignar_CellDoubleClick);
             // 
             // labelNombre
             // 
             this.labelNombre.AutoSize = true;
-            this.labelNombre.Location = new System.Drawing.Point(612, 13);
+            this.labelNombre.Location = new System.Drawing.Point(593, 15);
             this.labelNombre.Name = "labelNombre";
             this.labelNombre.Size = new System.Drawing.Size(0, 13);
             this.labelNombre.TabIndex = 7;
@@ -149,7 +149,7 @@
             // lblPatentesActuales
             // 
             this.lblPatentesActuales.AutoSize = true;
-            this.lblPatentesActuales.Location = new System.Drawing.Point(392, 79);
+            this.lblPatentesActuales.Location = new System.Drawing.Point(360, 79);
             this.lblPatentesActuales.Name = "lblPatentesActuales";
             this.lblPatentesActuales.Size = new System.Drawing.Size(93, 13);
             this.lblPatentesActuales.TabIndex = 8;
@@ -167,7 +167,7 @@
             // lblFamilia
             // 
             this.lblFamilia.AutoSize = true;
-            this.lblFamilia.Location = new System.Drawing.Point(562, 36);
+            this.lblFamilia.Location = new System.Drawing.Point(543, 38);
             this.lblFamilia.Name = "lblFamilia";
             this.lblFamilia.Size = new System.Drawing.Size(39, 13);
             this.lblFamilia.TabIndex = 10;
@@ -176,7 +176,7 @@
             // lblID
             // 
             this.lblID.AutoSize = true;
-            this.lblID.Location = new System.Drawing.Point(583, 13);
+            this.lblID.Location = new System.Drawing.Point(564, 15);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(18, 13);
             this.lblID.TabIndex = 11;
@@ -185,7 +185,7 @@
             // txtID
             // 
             this.txtID.Enabled = false;
-            this.txtID.Location = new System.Drawing.Point(598, 10);
+            this.txtID.Location = new System.Drawing.Point(579, 12);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(33, 20);
             this.txtID.TabIndex = 12;
@@ -193,7 +193,7 @@
             // txtNombre
             // 
             this.txtNombre.Enabled = false;
-            this.txtNombre.Location = new System.Drawing.Point(598, 33);
+            this.txtNombre.Location = new System.Drawing.Point(579, 35);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(100, 20);
             this.txtNombre.TabIndex = 13;

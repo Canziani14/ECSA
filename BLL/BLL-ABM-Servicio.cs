@@ -39,6 +39,10 @@ namespace BLL
         {
             return DALServicio.Listar(idLinea);
         }
+        public List<Servicio> Listar(int idLinea, string date1, string date2)
+        {
+            return DALServicio.Listar(idLinea, date1, date2);
+        }
 
         public List<Servicio> Listar()
         {

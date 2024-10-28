@@ -40,6 +40,7 @@
             this.usuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.eCSADataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gbGestorUsuarios = new System.Windows.Forms.GroupBox();
+            this.btnRecuperarUsuario = new System.Windows.Forms.Button();
             this.txtIDUsuario = new System.Windows.Forms.TextBox();
             this.lblidUsuario = new System.Windows.Forms.Label();
             this.txtDNI = new System.Windows.Forms.TextBox();
@@ -59,7 +60,6 @@
             this.lblAsignadas = new System.Windows.Forms.Label();
             this.dtgFamiliasSinAsignar = new System.Windows.Forms.DataGridView();
             this.lblBuscarUsuario = new System.Windows.Forms.Label();
-            this.btnRecuperarUsuario = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eCSADataSetBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).BeginInit();
@@ -75,13 +75,13 @@
             this.dtgUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgUsuarios.Location = new System.Drawing.Point(12, 69);
             this.dtgUsuarios.Name = "dtgUsuarios";
-            this.dtgUsuarios.Size = new System.Drawing.Size(461, 208);
+            this.dtgUsuarios.Size = new System.Drawing.Size(645, 208);
             this.dtgUsuarios.TabIndex = 0;
             this.dtgUsuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgUsuarios_CellDoubleClick);
             // 
             // btnCrearUsuario
             // 
-            this.btnCrearUsuario.Location = new System.Drawing.Point(6, 168);
+            this.btnCrearUsuario.Location = new System.Drawing.Point(6, 191);
             this.btnCrearUsuario.Name = "btnCrearUsuario";
             this.btnCrearUsuario.Size = new System.Drawing.Size(75, 23);
             this.btnCrearUsuario.TabIndex = 1;
@@ -91,7 +91,7 @@
             // 
             // btnEliminarUsuario
             // 
-            this.btnEliminarUsuario.Location = new System.Drawing.Point(186, 168);
+            this.btnEliminarUsuario.Location = new System.Drawing.Point(186, 191);
             this.btnEliminarUsuario.Name = "btnEliminarUsuario";
             this.btnEliminarUsuario.Size = new System.Drawing.Size(75, 23);
             this.btnEliminarUsuario.TabIndex = 2;
@@ -101,7 +101,7 @@
             // 
             // btnModificarUsuario
             // 
-            this.btnModificarUsuario.Location = new System.Drawing.Point(95, 168);
+            this.btnModificarUsuario.Location = new System.Drawing.Point(95, 191);
             this.btnModificarUsuario.Name = "btnModificarUsuario";
             this.btnModificarUsuario.Size = new System.Drawing.Size(75, 23);
             this.btnModificarUsuario.TabIndex = 3;
@@ -121,7 +121,7 @@
             // 
             // btnDesbloquearUsuario
             // 
-            this.btnDesbloquearUsuario.Location = new System.Drawing.Point(6, 225);
+            this.btnDesbloquearUsuario.Location = new System.Drawing.Point(6, 268);
             this.btnDesbloquearUsuario.Name = "btnDesbloquearUsuario";
             this.btnDesbloquearUsuario.Size = new System.Drawing.Size(116, 23);
             this.btnDesbloquearUsuario.TabIndex = 8;
@@ -131,7 +131,7 @@
             // 
             // btnBloquearUsuario
             // 
-            this.btnBloquearUsuario.Location = new System.Drawing.Point(6, 197);
+            this.btnBloquearUsuario.Location = new System.Drawing.Point(6, 239);
             this.btnBloquearUsuario.Name = "btnBloquearUsuario";
             this.btnBloquearUsuario.Size = new System.Drawing.Size(116, 23);
             this.btnBloquearUsuario.TabIndex = 9;
@@ -163,12 +163,22 @@
             this.gbGestorUsuarios.Controls.Add(this.btnModificarUsuario);
             this.gbGestorUsuarios.Controls.Add(this.btnDesbloquearUsuario);
             this.gbGestorUsuarios.Controls.Add(this.btnEliminarUsuario);
-            this.gbGestorUsuarios.Location = new System.Drawing.Point(488, 29);
+            this.gbGestorUsuarios.Location = new System.Drawing.Point(663, 12);
             this.gbGestorUsuarios.Name = "gbGestorUsuarios";
-            this.gbGestorUsuarios.Size = new System.Drawing.Size(281, 248);
+            this.gbGestorUsuarios.Size = new System.Drawing.Size(281, 323);
             this.gbGestorUsuarios.TabIndex = 10;
             this.gbGestorUsuarios.TabStop = false;
             this.gbGestorUsuarios.Text = "Gestor de Usuarios";
+            // 
+            // btnRecuperarUsuario
+            // 
+            this.btnRecuperarUsuario.Location = new System.Drawing.Point(186, 232);
+            this.btnRecuperarUsuario.Name = "btnRecuperarUsuario";
+            this.btnRecuperarUsuario.Size = new System.Drawing.Size(75, 36);
+            this.btnRecuperarUsuario.TabIndex = 22;
+            this.btnRecuperarUsuario.Text = "Recuperar Usuario";
+            this.btnRecuperarUsuario.UseVisualStyleBackColor = true;
+            this.btnRecuperarUsuario.Click += new System.EventHandler(this.btnRecuperarUsuario_Click);
             // 
             // txtIDUsuario
             // 
@@ -205,7 +215,7 @@
             // 
             // txtMail
             // 
-            this.txtMail.Location = new System.Drawing.Point(70, 142);
+            this.txtMail.Location = new System.Drawing.Point(70, 152);
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(164, 20);
             this.txtMail.TabIndex = 17;
@@ -213,7 +223,7 @@
             // lblMail
             // 
             this.lblMail.AutoSize = true;
-            this.lblMail.Location = new System.Drawing.Point(6, 145);
+            this.lblMail.Location = new System.Drawing.Point(6, 155);
             this.lblMail.Name = "lblMail";
             this.lblMail.Size = new System.Drawing.Size(26, 13);
             this.lblMail.TabIndex = 16;
@@ -221,7 +231,7 @@
             // 
             // txtNick
             // 
-            this.txtNick.Location = new System.Drawing.Point(70, 119);
+            this.txtNick.Location = new System.Drawing.Point(70, 121);
             this.txtNick.Name = "txtNick";
             this.txtNick.Size = new System.Drawing.Size(100, 20);
             this.txtNick.TabIndex = 15;
@@ -229,7 +239,7 @@
             // lblNick
             // 
             this.lblNick.AutoSize = true;
-            this.lblNick.Location = new System.Drawing.Point(6, 122);
+            this.lblNick.Location = new System.Drawing.Point(6, 124);
             this.lblNick.Name = "lblNick";
             this.lblNick.Size = new System.Drawing.Size(29, 13);
             this.lblNick.TabIndex = 14;
@@ -237,7 +247,7 @@
             // 
             // txtApellido
             // 
-            this.txtApellido.Location = new System.Drawing.Point(70, 64);
+            this.txtApellido.Location = new System.Drawing.Point(70, 67);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(100, 20);
             this.txtApellido.TabIndex = 13;
@@ -245,7 +255,7 @@
             // lblApellido
             // 
             this.lblApellido.AutoSize = true;
-            this.lblApellido.Location = new System.Drawing.Point(6, 66);
+            this.lblApellido.Location = new System.Drawing.Point(6, 69);
             this.lblApellido.Name = "lblApellido";
             this.lblApellido.Size = new System.Drawing.Size(44, 13);
             this.lblApellido.TabIndex = 12;
@@ -281,7 +291,7 @@
             this.dtgFamiliaActual.DataSource = this.eCSADataSetBindingSource1;
             this.dtgFamiliaActual.Location = new System.Drawing.Point(19, 46);
             this.dtgFamiliaActual.Name = "dtgFamiliaActual";
-            this.dtgFamiliaActual.Size = new System.Drawing.Size(217, 207);
+            this.dtgFamiliaActual.Size = new System.Drawing.Size(153, 228);
             this.dtgFamiliaActual.TabIndex = 19;
             this.dtgFamiliaActual.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFamiliaActual_CellDoubleClick);
             // 
@@ -291,9 +301,9 @@
             this.gbGestorFamiliasPorUsuario.Controls.Add(this.lblAsignadas);
             this.gbGestorFamiliasPorUsuario.Controls.Add(this.dtgFamiliasSinAsignar);
             this.gbGestorFamiliasPorUsuario.Controls.Add(this.dtgFamiliaActual);
-            this.gbGestorFamiliasPorUsuario.Location = new System.Drawing.Point(132, 283);
+            this.gbGestorFamiliasPorUsuario.Location = new System.Drawing.Point(193, 283);
             this.gbGestorFamiliasPorUsuario.Name = "gbGestorFamiliasPorUsuario";
-            this.gbGestorFamiliasPorUsuario.Size = new System.Drawing.Size(539, 256);
+            this.gbGestorFamiliasPorUsuario.Size = new System.Drawing.Size(371, 280);
             this.gbGestorFamiliasPorUsuario.TabIndex = 21;
             this.gbGestorFamiliasPorUsuario.TabStop = false;
             this.gbGestorFamiliasPorUsuario.Text = "Gestor de Familias por Usuario";
@@ -301,7 +311,7 @@
             // lblSinAsignar
             // 
             this.lblSinAsignar.AutoSize = true;
-            this.lblSinAsignar.Location = new System.Drawing.Point(390, 30);
+            this.lblSinAsignar.Location = new System.Drawing.Point(245, 30);
             this.lblSinAsignar.Name = "lblSinAsignar";
             this.lblSinAsignar.Size = new System.Drawing.Size(60, 13);
             this.lblSinAsignar.TabIndex = 24;
@@ -310,20 +320,21 @@
             // lblAsignadas
             // 
             this.lblAsignadas.AutoSize = true;
-            this.lblAsignadas.Location = new System.Drawing.Point(97, 30);
+            this.lblAsignadas.Location = new System.Drawing.Point(84, 30);
             this.lblAsignadas.Name = "lblAsignadas";
             this.lblAsignadas.Size = new System.Drawing.Size(56, 13);
             this.lblAsignadas.TabIndex = 23;
             this.lblAsignadas.Text = "Asignadas";
+            this.lblAsignadas.Click += new System.EventHandler(this.lblAsignadas_Click);
             // 
             // dtgFamiliasSinAsignar
             // 
             this.dtgFamiliasSinAsignar.AutoGenerateColumns = false;
             this.dtgFamiliasSinAsignar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgFamiliasSinAsignar.DataSource = this.eCSADataSetBindingSource1;
-            this.dtgFamiliasSinAsignar.Location = new System.Drawing.Point(304, 46);
+            this.dtgFamiliasSinAsignar.Location = new System.Drawing.Point(201, 46);
             this.dtgFamiliasSinAsignar.Name = "dtgFamiliasSinAsignar";
-            this.dtgFamiliasSinAsignar.Size = new System.Drawing.Size(217, 207);
+            this.dtgFamiliasSinAsignar.Size = new System.Drawing.Size(153, 228);
             this.dtgFamiliasSinAsignar.TabIndex = 20;
             this.dtgFamiliasSinAsignar.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFamiliasSinAsignar_CellDoubleClick);
             // 
@@ -336,21 +347,11 @@
             this.lblBuscarUsuario.TabIndex = 22;
             this.lblBuscarUsuario.Text = "Buscar Usuario:";
             // 
-            // btnRecuperarUsuario
-            // 
-            this.btnRecuperarUsuario.Location = new System.Drawing.Point(186, 197);
-            this.btnRecuperarUsuario.Name = "btnRecuperarUsuario";
-            this.btnRecuperarUsuario.Size = new System.Drawing.Size(75, 36);
-            this.btnRecuperarUsuario.TabIndex = 22;
-            this.btnRecuperarUsuario.Text = "Recuperar Usuario";
-            this.btnRecuperarUsuario.UseVisualStyleBackColor = true;
-            this.btnRecuperarUsuario.Click += new System.EventHandler(this.btnRecuperarUsuario_Click);
-            // 
             // UIGestionarUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 538);
+            this.ClientSize = new System.Drawing.Size(946, 569);
             this.Controls.Add(this.lblBuscarUsuario);
             this.Controls.Add(this.gbGestorFamiliasPorUsuario);
             this.Controls.Add(this.txtBuscarUsuario);

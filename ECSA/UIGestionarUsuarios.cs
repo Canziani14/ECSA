@@ -23,14 +23,14 @@ namespace ECSA
         BLL.BLL_ABM_Familia BLLFamilia = new BLL.BLL_ABM_Familia();
         BE.Familia FamiliaSeleccionadaAsignar = new BE.Familia();
         BE.Familia FamiliaSeleccionadaQuitar = new BE.Familia();
+        int _idiomaSeleccionado;
 
-
-        public UIGestionarUsuarios(BE.Usuario usuarioLog, List<Patente> patentes, List<Traduccion> traducciones)
+        public UIGestionarUsuarios(BE.Usuario usuarioLog, List<Patente> patentes, List<Traduccion> traducciones, int idiomaSeleccionado)
         {
             this.usuarioLog = usuarioLog;
             InitializeComponent();
             dtgUsuarios.DataSource = BLLUsuario.Listar();
-
+            this._idiomaSeleccionado = idiomaSeleccionado;
             btnCrearUsuario.Enabled = false;
             btnModificarUsuario.Enabled=false;
             btnEliminarUsuario.Enabled = false;
@@ -66,18 +66,22 @@ namespace ECSA
                         break;
                     case 70:
                         lblApellido.Text = traduccion.Descripcion;
+                        dtgUsuarios.Columns["Apellido"].HeaderText = traduccion.Descripcion;
                         break;
                     case 72:
                         lblDNI.Text = traduccion.Descripcion;
+                        dtgUsuarios.Columns["DNI"].HeaderText = traduccion.Descripcion;
                         break;
                     case 68:
                         lblNombre.Text = traduccion.Descripcion;
+                        dtgUsuarios.Columns["Nombre"].HeaderText = traduccion.Descripcion;
                         break;
                     case 66:
                         lblidUsuario.Text = traduccion.Descripcion;
                         break;
                     case 74:
                         lblNick.Text = traduccion.Descripcion;
+                        dtgUsuarios.Columns["Nick"].HeaderText = traduccion.Descripcion;
                         break;
                     case 76:
                         lblMail.Text = traduccion.Descripcion;
@@ -99,6 +103,15 @@ namespace ECSA
                         break;
                     case 142:
                         btnRecuperarUsuario.Text=traduccion.Descripcion;
+                        break;
+                    case 84:
+                        dtgUsuarios.Columns["ID_Usuario"].HeaderText = traduccion.Descripcion;
+                        break;
+                    case 148:
+                        dtgUsuarios.Columns["Estado"].HeaderText = traduccion.Descripcion;
+                        break;
+                    case 149:
+                        dtgUsuarios.Columns["Eliminado"].HeaderText = traduccion.Descripcion;
                         break;
                 }
             }
@@ -701,13 +714,20 @@ namespace ECSA
             int id_usuario = UsuarioSeleccionado.ID_Usuario;
             dtgFamiliaActual.DataSource = BLLFamilia.ListarFamiliasActualesXUsuario(id_usuario);
             dtgFamiliasSinAsignar.DataSource = BLLFamilia.ListarFamiliasSinAsignarXUsuario(id_usuario);
-            
+           
             dtgFamiliasSinAsignar.AutoGenerateColumns = true;
             dtgFamiliaActual.AutoGenerateColumns = true;
             dtgFamiliaActual.Columns["ID_Patente"].Visible = false;
             dtgFamiliaActual.Columns["ID_Usuario"].Visible = false;
             dtgFamiliasSinAsignar.Columns["ID_Patente"].Visible = false;
             dtgFamiliasSinAsignar.Columns["ID_Usuario"].Visible = false;
+            if (_idiomaSeleccionado == 2)
+            {
+                dtgFamiliasSinAsignar.Columns["ID_Familia"].HeaderText = "ID";
+                dtgFamiliaActual.Columns["ID_Familia"].HeaderText = "ID";
+                dtgFamiliasSinAsignar.Columns["Descripcion"].HeaderText = "Description";
+                dtgFamiliaActual.Columns["Descripcion"].HeaderText = "Description";
+            }
         }
 
         public BE.Usuario ObtenerUsuarioSeleccionado()
@@ -731,7 +751,10 @@ namespace ECSA
             txtIDUsuario.Text = usuario.ID_Usuario.ToString();
         }
 
-        
+        private void lblAsignadas_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
             

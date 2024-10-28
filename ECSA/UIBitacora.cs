@@ -49,7 +49,22 @@ namespace ECSA
                         break;
                     case 64:
                         lblBuscarUsuario.Text = traduccion.Descripcion;
-                        break;                  
+                        break;
+                    case 84:
+                        dtgBitacora.Columns["ID_Bitacora"].HeaderText = traduccion.Descripcion;
+                        break;
+                    case 145:
+                        dtgBitacora.Columns["Descripcion"].HeaderText = traduccion.Descripcion;
+                        break;
+                    case 146:
+                        dtgBitacora.Columns["Fecha"].HeaderText = traduccion.Descripcion;
+                        break;
+                    case 147:
+                        dtgBitacora.Columns["Criticidad"].HeaderText = traduccion.Descripcion;
+                        break;
+                    case 74:
+                        dtgBitacora.Columns["NickUsuarioLogin"].HeaderText = traduccion.Descripcion;
+                        break;
                 } 
             }
 
@@ -274,75 +289,7 @@ namespace ECSA
 
 
 
-        /* public override void OnEndPage(PdfWriter writer, Document document)
-          {
-              PdfPTable headerTable = new PdfPTable(3);
-              headerTable.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
-              headerTable.SetWidths(new float[] { 1, 2, 1 });
-
-              if (File.Exists(_logoPath))
-              {
-                  iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(_logoPath);
-                  logo.ScaleToFit(50f, 50f);
-                  PdfPCell logoCell = new PdfPCell(logo)
-                  {
-                      Border = PdfPCell.NO_BORDER,
-                      VerticalAlignment = Element.ALIGN_MIDDLE
-                  };
-                  headerTable.AddCell(logoCell);
-              }
-              else
-              {
-                  headerTable.AddCell("");
-              }
-
-       PdfPCell titleCell = new PdfPCell(new Phrase("Reporte de Bitácora", FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16)))
-           {
-               Border = PdfPCell.NO_BORDER,
-               HorizontalAlignment = Element.ALIGN_CENTER,
-               VerticalAlignment = Element.ALIGN_MIDDLE
-           };
-           headerTable.AddCell(titleCell);
-
-           PdfPCell dateCell = new PdfPCell(new Phrase(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), FontFactory.GetFont(FontFactory.HELVETICA, 10)))
-
-
-           // PdfPCell dateCell = new PdfPCell(new Phrase(DateTime.Now.ToString("dd/MM/yyyy"), FontFactory.GetFont(FontFactory.HELVETICA, 10)))
-           {
-               Border = PdfPCell.NO_BORDER,
-               HorizontalAlignment = Element.ALIGN_RIGHT,
-               VerticalAlignment = Element.ALIGN_MIDDLE
-           };
-           headerTable.AddCell(dateCell);
-
-           headerTable.WriteSelectedRows(0, -1, document.LeftMargin, writer.PageSize.Height - 30, writer.DirectContent);
-
-           PdfPTable footerTable = new PdfPTable(1);
-           footerTable.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
-
-
-           PdfPCell footerCell = new PdfPCell(new Phrase($"Hoja {writer.PageNumber} de ", _footerFont))
-           {
-               Border = PdfPCell.NO_BORDER,
-               HorizontalAlignment = Element.ALIGN_LEFT // Alinear a la izquierda
-           };
-           footerCell.Phrase.Add(new Chunk(Image.GetInstance(TotalPagesTemplate), 0, 0, true)); // Añadir el total de páginas en la misma línea
-/*
-           PdfPCell footerCell = new PdfPCell(new Phrase($"Hoja {writer.PageNumber} de ", _footerFont))
-           {
-               Border = PdfPCell.NO_BORDER,
-               HorizontalAlignment = Element.ALIGN_LEFT // Alinear a la izquierda
-           };
-
-           if (TotalPagesTemplate != null)
-           {
-               footerCell.Phrase.Add(new Chunk(Image.GetInstance(TotalPagesTemplate), 0, 0, true));
-           }
-
-           footerTable.AddCell(footerCell);
-
-           footerTable.WriteSelectedRows(0, -1, document.LeftMargin, document.BottomMargin - 15, writer.DirectContent);
-       }*/
+       
 
         public override void OnCloseDocument(PdfWriter writer, Document document)
         {
@@ -352,13 +299,7 @@ namespace ECSA
              Element.ALIGN_LEFT, // Asegura que esté alineado a la izquierda
              new Phrase(totalPages.ToString(), _footerFont), // Asegura que el tamaño sea el mismo
              2, 0, 0
-           /* ColumnText.ShowTextAligned(
-                TotalPagesTemplate,
-                Element.ALIGN_LEFT,
-                new Phrase(totalPages.ToString()),  // Mostrar el número total de páginas
-                2,
-                2,
-                0*/
+           
             );
         }
      

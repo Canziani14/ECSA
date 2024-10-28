@@ -54,12 +54,16 @@ namespace ECSA
                         break;
                     case 84:
                         lblID.Text = traduccion.Descripcion;
+                        dtgLineas.Columns["ID_Linea"].HeaderText = traduccion.Descripcion;
                         break;
                     case 68:
                         lblNombre.Text = traduccion.Descripcion;
                         break;
                     case 14:
                         gbGestorLineas.Text = traduccion.Descripcion;
+                        break;
+                    case 86:
+                        dtgLineas.Columns["NumeroDeLinea"].HeaderText = traduccion.Descripcion;
                         break;
                 }      
                 

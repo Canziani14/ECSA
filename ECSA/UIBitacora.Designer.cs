@@ -43,7 +43,7 @@
             // lblDesde
             // 
             this.lblDesde.AutoSize = true;
-            this.lblDesde.Location = new System.Drawing.Point(12, 35);
+            this.lblDesde.Location = new System.Drawing.Point(137, 31);
             this.lblDesde.Name = "lblDesde";
             this.lblDesde.Size = new System.Drawing.Size(69, 13);
             this.lblDesde.TabIndex = 0;
@@ -51,7 +51,7 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(264, 101);
+            this.btnBuscar.Location = new System.Drawing.Point(389, 97);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
             this.btnBuscar.TabIndex = 1;
@@ -61,14 +61,14 @@
             // 
             // DateDesde
             // 
-            this.DateDesde.Location = new System.Drawing.Point(82, 28);
+            this.DateDesde.Location = new System.Drawing.Point(207, 24);
             this.DateDesde.Name = "DateDesde";
             this.DateDesde.Size = new System.Drawing.Size(200, 20);
             this.DateDesde.TabIndex = 3;
             // 
             // DateHasta
             // 
-            this.DateHasta.Location = new System.Drawing.Point(375, 29);
+            this.DateHasta.Location = new System.Drawing.Point(500, 25);
             this.DateHasta.Name = "DateHasta";
             this.DateHasta.Size = new System.Drawing.Size(200, 20);
             this.DateHasta.TabIndex = 4;
@@ -76,7 +76,7 @@
             // lblHasta
             // 
             this.lblHasta.AutoSize = true;
-            this.lblHasta.Location = new System.Drawing.Point(303, 34);
+            this.lblHasta.Location = new System.Drawing.Point(428, 30);
             this.lblHasta.Name = "lblHasta";
             this.lblHasta.Size = new System.Drawing.Size(66, 13);
             this.lblHasta.TabIndex = 5;
@@ -85,7 +85,7 @@
             // lblBuscarUsuario
             // 
             this.lblBuscarUsuario.AutoSize = true;
-            this.lblBuscarUsuario.Location = new System.Drawing.Point(170, 82);
+            this.lblBuscarUsuario.Location = new System.Drawing.Point(295, 78);
             this.lblBuscarUsuario.Name = "lblBuscarUsuario";
             this.lblBuscarUsuario.Size = new System.Drawing.Size(79, 13);
             this.lblBuscarUsuario.TabIndex = 6;
@@ -93,7 +93,7 @@
             // 
             // txtBuscarUsuario
             // 
-            this.txtBuscarUsuario.Location = new System.Drawing.Point(255, 75);
+            this.txtBuscarUsuario.Location = new System.Drawing.Point(380, 71);
             this.txtBuscarUsuario.Name = "txtBuscarUsuario";
             this.txtBuscarUsuario.Size = new System.Drawing.Size(100, 20);
             this.txtBuscarUsuario.TabIndex = 7;
@@ -103,12 +103,12 @@
             this.dtgBitacora.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgBitacora.Location = new System.Drawing.Point(12, 130);
             this.dtgBitacora.Name = "dtgBitacora";
-            this.dtgBitacora.Size = new System.Drawing.Size(569, 308);
+            this.dtgBitacora.Size = new System.Drawing.Size(806, 308);
             this.dtgBitacora.TabIndex = 8;
             // 
             // btnDescargarBitacora
             // 
-            this.btnDescargarBitacora.Location = new System.Drawing.Point(241, 444);
+            this.btnDescargarBitacora.Location = new System.Drawing.Point(366, 442);
             this.btnDescargarBitacora.Name = "btnDescargarBitacora";
             this.btnDescargarBitacora.Size = new System.Drawing.Size(114, 32);
             this.btnDescargarBitacora.TabIndex = 9;
@@ -120,7 +120,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 486);
+            this.ClientSize = new System.Drawing.Size(830, 486);
             this.Controls.Add(this.btnDescargarBitacora);
             this.Controls.Add(this.dtgBitacora);
             this.Controls.Add(this.txtBuscarUsuario);

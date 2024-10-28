@@ -46,9 +46,9 @@
             // dtgUsuarios
             // 
             this.dtgUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgUsuarios.Location = new System.Drawing.Point(12, 53);
+            this.dtgUsuarios.Location = new System.Drawing.Point(104, 53);
             this.dtgUsuarios.Name = "dtgUsuarios";
-            this.dtgUsuarios.Size = new System.Drawing.Size(278, 454);
+            this.dtgUsuarios.Size = new System.Drawing.Size(682, 190);
             this.dtgUsuarios.TabIndex = 0;
             this.dtgUsuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgUsuarios_CellDoubleClick);
             // 
@@ -75,9 +75,9 @@
             this.gbGestorPatentes.Controls.Add(this.lblAsignadas);
             this.gbGestorPatentes.Controls.Add(this.dtgPatentesSinAsignar);
             this.gbGestorPatentes.Controls.Add(this.dtgPatentesActuales);
-            this.gbGestorPatentes.Location = new System.Drawing.Point(312, 53);
+            this.gbGestorPatentes.Location = new System.Drawing.Point(12, 249);
             this.gbGestorPatentes.Name = "gbGestorPatentes";
-            this.gbGestorPatentes.Size = new System.Drawing.Size(577, 476);
+            this.gbGestorPatentes.Size = new System.Drawing.Size(877, 280);
             this.gbGestorPatentes.TabIndex = 5;
             this.gbGestorPatentes.TabStop = false;
             this.gbGestorPatentes.Text = "Gestor de Patentes";
@@ -85,7 +85,7 @@
             // lblSinAsignar
             // 
             this.lblSinAsignar.AutoSize = true;
-            this.lblSinAsignar.Location = new System.Drawing.Point(221, 225);
+            this.lblSinAsignar.Location = new System.Drawing.Point(631, 20);
             this.lblSinAsignar.Name = "lblSinAsignar";
             this.lblSinAsignar.Size = new System.Drawing.Size(60, 13);
             this.lblSinAsignar.TabIndex = 9;
@@ -94,7 +94,7 @@
             // lblAsignadas
             // 
             this.lblAsignadas.AutoSize = true;
-            this.lblAsignadas.Location = new System.Drawing.Point(218, 20);
+            this.lblAsignadas.Location = new System.Drawing.Point(200, 16);
             this.lblAsignadas.Name = "lblAsignadas";
             this.lblAsignadas.Size = new System.Drawing.Size(56, 13);
             this.lblAsignadas.TabIndex = 8;
@@ -103,18 +103,18 @@
             // dtgPatentesSinAsignar
             // 
             this.dtgPatentesSinAsignar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgPatentesSinAsignar.Location = new System.Drawing.Point(6, 244);
+            this.dtgPatentesSinAsignar.Location = new System.Drawing.Point(441, 43);
             this.dtgPatentesSinAsignar.Name = "dtgPatentesSinAsignar";
-            this.dtgPatentesSinAsignar.Size = new System.Drawing.Size(565, 160);
+            this.dtgPatentesSinAsignar.Size = new System.Drawing.Size(436, 231);
             this.dtgPatentesSinAsignar.TabIndex = 7;
             this.dtgPatentesSinAsignar.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPatentesSinAsignar_CellDoubleClick);
             // 
             // dtgPatentesActuales
             // 
             this.dtgPatentesActuales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgPatentesActuales.Location = new System.Drawing.Point(6, 42);
+            this.dtgPatentesActuales.Location = new System.Drawing.Point(-1, 43);
             this.dtgPatentesActuales.Name = "dtgPatentesActuales";
-            this.dtgPatentesActuales.Size = new System.Drawing.Size(565, 140);
+            this.dtgPatentesActuales.Size = new System.Drawing.Size(436, 231);
             this.dtgPatentesActuales.TabIndex = 6;
             this.dtgPatentesActuales.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPatentesActuales_CellDoubleClick);
             // 

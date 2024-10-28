@@ -22,14 +22,18 @@ namespace ECSA
         BE.Patente PatenteSeleccionadaQuitar = new BE.Patente();
         private BE.Usuario usuarioLog;       
         BLL.BLLSeguridad BLLSeguridad = new BLL.BLLSeguridad();
-        public UIGestionarFamilias(BE.Usuario usuarioLog, List<Patente> patentes, List<Traduccion> traducciones)
+        int _idiomaSeleccionado;
+       
+        public UIGestionarFamilias(BE.Usuario usuarioLog, List<Patente> patentes, List<Traduccion> traducciones, int idiomaSeleccionado)
         {
+            
             InitializeComponent();
             dtgFamilias.DataSource= BLLFamilia.Listar();
             this.usuarioLog = usuarioLog;
             StartPosition = FormStartPosition.CenterScreen;
             dtgFamilias.Columns["ID_Usuario"].Visible = false;
             dtgFamilias.Columns["ID_Patente"].Visible = false;
+            this._idiomaSeleccionado = idiomaSeleccionado;
 
             #region idioma
 
@@ -54,6 +58,8 @@ namespace ECSA
                         break;
                     case 84:
                         lblID.Text = traduccion.Descripcion;
+                        dtgFamilias.Columns["ID_Familia"].HeaderText = traduccion.Descripcion;
+
                         break;
                     case 140:
                         lblFamilia.Text = traduccion.Descripcion;
@@ -63,7 +69,8 @@ namespace ECSA
                         break;
                     case 82:
                         lblPatentesSinAsignar.Text = traduccion.Descripcion;
-                        break;                 
+                        break;
+                   
                 }   
             }
 
@@ -199,7 +206,8 @@ namespace ECSA
             dtgPatentesActuales.GridColor = Color.FromArgb(231, 231, 231);
             #endregion
         }
-
+        
+        
 
         private void btnCrearFamilia_Click(object sender, EventArgs e)
         {
@@ -331,7 +339,7 @@ namespace ECSA
 
                     ObtenerPatenteSeleccionadaActuales();
                     ObtenerFamiliaSeleccionado();
-
+           
                     int id_Familia = familiaSeleccionada.ID_Familia;
                     int id_Patente = PatenteSeleccionadaQuitar.ID_Patente;
 
@@ -367,6 +375,7 @@ namespace ECSA
         {
             ObtenerPatenteSeleccionadaNoActuales();
             ObtenerFamiliaSeleccionado();
+           
             
             int id_Familia = familiaSeleccionada.ID_Familia;
             int id_Patente = PatenteSeleccionadaAsignar.ID_Patente;
@@ -443,6 +452,7 @@ namespace ECSA
                 txtNombre.Text = familiaSeleccionada.Descripcion;
                 txtNombreFamilia.Text = familiaSeleccionada.Descripcion;
                 
+                
             }
 
             return familiaSeleccionada;
@@ -457,10 +467,18 @@ namespace ECSA
             int patente=familiaSeleccionada.ID_Patente;
             dtgPatentesActuales.DataSource = BLLFamilia.ListarActualesXFamilia(familia,patente);
             dtgPatentesSinAsignar.DataSource = BLLFamilia.ListarSinAsignarXFamilia(familia, patente);
+            if (_idiomaSeleccionado == 2)
+            {
+                dtgPatentesActuales.Columns["ID_Patente"].HeaderText = "ID";
+                dtgPatentesSinAsignar.Columns["ID_Patente"].HeaderText = "ID";
+                dtgPatentesActuales.Columns["Descripcion"].HeaderText = "Description";
+                dtgPatentesSinAsignar.Columns["Descripcion"].HeaderText = "Description";
+            }
             dtgPatentesActuales.Columns["ID_Usuario"].Visible = false;
             dtgPatentesSinAsignar.Columns["ID_Usuario"].Visible = false;
             dtgFamilias.Columns["ID_Usuario"].Visible = false;
             dtgFamilias.Columns["ID_Patente"].Visible = false;
+
 
 
         }
