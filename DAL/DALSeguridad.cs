@@ -178,12 +178,33 @@ namespace DAL
             return DAOSSeguridad.GetInstance().PuedeEliminarFamilia(idFamilia);
         }
 
+        public bool PuedeEliminarPatente(int idUsuario, int idPatente)
+        {
+
+            return DAOSSeguridad.GetInstance().PuedeEliminarPatente(idUsuario, idPatente);
+        }
+
         public bool PuedeEliminarPatenteDeFamilia2(int idPatente, int idUsuario)
         {
 
             return DAOSSeguridad.GetInstance().PuedeEliminarPatenteDeFamilia2(idPatente, idUsuario);
 
         }
+
+        public bool UsuarioQuedariaConPatentesSinFamilia(int idPatente, int idUsuario)
+        {
+
+            return DAOSSeguridad.GetInstance().UsuarioQuedariaConPatentesSinFamilia(idPatente, idUsuario);
+
+        }
+        
+        public bool FamiliaTendriaPatenteSinUsuario(int idUsuario, int idFamilia)
+        {
+
+            return DAOSSeguridad.GetInstance().FamiliaTendriaPatenteSinUsuario(idUsuario, idFamilia);
+
+        }
+
         #endregion
 
         #region Validar Patentes
@@ -196,6 +217,12 @@ namespace DAL
         {
             return DAOSSeguridad.GetInstance().PuedeEliminarPatenteDeFamilia(idFamilia, idPatente);
         }
+
+        public bool VerificarOtrasAsignacionesDePatente(int id_Patente, int id_Familia)
+        {
+            return DAOSSeguridad.GetInstance().VerificarOtrasAsignacionesDePatente(id_Patente, id_Familia);
+        }
+
         #endregion
 
 

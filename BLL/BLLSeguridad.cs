@@ -135,10 +135,32 @@ namespace BLL
         public bool PuedeEliminarPatenteDeFamilia2(int idPatente, int idUsuario)
         {
            
-                return DALSeguridad.PuedeEliminarPatenteDeFamilia2(idPatente, idUsuario);
-            
+                return DALSeguridad.PuedeEliminarPatenteDeFamilia2(idPatente, idUsuario); 
         }
 
+        public bool PuedeEliminarPatente(int idUsuario, int idPatente)
+        {
+
+            return DALSeguridad.PuedeEliminarPatente(idUsuario, idPatente);
+        }
+
+        
+
+        public bool UsuarioQuedariaConPatentesSinFamilia(int idPatente, int idUsuario)
+        {
+
+                return DALSeguridad.UsuarioQuedariaConPatentesSinFamilia(idPatente, idUsuario);
+
+        }
+        
+        public bool FamiliaTendriaPatenteSinUsuario(int idUsuario, int idFamilia)
+        {
+
+            return DALSeguridad.FamiliaTendriaPatenteSinUsuario(idUsuario, idFamilia);
+
+        }
+
+        
 
         #endregion
 
@@ -152,6 +174,13 @@ namespace BLL
         {
             return DALSeguridad.PuedeEliminarPatenteDeFamilia(idFamilia, idPatente);
         }
+
+        public bool VerificarOtrasAsignacionesDePatente(int id_Patente, int id_Familia)
+        {
+            return DALSeguridad.VerificarOtrasAsignacionesDePatente(id_Patente, id_Familia);
+        }
+
+     
 
         #endregion
 

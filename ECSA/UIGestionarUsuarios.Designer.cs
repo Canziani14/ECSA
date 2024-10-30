@@ -81,7 +81,7 @@
             // 
             // btnCrearUsuario
             // 
-            this.btnCrearUsuario.Location = new System.Drawing.Point(6, 191);
+            this.btnCrearUsuario.Location = new System.Drawing.Point(6, 214);
             this.btnCrearUsuario.Name = "btnCrearUsuario";
             this.btnCrearUsuario.Size = new System.Drawing.Size(75, 23);
             this.btnCrearUsuario.TabIndex = 1;
@@ -91,7 +91,7 @@
             // 
             // btnEliminarUsuario
             // 
-            this.btnEliminarUsuario.Location = new System.Drawing.Point(186, 191);
+            this.btnEliminarUsuario.Location = new System.Drawing.Point(186, 214);
             this.btnEliminarUsuario.Name = "btnEliminarUsuario";
             this.btnEliminarUsuario.Size = new System.Drawing.Size(75, 23);
             this.btnEliminarUsuario.TabIndex = 2;
@@ -101,7 +101,7 @@
             // 
             // btnModificarUsuario
             // 
-            this.btnModificarUsuario.Location = new System.Drawing.Point(95, 191);
+            this.btnModificarUsuario.Location = new System.Drawing.Point(95, 214);
             this.btnModificarUsuario.Name = "btnModificarUsuario";
             this.btnModificarUsuario.Size = new System.Drawing.Size(75, 23);
             this.btnModificarUsuario.TabIndex = 3;
@@ -121,7 +121,7 @@
             // 
             // btnDesbloquearUsuario
             // 
-            this.btnDesbloquearUsuario.Location = new System.Drawing.Point(6, 268);
+            this.btnDesbloquearUsuario.Location = new System.Drawing.Point(6, 291);
             this.btnDesbloquearUsuario.Name = "btnDesbloquearUsuario";
             this.btnDesbloquearUsuario.Size = new System.Drawing.Size(116, 23);
             this.btnDesbloquearUsuario.TabIndex = 8;
@@ -131,7 +131,7 @@
             // 
             // btnBloquearUsuario
             // 
-            this.btnBloquearUsuario.Location = new System.Drawing.Point(6, 239);
+            this.btnBloquearUsuario.Location = new System.Drawing.Point(6, 262);
             this.btnBloquearUsuario.Name = "btnBloquearUsuario";
             this.btnBloquearUsuario.Size = new System.Drawing.Size(116, 23);
             this.btnBloquearUsuario.TabIndex = 9;
@@ -172,7 +172,7 @@
             // 
             // btnRecuperarUsuario
             // 
-            this.btnRecuperarUsuario.Location = new System.Drawing.Point(186, 232);
+            this.btnRecuperarUsuario.Location = new System.Drawing.Point(186, 255);
             this.btnRecuperarUsuario.Name = "btnRecuperarUsuario";
             this.btnRecuperarUsuario.Size = new System.Drawing.Size(75, 36);
             this.btnRecuperarUsuario.TabIndex = 22;
@@ -289,9 +289,9 @@
             this.dtgFamiliaActual.AutoGenerateColumns = false;
             this.dtgFamiliaActual.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgFamiliaActual.DataSource = this.eCSADataSetBindingSource1;
-            this.dtgFamiliaActual.Location = new System.Drawing.Point(19, 46);
+            this.dtgFamiliaActual.Location = new System.Drawing.Point(6, 46);
             this.dtgFamiliaActual.Name = "dtgFamiliaActual";
-            this.dtgFamiliaActual.Size = new System.Drawing.Size(153, 228);
+            this.dtgFamiliaActual.Size = new System.Drawing.Size(197, 228);
             this.dtgFamiliaActual.TabIndex = 19;
             this.dtgFamiliaActual.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFamiliaActual_CellDoubleClick);
             // 
@@ -303,7 +303,7 @@
             this.gbGestorFamiliasPorUsuario.Controls.Add(this.dtgFamiliaActual);
             this.gbGestorFamiliasPorUsuario.Location = new System.Drawing.Point(193, 283);
             this.gbGestorFamiliasPorUsuario.Name = "gbGestorFamiliasPorUsuario";
-            this.gbGestorFamiliasPorUsuario.Size = new System.Drawing.Size(371, 280);
+            this.gbGestorFamiliasPorUsuario.Size = new System.Drawing.Size(419, 280);
             this.gbGestorFamiliasPorUsuario.TabIndex = 21;
             this.gbGestorFamiliasPorUsuario.TabStop = false;
             this.gbGestorFamiliasPorUsuario.Text = "Gestor de Familias por Usuario";
@@ -311,7 +311,7 @@
             // lblSinAsignar
             // 
             this.lblSinAsignar.AutoSize = true;
-            this.lblSinAsignar.Location = new System.Drawing.Point(245, 30);
+            this.lblSinAsignar.Location = new System.Drawing.Point(282, 30);
             this.lblSinAsignar.Name = "lblSinAsignar";
             this.lblSinAsignar.Size = new System.Drawing.Size(60, 13);
             this.lblSinAsignar.TabIndex = 24;
@@ -332,9 +332,9 @@
             this.dtgFamiliasSinAsignar.AutoGenerateColumns = false;
             this.dtgFamiliasSinAsignar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgFamiliasSinAsignar.DataSource = this.eCSADataSetBindingSource1;
-            this.dtgFamiliasSinAsignar.Location = new System.Drawing.Point(201, 46);
+            this.dtgFamiliasSinAsignar.Location = new System.Drawing.Point(209, 46);
             this.dtgFamiliasSinAsignar.Name = "dtgFamiliasSinAsignar";
-            this.dtgFamiliasSinAsignar.Size = new System.Drawing.Size(153, 228);
+            this.dtgFamiliasSinAsignar.Size = new System.Drawing.Size(204, 228);
             this.dtgFamiliasSinAsignar.TabIndex = 20;
             this.dtgFamiliasSinAsignar.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFamiliasSinAsignar_CellDoubleClick);
             // 

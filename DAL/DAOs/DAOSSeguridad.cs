@@ -13,6 +13,7 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Input;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -1206,17 +1207,27 @@ namespace DAL.DAOs
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
+                /* string query = @"
+             SELECT COUNT(*)
+             FROM Usuario_Patente up
+             WHERE up.ID_Patente IN (
+                 SELECT up1.ID_Patente
+                 FROM Usuario_Patente up1
+                 GROUP BY up1.ID_Patente
+                 HAVING COUNT(up1.ID_Usuario) = 1
+             )
+             AND up.ID_Usuario = @idUsuario";
+                */
                 string query = @"
-            SELECT COUNT(*)
-            FROM Usuario_Patente up
-            WHERE up.ID_Patente IN (
-                SELECT up1.ID_Patente
-                FROM Usuario_Patente up1
-                GROUP BY up1.ID_Patente
-                HAVING COUNT(up1.ID_Usuario) = 1
-            )
-            AND up.ID_Usuario = @idUsuario";
-
+                SELECT COUNT(*)
+                FROM Usuario_Patente up
+                WHERE up.ID_Usuario = @idUsuario
+                AND up.ID_Patente IN (
+                    SELECT up1.ID_Patente
+                    FROM Usuario_Patente up1
+                    GROUP BY up1.ID_Patente
+                    HAVING COUNT(up1.ID_Usuario) = 1
+                )";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@idUsuario", idUsuario);
 
@@ -1235,17 +1246,28 @@ namespace DAL.DAOs
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
+                /* string query = @"
+             SELECT COUNT(*)
+             FROM Familia_Patente fp
+             JOIN Usuario_Familia uf ON fp.ID_Familia = uf.ID_Familia
+             WHERE uf.ID_Usuario = @idUsuario
+             AND fp.ID_Patente IN (
+                 SELECT up.ID_Patente
+                 FROM Usuario_Patente up
+                 GROUP BY up.ID_Patente
+                 HAVING COUNT(up.ID_Usuario) = 1
+             )";*/
                 string query = @"
-            SELECT COUNT(*)
-            FROM Familia_Patente fp
-            JOIN Usuario_Familia uf ON fp.ID_Familia = uf.ID_Familia
-            WHERE uf.ID_Usuario = @idUsuario
-            AND fp.ID_Patente IN (
-                SELECT up.ID_Patente
-                FROM Usuario_Patente up
-                GROUP BY up.ID_Patente
-                HAVING COUNT(up.ID_Usuario) = 1
-            )";
+                    SELECT COUNT(*)
+                    FROM Familia_Patente fp
+                    JOIN Usuario_Familia uf ON fp.ID_Familia = uf.ID_Familia
+                    WHERE uf.ID_Usuario = @idUsuario
+                    AND fp.ID_Patente IN (
+                        SELECT up.ID_Patente
+                        FROM Usuario_Patente up
+                        GROUP BY up.ID_Patente
+                        HAVING COUNT(up.ID_Usuario) = 1
+                        )";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@idUsuario", idUsuario);
@@ -1267,18 +1289,21 @@ namespace DAL.DAOs
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = @"
-                SELECT COUNT(*)
-                FROM Familia_Patente fp
-                JOIN Usuario_Patente up ON fp.ID_Patente = up.ID_Patente
-                WHERE fp.ID_Familia = @idFamilia
-                AND up.ID_Usuario = @idUsuario
-                AND fp.ID_Patente IN (
-                    SELECT up1.ID_Patente
-                    FROM Usuario_Patente up1
-                    WHERE up1.ID_Patente = fp.ID_Patente
-                    GROUP BY up1.ID_Patente
-                    HAVING COUNT(up1.ID_Usuario) = 1
-                )";
+            SELECT COUNT(*)
+            FROM Familia_Patente fp
+            JOIN Usuario_Patente up ON fp.ID_Patente = up.ID_Patente
+            WHERE fp.ID_Familia = @idFamilia
+              AND up.ID_Usuario = @idUsuario
+              AND NOT EXISTS (
+                  SELECT 1
+                  FROM Usuario_Patente up2
+                  WHERE up2.ID_Patente = fp.ID_Patente
+                    AND up2.ID_Usuario <> @idUsuario
+              )";
+
+
+
+            
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@idUsuario", idUsuario);
@@ -1292,6 +1317,76 @@ namespace DAL.DAOs
                 return count > 0;
             }
         }
+
+     
+
+
+        public bool UsuarioQuedariaConPatentesSinFamilia(int idUsuario, int idFamilia)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+            SELECT COUNT(*)
+            FROM Usuario_Patente up
+            WHERE up.ID_Usuario = @idUsuario
+            AND NOT EXISTS (
+                SELECT 1
+                FROM Familia_Patente fp
+                JOIN Usuario_Familia uf ON fp.ID_Familia = uf.ID_Familia
+                WHERE fp.ID_Patente = up.ID_Patente
+                AND uf.ID_Usuario = @idUsuario
+                AND fp.ID_Familia <> @idFamilia
+            )";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@idUsuario", idUsuario);
+                command.Parameters.AddWithValue("@idFamilia", idFamilia);
+
+                connection.Open();
+                int count = (int)command.ExecuteScalar();
+                connection.Close();
+
+                // Si el conteo es mayor a 0, el usuario quedaría con patentes sin familia asignada al eliminar esta familia
+                return count > 0;
+            }
+        }
+
+        public bool FamiliaTendriaPatenteSinUsuario(int idUsuario, int idFamilia)
+        {
+            // Verificar si la cadena de conexión está configurada
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                throw new InvalidOperationException("La cadena de conexión no está configurada.");
+            }
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+            SELECT COUNT(*)
+            FROM Familia_Patente fp
+            LEFT JOIN Usuario_Patente up ON fp.ID_Patente = up.ID_Patente AND up.ID_Usuario <> @idUsuario
+            WHERE fp.ID_Familia = @idFamilia
+            GROUP BY fp.ID_Patente
+            HAVING COUNT(up.ID_Usuario) = 0";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@idUsuario", idUsuario);
+                command.Parameters.AddWithValue("@idFamilia", idFamilia);
+
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                // Verificar si el resultado es null antes de convertirlo
+                int count = (result != null) ? Convert.ToInt32(result) : 0;
+                connection.Close();
+
+                // Retornar verdadero si la familia tendría una patente sin ningún usuario
+                return count > 0;
+            }
+        }
+
+
+
 
         public bool PuedeEliminarFamilia(int idFamilia)
         {
@@ -1359,9 +1454,40 @@ namespace DAL.DAOs
 
 
 
+
         #endregion
 
         #region Validar Patentes
+
+        public bool PuedeEliminarPatente(int idUsuario, int idPatente)
+        {
+            // Verifica cuántos usuarios tienen la patente
+            int countUsuarios = 0;
+
+            // Consulta para contar usuarios que tienen la patente, excluyendo al que está intentando eliminar
+            using (var connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT COUNT(*) FROM usuario_patente WHERE id_patente = @idPatente AND id_usuario <> @idUsuario";
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@idPatente", idPatente);
+                    command.Parameters.AddWithValue("@idUsuario", idUsuario);
+                    connection.Open();
+                    countUsuarios = (int)command.ExecuteScalar();
+                }
+            }
+
+            // Si no hay otros usuarios con la patente, no se puede eliminar
+            if (countUsuarios == 0)
+            {
+                return false; // El usuario es el único propietario
+            }
+
+            return true; // Puede eliminar la patente
+        }
+
+
+
 
         public bool PuedeEliminarPatenteDeUsuario(int idPatente, int idUsuario)
         {
@@ -1430,7 +1556,7 @@ namespace DAL.DAOs
         }
 
 
-
+        
         public bool PuedeEliminarPatenteDeFamilia2(int idPatente, int idUsuario)
         {
             if (idPatente <= 0 || idUsuario <= 0)
@@ -1464,20 +1590,94 @@ namespace DAL.DAOs
             }
         }
 
+        public bool PuedeEliminarPatenteDeFamilia(int idUsuario, int idPatente)
+        {
+            if (idUsuario <= 0 || idPatente <= 0)
+            {
+                throw new ArgumentException("Los IDs deben ser valores válidos.");
+            }
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+                    SELECT COUNT(DISTINCT uf.ID_Usuario)
+                    FROM Usuario_Familia uf
+                    JOIN Familia_Patente fp ON uf.ID_Familia = fp.ID_Familia
+                    WHERE fp.ID_Patente = @idPatente AND uf.ID_Usuario != @idUsuario;
+                    ";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@idPatente", idPatente);
+                command.Parameters.AddWithValue("@idUsuario", idUsuario);
+
+                try
+                {
+                    connection.Open();
+                    int count = (int)command.ExecuteScalar();
+                    return count > 0; // Retorna verdadero si hay otros usuarios con la patente
+                }
+                catch (SqlException ex)
+                {
+                    throw new InvalidOperationException("Error al ejecutar la consulta.", ex);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+
+        public bool VerificarOtrasAsignacionesDePatente(int idPatente, int idFamilia)
+        {
+            int usuariosConPatente = ContarUsuariosConPatente(idPatente);
+            int familiasConPatente = ContarFamiliasConPatente(idPatente, idFamilia);
+
+            return usuariosConPatente > 0 || familiasConPatente > 1;
+        }
+
+        public int ContarUsuariosConPatente(int idPatente)
+        {
+            int cantidadUsuarios = 0;
+            string query = @"SELECT COUNT(*) FROM usuario_patente 
+                     WHERE id_patente = @idPatente";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@idPatente", idPatente);
+
+                connection.Open();
+                cantidadUsuarios = (int)command.ExecuteScalar();
+            }
+
+            return cantidadUsuarios;
+        }
+
+        public int ContarFamiliasConPatente(int idPatente, int idFamiliaActual)
+        {
+            int cantidadFamilias = 0;
+            string query = @"SELECT COUNT(*) FROM familia_patente 
+                     WHERE id_patente = @idPatente AND id_familia <> @idFamiliaActual";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@idPatente", idPatente);
+                command.Parameters.AddWithValue("@idFamiliaActual", idFamiliaActual);
+
+                connection.Open();
+                cantidadFamilias = (int)command.ExecuteScalar();
+            }
+
+            return cantidadFamilias;
+        }
 
 
 
 
 
-
-
-
-
-
-
-
-
-
+        /*
         public bool PuedeEliminarPatenteDeFamilia(int idFamilia, int idPatente)
         {
             // Validar que los ID no sean nulos o menores que 0
@@ -1498,16 +1698,13 @@ namespace DAL.DAOs
                 {
                     throw new InvalidOperationException("La cadena de conexión no está configurada.");
                 }
-
                 string query = @"
-            SELECT COUNT(DISTINCT up.ID_Usuario)
-            FROM Usuario_Patente up
-            WHERE up.ID_Patente = @idPatente
-            AND up.ID_Usuario IN (
-                SELECT ID_Usuario
-                FROM Usuario_Familia uf
-                WHERE uf.ID_Familia = @idFamilia
-            )";
+                SELECT COUNT(DISTINCT up.ID_Usuario)
+                FROM Usuario_Patente up
+                WHERE up.ID_Patente = @idPatente
+                ";
+
+              
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@idFamilia", idFamilia);
@@ -1544,7 +1741,7 @@ namespace DAL.DAOs
                     }
                 }
             }
-        }
+        }*/
 
 
 

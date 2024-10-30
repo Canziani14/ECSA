@@ -333,6 +333,7 @@ namespace ECSA
         }
 
 
+
         private void dtgPatentesActuales_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
                 {
 
@@ -350,7 +351,14 @@ namespace ECSA
                                         "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return; // Salir del método sin hacer nada
                     }
-                    BLLFamilia.QuitarXFamilia(id_Familia, id_Patente);
+                    bool tieneOtrasAsignaciones = BLLSeguridad.VerificarOtrasAsignacionesDePatente(id_Patente, id_Familia);
+                    if (!tieneOtrasAsignaciones)
+                    {
+                        MessageBox.Show("No se puede eliminar la patente porque no está asignada a ningún otro usuario o familia.",
+                                        "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; // Salir del método sin hacer nada
+                    }
+            BLLFamilia.QuitarXFamilia(id_Familia, id_Patente);
                     dtgPatentesActuales.DataSource = BLLFamilia.ListarActualesXFamilia(id_Familia, id_Patente);
                     dtgPatentesSinAsignar.DataSource = BLLFamilia.ListarSinAsignarXFamilia(id_Familia, id_Patente);
 
@@ -362,11 +370,7 @@ namespace ECSA
         
         
 
-        private void ActualizarDataGridViewsFamilia(int id_Familia, int id_Patente)
-        {
-            dtgPatentesActuales.DataSource = BLLFamilia.ListarActualesXFamilia(id_Familia, id_Patente);
-            dtgPatentesSinAsignar.DataSource = BLLFamilia.ListarSinAsignarXFamilia(id_Familia, id_Patente);
-        }
+     
 
 
 

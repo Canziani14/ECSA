@@ -255,6 +255,7 @@ namespace ECSA
                 MessageBox.Show("No se ha seleccionado un usuario.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             if (_idiomaSeleccionado == 2)
             {
                 dtgPatentesActuales.Columns["ID_Patente"].HeaderText = "ID";
@@ -269,21 +270,22 @@ namespace ECSA
             Console.WriteLine($"ID Usuario seleccionado: {idUsuario}");
             Console.WriteLine($"ID Patente seleccionada para quitar: {idPatente}");
 
-            // Validar si el usuario puede eliminar la patente
+            // Verificar si puede eliminar la patente (por usuario o familia)
             bool puedeEliminarPorUsuario = BLLSeguridad.PuedeEliminarPatenteDeUsuario(idPatente, idUsuario);
-            // Validación adicional: comprobar si la patente está asociada a la familia del usuario
             bool puedeEliminarPorFamilia = BLLSeguridad.PuedeEliminarPatenteDeFamilia2(idPatente, idUsuario);
+            bool PuedeEliminarPatente = BLLSeguridad.PuedeEliminarPatente(idUsuario,idPatente);
+            bool puedeEliminar = puedeEliminarPorUsuario || puedeEliminarPorFamilia;
 
-            // Si puede eliminar por alguna de las razones, proceder a quitar la patente
-            if (puedeEliminarPorUsuario || puedeEliminarPorFamilia)
+            //if (puedeEliminar)
+            if (puedeEliminar || PuedeEliminarPatente)
             {
                 try
                 {
                     BLLPatente.Quitar(idUsuario, idPatente);
-                    ActualizarDataGridViews(idUsuario);
+                    
                     CalcularDigitos();
                     BLLSeguridad.RegistrarEnBitacora(28, usuarioLog.Nick, usuarioLog.ID_Usuario);
-
+                    RefrescarDTG();
                     dtgPatentesActuales.Columns["ID_Usuario"].Visible = false;
                     MessageBox.Show("Patente quitada correctamente");
                 }
@@ -307,12 +309,6 @@ namespace ECSA
 
 
 
-        private void ActualizarDataGridViews(int idUsuario)
-        {
-            dtgPatentesActuales.DataSource = BLLPatente.ListarActuales(idUsuario);
-            dtgPatentesSinAsignar.DataSource = BLLPatente.ListarSinAsignar(idUsuario);
-        }
-
 
 
 
@@ -335,6 +331,7 @@ namespace ECSA
                 dtgPatentesSinAsignar.Columns["Descripcion"].HeaderText = "Description";
             }
             CalcularDigitos();
+            RefrescarDTG();
             BLLSeguridad.RegistrarEnBitacora(27, usuarioLog.Nick, usuarioLog.ID_Usuario);
             dtgPatentesSinAsignar.Columns["ID_Usuario"].Visible = false;
             MessageBox.Show("Patente asignada correctamente");

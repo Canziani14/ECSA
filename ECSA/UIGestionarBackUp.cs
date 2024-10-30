@@ -58,13 +58,14 @@ namespace ECSA
                     {
                         BLLDAL.RealizarBKP(backupPath);
                         MessageBox.Show("Backup realizado con éxito.");
+                        BLLSeguridad.RegistrarEnBitacora(35, usuarioLog.Nick, usuarioLog.ID_Usuario);
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show("Error al realizar el backup: " + ex.Message);
                     }
                 }
-                //BLLSeguridad.RegistrarEnBitacora(35, usuarioLog.Nick, usuarioLog.ID_Usuario);
+                
 
             }
 
