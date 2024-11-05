@@ -785,6 +785,10 @@ namespace ECSA
             BLLSeguridad.VerificarDigitosVerificadores(tabla);
             BLLSeguridad.CalcularDVV(tabla);
         }
+
+
+
+
         private void dtgUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {                    
             ObtenerUsuarioSeleccionado();

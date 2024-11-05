@@ -86,9 +86,10 @@ namespace ECSA
         BLL_ABM_Linea BLLLinea = new BLL_ABM_Linea();
         private void button1_Click(object sender, EventArgs e)
         {
-            // Asegúrate de que date1 y date2 son controles de tipo DateTimePicker
+           
             string date1F = date1.Value.ToString("yyyy-MM-dd");
             string date2F = date2.Value.ToString("yyyy-MM-dd");
+            
 
             // Verifica si se seleccionó una línea en el ComboBox
             if (CMBLineas.SelectedValue != null)
@@ -100,6 +101,7 @@ namespace ECSA
 
                     // Llama al método Listar de la capa BLL y asigna los datos a la tabla
                     dtgReportes.DataSource = BLLServicio.Listar(idLinea, date1F, date2F);
+                    dtgReportes.Columns["DVH"].Visible = false;
                 }
                 catch (Exception ex)
                 {

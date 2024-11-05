@@ -207,7 +207,7 @@ namespace ECSA
                 }
 
                 bool validacionFallida = false;
-/*                // Validar Conductor
+               // Validar Conductor
                 if (BLLServicios.ValidarConductor(BEServicio.LegajoEmpleado).Count > 0)
                 {
                     MessageBox.Show("Conductor ya utilizado");
@@ -220,7 +220,7 @@ namespace ECSA
                     MessageBox.Show("Interno ya utilizado");
                     validacionFallida = true;
                 }
-*/
+
                 // Validar Horario
                 if (BLLServicios.ValidarHorario(BEServicio.HorarioSalida).Count > 0)
                 {
@@ -228,7 +228,7 @@ namespace ECSA
                     validacionFallida = true;
                 }
 
-                // Si todas las validaciones pasaron, crear el usuario
+                // Si todas las validaciones pasaron, crear el servicio
                 if (!validacionFallida)
                 {
 

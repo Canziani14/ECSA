@@ -74,9 +74,9 @@
             // dtgReportes
             // 
             this.dtgReportes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgReportes.Location = new System.Drawing.Point(12, 115);
+            this.dtgReportes.Location = new System.Drawing.Point(5, 115);
             this.dtgReportes.Name = "dtgReportes";
-            this.dtgReportes.Size = new System.Drawing.Size(776, 323);
+            this.dtgReportes.Size = new System.Drawing.Size(827, 323);
             this.dtgReportes.TabIndex = 4;
             // 
             // btnReporte
@@ -112,7 +112,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 498);
+            this.ClientSize = new System.Drawing.Size(836, 498);
             this.Controls.Add(this.btnDescargar);
             this.Controls.Add(this.CMBLineas);
             this.Controls.Add(this.btnReporte);
