@@ -1,0 +1,13 @@
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Release\BE.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Release\BE.pdb
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Release\Bogus.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Release\BouncyCastle.Cryptography.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Release\itextsharp.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Release\Bogus.xml
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Release\BouncyCastle.Cryptography.xml
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Release\itextsharp.xml
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\obj\Release\BE.csproj.AssemblyReference.cache
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\obj\Release\BE.csproj.CoreCompileInputs.cache
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\obj\Release\BE.csproj.CopyComplete
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\obj\Release\BE.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\obj\Release\BE.pdb

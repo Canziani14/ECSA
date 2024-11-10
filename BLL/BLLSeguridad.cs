@@ -180,12 +180,12 @@ namespace BLL
             return DALSeguridad.VerificarOtrasAsignacionesDePatente(id_Patente, id_Familia);
         }
 
-     
+
 
         #endregion
 
 
-
+       
 
     }
 }

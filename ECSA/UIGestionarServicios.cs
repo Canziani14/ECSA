@@ -186,7 +186,15 @@ namespace ECSA
 
             if (date1.Text == "")
             {
-                MessageBox.Show("Por favor, complete todos los campos");
+                if (btnImprimir.Text == "Print Service Sheet")
+                {
+                    MostrarMensajeIngles("Please complete all fields.", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Por favor, complete todos los campos.", 1);
+                }
+                
                 return;
             }
 
@@ -203,28 +211,60 @@ namespace ECSA
                 }
                 catch (FormatException ex)
                 {
-                    MessageBox.Show("Formato de hora inválido: " + ex.Message);
+                    if (btnImprimir.Text == "Print Service Sheet")
+                    {
+                        MostrarMensajeIngles("Invalid time format: "+ ex.Message, 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Formato de hora inválido: "+ ex.Message, 1);
+                    }
+                   
                 }
 
                 bool validacionFallida = false;
                // Validar Conductor
                 if (BLLServicios.ValidarConductor(BEServicio.LegajoEmpleado).Count > 0)
                 {
-                    MessageBox.Show("Conductor ya utilizado");
+                    if (btnImprimir.Text == "Print Service Sheet")
+                    {
+                        MostrarMensajeIngles("Driver already used.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Conductor ya utilizado.", 1);
+                    }
+                  
                     validacionFallida = true;
                 }
 
                 // Validar Interno
                 if (BLLServicios.ValidarInterno(BEServicio.Coche).Count > 0)
                 {
-                    MessageBox.Show("Interno ya utilizado");
+                    if (btnImprimir.Text == "Print Service Sheet")
+                    {
+                        MostrarMensajeIngles("Internal already used.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Interno ya utilizado.", 1);
+                    }
+                    
                     validacionFallida = true;
                 }
 
                 // Validar Horario
                 if (BLLServicios.ValidarHorario(BEServicio.HorarioSalida).Count > 0)
                 {
-                    MessageBox.Show("Horario ya utilizado");
+                    if (btnImprimir.Text == "Print Service Sheet")
+                    {
+                        MostrarMensajeIngles("Schedule already used.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Horario ya utilizado.", 1);
+                    }
+    
                     validacionFallida = true;
                 }
 
@@ -235,12 +275,28 @@ namespace ECSA
                     if (BLLServicios.Crear(BEServicio))
                 {
                     BLLSeguridad.RegistrarEnBitacora(25, usuarioLog.Nick, usuarioLog.ID_Usuario);
-                    MessageBox.Show("Servicio creado con éxito");
+                        if (btnImprimir.Text == "Print Service Sheet")
+                        {
+                            MostrarMensajeIngles("Service created successfully.", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("Servicio creado con éxito.", 1);
+                        }
+
                     CalcularDigitos();
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo crear el servicio");
+                        if (btnImprimir.Text == "Print Service Sheet")
+                        {
+                            MostrarMensajeIngles("Could not create service.", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("No se pudo crear el servicio.", 1);
+                        }
+                       
                     }
                 }
 
@@ -249,7 +305,15 @@ namespace ECSA
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                if (btnImprimir.Text == "Print Service Sheet")
+                {
+                    MostrarMensajeIngles("Mistake: " + ex.Message, 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Error: " + ex.Message, 1);
+                }
+                
                 return;
             }
         }
@@ -265,13 +329,29 @@ namespace ECSA
                     // Convertir texto HH:mm a DateTime
                     if (!DateTime.TryParseExact(date1.Text, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out horarioSalida))
                     {
-                        MessageBox.Show("Formato de hora de salida inválido. Formato esperado: HH:mm");
+                        if (btnImprimir.Text == "Print Service Sheet")
+                        {
+                            MostrarMensajeIngles("Invalid departure time format. Expected format: HH:mm.", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("Formato de hora de salida inválido. Formato esperado: HH:mm", 1);
+                        }
+                        
                         return;
                     }
 
                     if (!DateTime.TryParseExact(date2.Text, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out horarioLlegada))
                     {
-                        MessageBox.Show("Formato de hora de llegada inválido. Formato esperado: HH:mm");
+                        if (btnImprimir.Text == "Print Service Sheet")
+                        {
+                            MostrarMensajeIngles("Invalid arrival time format. Expected format: HH:mm", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("Formato de hora de llegada inválido. Formato esperado: HH:mm", 1);
+                        }
+                       
                         return;
                     }
 
@@ -290,24 +370,56 @@ namespace ECSA
                     if (BLLServicios.Modificar(servicioModificado))
                     {
                         BLLSeguridad.RegistrarEnBitacora(23, usuarioLog.Nick, usuarioLog.ID_Usuario);
-                        MessageBox.Show("Servicio modificado con éxito");
+                        if (btnImprimir.Text == "Print Service Sheet")
+                        {
+                            MostrarMensajeIngles("Service modified successfully", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("Servicio modificado con éxito", 1);
+                        }
+                        
                         CalcularDigitos();
                         limpiarGrilla();
                         // Actualizar la interfaz con los datos modificados si es necesario
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo modificar el servicio");
+                        if (btnImprimir.Text == "Print Service Sheet")
+                        {
+                            MostrarMensajeIngles("Could not modify service", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("No se pudo modificar el servicio", 1);
+                        }
+                     
                     }
                 }
                 catch (FormatException ex)
                 {
-                    MessageBox.Show("Error al convertir la hora: " + ex.Message);
+                    if (btnImprimir.Text == "Print Service Sheet")
+                    {
+                        MostrarMensajeIngles("Error converting time: " + ex.Message, 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Error al convertir la hora: " + ex.Message, 1);
+                    }
+                    
                 }
             }
             else
             {
-                MessageBox.Show("Seleccione un servicio para modificar");
+                if (btnImprimir.Text == "Print Service Sheet")
+                {
+                    MostrarMensajeIngles("Select a service to modify", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Seleccione un servicio para modificar", 1);
+                }
+               
             }
 
         }
@@ -333,17 +445,41 @@ namespace ECSA
                         }
                         else
                         {
-                            MessageBox.Show("no se puede borrar el servicio");
+                            if (btnImprimir.Text == "Print Service Sheet")
+                            {
+                                MostrarMensajeIngles("service cannot be deleted", 2);
+                            }
+                            else
+                            {
+                                MostrarMensajeEspañol("no se puede borrar el servicio", 1);
+                            }
+                        
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Ha ocurrido un error al borrar el servicio: " + ex.Message);
+                        if (btnImprimir.Text == "Print Service Sheet")
+                        {
+                            MostrarMensajeIngles("An error occurred while deleting the service: " + ex.Message, 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("Ha ocurrido un error al borrar el servicio: " + ex.Message, 1);
+                        }
+                       
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Seleccione un servicio para borrar");
+                    if (btnImprimir.Text == "Print Service Sheet")
+                    {
+                        MostrarMensajeIngles("Select a service to delete", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Seleccione un servicio para borrar", 1);
+                    }
+                 
                 }
             }
         }
@@ -358,7 +494,15 @@ namespace ECSA
             // Validar campos vacíos antes de continuar
             if (string.IsNullOrWhiteSpace(cmbInterno.Text) || string.IsNullOrWhiteSpace(txtServicio.Text) || cmbConductor.SelectedValue == null)
             {
-                MessageBox.Show("Por favor, complete todos los campos.");
+                if (btnImprimir.Text == "Print Service Sheet")
+                {
+                    MostrarMensajeIngles("Please complete all fields", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Por favor, complete todos los campos", 1);
+                }
+                
                 return;
             }
 
@@ -369,25 +513,57 @@ namespace ECSA
                     // Asignar valores a la entidad BEServicio
                     if (!int.TryParse(cmbInterno.Text, out int coche))
                     {
-                        throw new FormatException("Número de interno inválido.");
+                        if (btnImprimir.Text == "Print Service Sheet")
+                        {
+                            throw new FormatException("Invalid extension number.");
+                        }
+                        else
+                        {
+                            throw new FormatException("Número de interno inválido.");
+                        }
+                        
                     }
                     BEServicio.Coche = coche;
 
                     if (!int.TryParse(cmbConductor.SelectedValue.ToString(), out int legajoEmpleado))
                     {
-                        throw new FormatException("Legajo de empleado inválido.");
+                        if (btnImprimir.Text == "Print Service Sheet")
+                        {
+                            throw new FormatException("Invalid employee file.");
+                        }
+                        else
+                        {
+                            throw new FormatException("Legajo de empleado inválido.");
+                        }
+                       
                     }
                     BEServicio.LegajoEmpleado = legajoEmpleado;
 
                     if (!int.TryParse(txtServicio.Text, out int idServicio))
                     {
-                        throw new FormatException("ID del servicio inválido.");
+                        if (btnImprimir.Text == "Print Service Sheet")
+                        {
+                            throw new FormatException("Invalid service ID");
+                        }
+                        else
+                        {
+                            throw new FormatException("ID del servicio inválido.");
+                        }
+                        
                     }
                     BEServicio.ID_Servicio = idServicio;
                 }
                 catch (FormatException ex)
                 {
-                    MessageBox.Show("Error en los datos ingresados: " + ex.Message);
+                    if (btnImprimir.Text == "Print Service Sheet")
+                    {
+                        MostrarMensajeIngles("Error in the data entered: " + ex.Message, 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Error en los datos ingresados: " + ex.Message, 1);
+                    }
+                    
                     return;
                 }
 
@@ -396,14 +572,30 @@ namespace ECSA
                 // Validar Conductor
                 if (BLLServicios.ValidarConductor(BEServicio.LegajoEmpleado).Count > 0)
                 {
-                    MessageBox.Show("Conductor ya utilizado.");
+                    if (btnImprimir.Text == "Print Service Sheet")
+                    {
+                        MostrarMensajeIngles("Driver already used", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Conductor ya utilizado", 1);
+                    }
+                    
                     validacionFallida = true;
                 }
 
                 // Validar Interno
                 if (BLLServicios.ValidarInterno(BEServicio.Coche).Count > 0)
                 {
-                    MessageBox.Show("Interno ya utilizado.");
+                    if (btnImprimir.Text == "Print Service Sheet")
+                    {
+                        MostrarMensajeIngles("Internal already used.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Interno ya utilizado.", 1);
+                    }
+                    
                     validacionFallida = true;
                 }
 
@@ -413,12 +605,28 @@ namespace ECSA
                     if (BLLServicios.CrearServicio(BEServicio))
                     {
                         BLLSeguridad.RegistrarEnBitacora(26, usuarioLog.Nick, usuarioLog.ID_Usuario);
-                        MessageBox.Show("Servicio asignado con éxito.");
+                        if (btnImprimir.Text == "Print Service Sheet")
+                        {
+                            MostrarMensajeIngles("Service assigned successfully.", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("Servicio asignado con éxito.", 1);
+                        }
+                        
                         CalcularDigitos();
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo asignar el servicio.");
+                        if (btnImprimir.Text == "Print Service Sheet")
+                        {
+                            MostrarMensajeIngles("Service could not be assigned.", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("No se pudo asignar el servicio.", 1);
+                        }
+                   
                     }
                 }
 
@@ -427,7 +635,15 @@ namespace ECSA
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                if (btnImprimir.Text == "Print Service Sheet")
+                {
+                    MostrarMensajeIngles("mistake: " + ex.Message, 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Error: " + ex.Message, 1);
+                }
+                
             }
         }
 
@@ -568,11 +784,27 @@ namespace ECSA
 
                                 document.Close();
 
-                                MessageBox.Show($"Planilla guardada en el escritorio como '{pdfFileName}'.");
+                if (btnImprimir.Text == "Print Service Sheet")
+                {
+                    MostrarMensajeIngles($"Sheet saved on desktop as '{pdfFileName}'", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol($"Planilla guardada en el escritorio como '{pdfFileName}'", 1);
+                }
+                
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show("Error al guardar la planilla: " + ex.Message);
+                if (btnImprimir.Text == "Print Service Sheet")
+                {
+                    MostrarMensajeIngles("Error when saving the spreadsheet: " + ex.Message, 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Error al guardar la planilla: "+ex.Message, 1);
+                }
+                
                             }
                         }
 
@@ -586,7 +818,7 @@ namespace ECSA
 
 
 
-                        #region FuncionesVarias
+        #region FuncionesVarias
                         private void limpiarGrilla()
                         {
                             dtgServicios.DataSource = null;
@@ -817,6 +1049,30 @@ namespace ECSA
 
 
 
+
+
+
+        }
+        public static void MostrarMensajeEspañol(string mensaje, int codigo)
+        {
+
+            UINotificacion UINoti = new UINotificacion(mensaje, codigo)
+            {
+                StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                TopMost = true // Siempre visible encima de otras ventanas
+            };
+            UINoti.ShowDialog(); // Mostrar como diálog
+        }
+
+        public static void MostrarMensajeIngles(string mensaje, int codigo)
+        {
+
+            UINotificacion UINoti = new UINotificacion(mensaje, codigo)
+            {
+                StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                TopMost = true // Siempre visible encima de otras ventanas
+            };
+            UINoti.ShowDialog(); // Mostrar como diálog
         }
 
     }

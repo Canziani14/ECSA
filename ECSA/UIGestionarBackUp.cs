@@ -57,11 +57,53 @@ namespace ECSA
                     try
                     {
                         BLLDAL.RealizarBKP(backupPath);
-                        MessageBox.Show("Backup realizado con éxito.");
+
+
+                        string pdfEspañol = "Backup realizado con éxito.";
+                        string pdfIngles = "Backup performed successfully.";
+                        if (btnBKP.Text == "Perform Backup")
+                        {
+                            UINotificacion UINoti = new UINotificacion(pdfIngles, 2)
+                            {
+                                StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                                TopMost = true // Siempre visible encima de otras ventanas
+                            };
+                            UINoti.ShowDialog(); // Mostrar como diálog
+                        }
+                        else
+                        {
+                            UINotificacion UINoti = new UINotificacion(pdfEspañol, 1)
+                            {
+                                StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                                TopMost = true // Siempre visible encima de otras ventanas
+                            };
+                            UINoti.ShowDialog(); // Mostrar como diálogo modal
+                        }
+                    
                         BLLSeguridad.RegistrarEnBitacora(35, usuarioLog.Nick, usuarioLog.ID_Usuario);
                     }
                     catch (Exception ex)
                     {
+                        string pdfEspañol1 = "Error al realizar el backup: " + ex.Message;
+                        string pdfIngles1 = "Error while performing backup: " + ex.Message;
+                        if (btnBKP.Text == "Perform Backup")
+                        {
+                            UINotificacion UINoti = new UINotificacion(pdfIngles1, 2)
+                            {
+                                StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                                TopMost = true // Siempre visible encima de otras ventanas
+                            };
+                            UINoti.ShowDialog(); // Mostrar como diálog
+                        }
+                        else
+                        {
+                            UINotificacion UINoti = new UINotificacion(pdfEspañol1, 1)
+                            {
+                                StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                                TopMost = true // Siempre visible encima de otras ventanas
+                            };
+                            UINoti.ShowDialog(); // Mostrar como diálogo modal
+                        }
                         MessageBox.Show("Error al realizar el backup: " + ex.Message);
                     }
                 }

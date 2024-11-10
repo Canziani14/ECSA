@@ -1,0 +1,17 @@
+C:\Users\CASA\Desktop\ECSA\ECSA\DAL\bin\Release\DAL.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\DAL\bin\Release\DAL.pdb
+C:\Users\CASA\Desktop\ECSA\ECSA\DAL\bin\Release\BE.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\DAL\bin\Release\Bogus.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\DAL\bin\Release\BouncyCastle.Cryptography.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\DAL\bin\Release\itextsharp.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\DAL\bin\Release\SqlHelper.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\DAL\bin\Release\BE.pdb
+C:\Users\CASA\Desktop\ECSA\ECSA\DAL\bin\Release\SqlHelper.pdb
+C:\Users\CASA\Desktop\ECSA\ECSA\DAL\bin\Release\Bogus.xml
+C:\Users\CASA\Desktop\ECSA\ECSA\DAL\bin\Release\BouncyCastle.Cryptography.xml
+C:\Users\CASA\Desktop\ECSA\ECSA\DAL\bin\Release\itextsharp.xml
+C:\Users\CASA\Desktop\ECSA\ECSA\DAL\obj\Release\DAL.csproj.AssemblyReference.cache
+C:\Users\CASA\Desktop\ECSA\ECSA\DAL\obj\Release\DAL.csproj.CoreCompileInputs.cache
+C:\Users\CASA\Desktop\ECSA\ECSA\DAL\obj\Release\DAL.csproj.CopyComplete
+C:\Users\CASA\Desktop\ECSA\ECSA\DAL\obj\Release\DAL.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\DAL\obj\Release\DAL.pdb

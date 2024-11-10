@@ -146,7 +146,15 @@ namespace ECSA
         {
             if (txtNombreLinea.Text == "")
             {
-                MessageBox.Show("Por favor, complete todos los campos");
+                if (btnCrearLinea.Text == "Create")
+                {
+                    MostrarMensajeIngles("Please complete all fields.", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Por favor, complete todos los campos", 1);
+                }
+                
                 return;
             }
             try
@@ -157,19 +165,43 @@ namespace ECSA
 
                 if (BLLinea.ValidarNumLinea(BELinea.NumeroDeLinea).Count > 0)
                 {
-                    MessageBox.Show("Nombre de linea ya utilizado");
+                    if (btnCrearLinea.Text == "Create")
+                    {
+                        MostrarMensajeIngles("Line name already used.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Nombre de linea ya utilizado", 1);
+                    }
+                    
                 }
                 else
                 {
                     if (BLLinea.Crear(BELinea))
                     {
                         BLLSeguridad.RegistrarEnBitacora(18, usuarioLog.Nick, usuarioLog.ID_Usuario);
-                        MessageBox.Show("Linea creada con éxito");
+                        if (btnCrearLinea.Text == "Create")
+                        {
+                            MostrarMensajeIngles("Line created successfully.", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("Linea creada con éxito", 1);
+                        }
+                        
                         CalcularDigitos();
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo crear la Linea");
+                        if (btnCrearLinea.Text == "Create")
+                        {
+                            MostrarMensajeIngles("Line could not be created.", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("No se pudo crear la Linea.", 1);
+                        }
+                        
                     }
                 }
                
@@ -179,7 +211,15 @@ namespace ECSA
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                if (btnCrearLinea.Text == "Create")
+                {
+                    MostrarMensajeIngles("Mistake: " + ex.Message, 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Error: " + ex.Message, 1);
+                }
+                
                 return;
             }
             
@@ -201,14 +241,30 @@ namespace ECSA
                     }))
                     {
                         BLLSeguridad.RegistrarEnBitacora(19, usuarioLog.Nick, usuarioLog.ID_Usuario);
-                        MessageBox.Show("Linea modificada con exito");
+                        if (btnCrearLinea.Text == "Create")
+                        {
+                            MostrarMensajeIngles("Successfully modified line.", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("Linea modificada con exito.", 1);
+                        }
+                  
                         CalcularDigitos();
                         limpiarGrilla();
                         limpiartxt();
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo modificar la Linea");
+                        if (btnCrearLinea.Text == "Create")
+                        {
+                            MostrarMensajeIngles("Could not modify the Line", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("No se pudo modificar la Linea.", 1);
+                        }
+                      
                     }
 
                 }
@@ -220,7 +276,15 @@ namespace ECSA
             }
             else
             {
-                MessageBox.Show("Seleccione una Linea para modificar");
+                if (btnCrearLinea.Text == "Create")
+                {
+                    MostrarMensajeIngles("Select a Line to modify", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Seleccione una Linea para modificar.", 1);
+                }
+                
             }
             
         }
@@ -248,17 +312,41 @@ namespace ECSA
                         }
                         else
                         {
-                            MessageBox.Show("no se puede borrar la Linea");
+                            if (btnCrearLinea.Text == "Create")
+                            {
+                                MostrarMensajeIngles("cannot delete the line.", 2);
+                            }
+                            else
+                            {
+                                MostrarMensajeEspañol("no se puede borrar la Linea.", 1);
+                            }
+                        
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Ha ocurrido un error al borrar la Linea: " + ex.Message);
+                        if (btnCrearLinea.Text == "Create")
+                        {
+                            MostrarMensajeIngles("An error occurred while deleting the Line: " + ex.Message, 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("Ha ocurrido un error al borrar la Linea: " + ex.Message, 1);
+                        }
+                     
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Seleccione una Linea para borrar");
+                    if (btnCrearLinea.Text == "Create")
+                    {
+                        MostrarMensajeIngles("Select a Line to delete.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Seleccione una Linea para borrar.", 1);
+                    }
+                  
                 }
             }
         }
@@ -279,7 +367,15 @@ namespace ECSA
             // Verificar si los campos están vacíos
             if (string.IsNullOrWhiteSpace(txtIDLinea.Text) || string.IsNullOrWhiteSpace(txtNombreLinea.Text))
             {
-                MessageBox.Show("Por favor, complete todos los campos antes de continuar.", "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (btnCrearLinea.Text == "Create")
+                {
+                    MostrarMensajeIngles("Please complete all fields before continuing.", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Por favor, complete todos los campos antes de continuar.", 1);
+                }
+              
                 return; // Salir del método si los campos están vacíos
             }
 
@@ -294,7 +390,15 @@ namespace ECSA
             else
             {
                 // Mostrar mensaje si la conversión falla
-                MessageBox.Show("El ID de la línea debe ser un número válido.", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (btnCrearLinea.Text == "Create")
+                {
+                    MostrarMensajeIngles("The line ID must be a valid number.", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("El ID de la línea debe ser un número válido.", 1);
+                }
+                
             }
 
         }
@@ -302,7 +406,27 @@ namespace ECSA
 
 
 
+        public static void MostrarMensajeEspañol(string mensaje, int codigo)
+        {
 
+            UINotificacion UINoti = new UINotificacion(mensaje, codigo)
+            {
+                StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                TopMost = true // Siempre visible encima de otras ventanas
+            };
+            UINoti.ShowDialog(); // Mostrar como diálog
+        }
+
+        public static void MostrarMensajeIngles(string mensaje, int codigo)
+        {
+
+            UINotificacion UINoti = new UINotificacion(mensaje, codigo)
+            {
+                StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                TopMost = true // Siempre visible encima de otras ventanas
+            };
+            UINoti.ShowDialog(); // Mostrar como diálog
+        }
 
 
         #region FuncionesVarias

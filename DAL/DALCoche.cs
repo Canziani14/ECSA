@@ -11,7 +11,7 @@ namespace DAL
     {
         public List<Coche> Buscar(int id)
         {
-            throw new NotImplementedException();
+            return DAOs.DAOSCoche.GetInstance().Buscar(id);
         }
 
         public bool Crear(Coche objAgregar)

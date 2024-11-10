@@ -29,17 +29,29 @@ namespace DAL.DAOs
 
         string queryAsignarPatente = "insert into Usuario_Patente (ID_Usuario,ID_Patente) values(@ID_Usuario,@ID_Patente)";
         string queryQuitarPatente = "delete from Usuario_Patente where ID_Usuario=@ID_Usuario and ID_Patente=@ID_Patente";
-        string querySelect = "SELECT p.id_patente, dp.descripcion "+
+
+        /*string querySelect = "SELECT p.id_patente, dp.descripcion "+
             "FROM Patente p "+
             "INNER JOIN Usuario_Patente up ON p.id_patente = up.id_patente "+
             "INNER JOIN Patente dp ON p.id_patente = dp.id_patente "+
             "WHERE up.id_usuario =@ID_Usuario";
+        */
+        string querySelect = "SELECT p.id_patente, p.descripcion " +
+                     "FROM Patente p " +
+                     "INNER JOIN Usuario_Patente up ON p.id_patente = up.id_patente " +
+                     "WHERE up.id_usuario = @ID_Usuario";
 
-        string querySelecSin = "SELECT p.id_patente, dp.Descripcion " +
-            "FROM Patente p " +
-            "LEFT JOIN Usuario_Patente up ON p.ID_Patente = up.ID_Patente AND up.id_usuario =@ID_Usuario " +
-            "INNER JOIN Patente dp ON p.id_patente = dp.id_patente "+
-            "WHERE up.id_patente IS NULL;";
+        /*
+                string querySelecSin = "SELECT p.id_patente, dp.Descripcion " +
+                    "FROM Patente p " +
+                    "LEFT JOIN Usuario_Patente up ON p.ID_Patente = up.ID_Patente AND up.id_usuario =@ID_Usuario " +
+                    "INNER JOIN Patente dp ON p.id_patente = dp.id_patente "+
+                    "WHERE up.id_patente IS NULL;";
+        */
+        string querySelecSin = "SELECT p.id_patente, p.descripcion " +
+                               "FROM Patente p " +
+                               "LEFT JOIN Usuario_Patente up ON p.ID_Patente = up.ID_Patente AND up.id_usuario = @ID_Usuario " +
+                               "WHERE up.id_patente IS NULL";
 
         public bool Asignar(int id_usuario, int id_patente)
         {

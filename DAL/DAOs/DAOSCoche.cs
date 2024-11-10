@@ -41,7 +41,7 @@ namespace DAL.DAOs
 
         string QuerySelectXPatente = "select * from coche where Patente = @Patente";
 
-
+        string QuerySelectByinterno = "Select * from coche where interno = @interno ";
 
 
 
@@ -114,7 +114,13 @@ namespace DAL.DAOs
 
         public List<Coche> Buscar(int id)
         {
-            throw new NotImplementedException();
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@interno", id),
+
+            };
+            DataTable table = SQLHelper.SqlHelper.GetInstance(connectionString).ExecuteDataTable(QuerySelectByinterno, parameters);
+            return Mappers.MAPPERSCoche.GetInstance().Map(table);
         }
 
         public bool Modificar(string patente, int idLinea)

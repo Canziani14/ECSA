@@ -10,12 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Bogus;
+using System.Text.RegularExpressions;
 
 namespace ECSA
 {
     public partial class UIGestionarEmpleados : Form
     {
-        #region Inicializaciones
+      
 
         BE.Empleado BEEmpleado = new BE.Empleado();
         BE.Empleado EmpleadoSeleccionado = new BE.Empleado();
@@ -37,10 +38,10 @@ namespace ECSA
             {
                 switch (traduccion.ID_Traduccion)
                 {
-                    case 6:
+                    case 2:
                         btnCrearEmpleado.Text = traduccion.Descripcion;
                         break;
-                    case 8:
+                    case 6:
                         btnEliminarEmpleado.Text = traduccion.Descripcion;
                         break;
                     case 4:
@@ -54,37 +55,48 @@ namespace ECSA
                         break;
                     case 68:
                         lblNombre.Text = traduccion.Descripcion;
+                        dtgEmpleados.Columns["Nombre"].HeaderText = traduccion.Descripcion;
                         break;
                     case 70:
                         lblApellido.Text = traduccion.Descripcion;
+                        dtgEmpleados.Columns["Apellido"].HeaderText = traduccion.Descripcion;
                         break;
                     case 72:
                         lblDNI.Text = traduccion.Descripcion;
+                        dtgEmpleados.Columns["DNI"].HeaderText = traduccion.Descripcion;
                         break;
                     case 110:
                         lblDireccion.Text = traduccion.Descripcion;
+                        dtgEmpleados.Columns["Direccion"].HeaderText = traduccion.Descripcion;
                         break;
                     case 112:
                         lblTelefono.Text = traduccion.Descripcion;
+                        dtgEmpleados.Columns["Telefono"].HeaderText = traduccion.Descripcion;
                         break;
                     case 86:
                         lblLinea.Text = traduccion.Descripcion;
                         break;
                     case 114:
                         lblFechaDeIngreo.Text = traduccion.Descripcion;
+                        dtgEmpleados.Columns["FechaDeIngreso"].HeaderText = traduccion.Descripcion;
                         break;
                     case 116:
                         lblLegajo.Text = traduccion.Descripcion;
+                        dtgEmpleados.Columns["Legajo"].HeaderText = traduccion.Descripcion;
                         break;
                     case 12:
                         gbGestorEmpleados.Text = traduccion.Descripcion;
+                        break;
+                    case 149:
+                        dtgEmpleados.Columns["Eliminado"].HeaderText = traduccion.Descripcion;
+                        break;
+                    case 144:
+                        btnRecuperarEmlpeado.Text= traduccion.Descripcion;
                         break;
                 }
             }
 
             #endregion
-
-
 
             #region patente
             btnCrearEmpleado.Enabled = false;
@@ -111,8 +123,6 @@ namespace ECSA
             }
 
             #endregion
-
-
 
             #region Perzonalizacion DTG
             dtgEmpleados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -147,24 +157,95 @@ namespace ECSA
             // Ajuste de los márgenes y bordes
             dtgEmpleados.DefaultCellStyle.Padding = new Padding(5, 5, 5, 5);
             dtgEmpleados.GridColor = Color.FromArgb(231, 231, 231);
-            #endregion
             txtNombre.Font = new Font("Arial", 10F, FontStyle.Regular);
             txtNombre.ForeColor = Color.Black;
             txtNombre.BackColor = Color.White;
             txtNombre.BorderStyle = BorderStyle.FixedSingle;
-
+            #endregion
 
         }
-        #endregion
+     
 
         #region CrearEmpleado
         private void btnCrearEmpleado_Click(object sender, EventArgs e)
         {
-            if (txtApellido.Text == "")
+            #region validaciones
+            if (!ValidarNombre(txtNombre.Text))
             {
-                MessageBox.Show("Por favor, complete todos los campos");
+                if (btnBuscarEmpleado.Text == "Search")
+                {
+                    MostrarMensajeIngles("Error in Name field: Only up to 30 characters of a-z, A-Z, 0-9, and some special characters are allowed.", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Error en el campo Nombre: Solo se permiten hasta 30 caracteres de a-z, A-Z, 0-9, y algunos caracteres especiales.", 1);
+                }
+
                 return;
             }
+
+            if (!ValidarApellido(txtApellido.Text))
+            {
+                if (btnBuscarEmpleado.Text == "Search")
+                {
+                    MostrarMensajeIngles("Error in Surname field: Only up to 30 characters of a-z, A-Z, 0-9, and some special characters are allowed.", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Error en el campo Apellido: Solo se permiten hasta 30 caracteres de a-z, A-Z, 0-9, y algunos caracteres especiales.", 1);
+                }
+
+                return;
+            }
+
+
+            if (!ValidarTelefono(txtTelefono.Text))
+            {
+                if (btnBuscarEmpleado.Text == "Search")
+                {
+                    MostrarMensajeIngles("Error in Telephone field: It must begin with 11 and contain 10 digits in total.", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Error en el campo Teléfono: Debe comenzar con 11 y contener 10 dígitos en total.", 1);
+                }
+
+                return;
+            }
+
+
+            if (!ValidarDNI(txtDNI.Text))
+            {
+                if (btnBuscarEmpleado.Text == "Search")
+                {
+                    MostrarMensajeIngles("Error in DNI field: Only up to 30 characters of a-z, A-Z, 0-9, and some special characters are allowed.", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Error en el campo DNI: Solo se permiten hasta 30 caracteres de a-z, A-Z, 0-9, y algunos caracteres especiales.", 1);
+                }
+
+                return;
+            }
+            //uso nombre porque es el mismo dominio pero es direccion
+            if (!ValidarNombre(txtDNI.Text))
+            {
+                if (btnBuscarEmpleado.Text == "Search")
+                {
+                    MostrarMensajeIngles("Error in address field: Only up to 30 characters of a-z, A-Z, 0-9, and some special characters are allowed.", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Error en el campo dirección: Solo se permiten hasta 30 caracteres de a-z, A-Z, 0-9, y algunos caracteres especiales.", 1);
+                }
+
+                return;
+            }
+
+
+
+
+            #endregion
 
             try
             {
@@ -185,25 +266,57 @@ namespace ECSA
                 }
                 else
                 {
-                    MessageBox.Show("Por favor, selecciona una línea válida.");
+                    if (btnBuscarEmpleado.Text == "Search")
+                    {
+                        MostrarMensajeIngles("Please select a valid line.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Por favor, selecciona una línea válida.", 1);
+                    }
+                    
                 }
 
                 if (BLLEmpleado.ValidarDNI(BEEmpleado.DNI).Count > 0)
                 {
-                    MessageBox.Show("DNI ya en uso");
+                    if (btnBuscarEmpleado.Text == "Search")
+                    {
+                        MostrarMensajeIngles("DNI already in use.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("DNI ya en uso.", 1);
+                    }
+                   
                 }
                 else
                 {
                     if (BLLEmpleado.Crear(BEEmpleado))
                     {
                         BLLSeguridad.RegistrarEnBitacora(15, usuarioLog.Nick, usuarioLog.ID_Usuario);
-                        MessageBox.Show("Empleado creado con éxito");
+                        if (btnBuscarEmpleado.Text == "Search")
+                        {
+                            MostrarMensajeIngles("Successfully created employee.", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("Empleado creado con éxito.", 1);
+                        }
+                  
                         CalcularDigitos();
 
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo crear el empleado");
+                        if (btnBuscarEmpleado.Text == "Search")
+                        {
+                            MostrarMensajeIngles("Could not create employee.", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("No se pudo crear el empleado.", 1);
+                        }
+                        
                     }
                 }
                
@@ -214,7 +327,15 @@ namespace ECSA
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                if (btnBuscarEmpleado.Text == "Search")
+                {
+                    MostrarMensajeIngles("Mistake: " +  ex.Message, 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Error: "+  ex.Message, 1);
+                }
+                
                 return;
             }
 
@@ -226,6 +347,83 @@ namespace ECSA
         {
             if (EmpleadoSeleccionado != null)
             {
+                #region validaciones
+                if (!ValidarNombre(txtNombre.Text))
+                {
+                    if (btnBuscarEmpleado.Text == "Search")
+                    {
+                        MostrarMensajeIngles("Error in Name field: Only up to 30 characters of a-z, A-Z, 0-9, and some special characters are allowed.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Error en el campo Nombre: Solo se permiten hasta 30 caracteres de a-z, A-Z, 0-9, y algunos caracteres especiales.", 1);
+                    }
+
+                    return;
+                }
+
+                if (!ValidarApellido(txtApellido.Text))
+                {
+                    if (btnBuscarEmpleado.Text == "Search")
+                    {
+                        MostrarMensajeIngles("Error in Surname field: Only up to 30 characters of a-z, A-Z, 0-9, and some special characters are allowed.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Error en el campo Apellido: Solo se permiten hasta 30 caracteres de a-z, A-Z, 0-9, y algunos caracteres especiales.", 1);
+                    }
+
+                    return;
+                }
+
+
+                if (!ValidarTelefono(txtTelefono.Text))
+                {
+                    if (btnBuscarEmpleado.Text == "Search")
+                    {
+                        MostrarMensajeIngles("Error in Telephone field: It must begin with 11 and contain 10 digits in total.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Error en el campo Teléfono: Debe comenzar con 11 y contener 10 dígitos en total.", 1);
+                    }
+
+                    return;
+                }
+
+
+                if (!ValidarDNI(txtDNI.Text))
+                {
+                    if (btnBuscarEmpleado.Text == "Search")
+                    {
+                        MostrarMensajeIngles("Error in DNI field: Only up to 30 characters of a-z, A-Z, 0-9, and some special characters are allowed.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Error en el campo DNI: Solo se permiten hasta 30 caracteres de a-z, A-Z, 0-9, y algunos caracteres especiales.", 1);
+                    }
+
+                    return;
+                }
+                //uso nombre porque es el mismo dominio pero es direccion
+                if (!ValidarNombre(txtDNI.Text))
+                {
+                    if (btnBuscarEmpleado.Text == "Search")
+                    {
+                        MostrarMensajeIngles("Error in address field: Only up to 30 characters of a-z, A-Z, 0-9, and some special characters are allowed.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Error en el campo dirección: Solo se permiten hasta 30 caracteres de a-z, A-Z, 0-9, y algunos caracteres especiales.", 1);
+                    }
+
+                    return;
+                }
+
+
+
+
+                #endregion
                 try
                 {
                     if (BLLEmpleado.Modificar(new BE.Empleado()
@@ -242,7 +440,15 @@ namespace ECSA
             ))
                     {
                         BLLSeguridad.RegistrarEnBitacora(16, usuarioLog.Nick, usuarioLog.ID_Usuario);
-                        MessageBox.Show("Empleado modificado con exito");
+                        if (btnBuscarEmpleado.Text == "Search")
+                        {
+                            MostrarMensajeIngles("Successfully modified employee", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("Empleado modificado con exito", 1);
+                        }
+                        
                         CalcularDigitos();
                         limpiarGrilla();
                         limpiartxt();
@@ -250,19 +456,42 @@ namespace ECSA
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo modificar el empleado");
+                        if (btnBuscarEmpleado.Text == "Search")
+                        {
+                            MostrarMensajeIngles("Could not modify employee", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("No se pudo modificar el empleado", 1);
+                        }
+                  
                     }
 
                 }
                 catch (FormatException ex)
                 {
-
-                    MessageBox.Show(ex.Message);
+                    if (btnBuscarEmpleado.Text == "Search")
+                    {
+                        MostrarMensajeIngles(ex.Message, 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol(ex.Message, 1);
+                    }
+                   
                 }
             }
             else
             {
-                MessageBox.Show("Seleccione un empleado para modificar");
+                if (btnBuscarEmpleado.Text == "Search")
+                {
+                    MostrarMensajeIngles("Select an employee to modify", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Seleccione un empleado para modificar", 1);
+                }
+                
             }
         }
 
@@ -322,17 +551,41 @@ namespace ECSA
                         }
                         else
                         {
-                            MessageBox.Show("no se puede borrar el empleado");
+                            if (btnBuscarEmpleado.Text == "Search")
+                            {
+                                MostrarMensajeIngles("cannot delete employee", 2);
+                            }
+                            else
+                            {
+                                MostrarMensajeEspañol("no se puede borrar el empleado", 1);
+                            }
+                           
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Ha ocurrido un error al borrar el empleado: " + ex.Message);
+                        if (btnBuscarEmpleado.Text == "Search")
+                        {
+                            MostrarMensajeIngles("An error occurred while deleting the employee: " + ex.Message, 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("Ha ocurrido un error al borrar el empleado: " + ex.Message, 1);
+                        }
+                      
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Seleccione un empleado para borrar");
+                    if (btnBuscarEmpleado.Text == "Search")
+                    {
+                        MostrarMensajeIngles("Select an employee to delete", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Seleccione un empleado para borrar", 1);
+                    }
+                
                 }
             }
 
@@ -354,24 +607,56 @@ namespace ECSA
                         {
                             //ver agregar recuperar empleado en bitacora
                             BLLSeguridad.RegistrarEnBitacora(38, usuarioLog.Nick, usuarioLog.ID_Usuario);
-                            MessageBox.Show("Usuario Recuperado");
+                            if (btnBuscarEmpleado.Text == "Search")
+                            {
+                                MostrarMensajeIngles("Recovered User.", 2);
+                            }
+                            else
+                            {
+                                MostrarMensajeEspañol("Usuario Recuperado.", 1);
+                            }
+                           
                             CalcularDigitos();
                             limpiarGrilla();
                             limpiartxt();
                         }
                         else
                         {
-                            MessageBox.Show("no se puede recuperar el empleado");
+                            if (btnBuscarEmpleado.Text == "Search")
+                            {
+                                MostrarMensajeIngles("The employee cannot be recovered.", 2);
+                            }
+                            else
+                            {
+                                MostrarMensajeEspañol("No se puede recuperar el empleado.", 1);
+                            }
+                            
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Ha ocurrido un error al recuperar el empleado: " + ex.Message);
+                        if (btnBuscarEmpleado.Text == "Search")
+                        {
+                            MostrarMensajeIngles("An error occurred while retrieving the employee: " + ex.Message, 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("Ha ocurrido un error al recuperar el empleado: " + ex.Message, 1);
+                        }
+                        
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Seleccione un usuario para recuperar");
+                    if (btnBuscarEmpleado.Text == "Search")
+                    {
+                        MostrarMensajeIngles("Select a user to recover.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Seleccione un usuario para recuperar.", 1);
+                    }
+                  
                 }
             }
         }
@@ -392,16 +677,92 @@ namespace ECSA
                 }
                 else
                 {
-                    MessageBox.Show("Empleado no encontrado.");
+                    if (btnBuscarEmpleado.Text == "Search")
+                    {
+                        MostrarMensajeIngles("Employee not found.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Empleado no encontrado.", 1);
+                    }
+                    
                     dtgEmpleados.DataSource = empleados;
                 }
             }
             else
             {
                 // Show error message if the input is not a valid integer
-                MessageBox.Show("Por favor, ingrese un número de legajo válido.");
+                if (btnBuscarEmpleado.Text == "Search")
+                {
+                    MostrarMensajeIngles("Please enter a valid file number.", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Por favor, ingrese un número de legajo válido.", 1);
+                }
+              
                 dtgEmpleados.DataSource = null;
             }
+        }
+
+
+        #endregion
+
+        #region funciones de validacion
+
+        private bool ValidarNombre(string input)
+        {
+            return ValidarCampo(input, 30, @"^[a-zA-Z0-9.@#$%&*()-]*$");
+        }
+
+        private bool ValidarApellido(string input)
+        {
+            return ValidarCampo(input, 30, @"^[a-zA-Z0-9.@#$%&*()-]*$");
+        }
+
+        private bool ValidarDNI(string input)
+        {
+            // Patrón para verificar que el DNI tenga exactamente 8 dígitos numéricos.
+            string patronDNI = @"^\d{8}$";
+            return ValidarCampo(input, 8, patronDNI);
+        }
+
+       
+
+        
+
+        private bool ValidarTelefono(string input)
+        {
+            // Patrón para verificar el formato de teléfono dentro del rango 1100000000 - 1199999999.
+            string patronTelefono = @"^11\d{8}$";
+            return ValidarCampo(input, 10, patronTelefono);
+        }
+
+
+        private bool ValidarCampo(string input, int maxLongitud, string patron)
+        {
+            // Validar que no esté vacío
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                MessageBox.Show("El campo no puede estar vacío.");
+                return false;
+            }
+
+            // Validar longitud máxima
+            if (input.Length > maxLongitud)
+            {
+                MessageBox.Show($"El campo no debe exceder los {maxLongitud} caracteres.");
+                return false;
+            }
+
+            // Validar patrón
+            if (!Regex.IsMatch(input, patron))
+            {
+                //No cumple el patron
+                return false;
+            }
+
+            return true;
         }
 
 
@@ -412,7 +773,7 @@ namespace ECSA
         {
             dtgEmpleados.DataSource = null;
             dtgEmpleados.DataSource = BLLEmpleado.Listar();
-            dtgEmpleados.Columns["ID_Linea"].Visible = false;
+            //dtgEmpleados.Columns["ID_Linea"].Visible = false;
             dtgEmpleados.Columns["DVH"].Visible = false;
         }
 
@@ -449,9 +810,28 @@ namespace ECSA
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
 
+        public static void MostrarMensajeEspañol(string mensaje, int codigo)
+        {
 
+            UINotificacion UINoti = new UINotificacion(mensaje, codigo)
+            {
+                StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                TopMost = true // Siempre visible encima de otras ventanas
+            };
+            UINoti.ShowDialog(); // Mostrar como diálog
+        }
 
+        public static void MostrarMensajeIngles(string mensaje, int codigo)
+        {
+
+            UINotificacion UINoti = new UINotificacion(mensaje, codigo)
+            {
+                StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                TopMost = true // Siempre visible encima de otras ventanas
+            };
+            UINoti.ShowDialog(); // Mostrar como diálog
         }
 
 
@@ -460,28 +840,27 @@ namespace ECSA
         #endregion
 
 
+        /*//con esto genero empleados random
+            private void button1_Click(object sender, EventArgs e)
+                {
+                    var faker = new Faker<BE.Empleado>()
+                        .RuleFor(employee => employee.Nombre, f => f.Name.FirstName())
+                        .RuleFor(employee => employee.Apellido, f => f.Name.LastName())
+                        .RuleFor(employee => employee.DNI, f => BLLSeguridad.EncriptarCamposReversible(f.Random.Number(10000000, 99999999).ToString()))
+                        .RuleFor(employee => employee.Direccion, f => BLLSeguridad.EncriptarCamposReversible(f.Address.StreetAddress()))
+                        .RuleFor(employee => employee.Telefono, f => BLLSeguridad.EncriptarCamposReversible(f.Phone.PhoneNumber()))
+                        .RuleFor(employee => employee.FechaDeingreso, f => f.Date.Past())
+                        .RuleFor(employee => employee.LineaPertenece, f => f.PickRandom(new[] { 1, 7, 8 })) // Seleccionar entre líneas 1, 7 y 8
+                         .RuleFor(employee => employee.DVH, f => 0)
+                        .Generate(150);
 
-    private void button1_Click(object sender, EventArgs e)
-        {
-            var faker = new Faker<BE.Empleado>()
-                .RuleFor(employee => employee.Nombre, f => f.Name.FirstName())
-                .RuleFor(employee => employee.Apellido, f => f.Name.LastName())
-                .RuleFor(employee => employee.DNI, f => BLLSeguridad.EncriptarCamposReversible(f.Random.Number(10000000, 99999999).ToString()))
-                .RuleFor(employee => employee.Direccion, f => BLLSeguridad.EncriptarCamposReversible(f.Address.StreetAddress()))
-                .RuleFor(employee => employee.Telefono, f => BLLSeguridad.EncriptarCamposReversible(f.Phone.PhoneNumber()))
-                .RuleFor(employee => employee.FechaDeingreso, f => f.Date.Past())
-                .RuleFor(employee => employee.LineaPertenece, f => f.PickRandom(new[] { 1, 7, 8 })) // Seleccionar entre líneas 1, 7 y 8
-                 .RuleFor(employee => employee.DVH, f => 0)
-                .Generate(150);
-
-            // Insertar los empleados en la base de datos
-            foreach (var empleado in faker)
-            {
-                BLLEmpleado.Crear(empleado);
-            }
-        }
-
-
+                    // Insertar los empleados en la base de datos
+                    foreach (var empleado in faker)
+                    {
+                        BLLEmpleado.Crear(empleado);
+                    }
+                }*/
+        
 
 
     }

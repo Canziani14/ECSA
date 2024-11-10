@@ -200,12 +200,52 @@ namespace ECSA
 
                         // Añadir número total de páginas en el pie de página
                         pageEventHelper.AddTotalPagesToFooter(writer, pageEventHelper.TotalPagesTemplate);
+                        string pdfEspañol = "PDF guardado exitosamente como " + filename;
+                        string pdfIngles = "PDF successfully saved as " + filename;
+                        if (lblDesde.Text == "From:")
+                        {
+                            UINotificacion UINoti = new UINotificacion(pdfIngles, 2)
+                            {
+                                StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                                TopMost = true // Siempre visible encima de otras ventanas
+                            };
+                            UINoti.ShowDialog(); // Mostrar como diálog
+                        }
+                        else
+                        {
+                            UINotificacion UINoti = new UINotificacion(pdfEspañol, 1)
+                            {
+                                StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                                TopMost = true // Siempre visible encima de otras ventanas
+                            };
+                            UINoti.ShowDialog(); // Mostrar como diálogo modal
+                        }
 
-                        MessageBox.Show("PDF guardado exitosamente como " + filename);
+                        
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error al guardar el PDF: " + ex.Message);
+                        string pdfEspañol1 = "Error al guardar el PDF: " + ex.Message;
+                        string pdfIngles2 = "Error saving PDF: " + ex.Message;
+                        if (lblDesde.Text == "From:")
+                        {
+                            UINotificacion UINoti = new UINotificacion(pdfIngles2, 2)
+                            {
+                                StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                                TopMost = true // Siempre visible encima de otras ventanas
+                            };
+                            UINoti.ShowDialog(); // Mostrar como diálog
+                        }
+                        else
+                        {
+                            UINotificacion UINoti = new UINotificacion(pdfEspañol1, 1)
+                            {
+                                StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                                TopMost = true // Siempre visible encima de otras ventanas
+                            };
+                            UINoti.ShowDialog(); // Mostrar como diálogo modal
+                        }
+                     
                     }
                 }
             }

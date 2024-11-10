@@ -42,9 +42,9 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.btnCambiarContra = new System.Windows.Forms.Button();
-            this.btnAyuda = new System.Windows.Forms.Button();
             this.btnBitacora = new System.Windows.Forms.Button();
             this.btnAlertas = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -72,8 +72,10 @@
             this.btnReportes.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnReportes.FlatAppearance.BorderSize = 0;
             this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.helpProvider1.SetHelpString(this.btnReportes, "Seleccione para ingresar al Modulo de Reportes");
             this.btnReportes.Location = new System.Drawing.Point(0, 354);
             this.btnReportes.Name = "btnReportes";
+            this.helpProvider1.SetShowHelp(this.btnReportes, true);
             this.btnReportes.Size = new System.Drawing.Size(115, 46);
             this.btnReportes.TabIndex = 9;
             this.btnReportes.Text = "Generar Reportes";
@@ -86,8 +88,11 @@
             this.btnGestionarFamilias.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnGestionarFamilias.FlatAppearance.BorderSize = 0;
             this.btnGestionarFamilias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.helpProvider1.SetHelpString(this.btnGestionarFamilias, "Seleccione para ingresar al Modulo de Familias. Desde aqui podra asignar o quitar" +
+        " familias a los usuarios del sistema");
             this.btnGestionarFamilias.Location = new System.Drawing.Point(0, 308);
             this.btnGestionarFamilias.Name = "btnGestionarFamilias";
+            this.helpProvider1.SetShowHelp(this.btnGestionarFamilias, true);
             this.btnGestionarFamilias.Size = new System.Drawing.Size(115, 46);
             this.btnGestionarFamilias.TabIndex = 8;
             this.btnGestionarFamilias.Text = "Gestionar Familias";
@@ -100,8 +105,11 @@
             this.btnGestionarPatentes.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnGestionarPatentes.FlatAppearance.BorderSize = 0;
             this.btnGestionarPatentes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.helpProvider1.SetHelpString(this.btnGestionarPatentes, "Seleccione para ingresar al Modulo de Patentes. Desde aqui podra asignar o quitar" +
+        " patentes a los usuarios del sistema");
             this.btnGestionarPatentes.Location = new System.Drawing.Point(0, 262);
             this.btnGestionarPatentes.Name = "btnGestionarPatentes";
+            this.helpProvider1.SetShowHelp(this.btnGestionarPatentes, true);
             this.btnGestionarPatentes.Size = new System.Drawing.Size(115, 46);
             this.btnGestionarPatentes.TabIndex = 7;
             this.btnGestionarPatentes.Text = "Gestionar Patentes";
@@ -114,8 +122,12 @@
             this.btnGestionarLineas.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnGestionarLineas.FlatAppearance.BorderSize = 0;
             this.btnGestionarLineas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.helpProvider1.SetHelpString(this.btnGestionarLineas, "Seleccione para ingresar al Modulo de Lineas. Desde aqui podra crear, modificar, " +
+        "o eliminar Lineas del sistema. Tambien podra Gestionar los servicios y los coche" +
+        "s de la linea");
             this.btnGestionarLineas.Location = new System.Drawing.Point(0, 216);
             this.btnGestionarLineas.Name = "btnGestionarLineas";
+            this.helpProvider1.SetShowHelp(this.btnGestionarLineas, true);
             this.btnGestionarLineas.Size = new System.Drawing.Size(115, 46);
             this.btnGestionarLineas.TabIndex = 4;
             this.btnGestionarLineas.Text = "Gestionar Lineas";
@@ -128,8 +140,11 @@
             this.btnBKP.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnBKP.FlatAppearance.BorderSize = 0;
             this.btnBKP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.helpProvider1.SetHelpString(this.btnBKP, "Seleccione para ingresar al Modulo de BackUp/Restore. Desde aqui podra generar un" +
+        " BackUp o generar un Restore");
             this.btnBKP.Location = new System.Drawing.Point(0, 170);
             this.btnBKP.Name = "btnBKP";
+            this.helpProvider1.SetShowHelp(this.btnBKP, true);
             this.btnBKP.Size = new System.Drawing.Size(115, 46);
             this.btnBKP.TabIndex = 3;
             this.btnBKP.Text = "Gestionar BackUp";
@@ -142,8 +157,11 @@
             this.btnGestionarUsuarios.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnGestionarUsuarios.FlatAppearance.BorderSize = 0;
             this.btnGestionarUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.helpProvider1.SetHelpString(this.btnGestionarUsuarios, "Seleccione para ingresar al Modulo de Usuarios. Desde aqui podra crear, modificar" +
+        ", o eliminar usuarios del sistema");
             this.btnGestionarUsuarios.Location = new System.Drawing.Point(0, 124);
             this.btnGestionarUsuarios.Name = "btnGestionarUsuarios";
+            this.helpProvider1.SetShowHelp(this.btnGestionarUsuarios, true);
             this.btnGestionarUsuarios.Size = new System.Drawing.Size(115, 46);
             this.btnGestionarUsuarios.TabIndex = 2;
             this.btnGestionarUsuarios.Text = "Gestionar Usuarios";
@@ -156,8 +174,11 @@
             this.btnGestionarEmpleados.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnGestionarEmpleados.FlatAppearance.BorderSize = 0;
             this.btnGestionarEmpleados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.helpProvider1.SetHelpString(this.btnGestionarEmpleados, "Seleccione para ingresar al Modulo de Empleados. Desde aqui podra crear, modifica" +
+        "r, o eliminar empleados del sistema");
             this.btnGestionarEmpleados.Location = new System.Drawing.Point(0, 78);
             this.btnGestionarEmpleados.Name = "btnGestionarEmpleados";
+            this.helpProvider1.SetShowHelp(this.btnGestionarEmpleados, true);
             this.btnGestionarEmpleados.Size = new System.Drawing.Size(115, 46);
             this.btnGestionarEmpleados.TabIndex = 1;
             this.btnGestionarEmpleados.Text = "Gestionar Empleados";
@@ -188,7 +209,6 @@
             // 
             this.panel2.Controls.Add(this.btnCerrarSesion);
             this.panel2.Controls.Add(this.btnCambiarContra);
-            this.panel2.Controls.Add(this.btnAyuda);
             this.panel2.Controls.Add(this.btnBitacora);
             this.panel2.Controls.Add(this.btnAlertas);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
@@ -202,8 +222,10 @@
             this.btnCerrarSesion.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnCerrarSesion.FlatAppearance.BorderSize = 0;
             this.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrarSesion.Location = new System.Drawing.Point(0, 553);
+            this.helpProvider1.SetHelpString(this.btnCerrarSesion, "Cierra la sesion del usuario");
+            this.btnCerrarSesion.Location = new System.Drawing.Point(0, 588);
             this.btnCerrarSesion.Name = "btnCerrarSesion";
+            this.helpProvider1.SetShowHelp(this.btnCerrarSesion, true);
             this.btnCerrarSesion.Size = new System.Drawing.Size(70, 35);
             this.btnCerrarSesion.TabIndex = 5;
             this.btnCerrarSesion.Text = "Cerrar Sesion";
@@ -215,33 +237,26 @@
             this.btnCambiarContra.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnCambiarContra.FlatAppearance.BorderSize = 0;
             this.btnCambiarContra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCambiarContra.Location = new System.Drawing.Point(0, 588);
+            this.helpProvider1.SetHelpString(this.btnCambiarContra, "Cambia la contraseña del usuario");
+            this.btnCambiarContra.Location = new System.Drawing.Point(0, 623);
             this.btnCambiarContra.Name = "btnCambiarContra";
+            this.helpProvider1.SetShowHelp(this.btnCambiarContra, true);
             this.btnCambiarContra.Size = new System.Drawing.Size(70, 35);
             this.btnCambiarContra.TabIndex = 4;
             this.btnCambiarContra.Text = "Cambiar contraseña";
             this.btnCambiarContra.UseVisualStyleBackColor = true;
             this.btnCambiarContra.Click += new System.EventHandler(this.btnCambiarContraseña_Click);
             // 
-            // btnAyuda
-            // 
-            this.btnAyuda.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnAyuda.FlatAppearance.BorderSize = 0;
-            this.btnAyuda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAyuda.Location = new System.Drawing.Point(0, 623);
-            this.btnAyuda.Name = "btnAyuda";
-            this.btnAyuda.Size = new System.Drawing.Size(70, 35);
-            this.btnAyuda.TabIndex = 3;
-            this.btnAyuda.Text = "Ayuda";
-            this.btnAyuda.UseVisualStyleBackColor = true;
-            // 
             // btnBitacora
             // 
             this.btnBitacora.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnBitacora.FlatAppearance.BorderSize = 0;
             this.btnBitacora.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.helpProvider1.SetHelpString(this.btnBitacora, "Seleccione para ingresar al Modulo de Bitacora. Desde aqui podra auditar los movi" +
+        "mientos realizados por los usuarios en el sistema");
             this.btnBitacora.Location = new System.Drawing.Point(0, 23);
             this.btnBitacora.Name = "btnBitacora";
+            this.helpProvider1.SetShowHelp(this.btnBitacora, true);
             this.btnBitacora.Size = new System.Drawing.Size(70, 35);
             this.btnBitacora.TabIndex = 2;
             this.btnBitacora.Text = "Consultar Bitacora";
@@ -253,8 +268,11 @@
             this.btnAlertas.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnAlertas.FlatAppearance.BorderSize = 0;
             this.btnAlertas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.helpProvider1.SetHelpString(this.btnAlertas, "Seleccione para ingresar al Modulo de Alertas Criticas. Desde aqui podra ver las " +
+        "alertas con nivel de criticidad 3");
             this.btnAlertas.Location = new System.Drawing.Point(0, 0);
             this.btnAlertas.Name = "btnAlertas";
+            this.helpProvider1.SetShowHelp(this.btnAlertas, true);
             this.btnAlertas.Size = new System.Drawing.Size(70, 23);
             this.btnAlertas.TabIndex = 0;
             this.btnAlertas.Text = "Ver Alertas";
@@ -268,7 +286,9 @@
             this.ClientSize = new System.Drawing.Size(1269, 658);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.HelpButton = true;
             this.IsMdiContainer = true;
+            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "UIInicio";
             this.Text = "ECSA";
@@ -295,10 +315,10 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnBitacora;
         private System.Windows.Forms.Button btnAlertas;
-        private System.Windows.Forms.Button btnAyuda;
         private System.Windows.Forms.Button btnCerrarSesion;
         private System.Windows.Forms.Button btnCambiarContra;
         private System.Windows.Forms.Button btnReportes;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }
 

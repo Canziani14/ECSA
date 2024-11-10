@@ -77,10 +77,36 @@ namespace ECSA
 
             // Verificar si la contraseña es correcta
             if (ContraseñaBuscada.Count > 0)
-            {
+            { 
                 BLLUsuario.ContadorIngresos0(UsuarioLog);
                 BLLSeguridad.RegistrarEnBitacora(1, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
-                MessageBox.Show("Login exitoso. ¡Bienvenido " + UsuarioLog.Nick + "!", "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                
+                
+
+                string LoginEspañol="Login exitoso. ¡Bienvenido " + UsuarioLog.Nick + "!";
+                string LoginIngles= "Successful login. Welcome " + UsuarioLog.Nick + "!";
+                if (cmbIdiomas.Text=="Inglés")
+                {
+                    UINotificacion UINoti = new UINotificacion(LoginIngles, 2)
+                    {
+                        StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                        TopMost = true // Siempre visible encima de otras ventanas
+                    };
+                    UINoti.ShowDialog(); // Mostrar como diálog
+                }
+                else
+                {
+                    UINotificacion UINoti = new UINotificacion(LoginEspañol, 1)
+                    {
+                        StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                        TopMost = true // Siempre visible encima de otras ventanas
+                    };
+                    UINoti.ShowDialog(); // Mostrar como diálogo modal
+                }
+              
+
+
 
                 // Verificar integridad de datos
                 bool integridadCorrecta = BLLDAL.VerificarIntegridad();
@@ -88,12 +114,54 @@ namespace ECSA
 
                 if (!integridadCorrecta)
                 {
-                    MessageBox.Show("Error en la integridad de los datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                   
+                    string errorIntegridadEspañol = "Error en la integridad de los datos.";
+                    string errorIntegridadIngles = "Data integrity error.";
+                    if (cmbIdiomas.Text == "Inglés")
+                    {
+                        UINotificacion UINoti = new UINotificacion(errorIntegridadIngles, 2)
+                        {
+                            StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                            TopMost = true // Siempre visible encima de otras ventanas
+                        };
+                        UINoti.ShowDialog(); // Mostrar como diálog
+                    }
+                    else
+                    {
+                        UINotificacion UINoti = new UINotificacion(errorIntegridadEspañol, 1)
+                        {
+                            StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                            TopMost = true // Siempre visible encima de otras ventanas
+                        };
+                        UINoti.ShowDialog(); // Mostrar como diálogo modal
+                    }
+
                     // Si la integridad no es correcta, reparar
                     BLLDAL.RepararIntegridad();
                     BLLSeguridad.RegistrarEnBitacora(34, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
-                    // Mensaje después de reparar
-                    MessageBox.Show("La integridad de los datos fue reparada.", "Reparación Completa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Mensaje después de reparar 
+                   
+                    string reparacionIntegridadEspañol = "La integridad de los datos fue reparada.";
+                    string reparacionIntegridadIngles = "Data integrity was repaired.";
+                    if (cmbIdiomas.Text == "Inglés")
+                    {
+                        UINotificacion UINoti = new UINotificacion(reparacionIntegridadIngles, 2)
+                        {
+                            StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                            TopMost = true // Siempre visible encima de otras ventanas
+                        };
+                        UINoti.ShowDialog(); // Mostrar como diálog
+                    }
+                    else
+                    {
+                        UINotificacion UINoti = new UINotificacion(reparacionIntegridadEspañol, 1)
+                        {
+                            StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                            TopMost = true // Siempre visible encima de otras ventanas
+                        };
+                        UINoti.ShowDialog(); // Mostrar como diálogo modal
+                    }
+
                 }
 
                 // Obtener las patentes del usuario
@@ -125,12 +193,58 @@ namespace ECSA
                 {
                     BLLSeguridad.RegistrarEnBitacora(3, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
                     BLLUsuario.BloquearUsuario(UsuarioLog.ID_Usuario);
-                    MessageBox.Show("Cuenta bloqueada después de 3 intentos fallidos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    
+                    string cuentaBloqueadaEspañol = "Cuenta bloqueada después de 3 intentos fallidos.";
+                    string cuentaBloqueadaIngles = "Account locked after 3 failed attempts.";
+                    if (cmbIdiomas.Text == "Inglés")
+                    {
+                        UINotificacion UINoti = new UINotificacion(cuentaBloqueadaIngles, 2)
+                        {
+                            StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                            TopMost = true // Siempre visible encima de otras ventanas
+                        };
+                        UINoti.ShowDialog(); // Mostrar como diálog
+                    }
+                    else
+                    {
+                        UINotificacion UINoti = new UINotificacion(cuentaBloqueadaEspañol, 1)
+                        {
+                            StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                            TopMost = true // Siempre visible encima de otras ventanas
+                        };
+                        UINoti.ShowDialog(); // Mostrar como diálogo modal
+                    }
+
+
                 }
                 else
                 {
                     BLLSeguridad.RegistrarEnBitacora(2, UsuarioLog.Nick, UsuarioLog.ID_Usuario);
-                    MessageBox.Show("Contraseña incorrecta. Intento " + intentosFallidos + " de 3.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    string reparacionIntegridadEspañol = "Contraseña incorrecta. Intento " + intentosFallidos + " de 3";
+                    string reparacionIntegridadIngles = "Incorrect password. Tried " + intentosFallidos+ " of 3";
+                    if (cmbIdiomas.Text == "Inglés")
+                    {
+                        UINotificacion UINoti = new UINotificacion(reparacionIntegridadIngles, 2)
+                        {
+                            StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                            TopMost = true // Siempre visible encima de otras ventanas
+                        };
+                        UINoti.ShowDialog(); // Mostrar como diálog
+                    }
+                    else
+                    {
+                        UINotificacion UINoti = new UINotificacion(reparacionIntegridadEspañol, 1)
+                        {
+                            StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                            TopMost = true // Siempre visible encima de otras ventanas
+                        };
+                        UINoti.ShowDialog(); // Mostrar como diálogo modal
+                    }
+
+
+                    
                     txtContraseña.Clear();
                     txtContraseña.Focus();
                 }

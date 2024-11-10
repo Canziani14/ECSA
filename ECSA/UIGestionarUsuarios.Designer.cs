@@ -325,7 +325,6 @@
             this.lblAsignadas.Size = new System.Drawing.Size(56, 13);
             this.lblAsignadas.TabIndex = 23;
             this.lblAsignadas.Text = "Asignadas";
-            this.lblAsignadas.Click += new System.EventHandler(this.lblAsignadas_Click);
             // 
             // dtgFamiliasSinAsignar
             // 

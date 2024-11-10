@@ -211,11 +211,21 @@ namespace ECSA
 
         private void btnCrearFamilia_Click(object sender, EventArgs e)
         {
-           /* if (txtNombreLinea.Text == "")
+            if (txtNombreFamilia.Text == "")
             {
-                MessageBox.Show("Por favor, complete todos los campos");
+
+
+                if (btnCrearFamilia.Text == "Create")
+                {
+                    MostrarMensajeIngles("Please complete all fields.", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Por favor, complete todos los campos.", 1);
+                }
+
                 return;
-            }*/
+            }
             try
             {
 
@@ -224,18 +234,42 @@ namespace ECSA
 
                 if (BLLFamilia.ValidarNombreFamilia(BEFamilia.Descripcion).Count > 0)
                 {
-                    MessageBox.Show("Nombre de familia ya utilizado");
+                    if (btnCrearFamilia.Text == "Create")
+                    {
+                        MostrarMensajeIngles("Family name already used.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Nombre de familia ya utilizado.", 1);
+                    }
+                    
                 }
                 else
                 {
                     if (BLLFamilia.Crear(BEFamilia))
                     {
                         BLLSeguridad.RegistrarEnBitacora(12, usuarioLog.Nick, usuarioLog.ID_Usuario);
-                        MessageBox.Show("Familia creada con éxito");                       
+                        if (btnCrearFamilia.Text == "Create")
+                        {
+                            MostrarMensajeIngles("Successfully created family.", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("Familia creada con éxito.", 1);
+                        }
+                                          
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo crear la familia");
+                        if (btnCrearFamilia.Text == "Create")
+                        {
+                            MostrarMensajeIngles("Family could not be created.", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("No se pudo crear la familia.", 1);
+                        }
+                      
                     }
                 }
                 limpiarGrilla();
@@ -243,7 +277,15 @@ namespace ECSA
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                if (btnCrearFamilia.Text == "Create")
+                {
+                    MostrarMensajeIngles("Mistake: " + ex.Message, 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Error: " + ex.Message, 1);
+                }
+                
                 return;
             }        
         }
@@ -261,25 +303,56 @@ namespace ECSA
                     }))
                     {
                         BLLSeguridad.RegistrarEnBitacora(14, usuarioLog.Nick, usuarioLog.ID_Usuario);
-                        MessageBox.Show("familia modificada con exito");
+                        if (btnCrearFamilia.Text == "Create")
+                        {
+                            MostrarMensajeIngles("successfully modified family.", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("familia modificada con exito.", 1);
+                        }
+                        
                         limpiarGrilla();
                         limpiartxt();
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo modificar la familia");
+                        if (btnCrearFamilia.Text == "Create")
+                        {
+                            MostrarMensajeIngles("Could not modify family.", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("No se pudo modificar la familia.", 1);
+                        }
+                   
                     }
 
                 }
                 catch (FormatException ex)
                 {
-
-                    MessageBox.Show(ex.Message);
+                    if (btnCrearFamilia.Text == "Create")
+                    {
+                        MostrarMensajeIngles(ex.Message, 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol(ex.Message, 1);
+                    }
+                 
                 }
             }
             else
             {
-                MessageBox.Show("Seleccione una familia para modificar");
+                if (btnCrearFamilia.Text == "Create")
+                {
+                    MostrarMensajeIngles("Select a family to modify.", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Seleccione una familia para modificar.", 1);
+                }
+               
             }
 
         }
@@ -297,7 +370,15 @@ namespace ECSA
                     if (!BLLSeguridad.PuedeEliminarFamilia(familiaSeleccionada.ID_Familia))
                     {
                         // Solo mostrar el mensaje si no se puede eliminar
-                        MessageBox.Show("No se puede eliminar la familia porque contiene patentes únicas que están asignadas solo a un usuario.");
+                        if (btnCrearFamilia.Text == "Create")
+                        {
+                            MostrarMensajeIngles("The family cannot be deleted because it contains unique patents that are assigned to only one user.", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("No se puede eliminar la familia porque contiene patentes únicas que están asignadas solo a un usuario.", 1);
+                        }
+                        
                         return; // Salir del método si no se puede eliminar
                     }
 
@@ -310,24 +391,56 @@ namespace ECSA
 
                         if (familiaEliminada)
                         {
-                            MessageBox.Show("Familia eliminada correctamente");
+                            if (btnCrearFamilia.Text == "Create")
+                            {
+                                MostrarMensajeIngles("Successfully deleted family", 2);
+                            }
+                            else
+                            {
+                                MostrarMensajeEspañol("Familia eliminada correctamente", 1);
+                            }
+                            
                             BLLSeguridad.RegistrarEnBitacora(13, usuarioLog.Nick, usuarioLog.ID_Usuario);
                             limpiarGrilla();
                             limpiartxt();
                         }
                         else
                         {
-                            MessageBox.Show("No se puede borrar la familia");
+                            if (btnCrearFamilia.Text == "Create")
+                            {
+                                MostrarMensajeIngles("You cannot delete the family", 2);
+                            }
+                            else
+                            {
+                                MostrarMensajeEspañol("No se puede borrar la familia", 1);
+                            }
+                           
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Ha ocurrido un error al borrar la familia: " + ex.Message);
+                        if (btnCrearFamilia.Text == "Create")
+                        {
+                            MostrarMensajeIngles("An error occurred while deleting the family: " + ex.Message, 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("Ha ocurrido un error al borrar la familia: " + ex.Message, 1);
+                        }
+                       
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Seleccione una familia para borrar");
+                    if (btnCrearFamilia.Text == "Create")
+                    {
+                        MostrarMensajeIngles("Select a family to delete", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Seleccione una familia para borrar", 1);
+                    }
+                  
                 }
             }
         }
@@ -347,15 +460,29 @@ namespace ECSA
                     // Validar si la patente puede ser quitada de la familia
                     if (!BLLSeguridad.PuedeEliminarPatenteDeFamilia(id_Familia, id_Patente))
                     {
-                        MessageBox.Show("No se puede eliminar la patente porque es la única asignada a esta familia.",
-                                        "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (btnCrearFamilia.Text == "Create")
+                {
+                    MostrarMensajeIngles("The patent cannot be deleted because it is the only one assigned to this family.", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("No se puede eliminar la patente porque es la única asignada a esta familia.", 1);
+                }
+                
                         return; // Salir del método sin hacer nada
                     }
                     bool tieneOtrasAsignaciones = BLLSeguridad.VerificarOtrasAsignacionesDePatente(id_Patente, id_Familia);
                     if (!tieneOtrasAsignaciones)
                     {
-                        MessageBox.Show("No se puede eliminar la patente porque no está asignada a ningún otro usuario o familia.",
-                                        "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (btnCrearFamilia.Text == "Create")
+                {
+                    MostrarMensajeIngles("The patent cannot be deleted because it is not assigned to any other user or family.", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("No se puede eliminar la patente porque no está asignada a ningún otro usuario o familia.", 1);
+                }
+               
                         return; // Salir del método sin hacer nada
                     }
             BLLFamilia.QuitarXFamilia(id_Familia, id_Patente);
@@ -363,7 +490,15 @@ namespace ECSA
                     dtgPatentesSinAsignar.DataSource = BLLFamilia.ListarSinAsignarXFamilia(id_Familia, id_Patente);
 
                     CalcularDigitos();
-                    MessageBox.Show("Patente quitada de la familia correctamente");
+            if (btnCrearFamilia.Text == "Create")
+            {
+                MostrarMensajeIngles("Patent removed from family correctly", 2);
+            }
+            else
+            {
+                MostrarMensajeEspañol("Patente quitada de la familia correctamente.", 1);
+            }
+          
 
                 }
 
@@ -387,7 +522,15 @@ namespace ECSA
             dtgPatentesActuales.DataSource = BLLFamilia.ListarActualesXFamilia(id_Familia, id_Patente);
             dtgPatentesSinAsignar.DataSource = BLLFamilia.ListarSinAsignarXFamilia(id_Familia, id_Patente);
             CalcularDigitos();
-            MessageBox.Show("Patente asignada a la familia correctamente");
+            if (btnCrearFamilia.Text == "Create")
+            {
+                MostrarMensajeIngles("Patent assigned to family correctly.", 2);
+            }
+            else
+            {
+                MostrarMensajeEspañol("Patente asignada a la familia correctamente.", 1);
+            }
+            
         }
 
 
@@ -440,7 +583,15 @@ namespace ECSA
             }
             else
             {
-                MessageBox.Show("seleccione uan fila");
+                if (btnCrearFamilia.Text == "Create")
+                {
+                    MostrarMensajeIngles("select a row.", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("seleccione una fila.", 1);
+                }
+                
                 throw new InvalidOperationException("No se ha seleccionado ninguna fila.");
             }
 
@@ -503,10 +654,41 @@ namespace ECSA
 
         public void CalcularDigitos()
         {
-            string tabla = "Familia_Patente";
+            string tabla = "Usuario_Familia";
             BLLSeguridad.VerificarDigitosVerificadores(tabla);
             BLLSeguridad.CalcularDVV(tabla);
+
+            string tabla1 = "Usuario_Patente";
+            BLLSeguridad.VerificarDigitosVerificadores(tabla1);
+            BLLSeguridad.CalcularDVV(tabla1);
+
+            string tabla3 = "Familia_Patente";
+            BLLSeguridad.VerificarDigitosVerificadores(tabla3);
+            BLLSeguridad.CalcularDVV(tabla3);
         }
+
+        public static void MostrarMensajeEspañol(string mensaje, int codigo)
+        {
+
+            UINotificacion UINoti = new UINotificacion(mensaje, codigo)
+            {
+                StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                TopMost = true // Siempre visible encima de otras ventanas
+            };
+            UINoti.ShowDialog(); // Mostrar como diálog
+        }
+
+        public static void MostrarMensajeIngles(string mensaje, int codigo)
+        {
+
+            UINotificacion UINoti = new UINotificacion(mensaje, codigo)
+            {
+                StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                TopMost = true // Siempre visible encima de otras ventanas
+            };
+            UINoti.ShowDialog(); // Mostrar como diálog
+        }
+
 
     }
 }

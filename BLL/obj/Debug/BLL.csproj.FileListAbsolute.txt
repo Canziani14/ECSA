@@ -10,19 +10,6 @@ C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BLL\obj\Debug\BLL.csproj.AssemblyRefe
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BLL\obj\Debug\BLL.dll
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BLL\obj\Debug\BLL.pdb
-C:\Users\CASA\Desktop\ECSA\ECSA\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
-C:\Users\CASA\Desktop\ECSA\ECSA\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
-C:\Users\CASA\Desktop\ECSA\ECSA\BLL\obj\Debug\BLL.dll
-C:\Users\CASA\Desktop\ECSA\ECSA\BLL\obj\Debug\BLL.pdb
-C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\BLL.dll
-C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\BLL.pdb
-C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\BE.dll
-C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\DAL.dll
-C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\SqlHelper.dll
-C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\BE.pdb
-C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\DAL.pdb
-C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\SqlHelper.pdb
-C:\Users\CASA\Desktop\ECSA\ECSA\BLL\obj\Debug\BLL.csproj.CopyComplete
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BLL\bin\Debug\BE.dll
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BLL\bin\Debug\DAL.dll
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BLL\bin\Debug\SqlHelper.dll
@@ -30,9 +17,22 @@ C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BLL\bin\Debug\BE.pdb
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BLL\bin\Debug\DAL.pdb
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BLL\bin\Debug\SqlHelper.pdb
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BLL\obj\Debug\BLL.csproj.Up2Date
+C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\BLL.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\BLL.pdb
+C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\BE.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\Bogus.dll
 C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\DAL.dll
 C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\itextsharp.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\SqlHelper.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\BE.pdb
+C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\DAL.pdb
+C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\Bogus.xml
 C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\BouncyCastle.Cryptography.xml
 C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\itextsharp.xml
-C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\Bogus.dll
-C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\Bogus.xml
+C:\Users\CASA\Desktop\ECSA\ECSA\BLL\bin\Debug\SqlHelper.pdb
+C:\Users\CASA\Desktop\ECSA\ECSA\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+C:\Users\CASA\Desktop\ECSA\ECSA\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Users\CASA\Desktop\ECSA\ECSA\BLL\obj\Debug\BLL.csproj.CopyComplete
+C:\Users\CASA\Desktop\ECSA\ECSA\BLL\obj\Debug\BLL.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\BLL\obj\Debug\BLL.pdb

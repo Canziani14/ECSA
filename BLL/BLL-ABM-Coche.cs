@@ -14,7 +14,7 @@ namespace BLL
         DAL.DALCoche DALCoche = new DAL.DALCoche();
         public List<Coche> Buscar(int id)
         {
-            throw new NotImplementedException();
+            return DALCoche.Buscar(id);
         }
 
         public bool Crear(Coche objAgregar)

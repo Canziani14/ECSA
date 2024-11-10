@@ -66,7 +66,28 @@ namespace ECSA
             if (usuarioLog.Contraseña != contraseñaActualEncriptada)
             {
                 limpiartxt();
-                MessageBox.Show("La contraseña actual es incorrecta.");
+                string contraincespañol = "La contraseña actual es incorrecta.";
+                string contraincingles = "The current password is incorrect.";
+                if (lblIngreseActual.Text == "Enter Current Password")
+                {
+                    UINotificacion UINoti = new UINotificacion(contraincingles, 2)
+                    {
+                        StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                        TopMost = true // Siempre visible encima de otras ventanas
+                    };
+                    UINoti.ShowDialog(); // Mostrar como diálog
+                }
+                else
+                {
+                    UINotificacion UINoti = new UINotificacion(contraincespañol, 1)
+                    {
+                        StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                        TopMost = true // Siempre visible encima de otras ventanas
+                    };
+                    UINoti.ShowDialog(); // Mostrar como diálogo modal
+                }
+
+                
                 return;
             }
 
@@ -74,7 +95,27 @@ namespace ECSA
             if (nuevaContraseña != confirmarContraseña)
             {
                 limpiartxt();
-                MessageBox.Show("La nueva contraseña y la confirmación no coinciden.");
+                string contraincespañol1 = "La nueva contraseña y la confirmación no coinciden.";
+                string contraincingles1 = "The new password and the confirmation do not match.";
+                if (lblIngreseActual.Text == "Enter Current Password")
+                {
+                    UINotificacion UINoti = new UINotificacion(contraincingles1, 2)
+                    {
+                        StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                        TopMost = true // Siempre visible encima de otras ventanas
+                    };
+                    UINoti.ShowDialog(); // Mostrar como diálog
+                }
+                else
+                {
+                    UINotificacion UINoti = new UINotificacion(contraincespañol1, 1)
+                    {
+                        StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                        TopMost = true // Siempre visible encima de otras ventanas
+                    };
+                    UINoti.ShowDialog(); // Mostrar como diálogo modal
+                }
+                
                 return;
             }
 
@@ -82,7 +123,28 @@ namespace ECSA
             if (nuevaContraseña == contraseñaActualIngresada)
             {
                 limpiartxt();
-                MessageBox.Show("La nueva contraseña no puede ser igual a la actual.");
+                string contraincespañol2 = "La nueva contraseña no puede ser igual a la actual.";
+                string contraincingles2 = "The new password cannot be the same as the current one.";
+                if (lblIngreseActual.Text == "Enter Current Password")
+                {
+                    UINotificacion UINoti = new UINotificacion(contraincingles2, 2)
+                    {
+                        StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                        TopMost = true // Siempre visible encima de otras ventanas
+                    };
+                    UINoti.ShowDialog(); // Mostrar como diálog
+                }
+                else
+                {
+                    UINotificacion UINoti = new UINotificacion(contraincespañol2, 1)
+                    {
+                        StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                        TopMost = true // Siempre visible encima de otras ventanas
+                    };
+                    UINoti.ShowDialog(); // Mostrar como diálogo modal
+                }
+
+               
                 return;
             }
 
@@ -96,11 +158,51 @@ namespace ECSA
             {
                 BLLSeguridad.RegistrarEnBitacora(30, usuarioLog.Nick, usuarioLog.ID_Usuario);
                 limpiartxt();
-                MessageBox.Show("Contraseña modificada con éxito");
+                string contraincespañol3 = "Contraseña modificada con éxito.";
+                string contraincingles3 = "Password changed successfully.";
+                if (lblIngreseActual.Text == "Enter Current Password")
+                {
+                    UINotificacion UINoti = new UINotificacion(contraincingles3, 2)
+                    {
+                        StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                        TopMost = true // Siempre visible encima de otras ventanas
+                    };
+                    UINoti.ShowDialog(); // Mostrar como diálog
+                }
+                else
+                {
+                    UINotificacion UINoti = new UINotificacion(contraincespañol3, 1)
+                    {
+                        StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                        TopMost = true // Siempre visible encima de otras ventanas
+                    };
+                    UINoti.ShowDialog(); // Mostrar como diálogo modal
+                }
+             
             }
             else
             {
-                MessageBox.Show("Hubo un error al modificar la contraseña.");
+                string contraincespañol4 = "Hubo un error al modificar la contraseña.";
+                string contraincingles4 = "There was an error changing the password.";
+                if (lblIngreseActual.Text == "Enter Current Password")
+                {
+                    UINotificacion UINoti = new UINotificacion(contraincingles4, 2)
+                    {
+                        StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                        TopMost = true // Siempre visible encima de otras ventanas
+                    };
+                    UINoti.ShowDialog(); // Mostrar como diálog
+                }
+                else
+                {
+                    UINotificacion UINoti = new UINotificacion(contraincespañol4, 1)
+                    {
+                        StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                        TopMost = true // Siempre visible encima de otras ventanas
+                    };
+                    UINoti.ShowDialog(); // Mostrar como diálogo modal
+                }
+               
             }
         }
 

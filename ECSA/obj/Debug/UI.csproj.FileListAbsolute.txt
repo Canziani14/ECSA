@@ -41,14 +41,38 @@ C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIBitacora.resour
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIGenerarNuevaContra.resources
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIAlertas.resources
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIReportes.resources
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\BE.dll
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\BLL.dll
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\DAL.dll
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\SqlHelper.dll
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\BE.pdb
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\BLL.pdb
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\DAL.pdb
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\SqlHelper.pdb
+C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\obj\Debug\UI.csproj.Up2Date
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\ECSA.exe.config
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\ECSA.exe
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\ECSA.pdb
+C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\BE.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\BLL.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\Bogus.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\itextsharp.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\DAL.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\SqlHelper.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\BE.pdb
+C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\BLL.pdb
+C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\Bogus.xml
+C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\BouncyCastle.Cryptography.xml
+C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\itextsharp.xml
+C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\DAL.pdb
+C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\SqlHelper.pdb
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\UI.csproj.AssemblyReference.cache
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\UI.csproj.SuggestedBindingRedirects.cache
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIAlertas.resources
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIBitacora.resources
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UICambiarContraseña.resources
+C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIConectarSQL.resources
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIGenerarNuevaContra.resources
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIGestionarCoches.resources
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIGestionarBackUp.resources
@@ -61,34 +85,10 @@ C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIGestionarUsuarios.resource
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIInicio.resources
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UILogin.resources
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.Properties.Resources.resources
+C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UINotificacion.resources
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIReportes.resources
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\UI.csproj.GenerateResource.cache
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\UI.csproj.CoreCompileInputs.cache
+C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\UI.csproj.CopyComplete
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.exe
 C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.pdb
-C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\BE.dll
-C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\BLL.dll
-C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\BE.pdb
-C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\BLL.pdb
-C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\UI.csproj.CopyComplete
-C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\DAL.dll
-C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\SqlHelper.dll
-C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\DAL.pdb
-C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\SqlHelper.pdb
-C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\BE.dll
-C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\BLL.dll
-C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\DAL.dll
-C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\SqlHelper.dll
-C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\BE.pdb
-C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\BLL.pdb
-C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\DAL.pdb
-C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\bin\Debug\SqlHelper.pdb
-C:\Users\Matias Canziani\Desktop\ECSA\ECSA\ECSA\obj\Debug\UI.csproj.Up2Date
-C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\BouncyCastle.Cryptography.dll
-C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\itextsharp.dll
-C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\BouncyCastle.Cryptography.xml
-C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\itextsharp.xml
-C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIConectarSQL.resources
-C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\Bogus.dll
-C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\bin\Debug\Bogus.xml
-C:\Users\CASA\Desktop\ECSA\ECSA\ECSA\obj\Debug\ECSA.UIAyuda.resources

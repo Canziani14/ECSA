@@ -29,6 +29,7 @@ namespace ECSA
             BLLSeguridad.VerificarDigitosVerificadores("Usuario");
             BLLSeguridad.CalcularDVV("Usuario");
             _idIdiomaSeleccionado = idIdiomaSeleccionado;
+            
 
             #region idioma
 
@@ -62,9 +63,6 @@ namespace ECSA
                         break;
                     case 32:
                         btnBitacora.Text = traduccion.Descripcion;
-                        break;
-                    case 38:
-                        btnAyuda.Text = traduccion.Descripcion;
                         break;
                     case 34:
                         btnCerrarSesion.Text = traduccion.Descripcion;
@@ -128,7 +126,7 @@ namespace ECSA
             #endregion
 
             this.KeyPreview = true; // Permite que el formulario capture teclas
-            this.KeyDown += new KeyEventHandler(F1);
+           // this.KeyDown += new KeyEventHandler(F1);
 
             #region alerta
             Timer timer = new Timer();
@@ -170,7 +168,7 @@ namespace ECSA
 
 
 
-        private void F1(object sender, KeyEventArgs e)
+       /* private void F1(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1)
             {
@@ -179,7 +177,7 @@ namespace ECSA
                 uIAyuda.MdiParent = this;
                 uIAyuda.Show();
             }
-        }
+        }*/
 
 
 
@@ -233,12 +231,12 @@ namespace ECSA
             uiGestionarFamilias.Show();
         }
 
-        private void btnAyuda_Click(object sender, EventArgs e)
+       /* private void btnAyuda_Click(object sender, EventArgs e)
         {
             UIAyuda uiAyuda = new UIAyuda();
             uiAyuda.MdiParent = this;
             uiAyuda.Show();
-        }
+        }*/
 
         private void btnCambiarContraseña_Click(object sender, EventArgs e)
         {
@@ -339,6 +337,7 @@ namespace ECSA
 
         #endregion
 
+        
     }
 
 }

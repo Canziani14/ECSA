@@ -56,7 +56,6 @@
             this.txtBuscarEmpleado = new System.Windows.Forms.TextBox();
             this.lblBuscarEmpleado = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgEmpleados)).BeginInit();
             this.gbGestorEmpleados.SuspendLayout();
             this.SuspendLayout();
@@ -313,22 +312,11 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(501, 26);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // UIGestionarEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1073, 523);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblBuscarEmpleado);
             this.Controls.Add(this.txtBuscarEmpleado);
             this.Controls.Add(this.gbGestorEmpleados);
@@ -373,6 +361,5 @@
         private System.Windows.Forms.TextBox txtLegajo;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Button btnRecuperarEmlpeado;
-        private System.Windows.Forms.Button button1;
     }
 }

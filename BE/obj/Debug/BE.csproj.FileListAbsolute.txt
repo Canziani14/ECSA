@@ -12,14 +12,14 @@ C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BE\obj\Debug\BE.dll
 C:\Users\Matias Canziani\Desktop\ECSA\ECSA\BE\obj\Debug\BE.pdb
 C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Debug\BE.dll
 C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Debug\BE.pdb
-C:\Users\CASA\Desktop\ECSA\ECSA\BE\obj\Debug\BE.csproj.AssemblyReference.cache
-C:\Users\CASA\Desktop\ECSA\ECSA\BE\obj\Debug\BE.csproj.CoreCompileInputs.cache
-C:\Users\CASA\Desktop\ECSA\ECSA\BE\obj\Debug\BE.dll
-C:\Users\CASA\Desktop\ECSA\ECSA\BE\obj\Debug\BE.pdb
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Debug\Bogus.dll
 C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Debug\BouncyCastle.Cryptography.dll
 C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Debug\itextsharp.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Debug\Bogus.xml
 C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Debug\BouncyCastle.Cryptography.xml
 C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Debug\itextsharp.xml
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\obj\Debug\BE.csproj.AssemblyReference.cache
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\obj\Debug\BE.csproj.CoreCompileInputs.cache
 C:\Users\CASA\Desktop\ECSA\ECSA\BE\obj\Debug\BE.csproj.CopyComplete
-C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Debug\Bogus.dll
-C:\Users\CASA\Desktop\ECSA\ECSA\BE\bin\Debug\Bogus.xml
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\obj\Debug\BE.dll
+C:\Users\CASA\Desktop\ECSA\ECSA\BE\obj\Debug\BE.pdb

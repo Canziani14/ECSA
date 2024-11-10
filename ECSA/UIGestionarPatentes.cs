@@ -201,14 +201,29 @@ namespace ECSA
                 }
                 else
                 {
-                    MessageBox.Show("Usuario no encontrado.");
+                    if (btnBuscarUsuario.Text == "Search")
+                    {
+                        MostrarMensajeIngles("User not found.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Usuario no encontrado", 1);
+                    }
+                   
                     dtgUsuarios.DataSource = usuarios;
                 }
             }
             else
             {
-                
-                MessageBox.Show("Por favor, ingrese un Nick válido.");
+                if (btnBuscarUsuario.Text == "Search")
+                {
+                    MostrarMensajeIngles("Please enter a valid Nickname.", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Por favor, ingrese un Nick válido.", 1);
+                }
+              
                 dtgUsuarios.DataSource = null;
             }
         }
@@ -252,7 +267,15 @@ namespace ECSA
 
             if (usuarioSeleccionado == null)
             {
-                MessageBox.Show("No se ha seleccionado un usuario.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (btnBuscarUsuario.Text == "Search")
+                {
+                    MostrarMensajeIngles("No user selected.", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("No se ha seleccionado un usuario", 1);
+                }
+                
                 return;
             }
 
@@ -287,16 +310,40 @@ namespace ECSA
                     BLLSeguridad.RegistrarEnBitacora(28, usuarioLog.Nick, usuarioLog.ID_Usuario);
                     RefrescarDTG();
                     dtgPatentesActuales.Columns["ID_Usuario"].Visible = false;
-                    MessageBox.Show("Patente quitada correctamente");
+                    if (btnBuscarUsuario.Text == "Search")
+                    {
+                        MostrarMensajeIngles("Patent removed successfully.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Patente quitada correctamente", 1);
+                    }
+                   
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error al quitar la patente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (btnBuscarUsuario.Text == "Search")
+                    {
+                        MostrarMensajeIngles($"Error removing patent: {ex.Message}", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol($"Error al quitar la patente: {ex.Message}", 1);
+                    }
+                   
                 }
             }
             else
             {
-                MessageBox.Show("No se puede eliminar la patente porque es el único propietario o está asociada a una familia a la que pertenece el usuario.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (btnBuscarUsuario.Text == "Search")
+                {
+                    MostrarMensajeIngles("The patent cannot be deleted because it is the sole owner or it is associated with a family to which the user belongs.", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("No se puede eliminar la patente porque es el único propietario o está asociada a una familia a la que pertenece el usuario", 1);
+                }
+                
             }
         }
 
@@ -376,9 +423,41 @@ namespace ECSA
 
         public void CalcularDigitos()
         {
-            string tabla = "Usuario_Patente";
+            string tabla = "Usuario_Familia";
             BLLSeguridad.VerificarDigitosVerificadores(tabla);
             BLLSeguridad.CalcularDVV(tabla);
+
+            string tabla1 = "Usuario_Patente";
+            BLLSeguridad.VerificarDigitosVerificadores(tabla1);
+            BLLSeguridad.CalcularDVV(tabla1);
+
+            string tabla3 = "Familia_Patente";
+            BLLSeguridad.VerificarDigitosVerificadores(tabla3);
+            BLLSeguridad.CalcularDVV(tabla3);
+        }
+
+
+
+        public static void MostrarMensajeEspañol(string mensaje, int codigo)
+        {
+
+            UINotificacion UINoti = new UINotificacion(mensaje, codigo)
+            {
+                StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                TopMost = true // Siempre visible encima de otras ventanas
+            };
+            UINoti.ShowDialog(); // Mostrar como diálog
+        }
+
+        public static void MostrarMensajeIngles(string mensaje, int codigo)
+        {
+
+            UINotificacion UINoti = new UINotificacion(mensaje, codigo)
+            {
+                StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                TopMost = true // Siempre visible encima de otras ventanas
+            };
+            UINoti.ShowDialog(); // Mostrar como diálog
         }
 
 

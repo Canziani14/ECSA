@@ -12,6 +12,22 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>C:\Users\CASA\Desktop\ECSA\ECSA\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +47,21 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>colectivo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>A1402F5C8063D61708B1764EE367C25600257923</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>UI_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bogus, Version=35.6.1.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
@@ -92,12 +123,6 @@
     <Compile Include="UIGestionarCoches.Designer.cs">
       <DependentUpon>UIGestionarCoches.cs</DependentUpon>
     </Compile>
-    <Compile Include="UIAyuda.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UIAyuda.Designer.cs">
-      <DependentUpon>UIAyuda.cs</DependentUpon>
-    </Compile>
     <Compile Include="UIGestionarBackUp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +179,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UINotificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UINotificacion.Designer.cs">
+      <DependentUpon>UINotificacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIReportes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,9 +193,6 @@
     </Compile>
     <EmbeddedResource Include="UIAlertas.resx">
       <DependentUpon>UIAlertas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UIAyuda.resx">
-      <DependentUpon>UIAyuda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIBitacora.resx">
       <DependentUpon>UIBitacora.cs</DependentUpon>
@@ -219,6 +247,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UINotificacion.resx">
+      <DependentUpon>UINotificacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UIReportes.resx">
       <DependentUpon>UIReportes.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,6 +263,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="UI_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -245,6 +277,21 @@
       <Project>{8e88c4b8-7c99-4690-82f2-002f92400f07}</Project>
       <Name>BLL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="colectivo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

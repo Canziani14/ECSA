@@ -67,11 +67,52 @@ namespace ECSA
                 if (actualizacionExitosa)
                 {
                     BLLSeguridad.RegistrarEnBitacora(31, nick, id_Usuario);
-                    MessageBox.Show("Nueva contraseña generada con éxito");
+                    string pdfEspañol = "Nueva contraseña generada con éxito";
+                    string pdfIngles = "New password successfully generated";
+                    if (btnGenerarNuevaContraseña.Text == "Generate New Password")
+                    {
+                        UINotificacion UINoti = new UINotificacion(pdfIngles, 2)
+                        {
+                            StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                            TopMost = true // Siempre visible encima de otras ventanas
+                        };
+                        UINoti.ShowDialog(); // Mostrar como diálog
+                    }
+                    else
+                    {
+                        UINotificacion UINoti = new UINotificacion(pdfEspañol, 1)
+                        {
+                            StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                            TopMost = true // Siempre visible encima de otras ventanas
+                        };
+                        UINoti.ShowDialog(); // Mostrar como diálogo modal
+                    }
+
+                    
                 }
                 else
                 {
-                    MessageBox.Show("Hubo un error al generar la contraseña.");
+           
+                    string pdfEspañol = "Hubo un error al generar la contraseña.";
+                    string pdfIngles = "There was an error generating the password.";
+                    if (btnGenerarNuevaContraseña.Text == "Generate New Password")
+                    {
+                        UINotificacion UINoti = new UINotificacion(pdfIngles, 2)
+                        {
+                            StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                            TopMost = true // Siempre visible encima de otras ventanas
+                        };
+                        UINoti.ShowDialog(); // Mostrar como diálog
+                    }
+                    else
+                    {
+                        UINotificacion UINoti = new UINotificacion(pdfEspañol, 1)
+                        {
+                            StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                            TopMost = true // Siempre visible encima de otras ventanas
+                        };
+                        UINoti.ShowDialog(); // Mostrar como diálogo modal
+                    }
                 }
 
                 

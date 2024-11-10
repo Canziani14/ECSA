@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -121,15 +122,25 @@ namespace ECSA
             dtgCoches.GridColor = Color.FromArgb(231, 231, 231);
             #endregion
 
-
-
         }
 
+
+        #region Crear
         private void btnCrearCoche_Click(object sender, EventArgs e)
         {
-            if (txtPatente.Text == "")
+            if (!ValidarPatente(txtPatente.Text))
             {
-                MessageBox.Show("Por favor, complete todos los campos");
+
+                if (btnCrearCoche.Text == "Create")
+                {
+                    MostrarMensajeIngles("The patent entered is not valid. Only letters, numbers and some special characters are allowed.", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("La patente ingresada no es válida. Solo se permiten letras, números y algunos caracteres especiales.", 1);
+                }
+
+                
                 return;
             }
 
@@ -146,24 +157,56 @@ namespace ECSA
                 }
                 else
                 {
-                    MessageBox.Show("Por favor, selecciona una línea válida.");
+                    if (btnCrearCoche.Text == "Create")
+                    {
+                        MostrarMensajeIngles("Please select a valid line.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Por favor, selecciona una línea válida.", 1);
+                    }
+                    
                 }
 
                 if (BLLCoche.ValidarPatente(BECoche.Patente).Count()>0)
                 {
-                    MessageBox.Show("Patente ya utilizada");
+                    if (btnCrearCoche.Text == "Create")
+                    {
+                        MostrarMensajeIngles("Patent already used.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Patente ya utilizada.", 1);
+                    }
+                   
                 }
                 else
                 {
                     if (BLLCoche.Crear(BECoche))
                     {
                         BLLSeguridad.RegistrarEnBitacora(21, usuarioLog.Nick, usuarioLog.ID_Usuario);
-                        MessageBox.Show("Coche creado con éxito");
+                        if (btnCrearCoche.Text == "Create")
+                        {
+                            MostrarMensajeIngles("Successfully created car.", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("Coche creado con éxito.", 1);
+                        }
+
                         CalcularDigitos();
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo crear el Coche");
+                        if (btnCrearCoche.Text == "Create")
+                        {
+                            MostrarMensajeIngles("Car could not be created.", 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("No se pudo crear el Coche.", 1);
+                        }
+                        
                     }
                 }
                
@@ -173,11 +216,21 @@ namespace ECSA
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                if (btnCrearCoche.Text == "Create")
+                {
+                    MostrarMensajeIngles("Mistake: " + ex.Message, 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Error: " + ex.Message, 1);
+                }
+               
                 return;
             }
         }
+        #endregion
 
+        #region eliminar
         private void btnEliminarCoche_Click(object sender, EventArgs e)
         {
             
@@ -200,35 +253,117 @@ namespace ECSA
                             }
                             else
                             {
-                                MessageBox.Show("no se puede borrar el Coche");
+                            if (btnCrearCoche.Text == "Create")
+                            {
+                                MostrarMensajeIngles("can't delete car", 2);
+                            }
+                            else
+                            {
+                                MostrarMensajeEspañol("no se puede borrar el Coche", 1);
+                            }
+                            
                             }
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Ha ocurrido un error al borrar el Coche: " + ex.Message);
+                        if (btnCrearCoche.Text == "Create")
+                        {
+                            MostrarMensajeIngles("An error occurred while deleting the Car: " + ex.Message, 2);
+                        }
+                        else
+                        {
+                            MostrarMensajeEspañol("Ha ocurrido un error al borrar el Coche: " + ex.Message, 1);
+                        }
+                        
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Seleccione un Coche para borrar");
+                    if (btnCrearCoche.Text == "Create")
+                    {
+                        MostrarMensajeIngles("Select a Car to delete", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Seleccione un Coche para borrar", 1);
+                    }
+                    
                     }
                 }
             
         }
+        #endregion
 
+        #region buscar
         private void btnBuscarCoche_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("No se encontro el coche");
+            if (int.TryParse(txtBuscar.Text, out int interno))
+            {
+                // Perform the search using the parsed legajo
+                List<BE.Coche> coches = BLLCoche.Buscar(interno);
+
+                if (coches != null && coches.Count > 0)
+                {
+                    dtgCoches.DataSource = coches;
+                }
+                else
+                {
+                    if (btnBuscarCoche.Text == "Search")
+                    {
+                        MostrarMensajeIngles("Car not found.", 2);
+                    }
+                    else
+                    {
+                        MostrarMensajeEspañol("Coche no encontrado.", 1);
+                    }
+
+                    dtgCoches.DataSource = coches;
+                }
+            }
+            else
+            {
+                // Show error message if the input is not a valid integer
+                if (btnBuscarCoche.Text == "Search")
+                {
+                    MostrarMensajeIngles("Please enter a valid extension number.", 2);
+                }
+                else
+                {
+                    MostrarMensajeEspañol("Por favor, ingrese un número de interno válido.", 1);
+                }
+
+                dtgCoches.DataSource = null;
+            }
         }
 
 
+        #endregion
 
 
 
 
+        #region validaciones
+        private bool ValidarPatente(string input)
+        {
+            // Expresión regular para validar patente de coche
+            string patronPatente = @"^[a-zA-Z0-9.@#$%&*()-]{6,8}$";
 
+            // Validación del campo, con un mensaje en caso de error
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                
+                return false;
+            }
 
+            if (!Regex.IsMatch(input, patronPatente))
+            {
+                
+                return false;
+            }
 
+            return true;
+        }
+        #endregion
 
 
 
@@ -298,6 +433,31 @@ namespace ECSA
             cmbLinea.SelectedValue = coche.ID_Linea;
             txtInterno.Text = (coche.Interno).ToString();
         }
+
+
+        public static void MostrarMensajeEspañol(string mensaje, int codigo)
+        {
+
+            UINotificacion UINoti = new UINotificacion(mensaje, codigo)
+            {
+                StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                TopMost = true // Siempre visible encima de otras ventanas
+            };
+            UINoti.ShowDialog(); // Mostrar como diálog
+        }
+
+        public static void MostrarMensajeIngles(string mensaje, int codigo)
+        {
+
+            UINotificacion UINoti = new UINotificacion(mensaje, codigo)
+            {
+                StartPosition = FormStartPosition.CenterScreen, // Centrado en pantalla
+                TopMost = true // Siempre visible encima de otras ventanas
+            };
+            UINoti.ShowDialog(); // Mostrar como diálog
+        }
+
+
 
     }
 
